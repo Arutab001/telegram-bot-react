@@ -1,0 +1,24 @@
+.profile {
+    background-color: #D9FFD2;
+    border: 2px solid #00000080;
+    border-radius: 34px;
+    height: 65vh;
+    width: 80vw;
+    margin: 20% 0;
+    padding-left: 5%;
+    h1 {
+        font-size: larger;
+    }
+}
+.Button {
+    padding-right: 5%;
+    margin-top: 5%;
+    width: 95%;
+    height: 5vh;
+    border-radius: 45px;
+    border: 2px solid #00000080;
+    background-color: #FFEDD2;
+    font-family: Montserrat;
+    color: #364035;
+
+}

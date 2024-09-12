@@ -1,5 +1,5 @@
 import React from 'react';
-import News from '../images/forge 1.png'
+import News from '../../images/forge 1.png'
 
 const NewsBox = () => {
     return (

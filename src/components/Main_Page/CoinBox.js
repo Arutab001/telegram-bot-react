@@ -1,5 +1,5 @@
 import React from 'react';
-import Coin1 from '../images/gecko_coin_rem 1.png'
+import Coin1 from '../../images/gecko_coin_rem 1.png'
 
 const CoinBox = (props) => {
     return (
