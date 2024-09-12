@@ -1,6 +1,6 @@
 
 .notification {
-    position: fixed;
+    position: relative;
     background-color: #F4C988;
     width: 100vw;
     text-align: center;
@@ -15,7 +15,7 @@
 }
 
 .notification.show {
-    top: 10vh; /* Позиция появления уведомления */
+    top: 0; /* Позиция появления уведомления */
 }
 
 .notification.hide {

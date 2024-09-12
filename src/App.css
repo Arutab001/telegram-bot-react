@@ -38,7 +38,7 @@ body {
 }
 
 .Footer {
-    height: 19vh;
+    height: 20vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
