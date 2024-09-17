@@ -73,6 +73,7 @@ const Profile = () => {
                     <MyBtn text="Premium"
                            onClick={openModal}
                            onClose={closeModal}
+                           setIsModalOpen={setIsModalOpen}
                     />
                 </div>
                 <div>

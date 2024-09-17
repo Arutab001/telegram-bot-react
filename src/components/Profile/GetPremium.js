@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
 import "./getPremium.css";
+import {useUser} from "../../UserContext.js";
 
-const GetPremium = ({show, onClose, handleNot }) => {
+const GetPremium = ({show, onClose, handleNot, setIsModalOpen }) => {
     const [notificationVisible, setNotificationVisible] = useState(false);
 
+    const {user, updateUser} = useUser();
 
     const getPremium = (e) => {
         e.preventDefault();
-        onClose;
-        handleNot(true);
-        setNotificationVisible(true);
+        if (!user.premium) {
+            handleNot(true);
+            setNotificationVisible(true);
+            user.premium = true;
+        }
+
     };
 
 

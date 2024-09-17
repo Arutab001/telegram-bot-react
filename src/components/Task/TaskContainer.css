@@ -1,0 +1,29 @@
+.TaskContainer {
+    width: 90vw;
+    height: 15vh;
+    background-color: #D9FFD2;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-radius: 45px;
+    border: 2px solid #00000080;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: Montserrat;
+    h2 {
+        color: #000000BF;
+        font-size: 100%;
+    }
+    p {
+        color: #00000080;
+        font-size: 100%;
+        font-weight: bold;
+    }
+    img {
+        height: 11vh;
+        width: 23vw;
+        border-radius: 100%;
+    }
+}

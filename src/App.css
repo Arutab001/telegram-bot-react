@@ -5,6 +5,7 @@ html {
 
 body {
     margin: 0;
+    overflow-x: hidden;
 
 }
 
@@ -38,6 +39,7 @@ body {
 }
 
 .Footer {
+    width: 100vw;
     height: 20vh;
     display: flex;
     flex-direction: row;

@@ -18,6 +18,11 @@ export const UserProvider = ({ children }) => {
             withdraw: 0
         }
     );
+
+    const updatePremium = () => {
+        user.premium = true;
+    }
+
  //window.Telegram.WebApp.initData.name
     const updateUser = (newUserData) => {
         setUser(newUserData);
