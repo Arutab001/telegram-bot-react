@@ -19,7 +19,9 @@ const TaskContainer = (props) => {
                 </p>
             </div>
             <div>
-                <Link to={"/Profile"}>
+                <Link
+                    to="/TaskPage"
+                        state={{id: props.id, name: props.name, reward: props.reward}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 125 125" fill="none">
                         <rect width="125" height="125" rx="62.5" fill="#6D8069"/>
                         <path d="M53.3848 86.9233L77.6119 62.6962" stroke="#D9FFD2" stroke-width="10"

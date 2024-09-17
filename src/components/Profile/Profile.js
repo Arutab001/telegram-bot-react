@@ -42,11 +42,11 @@ const Profile = () => {
     useEffect(() => {
 
         const timer = setTimeout(() => {
-            setIsVisible(false); // Скрыть уведомление
-            setTimeout(handleIsVisible(false), 500); // Закрыть уведомление после анимации
+            setIsVisible(false);
+            setTimeout(handleIsVisible(false), 500);
         }, 3000);
 
-        return () => clearTimeout(timer); // Очистить таймер при размонтировании компонента
+        return () => clearTimeout(timer);
     }, [isVisible]);
     return (
         <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
@@ -56,18 +56,18 @@ const Profile = () => {
                     <h1>
                         Account Info
                     </h1>
-                    Name: {user.name} <br/>
-                    Your ID: {user.id}<br/>
-                    Premium: {user.premium} <br/>
-                    Referrals: {user.referrals} <br/>
-                    Withdrawn: {user.withdraw} <br/>
+                    <span>Name: </span> {user.name} <br/>
+                    <span> Your ID: </span> {user.id}<br/>
+                    <span> Premium: </span> {user.premium} <br/>
+                    <span> Referrals: </span>{user.referrals} <br/>
+                    <span> Withdrawn: </span>{user.withdraw} <br/>
                 </div>
                 <div>
                     <h1>
                         Withdraw Info
                     </h1>
                     <p>We will notify you in advance about payouts! </p>
-                    <p>MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY</p>
+                    <p className="p2">MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY</p>
                 </div>
                 <div>
                     <MyBtn text="Premium"

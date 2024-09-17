@@ -9,6 +9,7 @@ import Casino from './components/Casino/Casino.js';
 import Profile from './components/Profile/Profile.js';
 import Task from './components/Task/Task.js';
 import {UserProvider} from "./UserContext.js";
+import TaskPage from "./components/Task/TaskPage.js";
 
 const tg = window.Telegram.WebApp;
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
             <Route path="Casino" element={<Casino/>}/>
             <Route path="Profile" element={<Profile/>}/>
             <Route path="Tasks" element={<Task/>}/>
+            <Route path="TaskPage" element={<TaskPage />}/>
         </Route>
     )
 );
