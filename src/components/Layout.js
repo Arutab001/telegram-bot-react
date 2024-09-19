@@ -8,7 +8,7 @@ const Layout = () => {
     return (
         <>
             <Header />
-            <main>
+            <main style={{marginBottom: "25vh"}}>
                 <Outlet />
             </main>
             <Footer />
