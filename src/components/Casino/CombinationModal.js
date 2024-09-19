@@ -17,7 +17,7 @@ const CombinationModal = ({show, close}) => {
                         Winning Combinations
                     </h2>
                 </div>
-                <div>
+                <div className="Combinations">
                     🦎🦎🦎 - x10 <br/>
                     🏜️🏜️🏜️ - x5 <br/>
                     🏖️🏖️🏖️ - x3 <br/>
