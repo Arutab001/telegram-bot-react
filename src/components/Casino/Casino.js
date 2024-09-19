@@ -18,7 +18,7 @@ const Casino = () => {
     return (
         <div style={{display:"flex", alignItems: "center", flexDirection: "column", marginTop:"35%"}}>
             <div className="CasinoCard" style={{position: "relative"}}>
-                <svg onClick={OpenModal} style={{position: "absolute", right: "-15px", top: "-15px"}} xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 60 60" fill="none">
+                <svg onClick={OpenModal} style={{position: "absolute", right: "5px", top: "5px"}} xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 60 60" fill="none">
                     <circle cx="30" cy="30" r="30" fill="#6D8069"/>
                     <path
                         d="M33.4131 43.4795C33.4131 44.673 32.939 45.8176 32.0951 46.6615C31.2512 47.5054 30.1066 47.9795 28.9131 47.9795C27.7196 47.9795 26.575 47.5054 25.7311 46.6615C24.8872 45.8176 24.4131 44.673 24.4131 43.4795C24.4131 42.286 24.8872 41.1414 25.7311 40.2975C26.575 39.4536 27.7196 38.9795 28.9131 38.9795C30.1066 38.9795 31.2512 39.4536 32.0951 40.2975C32.939 41.1414 33.4131 42.286 33.4131 43.4795Z"

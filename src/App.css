@@ -43,17 +43,21 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 20vh;
+    height: 12vh;
+    align-items: center;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     background-color: #D9FFD2;
     border: 2px solid #00000080;
     p {
+        margin-bottom: 1%;
+        justify-content: center;
+        margin-top: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: large;
+        font-size: 3vh;
     }
 }
 .CoinBox {
