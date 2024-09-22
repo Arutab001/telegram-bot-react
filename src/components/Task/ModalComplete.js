@@ -1,9 +1,17 @@
 import React from 'react';
 import "./ModalComplete.css";
+import {useUser} from "../../UserContext.js";
 
-const ModalComplete = ({show, close, id}) => {
+const ModalComplete = ({show, close, id, reward}) => {
 
     if (!show) return null;
+
+    const {user, updateUser} = useUser();
+
+    const getReward = (e) => {
+        user.referrals += reward;
+        close(e);
+    }
 
     return (
         <div className="modal-complete-overlay">
@@ -14,7 +22,7 @@ const ModalComplete = ({show, close, id}) => {
                 <p>
                     You have successfully completed task № {id}
                 </p>
-                <button onClick={close}>
+                <button onClick={getReward}>
                     Get Reward
                 </button>
             </div>

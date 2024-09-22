@@ -5,6 +5,7 @@ import {useUser} from "../../UserContext.js";
 import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
+import ErrorModal from "./ErrorModal.js";
 
 const Profile = () => {
 
@@ -15,6 +16,8 @@ const Profile = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
+
+    const [isErrorVisible, setErrorVisible] = useState(false);
 
     const openLang = (e) => {
         e.preventDefault();
@@ -39,6 +42,16 @@ const Profile = () => {
         setIsModalOpen(false);
     };
 
+    const openError = (e) => {
+        e.preventDefault()
+        setErrorVisible(true);
+    }
+
+    const closeError = (e) => {
+        e.preventDefault();
+        setErrorVisible(false);
+    }
+
     useEffect(() => {
 
         const timer = setTimeout(() => {
@@ -58,7 +71,7 @@ const Profile = () => {
                     </h1>
                     <span>Name: </span> {user.name} <br/>
                     <span> Your ID: </span> {user.id}<br/>
-                    <span> Premium: </span> {user.premium} <br/>
+                    <span> Premium: </span> {user.premium.toString()} <br/>
                     <span> Referrals: </span>{user.referrals} <br/>
                     <span> Withdrawn: </span>{user.withdraw} <br/>
                 </div>
@@ -87,9 +100,11 @@ const Profile = () => {
                             className="Modal"
                             closeModal={closeModal}
                             handleNot={handleIsVisible}
+                            openError={openError}
                 />
                 <LanguageModal show={isLangModalOpen} onClose={closeLang}/>
             </div>
+            <ErrorModal show={isErrorVisible} onClose={closeError} />
         </div>
     );
 };

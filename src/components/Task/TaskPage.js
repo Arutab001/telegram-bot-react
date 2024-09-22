@@ -56,7 +56,7 @@ const TaskPage = () => {
                 <MyBtn text="Go to"/>
                 <MyBtn text="Approve" onClick={OpenModal} />
             </div>
-            <ModalComplete show={isModalOpen} close={CloseModal} id={id}/>
+            <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id}/>
         </div>
     );
 };

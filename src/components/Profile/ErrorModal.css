@@ -1,0 +1,52 @@
+.error-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.error-content {
+    width: 80vw;
+    height: 40%;
+    background-color: #FFF0F0;
+    color: #BB4B4B;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 3px solid #E96161;
+    border-radius: 24px;
+    h2 {
+        background-color: #BB4B4B;
+        color: #FFF0F0;
+        width: 100%;
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 20%;
+        padding: 5% 0;
+        border: 2px solid #00000080;
+        overflow: hidden;
+        border-radius: 24px 24px 0 0;
+        text-align: center;
+        font-weight: normal;
+        font-size: 125%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 25%;
+        width: 95%;
+        border-radius: 20px;
+        background-color: #BB4B4B;
+        color: #FFF0F0;
+    }
+}
