@@ -53,6 +53,11 @@
     .Text {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        button {
+            width: 80%;
+            height: 10vh;
+        }
     }
 }
 
@@ -67,7 +72,13 @@
 
 @media (max-width: 600px) {
     .modal-content {
-        height: 30%;
+        height: 40%;
+    }
+}
+
+@media (min-width: 500px ) {
+    .modal-content {
+        height: 45%;
     }
 }
 
