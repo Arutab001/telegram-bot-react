@@ -43,7 +43,9 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
                 </div>
                 <div className="Text">
                     <p>30 000 $GMEME</p>
-                    <button onClick={getPremium} style={{backgroundColor: "#6D8069"}}>Buy Premium</button>
+                    <div className="buttonGetPremium">
+                        <button onClick={getPremium} style={{backgroundColor: "#6D8069"}}>Buy Premium</button>
+                    </div>
                 </div>
             </div>
         </div>
