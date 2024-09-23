@@ -57,6 +57,7 @@
         button {
             width: 80%;
             height: 10vh;
+            margin: 0;
         }
     }
 }
