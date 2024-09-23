@@ -4,10 +4,14 @@ import "./TaskPage.css";
 import TaskImg from "../../images/forge 1.png"
 import MyBtn from "../Profile/MyBtn.js";
 import ModalComplete from "./ModalComplete.js";
+import ErrorModal from "../Profile/ErrorModal.js";
+import TaskError from "./TaskError.js";
 
 const TaskPage = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
+
+    const [isErrorOpen, setErrorOpen] = useState(false);
 
     const CloseModal = (e) => {
         e.preventDefault();
@@ -19,6 +23,16 @@ const TaskPage = () => {
         setModalOpen(true);
     }
 
+    const CloseError = (e) => {
+        e.preventDefault();
+        setErrorOpen(false);
+    }
+
+    const OpenError = (e) => {
+        e.preventDefault();
+        setErrorOpen(true);
+    }
+
     const location = useLocation();
     const {id, name, reward} = location.state || {};
     return (
@@ -27,7 +41,7 @@ const TaskPage = () => {
                 <img src={TaskImg}/>
             </div>
             <div>
-                <h2>
+                <h2 className="task-header">
                     {name}
                 </h2>
                 <div>
@@ -54,9 +68,10 @@ const TaskPage = () => {
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
                 <MyBtn text="Go to"/>
-                <MyBtn text="Approve" onClick={OpenModal} />
+                <MyBtn text="Approve" onClick={OpenError} />
             </div>
             <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id}/>
+            <TaskError show={isErrorOpen} close={CloseError} />
         </div>
     );
 };

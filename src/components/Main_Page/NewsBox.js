@@ -1,13 +1,14 @@
 import React from 'react';
 import News from '../../images/forge 1.png'
+import "../../App.css";
 
 const NewsBox = () => {
     return (
         <div className="NewsBox">
             <div >
-                <img src={News} style={{height: "30vh", width: "100%", borderRadius: "43px 43px 0 0"}}/>
+                <img src={News} />
             </div>
-            <div style={{height: "8vh", display: "flex", justifyContent: "center", alignItems: "center", fontSize: "x-large", opacity: "75%"}}>
+            <div className="Text">
                 Read
             </div>
         </div>

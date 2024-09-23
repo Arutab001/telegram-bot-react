@@ -15,9 +15,9 @@
 }
 
 .notification.show {
-    top: 0; /* Позиция появления уведомления */
+    top: 0;
 }
 
 .notification.hide {
-    top: -50px; /* Позиция скрытия уведомления */
+    top: -50px;
 }

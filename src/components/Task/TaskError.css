@@ -1,0 +1,60 @@
+.task-error-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.task-error-content {
+    margin: 0 10% 0 10%;
+    width: 80vw;
+    height: 31%;
+    background-color: #FFF0F0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 3px solid #E96161;
+    border-radius: 45px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    p {
+        text-align: center;
+    }
+    button {
+        border-radius: 12px;
+        border: none;
+        color: #FFF0F0;
+        background-color: #BB4B4B;
+    }
+
+}
+
+
+.error-header {
+    background-color: #BB4B4B;
+    color: #FFF0F0;
+    width: 98.5%;
+    margin: 0;
+    height: 5vh;
+    padding: 5% 0;
+    border: 2px solid #00000080;
+    border-radius: 42px 42px 0 0;
+    text-align: center;
+    font-weight: normal;
+}
+
+@media (min-width: 700px) {
+    .task-error-content {
+        height: 50%;
+    }
+}

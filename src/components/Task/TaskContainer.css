@@ -1,6 +1,6 @@
 .TaskContainer {
-    width: 90vw;
-    height: 15vh;
+    width: 90%;
+    height: 100%;
     background-color: #D9FFD2;
     display: flex;
     flex-direction: row;
@@ -10,20 +10,54 @@
     border-radius: 45px;
     border: 2px solid #00000080;
     align-items: center;
-    justify-content: space-evenly;
     font-family: Montserrat;
+    svg {
+        width: 40%;
+        height: 40%;
+    }
     h2 {
         color: #000000BF;
         font-size: 100%;
     }
+
     p {
         color: #00000080;
         font-size: 100%;
         font-weight: bold;
     }
+    .Text {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 10%;
+        font-size: 4vw;
+    }
     img {
-        height: 11vh;
+        margin: 10%;
+        height: 100%;
         width: 23vw;
         border-radius: 100%;
+    }
+
+}
+
+
+
+
+@media (min-width: 800px) {
+    .TaskContainer {
+        width: 75%;
+        font-size: xx-large;
+        svg {
+            width: 15vw;
+            height: 15vh;
+        }
+        img {
+            margin: 5%;
+            width: 15vw;
+            height: 100%;
+        }
     }
 }

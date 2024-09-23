@@ -30,6 +30,20 @@ function App() {
         tg.ready();
     }, []);
 
+    document.addEventListener('wheel', function(event) {
+        if (event.ctrlKey) {
+            event.preventDefault();  // Отключаем масштабирование
+        }
+    }, { passive: false });
+
+    document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
+            event.preventDefault();  // Отключаем масштабирование клавишами Ctrl + [+] [-] [0]
+        }
+    });
+
+
+
     const onClose = () => {
         tg.close();
     };

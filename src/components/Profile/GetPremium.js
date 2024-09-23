@@ -11,9 +11,9 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
         e.preventDefault();
         if (!user.premium) {
             if (user.referrals > 30000) {
-                    handleNot(true);
-                    setNotificationVisible(true);
-                    user.premium = true;
+                handleNot(true);
+                setNotificationVisible(true);
+                user.premium = true;
             } else {
                 closeModal(e);
                 openError(e);
@@ -41,9 +41,10 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
                               stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <p>30 000 $GMEME</p>
-                <button onClick={getPremium} style={{backgroundColor: "#6D8069"}}>Buy Premium</button>
-
+                <div className="Text">
+                    <p>30 000 $GMEME</p>
+                    <button onClick={getPremium} style={{backgroundColor: "#6D8069"}}>Buy Premium</button>
+                </div>
             </div>
         </div>
     );

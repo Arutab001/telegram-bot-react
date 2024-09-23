@@ -1,0 +1,25 @@
+.CasinoInfo {
+    position: relative;
+    top: 0;
+    transition: top 1s ease;
+    z-index: 0;
+    background-color: #BDFBB2;
+    border: 2px solid #00000080;
+    width: 90%;
+    padding: 2% 5%;
+    text-align: center;
+    svg {
+        position: absolute;
+        right: 10px;
+    }
+}
+
+.CasinoInfo.show {
+    top: 0;
+    z-index: 0;
+}
+
+.CasinoInfo.hide {
+    top: -100px;
+    z-index: -1;
+}
