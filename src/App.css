@@ -69,7 +69,7 @@ body {
     border-radius: 45px;
     width: 80vw;
     margin: 5%;
-    height: 20vh;
+    height: 15vh;
     align-items: center;
     .GMEME {
         font-size: 7vw;
@@ -131,7 +131,8 @@ a {
     .CoinBox{
         font-size: x-large;
         img {
-            width: 40%;
+            width: 30%;
+            height: 75%;
         }
     }
 }
