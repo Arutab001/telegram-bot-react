@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const CombinationModal = ({show, close}) => {
 
     if (!show) return null;
+
+    const [localisation, setLocalisation] = useState("Winning Combinations")
 
     return (
         <div className="combination-overlay">
@@ -14,7 +16,7 @@ const CombinationModal = ({show, close}) => {
                 </svg>
                 <div className="CombinationsHeader">
                     <h2>
-                        Winning Combinations
+                        {localisation}
                     </h2>
                 </div>
                 <div className="Combinations">

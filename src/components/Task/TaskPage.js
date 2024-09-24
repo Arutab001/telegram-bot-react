@@ -35,6 +35,19 @@ const TaskPage = () => {
 
     const location = useLocation();
     const {id, name, reward} = location.state || {};
+
+    const [localisation, setLocalisation] = useState(
+        {
+            Description: "Description",
+            Goto: "Go To",
+            Reward: "Reward",
+            TimeLeft: "Time Left",
+            Days: "days",
+            Hours: "hours",
+            Minutes: "minutes"
+        }
+    )
+
     return (
         <div className="TaskPage">
             <div>
@@ -44,26 +57,26 @@ const TaskPage = () => {
                 <h2 className="task-header">
                     {name}
                 </h2>
-                <div>
+                <div style={{margin: "0 5%", width: "90%"}}>
                     <span>
                         ID:
                     </span>
                     {id}
                     <br/>
                     <span>
-                        Description:
+                        {localisation.Description}:
                     </span>
-                    Go to
+                    {localisation.Goto}
                     <br/>
                     <span>
-                        Reward:
+                        {localisation.Reward}:
                     </span>
                     {reward} $GMEME
                     <br/>
                     <span>
-                        Time left:
+                        {localisation.TimeLeft}:
                     </span>
-                    2 days, 19 hours, 18 minutes
+                    2 {localisation.Days}, 19 {localisation.Hours}, 18 {localisation.Minutes}
                 </div>
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>

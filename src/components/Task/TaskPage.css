@@ -16,7 +16,7 @@
         height: 100%;
         border-radius: 43px 43px 0 0;
     }
-    task-header {
+    .task-header {
         text-align: center;
         color: #364035;
         margin: 3%;

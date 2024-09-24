@@ -16,6 +16,8 @@ const Casino = () => {
         setIsModalOpen(false);
     }
 
+    const [localisation, setLocalisation] = useState("BET")
+
     return (
         <div>
             <CasinoInfo />
@@ -58,7 +60,7 @@ const Casino = () => {
                             <option value={5000}>5000 <span>$GMEME</span></option>
                             <option value={10000}>10000 <span>$GMEME</span></option>
                         </select>
-                        <MyBtn text={"BET"}/>
+                        <MyBtn text={localisation}/>
                     </div>
                 </div>
                 <CombinationModal show={isModalOpen} close={CloseModal}/>

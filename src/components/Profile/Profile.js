@@ -61,29 +61,47 @@ const Profile = () => {
 
         return () => clearTimeout(timer);
     }, [isVisible]);
+
+    const [localisation, setLocalisation] = useState({
+        Info: "Account Info",
+        Name: "Name",
+        Id: "Your ID",
+        Premium: "Premium",
+        Ref: "Referrals",
+        Withdrawn: "Withdrawn",
+        WI: "Withdrawn Info",
+        Text1: "We will notify you in advance about payouts",
+        Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
+        Change: "Change Language"
+
+    })
+
+    const avatar = window.Telegram.initDataUnsafe.user.photo_url;
+
     return (
         <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
             <PremiumNotification isVisible={isVisible} />
             <div className="profile">
                 <div>
                     <h1>
-                        Account Info
+                        <img src={avatar} style={{width: "100px", height: "100px"}}/>
+                        {localisation.Info}
                     </h1>
-                    <span>Name: </span> {user.name} <br/>
-                    <span> Your ID: </span> {user.id}<br/>
-                    <span> Premium: </span> {user.premium.toString()} <br/>
-                    <span> Referrals: </span>{user.referrals} <br/>
-                    <span> Withdrawn: </span>{user.withdraw} <br/>
+                    <span>{localisation.Name}: </span> {user.name} <br/>
+                    <span> {localisation.Id}: </span> {user.id}<br/>
+                    <span> {localisation.Premium}: </span> {user.premium.toString()} <br/>
+                    <span> {localisation.Ref}: </span>{user.referrals} <br/>
+                    <span> {localisation.Withdrawn}: </span>{user.withdraw} <br/>
                 </div>
                 <div>
                     <h1>
-                        Withdraw Info
+                        {localisation.WI}
                     </h1>
-                    <p>We will notify you in advance about payouts! </p>
-                    <p className="p2">MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY</p>
+                    <p>{localisation.Text1}! </p>
+                    <p className="p2">{localisation.Text2}</p>
                 </div>
                 <div>
-                    <MyBtn text="Premium"
+                    <MyBtn text={localisation.Premium}
                            onClick={openModal}
                            onClose={closeModal}
                            setIsModalOpen={setIsModalOpen}
@@ -91,7 +109,7 @@ const Profile = () => {
                 </div>
                 <div>
                     <MyBtn
-                        text="Change Language"
+                        text={localisation.Change}
                         onClick={openLang}
                     />
                 </div>
