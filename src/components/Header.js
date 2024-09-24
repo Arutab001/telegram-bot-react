@@ -7,7 +7,7 @@ const Header = () => {
 
     return (
         <div className="Header">
-            {tg.initDataUnsafe.user.username}
+            {tg.initDataUnsafe.initData.query}
         </div>
     );
 };
