@@ -2,13 +2,15 @@ import React from 'react';
 import CoinBox from "./CoinBox.js";
 import NewsBox from "./NewsBox.js";
 import {Link} from "react-router-dom";
+import Coin1 from "../../images/gecko_coin_rem 1.png"
+import Coin2 from "../../images/gecko_coin2.0 1.png"
 
 const Body = () => {
     return (
         <div className="Body">
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <CoinBox/>
-                <CoinBox/>
+                <CoinBox image={Coin1} name="$GMEME" cost="200.000"/>
+                <CoinBox image={Coin2} name="$BMEME" cost={"500.000"}/>
             </div>
             <div>
                 <NewsBox/>
