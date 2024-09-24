@@ -9,6 +9,7 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }) => {
 
+    console.log(Telegram.WebApp.initDataUnsafe);
 
     const [user, setUser] = useState(
         {
