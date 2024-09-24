@@ -12,7 +12,7 @@ export const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState(
         {
-            name: Telegram.WebApp.initDataUnsafe._name,
+            name: "aaa",
             id: 0,
             premium: false,
             referrals: 250,
