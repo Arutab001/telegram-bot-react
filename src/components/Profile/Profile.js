@@ -76,7 +76,8 @@ const Profile = () => {
 
     })
 
-    const avatar = window.Telegram.initDataUnsafe.user.photo_url;
+
+    const avatar = window.Telegram.WebApp.initDataUnsafe.user.photo_url;
 
     return (
         <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
