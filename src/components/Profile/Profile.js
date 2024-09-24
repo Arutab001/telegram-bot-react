@@ -6,6 +6,7 @@ import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
+import new_ava from "../../images/chromecore 1.png"
 
 const Profile = () => {
 
@@ -76,18 +77,25 @@ const Profile = () => {
 
     })
 
+    let avatar = undefined;
+    // let avatar = window.Telegram.WebApp.initDataUnsafe.user.photo_url;
 
-    const avatar = window.Telegram.WebApp.initDataUnsafe.user.photo_url;
+    if (avatar === undefined) {
+        avatar = new_ava;
+    }
 
     return (
         <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
-            <PremiumNotification isVisible={isVisible} />
+            <PremiumNotification isVisible={isVisible}/>
             <div className="profile">
                 <div>
-                    <h1>
-                        <img src={avatar} style={{width: "100px", height: "100px"}}/>
-                        {localisation.Info}
-                    </h1>
+                    <div style={{display: "flex", height: "100%", alignItems: "center"}}>
+                        <img src={avatar}
+                             style={{width: "15%", height: "100%", borderRadius: "100%", margin: "5%"}}/>
+                        <h1>
+                            {localisation.Info}
+                        </h1>
+                    </div>
                     <span>{localisation.Name}: </span> {user.name} <br/>
                     <span> {localisation.Id}: </span> {user.id}<br/>
                     <span> {localisation.Premium}: </span> {user.premium.toString()} <br/>
@@ -123,7 +131,7 @@ const Profile = () => {
                 />
                 <LanguageModal show={isLangModalOpen} onClose={closeLang}/>
             </div>
-            <ErrorModal show={isErrorVisible} onClose={closeError} />
+            <ErrorModal show={isErrorVisible} onClose={closeError}/>
         </div>
     );
 };
