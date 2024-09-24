@@ -8,7 +8,7 @@ const Header = () => {
     const {user, updateUser} = useUser();
     return (
         <div className="Header">
-            {tg.initData.query}
+            {tg.initDataUnsafe.query_id}
         </div>
     );
 };
