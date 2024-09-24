@@ -7,7 +7,7 @@ const Header = () => {
 
     return (
         <div className="Header">
-            {Telegram.WebApp.initDataUnsafe.toString()}
+            {Telegram.initDataUnsafe.user.id}
         </div>
     );
 };
