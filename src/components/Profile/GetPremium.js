@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import "./getPremium.css";
 import {useUser} from "../../UserContext.js";
+import classes from "./getPremium.module.css";
 
 const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeModal}) => {
     const [notificationVisible, setNotificationVisible] = useState(false);
@@ -28,8 +28,8 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
     }
 
     return (
-        <div className="modal-overlay">
-            <div className="modal-content">
+        <div className={classes.modal_overlay}>
+            <div className={classes.modal_content}>
                 <div>
                     <h2 style={{fontSize: "8vw"}}>Premium Price</h2>
                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -41,9 +41,9 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
                               stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <div className="Text">
+                <div className={classes.Text}>
                     <p>30 000 $GMEME</p>
-                    <div className="buttonGetPremium">
+                    <div className={classes.buttonGetPremium}>
                         <button onClick={getPremium} style={{backgroundColor: "#6D8069"}}>Buy Premium</button>
                     </div>
                 </div>

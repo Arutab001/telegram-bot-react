@@ -1,4 +1,4 @@
-.modal-overlay {
+.modal_overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +11,7 @@
     z-index: 1000;
 }
 
-.modal-content {
+.modal_content {
     background: #D9FFD2;
     border-radius: 45px;
     border: 2px solid #00000080;
@@ -70,7 +70,7 @@
     }
 }
 
-.close-btn {
+.close_btn {
     position: absolute;
     top: 10px;
     right: 10px;
