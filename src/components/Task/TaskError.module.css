@@ -1,4 +1,4 @@
-.task-error-overlay {
+.task_error_overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,7 +11,7 @@
     z-index: 1000;
 }
 
-.task-error-content {
+.task_error_content {
     margin: 0 10% 0 10%;
     width: 80vw;
     height: 31%;
@@ -40,7 +40,7 @@
 }
 
 
-.error-header {
+.error_header {
     background-color: #BB4B4B;
     color: #FFF0F0;
     width: 98.5%;

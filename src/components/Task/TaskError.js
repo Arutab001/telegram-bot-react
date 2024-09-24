@@ -1,15 +1,15 @@
 import React from 'react';
-import "./TaskError.css"
+import classes from "./TaskError.module.css";
 
 const TaskError = ({show, close}) => {
 
     if (!show) return null;
 
     return (
-        <div className="task-error-overlay">
-            <div className="task-error-content">
+        <div className={classes.task_error_overlay}>
+            <div className={classes.task_error_content}>
                 <div>
-                    <h2 className="error-header">
+                    <h2 className={classes.error_header}>
                         Task Warning
                     </h2>
                     <div>
