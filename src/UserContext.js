@@ -9,12 +9,13 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }) => {
 
+    let tg = window.Telegram.WebApp;
 
 
     const [user, setUser] = useState(
         {
-            name: "aaa",
-            id: 0,
+            name: tg.initDataUnsafe.user.first_name,
+            id: tg.initDataUnsafe.user.id,
             premium: false,
             referrals: 250,
             withdraw: 0
