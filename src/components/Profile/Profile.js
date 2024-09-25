@@ -77,12 +77,7 @@ const Profile = () => {
 
     })
 
-    // let avatar = undefined;
     let avatar = window.Telegram.WebApp.initDataUnsafe.user.photo_url;
-
-    if (avatar === undefined) {
-        avatar = new_ava;
-    }
 
     return (
         <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
