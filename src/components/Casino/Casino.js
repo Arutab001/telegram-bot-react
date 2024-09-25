@@ -1,8 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./CasinoPage.css";
 import MyBtn from "../Profile/MyBtn.js";
 import CombinationModal from "./CombinationModal.js";
 import CasinoInfo from "./CasinoInfo.js";
+
+const slots = {
+    fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
+};
 
 const Casino = () => {
 
@@ -17,6 +21,61 @@ const Casino = () => {
     }
 
     const [localisation, setLocalisation] = useState("BET")
+
+    const [rolling, setRolling] = useState(false);
+    const [win, setWin] = useState(false);
+    const [spunOnce, setSpunOnce] = useState(false);
+    const [results, setResults] = useState({
+        Fruit1: "🦎",
+        Fruit2: "🦎",
+        Fruit3: "🦎",
+    });
+    const [displayedResults, setDisplayedResults] = useState({
+        Fruit1: "🦎",
+        Fruit2: "🦎",
+        Fruit3: "🦎",
+    });
+
+    useEffect(() => {
+        let interval;
+        if (rolling) {
+            interval = setInterval(() => {
+                setDisplayedResults({
+                    Fruit1: getRandomFruit(),
+                    Fruit2: getRandomFruit(),
+                    Fruit3: getRandomFruit(),
+                });
+            }, 100);
+        } else {
+            setDisplayedResults(results);
+            if (spunOnce && results.Fruit1 === results.Fruit2 && results.Fruit2 === results.Fruit3) {
+                setWin(true);
+            } else {
+                setWin(false);
+            }        }
+
+        return () => clearInterval(interval);
+    }, [rolling, results]);
+
+    const getRandomFruit = () => {
+        return slots.fruits[Math.floor(Math.random() * slots.fruits.length)];
+    };
+
+    const spinResult = () => {
+        setRolling(true);
+        setSpunOnce(true);
+        setTimeout(() => {
+            setRolling(false);
+            let x = getRandomFruit();
+            let y = getRandomFruit();
+            let z = getRandomFruit();
+            setResults({
+                Fruit1: x,
+                Fruit2: y,
+                Fruit3: z,
+            });
+        }, 700);
+    };
 
     return (
         <div>
@@ -40,15 +99,9 @@ const Casino = () => {
                               fill="#D9FFD2"/>
                     </svg>
                     <div className="slots">
-                        <div className="slot">
-                            🦎
-                        </div>
-                        <div className="slot">
-                            🦎
-                        </div>
-                        <div className="slot">
-                            🦎
-                        </div>
+                        <div className="slot">{displayedResults.Fruit1}</div>
+                        <div className="slot">{displayedResults.Fruit2}</div>
+                        <div className="slot">{displayedResults.Fruit3}</div>
                     </div>
                     <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginBottom: "10%"}}>
                         <select name="bet" className="BetSelect">
@@ -60,7 +113,7 @@ const Casino = () => {
                             <option value={5000}>5000 <span>$GMEME</span></option>
                             <option value={10000}>10000 <span>$GMEME</span></option>
                         </select>
-                        <MyBtn text={localisation}/>
+                        <MyBtn text={localisation} onClick={spinResult}/>
                     </div>
                 </div>
                 <CombinationModal show={isModalOpen} close={CloseModal}/>
