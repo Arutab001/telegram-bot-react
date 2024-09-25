@@ -6,8 +6,7 @@ import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
-import new_ava from "../../images/chromecore 1.png"
-import ava from window.Telegram.WebApp.initDataUnsafe.user.photo_url;
+import new_ava from "../../images/chromecore 1.png";
 
 const Profile = () => {
 
@@ -86,7 +85,7 @@ const Profile = () => {
             <div className="profile">
                 <div>
                     <div style={{display: "flex", height: "100%", alignItems: "center"}}>
-                        <img src={ava}
+                        <img src={new_ava}
                              style={{width: "15%", height: "100%", borderRadius: "100%", margin: "5%"}}/>
                         <h1>
                             {localisation.Info}
