@@ -10,7 +10,9 @@ const TaskContainer = (props) => {
             <div>
                 <img src={props.image}/>
             </div>
-            <div className="Text">
+            <div style={{height: "100%",
+                display: "flex",
+                alignItems: "center"}}>
                 <div>
                     <h2>
                         {props.name}
