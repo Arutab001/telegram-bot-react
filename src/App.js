@@ -32,13 +32,13 @@ function App() {
 
     document.addEventListener('wheel', function(event) {
         if (event.ctrlKey) {
-            event.preventDefault();  // Отключаем масштабирование
+            event.preventDefault();
         }
     }, { passive: false });
 
     document.addEventListener('keydown', function(event) {
         if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
-            event.preventDefault();  // Отключаем масштабирование клавишами Ctrl + [+] [-] [0]
+            event.preventDefault();
         }
     });
 

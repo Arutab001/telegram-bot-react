@@ -5,6 +5,7 @@ import NewsBox from "./NewsBox.js";
 
 
 const Home = () => {
+
     return (
         <div>
             <Body />
