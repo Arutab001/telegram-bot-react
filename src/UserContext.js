@@ -14,7 +14,7 @@ export const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState(
         {
-            name: tg.initDataUnsafe.user.name,
+            name: tg.initDataUnsafe.user.first_name,
             id: tg.initDataUnsafe.user.id,
             premium: false,
             referrals: 250,
