@@ -26,7 +26,6 @@
     border-radius: 24px 24px 0 0;
 }
 
-
 .select__head::after {
     border-radius: 24px 24px 0 0;
     width: 10px;
@@ -45,7 +44,6 @@
 }
 
 .select__list {
-
     display: none;
     position: absolute;
     top: 100%;
@@ -54,30 +52,21 @@
     background: #D9FFD2;
     border: 2px solid #00000080;
     border-top: 0;
-    border-radius: 0 0 24px 24px;
+    border-radius: 0 0 24px 24px; /* Скругление снизу */
     margin-top: 5px;
     max-height: 205px;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: auto; /* Скрыть скроллбар, оставив возможность прокрутки */
     z-index: 100;
     margin: 0;
     padding: 0;
     font-size: 14px;
-    color: #424348;
-    scrollbar-color: black;
-    scrollbar-width: thin;
-    overscroll-behavior: contain;
+    scrollbar-width: none; /* Для Firefox */
+    -ms-overflow-style: none; /* Для IE и Edge */
 }
 
 .select__list::-webkit-scrollbar {
-    width: 7px;
-    background-color: #F8F9FA;
-    padding: 5px;
-}
-
-.select__list::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #D9D9D9;
+    display: none; /* Скрыть скроллбар для Chrome, Safari и других браузеров на основе WebKit */
 }
 
 .select__list .select__item {

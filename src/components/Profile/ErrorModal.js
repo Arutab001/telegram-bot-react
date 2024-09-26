@@ -13,7 +13,7 @@ const ErrorModal = ({show, onClose}) => {
                 </h2>
                 <div style={{display: "flex", flexDirection: "column", height: "80%", alignItems: "center"}}>
                     <div style={{height: "50%", marginTop: "5%", textAlign: "center"}}>
-                        You don't have <br/> enough $GMEME  to buy "Premium"
+                        You don't have <br/> enough $GMEME  <br/> to buy "Premium"
                     </div>
                     <button onClick={onClose}>OK</button>
                 </div>
