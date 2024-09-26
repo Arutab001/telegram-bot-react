@@ -10,8 +10,8 @@
     align-items: center;
     font-family: Montserrat;
     svg {
-        width: 40%;
-        height: 40%;
+        width: 10vw;
+        height: 20vh;
     }
     h2 {
         color: #000000BF;
