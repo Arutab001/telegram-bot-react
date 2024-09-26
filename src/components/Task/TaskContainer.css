@@ -3,7 +3,7 @@
     height: 11vh;
     background-color: #D9FFD2;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-direction: row;
     margin: 5% auto;
     border-radius: 24px;
