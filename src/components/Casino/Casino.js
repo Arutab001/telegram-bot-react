@@ -3,6 +3,7 @@ import "./CasinoPage.css";
 import MyBtn from "../Profile/MyBtn.js";
 import CombinationModal from "./CombinationModal.js";
 import CasinoInfo from "./CasinoInfo.js";
+import MySelect from "./MySelect/MySelect.js";
 
 const slots = {
     fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
@@ -11,7 +12,11 @@ const slots = {
 const Casino = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedValue, setSelectedValue] = useState(null);
 
+    const handleSelectChange = (value) => {
+        setSelectedValue(value);
+    };
     const OpenModal = () => {
         setIsModalOpen(true);
     }
@@ -103,16 +108,8 @@ const Casino = () => {
                         <div className="slot">{displayedResults.Fruit2}</div>
                         <div className="slot">{displayedResults.Fruit3}</div>
                     </div>
-                    <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginBottom: "10%"}}>
-                        <select name="bet" className="BetSelect">
-                            <option value={100}>100 <span>$GMEME</span></option>
-                            <option value={250}>250 <span>$GMEME</span></option>
-                            <option value={500}>500 <span>$GMEME</span></option>
-                            <option value={1000}>1000 <span>$GMEME</span></option>
-                            <option value={2500}>2500 <span>$GMEME</span></option>
-                            <option value={5000}>5000 <span>$GMEME</span></option>
-                            <option value={10000}>10000 <span>$GMEME</span></option>
-                        </select>
+                    <div className="Card_Bottom">
+                        <MySelect onValueChange={handleSelectChange}/>
                         <MyBtn text={localisation} onClick={spinResult}/>
                     </div>
                 </div>

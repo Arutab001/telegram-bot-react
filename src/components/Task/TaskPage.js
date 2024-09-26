@@ -57,7 +57,7 @@ const TaskPage = () => {
                 <h2 className="task-header">
                     {name}
                 </h2>
-                <div style={{margin: "0 5%", width: "90%"}}>
+                <div style={{margin: "0 5% 5% 5%", width: "90%"}}>
                     <span>
                         ID:
                     </span>
@@ -81,7 +81,7 @@ const TaskPage = () => {
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
                 <MyBtn text="Go to"/>
-                <MyBtn text="Approve" onClick={OpenError} />
+                <MyBtn text="Approve" onClick={OpenModal} />
             </div>
             <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id}/>
             <TaskError show={isErrorOpen} close={CloseError} />

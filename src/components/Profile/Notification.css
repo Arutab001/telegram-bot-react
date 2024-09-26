@@ -15,9 +15,10 @@
 }
 
 .notification.show {
-    top: 0;
+    top: -25px;
 }
 
 .notification.hide {
     top: -50px;
+    visibility: hidden;
 }

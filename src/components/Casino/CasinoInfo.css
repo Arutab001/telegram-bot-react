@@ -15,7 +15,7 @@
 }
 
 .CasinoInfo.show {
-    top: 0;
+    top: -20px;
     z-index: 0;
 }
 

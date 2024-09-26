@@ -16,15 +16,17 @@ const ModalComplete = ({show, close, id, reward}) => {
     return (
         <div className="modal-complete-overlay">
             <div className="modal-complete-content">
-                <h2>
+                <h2 className="reward_header">
                     Task Info
                 </h2>
-                <p>
-                    You have successfully completed task № {id}
-                </p>
-                <button onClick={getReward}>
-                    Get Reward
-                </button>
+                <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                    <p>
+                        You have successfully completed task № {id}
+                    </p>
+                    <button onClick={getReward}>
+                        Get Reward
+                    </button>
+                </div>
             </div>
 
         </div>
