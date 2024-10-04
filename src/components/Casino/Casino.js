@@ -47,6 +47,10 @@ const Casino = () => {
         Fruit3: "🦎",
     });
 
+    const getRandomFruit = () => {
+        return slots.fruits[Math.floor(Math.random() * slots.fruits.length)];
+    };
+
     const getResultsFromServer = async () => {
         const response = await fetch("https://geckoshi-stage.up.railway.app/slots/get_user_info_slots_play_post", {
             method: "POST",
@@ -63,16 +67,18 @@ const Casino = () => {
 
     useEffect(() => {
         let interval;
+
         if (rolling) {
+            // Запускаем анимацию смены фруктов
             interval = setInterval(() => {
                 setDisplayedResults({
-                    Fruit1: "🍒",
-                    Fruit2: "🍊",
-                    Fruit3: "🍇"
+                    Fruit1: getRandomFruit(),
+                    Fruit2: getRandomFruit(),
+                    Fruit3: getRandomFruit(),
                 });
-            }, 100);
+            }, 100); // Фрукты меняются каждые 100 мс
         } else {
-            setDisplayedResults(results); // Устанавливаем результаты с сервера
+            setDisplayedResults(results); // Устанавливаем реальные результаты с сервера
             if (spunOnce && results.Fruit1 === results.Fruit2 && results.Fruit2 === results.Fruit3) {
                 setWin(true);
             } else {
@@ -80,33 +86,31 @@ const Casino = () => {
             }
         }
 
-        return () => clearInterval(interval);
+        return () => clearInterval(interval); // Очищаем интервал при завершении анимации
     }, [rolling, results]);
 
     const spinResult = async () => {
         setRolling(true);
         setSpunOnce(true);
 
+        // Получаем результаты с сервера
         const serverResponse = await getResultsFromServer();
 
-        // Обрабатываем результат с сервера
+        // Обрабатываем результат
         const { combination, win_amount } = serverResponse;
         const [Fruit1, Fruit2, Fruit3] = combination.split(',');
 
-
-        setResults({
-            Fruit1,
-            Fruit2,
-            Fruit3
-        });
-
-        setWin(win_amount > 0);
-
+        // Останавливаем анимацию и устанавливаем реальные результаты с сервера через 700 мс
         setTimeout(() => {
-            setRolling(false);
-        }, 700);
+            setRolling(false); // Останавливаем "вращение"
+            setResults({
+                Fruit1,
+                Fruit2,
+                Fruit3
+            });
+            setWin(win_amount > 0);
+        }, 700); // Ждём 700 мс перед остановкой
     };
-
     return (
         <div>
             <CasinoInfo />
