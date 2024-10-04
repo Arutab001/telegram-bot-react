@@ -47,35 +47,63 @@ const Casino = () => {
         Fruit3: "🦎",
     });
 
-    const getRandomFruit = () => {
-        return slots.fruits[Math.floor(Math.random() * slots.fruits.length)];
+    const getResultsFromServer = async () => {
+        const response = await fetch("https://geckoshi-stage.up.railway.app/slots/get_user_info_slots_play_post", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                id: user.id,
+                amount: selectedValue
+            })
+        });
+        return response.json();
     };
 
-    const spinResult = () => {
+    useEffect(() => {
+        let interval;
+        if (rolling) {
+            interval = setInterval(() => {
+                setDisplayedResults({
+                    Fruit1: "🍒",
+                    Fruit2: "🍊",
+                    Fruit3: "🍇"
+                });
+            }, 100);
+        } else {
+            setDisplayedResults(results); // Устанавливаем результаты с сервера
+            if (spunOnce && results.Fruit1 === results.Fruit2 && results.Fruit2 === results.Fruit3) {
+                setWin(true);
+            } else {
+                setWin(false);
+            }
+        }
+
+        return () => clearInterval(interval);
+    }, [rolling, results]);
+
+    const spinResult = async () => {
         setRolling(true);
         setSpunOnce(true);
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://geckoshi-stage.up.railway.app/slots/get_user_info_slots_play_post")
-        xhr.setRequestHeader("Results", "application/json; charset=UTF-8");
-        const body = JSON.stringify({
-            id: user.id,
-            amount: selectedValue
+
+        const serverResponse = await getResultsFromServer();
+
+        // Обрабатываем результат с сервера
+        const { combination, win_amount } = serverResponse;
+        const [Fruit1, Fruit2, Fruit3] = combination.split(',');
+
+
+        setResults({
+            Fruit1,
+            Fruit2,
+            Fruit3
         });
-        xhr.send(body);
+
+        setWin(win_amount > 0);
 
         setTimeout(() => {
             setRolling(false);
-            let combination = JSON.parse(xhr.responseText.combination);
-            let values = combination.split();
-            let x = values[0];
-            let y = values[1];
-            let z = values[2];
-            setWin(JSON.parse(xhr.responseText.win_amount))
-            setResults({
-                Fruit1: x,
-                Fruit2: y,
-                Fruit3: z,
-            });
         }, 700);
     };
 
