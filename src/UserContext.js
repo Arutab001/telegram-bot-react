@@ -20,16 +20,20 @@ export const UserProvider = ({ children }) => {
         }
     );
 
+    function httpGet(theUrl) {
+        let xmlHttpReq = new XMLHttpRequest();
+        xmlHttpReq.open("GET", theUrl, true);
+        xmlHttpReq.send(null);
+        return xmlHttpReq.responseText;
+    }
 
 
     useEffect(() => {
         try {
-        let xhr = new XMLHttpRequest();
-        xhr.open( 'GET', 'https://geckoshi-stage.up.railway.app/user/info', true);
-        xhr.send();
+            httpGet("https://geckoshi-stage.up.railway.app/user/info");
         setUser({
             name: tg.initDataUnsafe.user.first_name,
-            id: xhr.responseText.telegram_id.toString(),
+            id: JSON.parse(httpGet("https://geckoshi-stage.up.railway.app/user/info")).telegram_id,
             premium: xhr.responseText.is_premium.toString(),
             referrals: xhr.responseText.referred_users_count.toString(),
             withdraw: xhr.responseText.withdrew.toString(),
