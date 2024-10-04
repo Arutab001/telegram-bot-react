@@ -4,12 +4,16 @@ import MyBtn from "../Profile/MyBtn.js";
 import CombinationModal from "./CombinationModal.js";
 import CasinoInfo from "./CasinoInfo.js";
 import MySelect from "./MySelect/MySelect.js";
+import {useUser} from "../../UserContext.js";
+
 
 const slots = {
     fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
 };
 
 const Casino = () => {
+
+    const {user, updateUser} = useUser();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(null);
@@ -25,7 +29,9 @@ const Casino = () => {
         setIsModalOpen(false);
     }
 
-    const [localisation, setLocalisation] = useState("BET")
+    const [localisation, setLocalisation] = useState("BET");
+
+    const [WinAmount, setWinAMount] = useState(0);
 
     const [rolling, setRolling] = useState(false);
     const [win, setWin] = useState(false);
@@ -41,27 +47,6 @@ const Casino = () => {
         Fruit3: "🦎",
     });
 
-    useEffect(() => {
-        let interval;
-        if (rolling) {
-            interval = setInterval(() => {
-                setDisplayedResults({
-                    Fruit1: getRandomFruit(),
-                    Fruit2: getRandomFruit(),
-                    Fruit3: getRandomFruit(),
-                });
-            }, 100);
-        } else {
-            setDisplayedResults(results);
-            if (spunOnce && results.Fruit1 === results.Fruit2 && results.Fruit2 === results.Fruit3) {
-                setWin(true);
-            } else {
-                setWin(false);
-            }        }
-
-        return () => clearInterval(interval);
-    }, [rolling, results]);
-
     const getRandomFruit = () => {
         return slots.fruits[Math.floor(Math.random() * slots.fruits.length)];
     };
@@ -69,11 +54,23 @@ const Casino = () => {
     const spinResult = () => {
         setRolling(true);
         setSpunOnce(true);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://geckoshi-stage.up.railway.app/slots/get_user_info_slots_play_post")
+        xhr.setRequestHeader("Results", "application/json; charset=UTF-8");
+        const body = JSON.stringify({
+            id: user.id,
+            amount: selectedValue
+        });
+        xhr.send(body);
+
         setTimeout(() => {
             setRolling(false);
-            let x = getRandomFruit();
-            let y = getRandomFruit();
-            let z = getRandomFruit();
+            let combination = JSON.parse(xhr.responseText.combination);
+            let values = combination.split();
+            let x = values[0];
+            let y = values[1];
+            let z = values[2];
+            setWin(JSON.parse(xhr.responseText.win_amount))
             setResults({
                 Fruit1: x,
                 Fruit2: y,
@@ -87,6 +84,9 @@ const Casino = () => {
             <CasinoInfo />
             <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginTop: "5%"}}>
                 <div className="CasinoCard" style={{position: "relative"}}>
+                    <div>
+                        Your reward: {win}
+                    </div>
                     <svg onClick={OpenModal} style={{position: "absolute", right: "5px", top: "5px"}}
                          xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 60 60" fill="none">
                         <circle cx="30" cy="30" r="30" fill="#6D8069"/>

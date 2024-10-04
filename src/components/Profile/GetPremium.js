@@ -7,6 +7,8 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
 
     const {user, updateUser} = useUser();
 
+
+
     const getPremium = (e) => {
         e.preventDefault();
         if (!user.premium) {
