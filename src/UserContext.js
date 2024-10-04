@@ -26,13 +26,14 @@ export const UserProvider = ({ children }) => {
         try {
         let xhr = new XMLHttpRequest();
         xhr.open( 'GET', 'https://geckoshi-stage.up.railway.app/user/info', true);
+        xhr.send();
         setUser({
             name: tg.initDataUnsafe.user.first_name,
-            id: xhr.response.telegram_id.toString(),
-            premium: xhr.response.is_premium.toString(),
-            referrals: xhr.response.referred_users_count.toString(),
-            withdraw: xhr.response.withdrew.toString(),
-            balance: xhr.response.balance.toString()
+            id: xhr.responseText.telegram_id.toString(),
+            premium: xhr.responseText.is_premium.toString(),
+            referrals: xhr.responseText.referred_users_count.toString(),
+            withdraw: xhr.responseText.withdrew.toString(),
+            balance: xhr.responseText.balance.toString()
         })
         }
         catch (error) {
