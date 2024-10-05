@@ -52,7 +52,7 @@ const Casino = () => {
     };
 
     const getResultsFromServer = async () => {
-        const response = await fetch("https://geckoshi-stage.up.railway.app/slots/get_user_info_slots_play_post", {
+        const response = await fetch(`https://geckoshi-stage.up.railway.app/slots/play?id=${user.user_id}&amount=${selectedValue}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=UTF-8"
@@ -93,10 +93,8 @@ const Casino = () => {
         setRolling(true);
         setSpunOnce(true);
 
-        // Получаем результаты с сервера
         const serverResponse = await getResultsFromServer();
 
-        // Обрабатываем результат
         const { combination, win_amount } = serverResponse;
         const [Fruit1, Fruit2, Fruit3] = combination.split(',');
 

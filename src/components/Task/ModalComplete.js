@@ -9,7 +9,28 @@ const ModalComplete = ({show, close, id, reward}) => {
     const {user, updateUser} = useUser();
 
     const getReward = (e) => {
-        user.referrals += reward;
+        const url = 'https://geckoshi-stage.up.railway.app/task/get_active_task_page_task_done_post';
+
+        const data = {
+            user_id: '123',  // Заменить на реальный user_id
+            task_id: '456'   // Заменить на реальный task_id
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(result => {
+                console.log('Успешный ответ:', result);
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+
         close(e);
     }
 

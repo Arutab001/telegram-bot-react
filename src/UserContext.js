@@ -11,10 +11,10 @@ export const UserProvider = ({ children }) => {
 
     // Инициализация состояния пользователя
     const [user, setUser] = useState({
-        name: tg.initDataUnsafe.user.first_name,
-        id: tg.initDataUnsafe.user.id,
+        name: tg.initDataUnsafe?.user?.first_name || 'Гость',
+        id: tg.initDataUnsafe?.user?.id || null,
         premium: false,
-        referrals: 250,
+        referrals: 0,
         withdraw: 0,
         balance: 0
     });
@@ -23,40 +23,35 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const xhr = new XMLHttpRequest();
-                xhr.open('GET', 'https://geckoshi-stage.up.railway.app/user/info', true);
+                const response = await fetch('https://geckoshi-stage.up.railway.app/user/info?id=728740521', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-                // Обработка завершения запроса
-                xhr.onload = function () {
-                    if (xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText); // Парсинг ответа JSON
-                        setUser({
-                            name: tg.initDataUnsafe.user.first_name,
-                            id: response.telegram_id.toString(),
-                            premium: response.is_premium.toString(),
-                            referrals: response.referred_users_count.toString(),
-                            withdraw: response.withdrew.toString(),
-                            balance: response.balance.toString()
-                        });
-                    } else {
-                        console.error(`Ошибка: ${xhr.status}`);
-                    }
-                };
-
-                xhr.onerror = function () {
-                    console.error('Ошибка выполнения запроса');
-                };
-
-                xhr.send(); // Отправка запроса
+                if (response.ok) {
+                    const data = await response.json(); // Парсинг ответа JSON
+                    setUser((prevUser) => ({
+                        ...prevUser,
+                        id: data.telegram_id.toString(),
+                        premium: data.is_premium,
+                        referrals: data.referred_users_count,
+                        withdraw: data.withdrew,
+                        balance: data.balance,
+                    }));
+                } else {
+                    console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
+                }
             } catch (error) {
-                console.error('Ошибка:', error);
+                console.error('Ошибка сети:', error);
             }
         };
 
         fetchUserInfo();
     }, []);
 
-
+    // Функция для обновления премиум-статуса
     const updatePremium = () => {
         setUser((prevUser) => ({
             ...prevUser,
@@ -64,9 +59,12 @@ export const UserProvider = ({ children }) => {
         }));
     };
 
-
+    // Функция для обновления данных пользователя
     const updateUser = (newUserData) => {
-        setUser(newUserData);
+        setUser((prevUser) => ({
+            ...prevUser,
+            ...newUserData,
+        }));
     };
 
     return (
