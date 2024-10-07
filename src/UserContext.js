@@ -59,6 +59,7 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         console.log("STARTING")
         console.log(window.Telegram.WebApp.initData);
+        console.log(window.Telegram.WebApp.initDataUnsafe);
         configureAxios();
         const fetchUserInfo = async () => {
             try {
