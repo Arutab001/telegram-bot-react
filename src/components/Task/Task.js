@@ -18,7 +18,7 @@ const Task = () => {
                 const response = await axios.get("/task/?id=728740521&page=1&limit=1");
 
                 if (response.request.status === 200) {
-                    const data = await response.data.data;
+                    const data = await response.data;
                     console.log(data);
                     setTasks(data.items);
                 } else {
@@ -30,7 +30,7 @@ const Task = () => {
         };
 
         fetchTasks();
-    }, [apiUrl]);
+    }, []);
 
     return (
         <div>
