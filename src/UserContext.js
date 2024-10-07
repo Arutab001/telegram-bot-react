@@ -47,8 +47,8 @@ export const UserProvider = ({ children }) => {
 
 
     const [user, setUser] = useState({
-        name: tg.initDataUnsafe?.user?.first_name || 'Гость',
-        id: 123,
+        name: '',
+        id: 0,
         premium: false,
         referrals: 0,
         withdraw: 0,
