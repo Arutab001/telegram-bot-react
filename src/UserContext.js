@@ -58,6 +58,7 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         console.log("STARTING")
+        console.log(window.Telegram.WebApp.initData);
         configureAxios();
         const fetchUserInfo = async () => {
             try {
@@ -80,10 +81,8 @@ export const UserProvider = ({ children }) => {
             }
             try {
                 const response = await axios.get('/user/info?id=728740521');
-                console.log(response)
                 if (response.request.status === 200) {
                     const data = await response.data.data;
-                    console.log(data);
                     setUser((prevUser) => ({
                         ...prevUser,
                         premium: data.is_premium,
@@ -125,3 +124,4 @@ export const UserProvider = ({ children }) => {
         </UserContext.Provider>
     );
 };
+
