@@ -69,11 +69,8 @@ export const UserProvider = ({ children }) => {
                     console.log(data);
                     setUser((prevUser) => ({
                         ...prevUser,
-                        id: data.telegram_id.toString(),
-                        premium: data.is_premium,
-                        referrals: data.referred_users_count,
-                        withdraw: data.withdrew,
-                        balance: data.balance,
+                        name: data.first_name,
+                        id: data.id.toString(),
                     }));
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
