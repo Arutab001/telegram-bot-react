@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import axios from "axios";
+
 
 const UserContext = createContext();
 
@@ -9,7 +11,41 @@ export const useUser = () => {
 export const UserProvider = ({ children }) => {
     const tg = window.Telegram.WebApp;
 
-    // Инициализация состояния пользователя
+    function handleAuthError(error) {
+        const toast = useToast()
+        if (error.response && error.response.status === 401) {
+            const refresh_token = cookies.get(c_binds.refresh_token)
+            if (refresh_token === undefined || refresh_token === null) {
+                toast.info('Current session expired. Login one more time.')
+                router.push('/login').catch(err => {
+                    console.log(err)
+                })
+                return Promise.reject(error)
+            }
+            return refreshAccessToken()
+                .then(() => {
+                    return axios.request(error.config)
+                })
+                .catch()
+        }
+        return Promise.reject(error)
+    }
+
+    function addAuthToRequest(config) {
+        if (cookies.get(c_binds.access_token) === undefined) {
+            return config;
+        }
+        config.headers.Authorization = `Bearer ${cookies.get(c_binds.access_token)}`
+        return config;
+    }
+
+    export function configureAxios() {
+        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
+        axios.interceptors.response.use(null, handleAuthError)
+        axios.interceptors.request.use(addAuthToRequest)
+    }
+
+
     const [user, setUser] = useState({
         name: tg.initDataUnsafe?.user?.first_name || 'Гость',
         id: tg.initDataUnsafe?.user?.id || null,
@@ -19,19 +55,14 @@ export const UserProvider = ({ children }) => {
         balance: 0
     });
 
-    // useEffect для запроса данных при загрузке компонента
+
     useEffect(() => {
         const fetchUserInfo = async () => {
             try {
-                const response = await fetch('https://geckoshi-stage.up.railway.app/user/info?id=728740521', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
+                const response = await axios.get('user/info?id=728740521');
 
-                if (response.ok) {
-                    const data = await response.json(); // Парсинг ответа JSON
+                if (response.request.status === 200) {
+                    const data = await response.data; // Парсинг ответа JSON
                     setUser((prevUser) => ({
                         ...prevUser,
                         id: data.telegram_id.toString(),

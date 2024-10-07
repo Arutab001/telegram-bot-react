@@ -1,34 +1,31 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Profile.css";
 import MyBtn from "./MyBtn.js";
-import {useUser} from "../../UserContext.js";
+import { useUser } from "../../UserContext.js";
 import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
-import new_ava from "../../images/chromecore 1.png";
+import defaultAvatar from "../../images/chromecore 1.png"; // Заглушка, если нет аватарки
 
 const Profile = () => {
-
-    const {user, updateUser} = useUser();
+    const { user, updateUser } = useUser();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const [isVisible, setIsVisible] = useState(false);
-
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
-
     const [isErrorVisible, setErrorVisible] = useState(false);
+    const [avatar, setAvatar] = useState(defaultAvatar); // Состояние для аватарки
 
     const openLang = (e) => {
         e.preventDefault();
         setIsLangModalOpen(true);
-    }
+    };
 
     const closeLang = (e) => {
         e.preventDefault();
         setIsLangModalOpen(false);
-    }
+    };
 
     const handleIsVisible = (param) =>
         setIsVisible(param);
@@ -36,7 +33,7 @@ const Profile = () => {
     const openModal = (e) => {
         e.preventDefault();
         setIsModalOpen(true);
-    }
+    };
 
     const closeModal = (e) => {
         e.preventDefault();
@@ -44,17 +41,16 @@ const Profile = () => {
     };
 
     const openError = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         setErrorVisible(true);
-    }
+    };
 
     const closeError = (e) => {
         e.preventDefault();
         setErrorVisible(false);
-    }
+    };
 
     useEffect(() => {
-
         const timer = setTimeout(() => {
             setIsVisible(false);
             setTimeout(handleIsVisible(false), 500);
@@ -74,28 +70,45 @@ const Profile = () => {
         Text1: "We will notify you in advance about payouts",
         Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
         Change: "Change Language"
+    });
 
-    })
+    // useEffect для загрузки аватарки
+    useEffect(() => {
+        const fetchAvatar = async () => {
+            try {
+                const response = await fetch(`https://geckoshi-stage.up.railway.app/user/chat-photo?id=728740521&type=small_file_id`);
+                if (response.ok) {
+                    const data = await response.json();
+                    setAvatar(data.photo_url); // Обновляем состояние аватарки
+                } else {
+                    console.error('Ошибка при получении аватарки:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Ошибка сети при получении аватарки:', error);
+            }
+        };
 
-//    let avatar = window.Telegram.WebApp.initDataUnsafe.user.photo_url;
+        fetchAvatar();
+    }, []); // Один раз при монтировании компонента
 
     return (
-        <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
-            <PremiumNotification isVisible={isVisible}/>
+        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+            <PremiumNotification isVisible={isVisible} />
             <div className="profile">
                 <div>
-                    <div style={{display: "flex", height: "100%", alignItems: "center"}}>
-                        <img src={new_ava}
-                             style={{width: "15%", height: "100%", borderRadius: "100%", margin: "5%"}}/>
+                    <div style={{ display: "flex", height: "100%", alignItems: "center" }}>
+                        <img src={avatar} // Используем состояние аватарки
+                             alt="User Avatar"
+                             style={{ width: "15%", height: "100%", borderRadius: "100%", margin: "5%" }} />
                         <h1>
                             {localisation.Info}
                         </h1>
                     </div>
-                    <span>{localisation.Name}: </span> {user.name} <br/>
-                    <span> {localisation.Id}: </span> {user.id}<br/>
-                    <span> {localisation.Premium}: </span> {user.premium.toString()} <br/>
-                    <span> {localisation.Ref}: </span>{user.referrals} <br/>
-                    <span> {localisation.Withdrawn}: </span>{user.withdraw} <br/>
+                    <span>{localisation.Name}: </span> {user.name} <br />
+                    <span> {localisation.Id}: </span> {user.id}<br />
+                    <span> {localisation.Premium}: </span> {user.premium.toString()} <br />
+                    <span> {localisation.Ref}: </span>{user.referrals} <br />
+                    <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
                 </div>
                 <div>
                     <h1>
@@ -124,9 +137,9 @@ const Profile = () => {
                             handleNot={handleIsVisible}
                             openError={openError}
                 />
-                <LanguageModal show={isLangModalOpen} onClose={closeLang}/>
+                <LanguageModal show={isLangModalOpen} onClose={closeLang} />
             </div>
-            <ErrorModal show={isErrorVisible} onClose={closeError}/>
+            <ErrorModal show={isErrorVisible} onClose={closeError} />
         </div>
     );
 };
