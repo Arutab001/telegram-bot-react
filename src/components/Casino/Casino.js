@@ -86,7 +86,7 @@ const Casino = () => {
 
         const serverResponse = await getResultsFromServer();
 
-        const { combination, win_amount } = serverResponse;
+        const { combination, win_amount } = serverResponse.data.data;
         const [Fruit1, Fruit2, Fruit3] = combination.split(',');
 
         // Останавливаем анимацию и устанавливаем реальные результаты с сервера через 700 мс
