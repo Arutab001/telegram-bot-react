@@ -10,6 +10,8 @@ const Task = () => {
 
     // Формируем URL с id пользователя
 
+    const apiUrl = "https://geckoshi-stage.up.railway.app/task/?id=728740521&page=1&limit=1";
+
     useEffect(() => {
         const fetchTasks = async () => {
             try {
