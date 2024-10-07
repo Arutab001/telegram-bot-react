@@ -48,7 +48,7 @@ export const UserProvider = ({ children }) => {
 
     const [user, setUser] = useState({
         name: tg.initDataUnsafe?.user?.first_name || 'Гость',
-        id: tg.initDataUnsafe?.user?.id || null,
+        id: 123,
         premium: false,
         referrals: 0,
         withdraw: 0,
@@ -69,7 +69,7 @@ export const UserProvider = ({ children }) => {
                     console.log(data);
                     setUser((prevUser) => ({
                         ...prevUser,
-                        name: data.first_name,
+                        name: data.data.first_name,
                         id: data.data.id,
                     }));
                 } else {
@@ -77,6 +77,26 @@ export const UserProvider = ({ children }) => {
                 }
             } catch (error) {
                 console.error('Ошибка сети:', error);
+            }
+            try {
+                const response = await axios.get('/user/info?id=728740521');
+                console.log(response)
+                if (response.request.status === 200) {
+                    const data = await response.data.data;
+                    console.log(data);
+                    setUser((prevUser) => ({
+                        ...prevUser,
+                        premium: data.is_premium,
+                        referrals: data.referred_users_count,
+                        withdraw: data.withdrew,
+                        balance: data.balance
+                    }));
+                } else {
+                    console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
+                }
+            }
+            catch (error) {
+                console.error('Ошибка сети:', error)
             }
         };
 
