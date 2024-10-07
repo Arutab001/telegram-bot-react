@@ -15,6 +15,7 @@ const slots = {
 const Casino = () => {
 
     const {user, updateUser} = useUser();
+    console.log(user.user_id)
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(null);
