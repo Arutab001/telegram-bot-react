@@ -70,7 +70,7 @@ export const UserProvider = ({ children }) => {
                     setUser((prevUser) => ({
                         ...prevUser,
                         name: data.first_name,
-                        id: data.id.toString(),
+                        id: data.id,
                     }));
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
