@@ -61,7 +61,7 @@ export const UserProvider = ({ children }) => {
         configureAxios();
         const fetchUserInfo = async () => {
             try {
-                const response = await axios.get('/user/info?id=728740521');
+                const response = await axios.get('/user/chat?id=728740521');
                 console.log(response)
                 if (response.request.status === 200) {
 
