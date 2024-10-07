@@ -57,6 +57,7 @@ export const UserProvider = ({ children }) => {
 
 
     useEffect(() => {
+        console.log("STARTING")
         configureAxios();
         const fetchUserInfo = async () => {
             try {
