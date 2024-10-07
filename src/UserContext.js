@@ -65,7 +65,7 @@ export const UserProvider = ({ children }) => {
                 console.log(response)
                 if (response.request.status === 200) {
 
-                    const data = await response.request.data;
+                    const data = await response.data;
                     console.log(data);
                     setUser((prevUser) => ({
                         ...prevUser,
