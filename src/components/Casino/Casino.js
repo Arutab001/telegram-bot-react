@@ -5,6 +5,7 @@ import CombinationModal from "./CombinationModal.js";
 import CasinoInfo from "./CasinoInfo.js";
 import MySelect from "./MySelect/MySelect.js";
 import {useUser} from "../../UserContext.js";
+import axios from "axios";
 
 
 const slots = {
@@ -52,17 +53,7 @@ const Casino = () => {
     };
 
     const getResultsFromServer = async () => {
-        const response = await fetch(`https://geckoshi-stage.up.railway.app/slots/play?id=${user.user_id}&amount=${selectedValue}`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=UTF-8"
-            },
-            body: JSON.stringify({
-                id: user.id,
-                amount: selectedValue
-            })
-        });
-        return response.json();
+        return await axios.post(`/slots/play?id=${user.user_id}&amount=${selectedValue}`);
     };
 
     useEffect(() => {

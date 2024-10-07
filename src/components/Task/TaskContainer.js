@@ -15,7 +15,7 @@ const TaskContainer = (props) => {
                 alignItems: "center"}}>
                 <div>
                     <h2>
-                        {props.name}
+                        {props.title}
                     </h2>
                     <p>
                         + {props.reward} $GMEME
