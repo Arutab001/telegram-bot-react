@@ -39,7 +39,7 @@ export const UserProvider = ({ children }) => {
         return config;
     }
 
-    export function configureAxios() {
+    function configureAxios() {
         axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
         axios.interceptors.response.use(null, handleAuthError)
         axios.interceptors.request.use(addAuthToRequest)
@@ -57,6 +57,7 @@ export const UserProvider = ({ children }) => {
 
 
     useEffect(() => {
+        configureAxios();
         const fetchUserInfo = async () => {
             try {
                 const response = await axios.get('user/info?id=728740521');
