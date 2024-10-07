@@ -61,9 +61,11 @@ export const UserProvider = ({ children }) => {
         const fetchUserInfo = async () => {
             try {
                 const response = await axios.get('user/info?id=728740521');
-
+                console.log(response)
                 if (response.request.status === 200) {
-                    const data = await response.data; // Парсинг ответа JSON
+
+                    const data = await response.data;
+                    console.log(data);
                     setUser((prevUser) => ({
                         ...prevUser,
                         id: data.telegram_id.toString(),
