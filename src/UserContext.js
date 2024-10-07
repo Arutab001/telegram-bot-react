@@ -41,8 +41,8 @@ export const UserProvider = ({ children }) => {
 
     function configureAxios() {
         axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
-        axios.interceptors.response.use(null, handleAuthError)
-        axios.interceptors.request.use(addAuthToRequest)
+        //axios.interceptors.response.use(null, handleAuthError)
+        //axios.interceptors.request.use(addAuthToRequest)
     }
 
 
