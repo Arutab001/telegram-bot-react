@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TaskContainer from './TaskContainer.js';
 import Task1 from '../../images/Ellipse 5.jpg'; // Задаем изображение по умолчанию
 import { useUser } from '../../UserContext.js';
+import axios from "axios";
 
 const Task = () => {
     const { user } = useUser();
@@ -13,16 +14,12 @@ const Task = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await fetch(apiUrl, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
+                const response = await axios.get(apiUrl);
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setTasks(data.items); // используем data.items для списка задач
+                if (response.request.status === 200) {
+                    const data = await response.data.data;
+                    console.log(data);
+                    setTasks(data.items);
                 } else {
                     console.error('Ошибка при получении задач:', response.statusText);
                 }
