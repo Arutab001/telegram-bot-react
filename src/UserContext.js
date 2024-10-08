@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from "axios";
+import TelegramAuth from "./components/TelegramAuth.js";
 
 
 const UserContext = createContext();
@@ -10,6 +11,8 @@ export const useUser = () => {
 
 export const UserProvider = ({ children }) => {
     const tg = window.Telegram.WebApp;
+
+    const [isAuth, setAuth] = useState();
 
     function handleAuthError(error) {
         const toast = useToast()
@@ -55,25 +58,77 @@ export const UserProvider = ({ children }) => {
         balance: 0
     });
 
+    const handleUserFirst = (new_name, new_id) => {
+      setUser(prevState =>
+          ({...prevState,
+      name: new_name,
+      id: new_id }))}
+
+    const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_balance) => {
+        setUser(prevState =>
+            ({...prevState,
+                premium: new_premium,
+                referrals: new_referrals,
+                withdraw: new_withdraw,
+                balance: new_balance
+            })
+        )
+    }
+
+    async function checkAuth() {
+
+    }
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    async function authenticateUser () {
+
+    }
 
     useEffect(() => {
         console.log("STARTING")
         console.log(window.Telegram.WebApp.initData);
         console.log(window.Telegram.WebApp.initDataUnsafe);
         configureAxios();
+
         const fetchUserInfo = async () => {
+            console.log("a");
             try {
-                const response = await axios.get('/user/chat?id=728740521');
+                const WebApp = (await import('@twa-dev/sdk')).default
+                const initData = WebApp.initData
+                if (initData) {
+                    try {
+                        const response = await axios.get(`/auth?${initData.toString()}`)
+
+                        //if (response.o) {
+                        //    setIsAuthenticated(true)
+                        //    router.refresh()
+                        console.log("CHECK");
+                        console.log(response.data.access_token);
+                        return response.data.access_token
+                    } catch (error) {
+                        console.error('Error during authentication:', error)
+                        setIsAuthenticated(false)
+                    }
+                }
+                else {
+                    console.log("NO DATA");
+                }
+            }
+            catch (e) {
+                console.error(e);
+            }
+            try {
+
+                const response = await axios.get(`/user/chat?`, {
+                    headers: {
+                        authorization: `Bearer ${isAuth}`
+                    }
+                });
                 console.log(response)
                 if (response.request.status === 200) {
 
                     const data = await response.data;
                     console.log(data);
-                    setUser((prevUser) => ({
-                        ...prevUser,
-                        name: data.data.first_name,
-                        id: data.data.id,
-                    }));
+                    handleUserFirst(data.data.first_name, data.data.id);
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                 }
@@ -83,14 +138,9 @@ export const UserProvider = ({ children }) => {
             try {
                 const response = await axios.get('/user/info?id=728740521');
                 if (response.request.status === 200) {
-                    const data = await response.data.data;
-                    setUser((prevUser) => ({
-                        ...prevUser,
-                        premium: data.is_premium,
-                        referrals: data.referred_users_count,
-                        withdraw: data.withdrew,
-                        balance: data.balance
-                    }));
+                    const data = await response.data;
+                    console.log(data);
+                    handleUserSecond(data.data.is_premium.toString(), data.data.referred_users_count, data.data.withdrew, data.data.balance)
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                 }
@@ -99,7 +149,7 @@ export const UserProvider = ({ children }) => {
                 console.error('Ошибка сети:', error)
             }
         };
-
+        console.log(user);
         fetchUserInfo();
     }, []);
 

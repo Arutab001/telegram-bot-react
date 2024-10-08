@@ -1,14 +1,13 @@
 'use client'
-
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import axios from "axios";
 
 export default function TelegramAuth() {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const router = useRouter()
 
     useEffect(() => {
-        checkAuth()
+        checkAuth();
+        authenticateUser();
     }, [])
 
     const checkAuth = async () => {
@@ -24,21 +23,14 @@ export default function TelegramAuth() {
         const initData = WebApp.initData
         if (initData) {
             try {
-                const response = await fetch('/api/auth', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ initData }),
-                })
+                const response = await axios.get(`/auth?${initData.toString()}`)
 
-                if (response.ok) {
-                    setIsAuthenticated(true)
-                    router.refresh()
-                } else {
-                    console.error('Authentication failed')
-                    setIsAuthenticated(false)
-                }
+                //if (response.o) {
+                //    setIsAuthenticated(true)
+                //    router.refresh()
+                console.log("CHECK");
+                console.log(response.data.access_token);
+                return response.data.access_token
             } catch (error) {
                 console.error('Error during authentication:', error)
                 setIsAuthenticated(false)
