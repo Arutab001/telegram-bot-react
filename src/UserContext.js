@@ -97,11 +97,8 @@ export const UserProvider = ({ children }) => {
                 const initData = window.Telegram.WebApp.initData;
                 if (initData) {
                     try {
+                        console.log(`/auth?${initData.toString()}`);
                         const response = await axios.get(`/auth?${initData.toString()}`)
-
-                        //if (response.o) {
-                        //    setIsAuthenticated(true)
-                        //    router.refresh()
                         console.log("CHECK");
                         console.log(response.data.access_token);
                         setToken(response.data.access_token);
