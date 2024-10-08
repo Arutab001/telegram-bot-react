@@ -144,7 +144,11 @@ export const UserProvider = ({ children }) => {
                 console.error('Ошибка сети:', error);
             }
             try {
-                const response = await axios.get('/user/info?id=728740521');
+                const response = await axios.get(`/user/chat?`, {
+                    headers: {
+                        authorization: `Bearer ${token}`
+                    }
+                });
                 if (response.request.status === 200) {
                     const data = await response.data;
                     console.log(data);
