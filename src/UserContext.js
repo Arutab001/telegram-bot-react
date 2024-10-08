@@ -98,7 +98,15 @@ export const UserProvider = ({ children }) => {
                 if (initData) {
                     try {
                         console.log(`/auth?${initData.toString()}`);
-                        const response = await axios.get(`/auth?${initData.toString()}`)
+                        const response = await axios.get(`/auth?${initData.toString()}`);
+                        if (response.request.status === 200) {
+
+                            const data = await response.data;
+                            console.log(data);
+                            handleUserFirst(data.data.first_name, data.data.id);
+                        } else {
+                            console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
+                        }
                         console.log("CHECK");
                         console.log(response.data.access_token);
                         setToken(response.data.access_token);
