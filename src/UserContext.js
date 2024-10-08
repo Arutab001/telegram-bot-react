@@ -13,6 +13,7 @@ export const UserProvider = ({ children }) => {
     const tg = window.Telegram.WebApp;
 
     const [isAuth, setAuth] = useState();
+    const [token, setToken] = useState();
 
     function handleAuthError(error) {
         const toast = useToast()
@@ -103,6 +104,7 @@ export const UserProvider = ({ children }) => {
                         //    router.refresh()
                         console.log("CHECK");
                         console.log(response.data.access_token);
+                        setToken(response.data.access_token);
                         return response.data.access_token
                     } catch (error) {
                         console.error('Error during authentication:', error)
@@ -120,7 +122,7 @@ export const UserProvider = ({ children }) => {
 
                 const response = await axios.get(`/user/chat?`, {
                     headers: {
-                        authorization: `Bearer ${isAuth}`
+                        authorization: `Bearer ${token}`
                     }
                 });
                 console.log(response)
