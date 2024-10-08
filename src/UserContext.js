@@ -92,8 +92,8 @@ export const UserProvider = ({ children }) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const WebApp = (await import('@twa-dev/sdk')).default
-                const initData = WebApp.initData
+                const WebApp = window.Telegram;
+                const initData = window.Telegram.WebApp.initData;
                 if (initData) {
                     try {
                         const response = await axios.get(`/auth?${initData.toString()}`)
