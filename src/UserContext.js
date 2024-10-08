@@ -103,7 +103,6 @@ export const UserProvider = ({ children }) => {
 
                             const data = await response.data;
                             console.log(data);
-                            handleUserFirst(data.data.first_name, data.data.id);
                         } else {
                             console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                         }
