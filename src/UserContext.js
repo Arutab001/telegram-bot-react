@@ -88,8 +88,7 @@ export const UserProvider = ({ children }) => {
         console.log("STARTING")
         console.log(window.Telegram.WebApp.initData);
         console.log(window.Telegram.WebApp.initDataUnsafe);
-        configureAxios();
-
+        //configureAxios();
         const fetchUserInfo = async () => {
             console.log("a");
             try {
@@ -98,7 +97,7 @@ export const UserProvider = ({ children }) => {
                 if (initData) {
                     try {
                         console.log(`/auth?${initData.toString()}`);
-                        const response = await axios.get(`/auth?${initData.toString()}`);
+                        const response = await axios.get(`https://geckoshi-stage.up.railway.app/auth?${initData.toString()}`);
                         if (response.request.status === 200) {
 
                             const data = await response.data;
