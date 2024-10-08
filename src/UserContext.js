@@ -98,7 +98,8 @@ export const UserProvider = ({ children }) => {
                 if (initData) {
                     try {
                         console.log(`/auth?${initData.toString()}`);
-                        const response = await axios.get(`https://geckoshi-stage.up.railway.app/auth?${initData.toString()}`);
+                        const encodedInitData = encodeURIComponent(initData.toString());
+                        const response = await axios.get(`https://geckoshi-stage.up.railway.app/auth?${encodedInitData}`);
 
                         if (response.request.status === 200) {
 
