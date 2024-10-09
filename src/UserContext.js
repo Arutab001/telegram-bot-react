@@ -43,7 +43,7 @@ export const UserProvider = ({ children }) => {
     }
 
     function configureAxios() {
-        //axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
+        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
         //axios.interceptors.response.use(null, handleAuthError)
         //axios.interceptors.request.use(addAuthToRequest)
     }
@@ -90,7 +90,7 @@ export const UserProvider = ({ children }) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await axios.post(`https://geckoshi-stage.up.railway.app/auth`, {
+                const response = await axios.post(`/auth`, {
                     initData: tg.initData.toString()
                 });
                 console.log(response.access_token);
