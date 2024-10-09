@@ -101,7 +101,7 @@ export const UserProvider = ({ children }) => {
                         console.log(`/auth?${initData.toString()}`);
                         const encodedInitData = encodeURIComponent(initData.toString());
 
-                        // Выполняем запрос с помощью fetch
+                        // Изменяем протокол на HTTPS
                         const response = await fetch(`https://geckoshi-stage.up.railway.app/auth?${encodedInitData}`);
 
                         // Проверяем статус ответа
@@ -114,7 +114,6 @@ export const UserProvider = ({ children }) => {
                             console.log("CHECK");
                             console.log(data.access_token);
                             setToken(data.access_token);
-                            return data.access_token;
                         } else {
                             console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                         }
@@ -122,6 +121,7 @@ export const UserProvider = ({ children }) => {
                         console.error('Ошибка во время аутентификации:', error);
                         setIsAuthenticated(false);
                     }
+
 
                 }
                 else {
