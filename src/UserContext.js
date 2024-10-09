@@ -43,7 +43,7 @@ export const UserProvider = ({ children }) => {
     }
 
     function configureAxios() {
-        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
+        //axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
         //axios.interceptors.response.use(null, handleAuthError)
         //axios.interceptors.request.use(addAuthToRequest)
     }
@@ -90,7 +90,7 @@ export const UserProvider = ({ children }) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await axios.get(`/auth?${tg.initData.toString()}`);
+                const response = await axios.get(`https://geckoshi-stage.up.railway.app/auth?${tg.initData.toString()}`);
                 console.log(response.access_token);
                 if (response.request.status === 200) {
                     const data = await response.access_token;
@@ -105,7 +105,7 @@ export const UserProvider = ({ children }) => {
             }
             try {
 
-                const response = await axios.get(`/user/chat?`, {
+                const response = await axios.get(`https://geckoshi-stage.up.railway.app/user/chat?`, {
                     headers: {
                         authorization: `Bearer ${token}`
                     }
