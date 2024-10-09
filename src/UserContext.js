@@ -91,13 +91,15 @@ export const UserProvider = ({ children }) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await axios.get(`auth?${tg.initData}`);
+                const response = await axios.get(`auth?${tg.initData.toString()}`);
                 console.log(response.access_token);
                 if (response.request.status === 200) {
                     const data = await response.access_token;
                     setToken(data);
                 }
-
+                else {
+                    console.log("error status request")
+                }
             }
             catch (e) {
                 console.error(e);
