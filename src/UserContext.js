@@ -90,7 +90,9 @@ export const UserProvider = ({ children }) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await axios.get(`https://geckoshi-stage.up.railway.app/auth?${tg.initData.toString()}`);
+                const response = await axios.post(`https://geckoshi-stage.up.railway.app/auth`, {
+                    initData: tg.initData.toString()
+                });
                 console.log(response.access_token);
                 if (response.request.status === 200) {
                     const data = await response.access_token;
