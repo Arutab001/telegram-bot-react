@@ -87,46 +87,17 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         console.log("STARTING")
         console.log(window.Telegram.WebApp.initData);
-        console.log(window.Telegram.WebApp.initDataUnsafe);
-       // configureAxios();
 
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const WebApp = window.Telegram;
-                const initData = window.Telegram.WebApp.initData;
-                if (initData) {
-                    try {
-                        // Формируем URL с параметрами
-                        console.log(`/auth?${initData.toString()}`);
-                        const encodedInitData = encodeURIComponent(initData.toString());
-
-                        // Изменяем протокол на HTTPS
-                        const response = await fetch(`https://geckoshi-stage.up.railway.app/auth?${encodedInitData}`);
-
-                        // Проверяем статус ответа
-                        if (response.ok) {
-                            // Парсим JSON из ответа
-                            const data = await response.json();
-                            console.log(data);
-
-                            // Проверка и установка токена
-                            console.log("CHECK");
-                            console.log(data.access_token);
-                            setToken(data.access_token);
-                        } else {
-                            console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
-                        }
-                    } catch (error) {
-                        console.error('Ошибка во время аутентификации:', error);
-                        setIsAuthenticated(false);
-                    }
-
-
+                const response = await axios.get(`auth?${tg.initData}`);
+                console.log(response.access_token);
+                if (response.request.status === 200) {
+                    const data = await response.access_token;
+                    setToken(data);
                 }
-                else {
-                    console.log("NO DATA");
-                }
+
             }
             catch (e) {
                 console.error(e);
