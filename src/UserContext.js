@@ -97,25 +97,32 @@ export const UserProvider = ({ children }) => {
                 const initData = window.Telegram.WebApp.initData;
                 if (initData) {
                     try {
+                        // Формируем URL с параметрами
                         console.log(`/auth?${initData.toString()}`);
                         const encodedInitData = encodeURIComponent(initData.toString());
-                        const response = await axios.get(`https://geckoshi-stage.up.railway.app/auth?${encodedInitData}`);
 
-                        if (response.request.status === 200) {
+                        // Выполняем запрос с помощью fetch
+                        const response = await fetch(`https://geckoshi-stage.up.railway.app/auth?${encodedInitData}`);
 
-                            const data = await response.data;
+                        // Проверяем статус ответа
+                        if (response.ok) {
+                            // Парсим JSON из ответа
+                            const data = await response.json();
                             console.log(data);
+
+                            // Проверка и установка токена
+                            console.log("CHECK");
+                            console.log(data.access_token);
+                            setToken(data.access_token);
+                            return data.access_token;
                         } else {
                             console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                         }
-                        console.log("CHECK");
-                        console.log(response.data.access_token);
-                        setToken(response.data.access_token);
-                        return response.data.access_token
                     } catch (error) {
-                        console.error('Error during authentication:', error)
-                        setIsAuthenticated(false)
+                        console.error('Ошибка во время аутентификации:', error);
+                        setIsAuthenticated(false);
                     }
+
                 }
                 else {
                     console.log("NO DATA");
