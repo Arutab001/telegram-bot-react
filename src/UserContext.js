@@ -92,17 +92,17 @@ export const UserProvider = ({children}) => {
     useEffect(() => {
         console.log("STARTING")
         console.log(window.Telegram.WebApp.initData);
-
+        const initData = window.Telegram.WebApp.initData;
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await fetch(`https://geckoshi-stage.up.railway.app/auth?${tg.initData}`,
-                    {
-                        method: 'GET',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
+                const response = await fetch('https://geckoshi-stage.up.railway.app/auth', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ initData }),
+                });
                 const result = await response.json();
                 console.log(result);
             } catch (e) {
