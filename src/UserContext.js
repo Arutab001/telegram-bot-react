@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from "axios";
 
 
@@ -8,7 +8,7 @@ export const useUser = () => {
     return useContext(UserContext);
 };
 
-export const UserProvider = ({ children }) => {
+export const UserProvider = ({children}) => {
     const tg = window.Telegram.WebApp;
 
     const [isAuth, setAuth] = useState();
@@ -59,14 +59,18 @@ export const UserProvider = ({ children }) => {
     });
 
     const handleUserFirst = (new_name, new_id) => {
-      setUser(prevState =>
-          ({...prevState,
-      name: new_name,
-      id: new_id }))}
+        setUser(prevState =>
+            ({
+                ...prevState,
+                name: new_name,
+                id: new_id
+            }))
+    }
 
     const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_balance) => {
         setUser(prevState =>
-            ({...prevState,
+            ({
+                ...prevState,
                 premium: new_premium,
                 referrals: new_referrals,
                 withdraw: new_withdraw,
@@ -78,8 +82,10 @@ export const UserProvider = ({ children }) => {
     async function checkAuth() {
 
     }
+
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    async function authenticateUser () {
+
+    async function authenticateUser() {
 
     }
 
@@ -90,19 +96,16 @@ export const UserProvider = ({ children }) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await axios.post(`/auth`, {
-                    initData: tg.initData.toString()
-                });
-                console.log(response.access_token);
-                if (response.request.status === 200) {
-                    const data = await response.access_token;
-                    setToken(data);
-                }
-                else {
-                    console.log("error status request")
-                }
-            }
-            catch (e) {
+                const response = await fetch(`https://geckoshi-stage.up.railway.app/auth?${tg.initData}`,
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                const result = await response.json();
+                console.log(result);
+            } catch (e) {
                 console.error(e);
             }
             try {
@@ -137,8 +140,7 @@ export const UserProvider = ({ children }) => {
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                 }
-            }
-            catch (error) {
+            } catch (error) {
                 console.error('Ошибка сети:', error)
             }
         };
@@ -163,7 +165,7 @@ export const UserProvider = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={{ user, updateUser, updatePremium }}>
+        <UserContext.Provider value={{user, updateUser, updatePremium}}>
             {children}
         </UserContext.Provider>
     );
