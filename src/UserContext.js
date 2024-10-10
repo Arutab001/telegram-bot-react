@@ -145,7 +145,6 @@ export const UserProvider = ({children}) => {
             }
         };
         console.log(user);
-        fetchUserInfo();
     }, []);
 
     // Функция для обновления премиум-статуса
