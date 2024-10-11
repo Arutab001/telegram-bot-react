@@ -8,7 +8,7 @@ export const useToken = () => {
     return useContext(TokenContext);
 };
 
-export default function TelegramAuth({ children }) {  // Accept children as a prop
+export const TelegramAuth = ({children}) => {  // Accept children as a prop
     const [token, setToken] = useState('');
 
     const handleSetToken = (new_token) => {

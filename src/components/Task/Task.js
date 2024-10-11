@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import TaskContainer from './TaskContainer.js';
 import Task1 from '../../images/Ellipse 5.jpg'; // Задаем изображение по умолчанию
-import { useUser } from '../../UserContext.js';
+import { useUser } from "../../UserContext.js";
 import axios from "axios";
 
 const Task = () => {
-    const { user } = useUser();
+    const { user, updateUser } = useUser();
     const [tasks, setTasks] = useState([]);
-
-    // Формируем URL с id пользователя
-
-    const apiUrl = "https://geckoshi-stage.up.railway.app/task/?id=728740521&page=1&limit=1";
 
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get("/task/?id=728740521&page=1&limit=1");
+                const response = await axios.get(`/task/?id=${user.id}&page=1&limit=1`);
 
                 if (response.request.status === 200) {
                     const data = await response.data;
