@@ -54,7 +54,7 @@ export const UserProvider = ({children}) => {
 
                 const response = await axios.get('/user/chat', {
                     headers: {
-                        authorization: `Bearer ${token}`
+                        'authorization': `Bearer ${token}`
                     }
                 });
 
