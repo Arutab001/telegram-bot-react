@@ -106,7 +106,7 @@ const Profile = () => {
                     </div>
                     <span>{localisation.Name}: </span> {user.name} <br />
                     <span> {localisation.Id}: </span> {user.id}<br />
-                    <span> {localisation.Premium}: </span> {user.premium.toString()} <br />
+                    <span> {localisation.Premium}: </span> {user.premium} <br />
                     <span> {localisation.Ref}: </span>{user.referrals} <br />
                     <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
                 </div>
