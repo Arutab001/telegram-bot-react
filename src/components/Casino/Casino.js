@@ -86,7 +86,7 @@ const Casino = () => {
         setSpunOnce(true);
 
         const serverResponse = await getResultsFromServer();
-        console.log(serverResponse.data)
+        console.log(serverResponse.data);
         const { combination, win_amount } = serverResponse.data;
         setTimeout(() => {
             setRolling(false); // Останавливаем "вращение"
@@ -94,17 +94,17 @@ const Casino = () => {
 
             // Убедимся, что у нас есть 3 эмодзи для отображения
 
-                setResults({
-                    Fruit1: combination[0],
-                    Fruit2: combination[1],
-                    Fruit3: combination[2]
-                });
+            setResults({
+                Fruit1: combination[0],
+                Fruit2: combination[1],
+                Fruit3: combination[2]
+            });
 
-                setDisplayedResults({
-                    Fruit1: fruitsArray[0],
-                    Fruit2: fruitsArray[1],
-                    Fruit3: fruitsArray[2]
-                });
+            setDisplayedResults({
+                Fruit1: fruitsArray[0],
+                Fruit2: fruitsArray[1],
+                Fruit3: fruitsArray[2]
+            });
 
         }, 700);
 
