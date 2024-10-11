@@ -96,7 +96,7 @@ export const UserProvider = ({children}) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await axios.post('https://geckoshi-stage.up.railway.app/auth/v3', {
+                const response = await axios.post('/auth/v3', {
                     data: initData
                 });
 
@@ -109,7 +109,7 @@ export const UserProvider = ({children}) => {
             }
             try {
 
-                const response = await axios.get(`https://geckoshi-stage.up.railway.app/user/chat?`, {
+                const response = await axios.get(`/user/chat`, {
                     headers: {
                         authorization: `Bearer ${token}`
                     }
