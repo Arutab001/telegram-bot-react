@@ -4,7 +4,7 @@ import MyBtn from "../Profile/MyBtn.js";
 import CombinationModal from "./CombinationModal.js";
 import CasinoInfo from "./CasinoInfo.js";
 import MySelect from "./MySelect/MySelect.js";
-import { useUser } from "../../UserContext.js";
+import {useUser} from "../../UserContext.js";
 import axios from "axios";
 
 
@@ -88,12 +88,7 @@ const Casino = () => {
         const serverResponse = await getResultsFromServer();
         console.log(serverResponse.data.data);
         const emojiString = serverResponse.data.data.combination;
-        const combination = Array.from(emojiString) // Преобразуем строку в массив эмодзи
-
-        const filteredCombination = combination.filter(emoji => {
-            // Убедимся, что это действительно эмодзи
-            return emoji.trim() !== ''; // Удаляем пустые символы
-        });
+        const combination = emojiString.match(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]+/gu) || [];
         console.log(filteredCombination)
         setTimeout(() => {
             setRolling(false); // Останавливаем "вращение"
@@ -118,7 +113,7 @@ const Casino = () => {
     };
     return (
         <div>
-            <CasinoInfo />
+            <CasinoInfo/>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginTop: "5%"}}>
                 <div className="CasinoCard" style={{position: "relative"}}>
                     <div>
