@@ -14,6 +14,7 @@ export const UserProvider = ({children}) => {
 
     function configureAxios() {
         axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+        axios.defaults.headers.common = {'Authorization': `bearer ${token}`}
     }
 
     const [user, setUser] = useState({
@@ -51,11 +52,8 @@ export const UserProvider = ({children}) => {
 
         const fetchUserInfo = async () => {
             try {
-                const config = {
-                    headers: { Authorization: `Bearer ${token}` }
-                };
-                const response = await axios.get('/user/chat', config);
 
+                const response = await axios.get('/user/chat');
                 console.log(response)
                 if (response.request.status === 200) {
 
