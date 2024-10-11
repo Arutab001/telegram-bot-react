@@ -12,6 +12,10 @@ export const UserProvider = ({children}) => {
 
     const {token, handleSetToken} = useToken();
 
+    function configureAxios() {
+        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+    }
+
     const [user, setUser] = useState({
         name: '',
         id: 0,
@@ -43,6 +47,7 @@ export const UserProvider = ({children}) => {
     }
 
     useEffect(() => {
+        configureAxios();
         const fetchUserInfo = async () => {
             try {
 
