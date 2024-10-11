@@ -87,8 +87,8 @@ const Casino = () => {
 
         const serverResponse = await getResultsFromServer();
         console.log(serverResponse.data.data);
-        const combination = serverResponse.data.data.combination;
-        //combination.forEach(emoji => console.log(emoji));
+        const emojiString = serverResponse.data.data.combination;
+        const combination = [...emojiString];
         console.log(combination)
         setTimeout(() => {
             setRolling(false); // Останавливаем "вращение"
