@@ -1,44 +1,39 @@
 'use client'
-import { useEffect, useState } from 'react'
+import {createContext, useContext, useEffect, useState} from 'react'
 import axios from "axios";
 
+const TokenContext = createContext();
+
+export const useToken = () => {
+    return useContext(TokenContext)
+}
+
 export default function TelegramAuth() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-    useEffect(() => {
-        checkAuth();
-        authenticateUser();
-    }, [])
-
-    const checkAuth = async () => {
-        const response = await fetch('/api/session')
-        if (response.ok) {
-            setIsAuthenticated(true)
-        }
+    const [token, setToken] = useState('');
+    const handleSetToken = (new_token) => {
+        setToken(new_token);
     }
 
-    const authenticateUser = async () => {
-        const WebApp = (await import('@twa-dev/sdk')).default
-        WebApp.ready()
-        const initData = WebApp.initData
-        if (initData) {
-            try {
-                const response = await axios.get(`/auth?${initData.toString()}`)
-
-                //if (response.o) {
-                //    setIsAuthenticated(true)
-                //    router.refresh()
-                console.log("CHECK");
-                console.log(response.data.access_token);
-                return response.data.access_token
-            } catch (error) {
-                console.error('Error during authentication:', error)
-                setIsAuthenticated(false)
-            }
-        }
+    function configureAxios() {
+        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
     }
 
-    return (
-        <></>
-    )
+    useEffect(async () => {
+        configureAxios();
+        try {
+            const initData = window.Telegram.WebApp.initData;
+            const response = await axios.post('/auth/v3', {
+                data: initData
+            });
+            const result = await response.data.access_token;
+            handleSetToken(result.toString());
+            console.log(token);
+        } catch (e) {
+            console.error(e);
+        }
+    }, []);
+
+    return (<TokenContext.Provider value={{token, handleSetToken}}>
+        {children}
+    </TokenContext.Provider>);
 }

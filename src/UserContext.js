@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from "axios";
-
+import {useToken} from "./components/TelegramAuth.js";
 
 const UserContext = createContext();
 
@@ -9,49 +9,8 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({children}) => {
-    const tg = window.Telegram.WebApp;
 
-    const [isAuth, setAuth] = useState();
-    const [token, setToken] = useState('');
-
-    const handlesetToken = (token) => {
-        setToken(token);
-    }
-
-    function handleAuthError(error) {
-        const toast = useToast()
-        if (error.response && error.response.status === 401) {
-            const refresh_token = cookies.get(c_binds.refresh_token)
-            if (refresh_token === undefined || refresh_token === null) {
-                toast.info('Current session expired. Login one more time.')
-                router.push('/login').catch(err => {
-                    console.log(err)
-                })
-                return Promise.reject(error)
-            }
-            return refreshAccessToken()
-                .then(() => {
-                    return axios.request(error.config)
-                })
-                .catch()
-        }
-        return Promise.reject(error)
-    }
-
-    function addAuthToRequest(config) {
-        if (cookies.get(c_binds.access_token) === undefined) {
-            return config;
-        }
-        config.headers.Authorization = `Bearer ${cookies.get(c_binds.access_token)}`
-        return config;
-    }
-
-    function configureAxios() {
-        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app'
-        //axios.interceptors.response.use(null, handleAuthError)
-        //axios.interceptors.request.use(addAuthToRequest)
-    }
-
+    const {token, handleSetToken} = useToken();
 
     const [user, setUser] = useState({
         name: '',
@@ -83,41 +42,13 @@ export const UserProvider = ({children}) => {
         )
     }
 
-    async function checkAuth() {
-
-    }
-
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-    async function authenticateUser() {
-
-    }
-
     useEffect(() => {
-        console.log("STARTING")
-        console.log(window.Telegram.WebApp.initData);
-        configureAxios();
-        const initData = window.Telegram.WebApp.initData;
         const fetchUserInfo = async () => {
-            console.log("a");
-            try {
-                const response = await axios.post('/auth/v3', {
-                    data: initData
-                });
-
-                console.log('Response:', response.data);
-                const result = await response.data.access_token;
-                handlesetToken(result)
-                console.log('b')
-                console.log(token.toString());
-            } catch (e) {
-                console.error(e);
-            }
             try {
 
                 const response = await axios.get(`/user/chat`, {
                     header: {
-                        authorization: `Bearer ${token.toString()}`
+                        authorization: `Bearer ${token}`
                     }
                 });
                 console.log(response)
@@ -135,7 +66,7 @@ export const UserProvider = ({children}) => {
             try {
                 const response = await axios.get(`/user/chat?`, {
                     header: {
-                        authorization: `Bearer ${token.toString()}`
+                        authorization: `Bearer ${token}`
                     }
                 });
                 if (response.request.status === 200) {
