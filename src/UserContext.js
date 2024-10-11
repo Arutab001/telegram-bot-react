@@ -49,6 +49,7 @@ export const UserProvider = ({children}) => {
 
     useEffect(() => {
         configureAxios();
+        console.log("AAA");
         console.log(token);
         const fetchUserInfo = async () => {
             try {
