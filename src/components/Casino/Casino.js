@@ -86,8 +86,8 @@ const Casino = () => {
         setSpunOnce(true);
 
         const serverResponse = await getResultsFromServer();
-        console.log(serverResponse.data);
-        const { combination, win_amount } = serverResponse.data;
+        console.log(serverResponse.data.combination);
+        const { combination, win_amount } = serverResponse.data.combination;
         setTimeout(() => {
             setRolling(false); // Останавливаем "вращение"
 
