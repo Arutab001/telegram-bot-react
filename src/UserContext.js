@@ -102,7 +102,7 @@ export const UserProvider = ({children}) => {
                 });
 
                 console.log('Response:', response.data);
-                const result = await response.access_token;
+                const result = await response.data.access_token;
                 setToken(result);
                 console.log(result);
             } catch (e) {
