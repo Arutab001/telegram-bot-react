@@ -48,9 +48,10 @@ export const UserProvider = ({children}) => {
 
     useEffect(() => {
         configureAxios();
+        console.log(token);
         const fetchUserInfo = async () => {
             try {
-                console.log(token);
+
                 const response = await axios.get('/user/chat', {
                     headers: {
                         authorization: `Bearer ${token}`
