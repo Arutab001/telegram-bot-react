@@ -88,8 +88,13 @@ const Casino = () => {
         const serverResponse = await getResultsFromServer();
         console.log(serverResponse.data.data);
         const emojiString = serverResponse.data.data.combination;
-        const combination = [...emojiString];
-        console.log(combination)
+        const combination = Array.from(emojiString) // Преобразуем строку в массив эмодзи
+
+        const filteredCombination = combination.filter(emoji => {
+            // Убедимся, что это действительно эмодзи
+            return emoji.trim() !== ''; // Удаляем пустые символы
+        });
+        console.log(filteredCombination)
         setTimeout(() => {
             setRolling(false); // Останавливаем "вращение"
 
