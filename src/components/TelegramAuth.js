@@ -1,6 +1,7 @@
 'use client';
-import { createContext, useContext, useEffect, useState } from 'react';
+import {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
+import {UserProvider} from "../UserContext.js";
 
 const TokenContext = createContext();
 
@@ -44,8 +45,8 @@ export const TelegramAuth = ({children}) => {  // Accept children as a prop
     }, [token]);
 
     return (
-        <TokenContext.Provider value={{ token, handleSetToken }}>
-            {children}  {/* Render children properly */}
+        <TokenContext.Provider value={{token, handleSetToken}}>
+            <UserProvider>{children}</UserProvider>
         </TokenContext.Provider>
     );
 }
