@@ -108,7 +108,8 @@ export const UserProvider = ({children}) => {
                 console.log('Response:', response.data);
                 const result = await response.data.access_token;
                 handlesetToken(result)
-                console.log(token);
+                console.log('b')
+                console.log(token.toString());
             } catch (e) {
                 console.error(e);
             }
