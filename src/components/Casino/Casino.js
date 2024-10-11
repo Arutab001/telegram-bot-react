@@ -85,14 +85,15 @@ const Casino = () => {
         setRolling(true);
         setSpunOnce(true);
 
-        try {
-            const serverResponse = await getResultsFromServer();
-            console.log(serverResponse.data); // Логируем ответ сервера
+        const serverResponse = await getResultsFromServer();
+        console.log(serverResponse.data)
+        const { combination, win_amount } = serverResponse.data;
+        setTimeout(() => {
+            setRolling(false); // Останавливаем "вращение"
 
-            const { combination, win_amount } = serverResponse.data;
 
-            // Убедимся, что комбинация определена и содержит 3 элемента
-            if (Array.isArray(combination) && combination.length === 3) {
+            // Убедимся, что у нас есть 3 эмодзи для отображения
+
                 setResults({
                     Fruit1: combination[0],
                     Fruit2: combination[1],
@@ -100,22 +101,14 @@ const Casino = () => {
                 });
 
                 setDisplayedResults({
-                    Fruit1: combination[0],
-                    Fruit2: combination[1],
-                    Fruit3: combination[2]
+                    Fruit1: fruitsArray[0],
+                    Fruit2: fruitsArray[1],
+                    Fruit3: fruitsArray[2]
                 });
-            } else {
-                console.error("Комбинация не определена или содержит неверное количество элементов:", combination);
-            }
 
-        } catch (error) {
-            console.error("Ошибка при получении результата с сервера:", error);
-        } finally {
-            setRolling(false); // Останавливаем "вращение"
-        }
+        }, 700);
+
     };
-
-
     return (
         <div>
             <CasinoInfo />
