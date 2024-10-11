@@ -91,21 +91,20 @@ const Casino = () => {
         const serverResponse = await getResultsFromServer();
         console.log(serverResponse.data.data);
         const emojiString = serverResponse.data.data.combination;
-        const combination = Array.from(emojiString);
 
-// Фильтруем массив, чтобы оставить только эмодзи из slots.fruits
+        // Разбиваем строку на символы, учитывая суррогатные пары
+        const combination = [...emojiString]; // Это позволяет правильно разбить строку на отдельные эмодзи
+
+        // Фильтруем массив, чтобы оставить только эмодзи из slots.fruits
         const filteredCombination = combination.filter(emoji => slots.fruits.includes(emoji));
 
-
         console.log(filteredCombination); // Выводим в консоль
+        console.log(combination);
 
-        console.log(combination)
         setTimeout(() => {
             setRolling(false); // Останавливаем "вращение"
 
-
             // Убедимся, что у нас есть 3 эмодзи для отображения
-
             setResults({
                 Fruit1: filteredCombination[0],
                 Fruit2: filteredCombination[1],
@@ -119,8 +118,8 @@ const Casino = () => {
             });
 
         }, 700);
-
     };
+
     return (
         <div>
             <CasinoInfo/>
