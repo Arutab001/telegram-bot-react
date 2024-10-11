@@ -102,8 +102,8 @@ export const UserProvider = ({children}) => {
                 });
 
                 console.log('Response:', response.data);
-                const result = await response.data;
-                setToken(result.access_token);
+                const result = await response.access_token;
+                setToken(result);
                 console.log(result);
             } catch (e) {
                 console.error(e);
