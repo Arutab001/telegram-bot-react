@@ -92,8 +92,8 @@ const Casino = () => {
         console.log(serverResponse.data.data);
         const emojiString = serverResponse.data.data.combination;
 
-        // Разбиваем строку на символы, учитывая суррогатные пары
-        const combination = [...emojiString]; // Это позволяет правильно разбить строку на отдельные эмодзи
+        // Используем регулярное выражение для извлечения всех эмодзи
+        const combination = emojiString.match(/[\p{Emoji}]/gu) || [];
 
         // Фильтруем массив, чтобы оставить только эмодзи из slots.fruits
         const filteredCombination = combination.filter(emoji => slots.fruits.includes(emoji));
@@ -119,6 +119,7 @@ const Casino = () => {
 
         }, 700);
     };
+
 
     return (
         <div>
