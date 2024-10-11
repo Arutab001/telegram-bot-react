@@ -3,15 +3,17 @@ import TaskContainer from './TaskContainer.js';
 import Task1 from '../../images/Ellipse 5.jpg'; // Задаем изображение по умолчанию
 import { useUser } from "../../UserContext.js";
 import axios from "axios";
+import {useToken} from "../TelegramAuth.js";
 
 const Task = () => {
+    const {token} = useToken()
     const { user, updateUser } = useUser();
     const [tasks, setTasks] = useState([]);
 
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get(`/task/?id=${user.id}&page=1&limit=1`);
+                const response = await axios.get(`/task/?id=${token}&page=1&limit=1`);
 
                 if (response.request.status === 200) {
                     const data = await response.data;
