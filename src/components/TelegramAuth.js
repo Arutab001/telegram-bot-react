@@ -25,11 +25,11 @@ export const TelegramAuth = ({children}) => {  // Accept children as a prop
             configureAxios();
             try {
                 const initData = window.Telegram.WebApp.initData;
-                console.log(initData.toString())
                 const response = await axios.post('/auth/v3', {
                     data: initData
                 });
                 const result = response.data.access_token;
+                console.log(result);
                 handleSetToken(result.toString());
             } catch (e) {
                 console.error(e);
