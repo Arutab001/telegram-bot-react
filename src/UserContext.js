@@ -103,7 +103,7 @@ export const UserProvider = ({children}) => {
 
                 console.log('Response:', response.data);
                 const result = await response.data;
-                setToken(result.data.access_token);
+                setToken(result.access_token);
                 console.log(result);
             } catch (e) {
                 console.error(e);
