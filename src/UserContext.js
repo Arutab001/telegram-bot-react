@@ -12,7 +12,7 @@ export const UserProvider = ({children}) => {
     const tg = window.Telegram.WebApp;
 
     const [isAuth, setAuth] = useState();
-    const [token, setToken] = useState();
+    const [token, setToken] = useState('');
 
     const handlesetToken = (token) => {
         setToken(token);
