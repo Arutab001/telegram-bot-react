@@ -66,7 +66,7 @@ export const UserProvider = ({ children }) => {
             }
 
             try {
-                const response = await axios.get('/user/chat');
+                const response = await axios.get('/user/info');
                 if (response.status === 200) {
                     const data = await response.data;
                     handleUserSecond(
