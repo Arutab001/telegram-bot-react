@@ -1,39 +1,51 @@
-'use client'
-import {createContext, useContext, useEffect, useState} from 'react'
-import axios from "axios";
+'use client';
+import { createContext, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const TokenContext = createContext();
 
 export const useToken = () => {
-    return useContext(TokenContext)
-}
+    return useContext(TokenContext);
+};
 
-export default function TelegramAuth() {
+export default function TelegramAuth({ children }) {  // Accept children as a prop
     const [token, setToken] = useState('');
+
     const handleSetToken = (new_token) => {
         setToken(new_token);
-    }
+    };
 
     function configureAxios() {
         axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
     }
 
-    useEffect(async () => {
-        configureAxios();
-        try {
-            const initData = window.Telegram.WebApp.initData;
-            const response = await axios.post('/auth/v3', {
-                data: initData
-            });
-            const result = await response.data.access_token;
-            handleSetToken(result.toString());
-            console.log(token);
-        } catch (e) {
-            console.error(e);
-        }
-    }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+            configureAxios();
+            try {
+                const initData = window.Telegram.WebApp.initData;
+                const response = await axios.post('/auth/v3', {
+                    data: initData
+                });
+                const result = response.data.access_token;
+                handleSetToken(result.toString());
+            } catch (e) {
+                console.error(e);
+            }
+        };
+        fetchData();
+    }, []); // No dependencies to ensure it only runs once
 
-    return (<TokenContext.Provider value={{token, handleSetToken}}>
-        {children}
-    </TokenContext.Provider>);
+    // To monitor token changes
+    useEffect(() => {
+        if (token) {
+            console.log('Token updated:', token);
+        }
+    }, [token]);
+
+    return (
+        <TokenContext.Provider value={{ token, handleSetToken }}>
+            {children}  {/* Render children properly */}
+        </TokenContext.Provider>
+    );
 }
