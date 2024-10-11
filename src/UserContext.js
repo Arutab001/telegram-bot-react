@@ -96,14 +96,12 @@ export const UserProvider = ({children}) => {
         const fetchUserInfo = async () => {
             console.log("a");
             try {
-                const response = await fetch('https://geckoshi-stage.up.railway.app/auth', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ initData }),
+                const response = await axios.post('https://geckoshi-stage.up.railway.app/auth/v3', {
+                    data: initData
                 });
-                const result = await response.json();
+
+                console.log('Response:', response.data);
+                const result = await response.data;
                 console.log(result);
             } catch (e) {
                 console.error(e);
