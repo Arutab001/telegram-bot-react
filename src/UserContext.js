@@ -14,6 +14,10 @@ export const UserProvider = ({children}) => {
     const [isAuth, setAuth] = useState();
     const [token, setToken] = useState();
 
+    const handlesetToken = (token) => {
+        setToken(token);
+    }
+
     function handleAuthError(error) {
         const toast = useToast()
         if (error.response && error.response.status === 401) {
@@ -103,8 +107,8 @@ export const UserProvider = ({children}) => {
 
                 console.log('Response:', response.data);
                 const result = await response.data.access_token;
-                setToken(result);
-                console.log(result);
+                handlesetToken(result)
+                console.log(token);
             } catch (e) {
                 console.error(e);
             }
