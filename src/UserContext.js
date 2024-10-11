@@ -51,11 +51,8 @@ export const UserProvider = ({children}) => {
         const fetchUserInfo = async () => {
             try {
 
-                const response = await axios.get(`/user/chat`, {
-                    header: {
-                        authorization: `Bearer ${token}`
-                    }
-                });
+                const response = await axios.get(`/user/chat?${token}`
+                   );
                 console.log(response)
                 if (response.request.status === 200) {
 
