@@ -14,7 +14,7 @@ export const UserProvider = ({children}) => {
 
     function configureAxios() {
         axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
-        axios.defaults.headers.common = {'Authorization': `bearer ${token}`}
+        axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
     }
 
     const [user, setUser] = useState({
