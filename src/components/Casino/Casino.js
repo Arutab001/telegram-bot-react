@@ -109,9 +109,9 @@ const Casino = () => {
             });
 
             setDisplayedResults({
-                Fruit1: fruitsArray[0],
-                Fruit2: fruitsArray[1],
-                Fruit3: fruitsArray[2]
+                Fruit1: filteredCombination[0],
+                Fruit2: filteredCombination[1],
+                Fruit3: filteredCombination[2]
             });
 
         }, 700);
