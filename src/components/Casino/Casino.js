@@ -4,7 +4,7 @@ import MyBtn from "../Profile/MyBtn.js";
 import CombinationModal from "./CombinationModal.js";
 import CasinoInfo from "./CasinoInfo.js";
 import MySelect from "./MySelect/MySelect.js";
-import {useUser} from "../../UserContext.js";
+import { useUser } from "../../UserContext.js";
 import axios from "axios";
 
 
@@ -54,7 +54,7 @@ const Casino = () => {
     };
 
     const getResultsFromServer = async () => {
-        return await axios.post(`/slots/play?id=${user.user_id}&amount=${selectedValue}`);
+        return await axios.post(`/slots/play?id=${user.id}&amount=${selectedValue}`);
     };
 
     useEffect(() => {
@@ -86,21 +86,29 @@ const Casino = () => {
         setSpunOnce(true);
 
         const serverResponse = await getResultsFromServer();
+        const { combination, win_amount } = serverResponse.data;
 
-        const { combination, win_amount } = serverResponse.data.data;
-        const [Fruit1, Fruit2, Fruit3] = combination.split(',');
-
-        // Останавливаем анимацию и устанавливаем реальные результаты с сервера через 700 мс
         setTimeout(() => {
             setRolling(false); // Останавливаем "вращение"
-            setResults({
-                Fruit1,
-                Fruit2,
-                Fruit3
-            });
-            setWin(win_amount > 0);
-        }, 700); // Ждём 700 мс перед остановкой
+
+            // Убедимся, что у нас есть 3 эмодзи для отображения
+            if (combination.length === 3) {
+                setResults({
+                    Fruit1: combination[0],
+                    Fruit2: combination[1],
+                    Fruit3: combination[2]
+                });
+
+                setDisplayedResults({
+                    Fruit1: combination[0],
+                    Fruit2: combination[1],
+                    Fruit3: combination[2]
+                });
+            }
+
+        }, 700);
     };
+
     return (
         <div>
             <CasinoInfo />
