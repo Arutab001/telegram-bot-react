@@ -84,6 +84,9 @@ const Casino = () => {
     const spinResult = async () => {
         setRolling(true);
         setSpunOnce(true);
+        const slots = {
+            fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
+        };
 
         const serverResponse = await getResultsFromServer();
         console.log(serverResponse.data.data);
