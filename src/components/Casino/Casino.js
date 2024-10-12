@@ -90,15 +90,8 @@ const Casino = () => {
 
         const serverResponse = await getResultsFromServer();
         console.log(serverResponse.data.data);
-        const emojiString = serverResponse.data.data.combination;
+        const combination = serverResponse.data.data.combination;
 
-        // Используем регулярное выражение для извлечения всех эмодзи
-        const combination = emojiString.match(/[\p{Emoji}]/gu) || [];
-
-        // Фильтруем массив, чтобы оставить только эмодзи из slots.fruits
-        const filteredCombination = combination.filter(emoji => slots.fruits.includes(emoji));
-
-        console.log(filteredCombination); // Выводим в консоль
         console.log(combination);
 
         setTimeout(() => {
@@ -106,15 +99,15 @@ const Casino = () => {
 
             // Убедимся, что у нас есть 3 эмодзи для отображения
             setResults({
-                Fruit1: filteredCombination[0],
-                Fruit2: filteredCombination[1],
-                Fruit3: filteredCombination[2]
+                Fruit1: combination[0],
+                Fruit2: combination[1],
+                Fruit3: combination[2]
             });
 
             setDisplayedResults({
-                Fruit1: filteredCombination[0],
-                Fruit2: filteredCombination[1],
-                Fruit3: filteredCombination[2]
+                Fruit1: combination[0],
+                Fruit2: combination[1],
+                Fruit3: combination[2]
             });
 
         }, 700);
