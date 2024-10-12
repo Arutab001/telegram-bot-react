@@ -3,11 +3,12 @@ import "./LanguageModal.css";
 import MyBtn from "./MyBtn.js";
 import axios from "axios";
 import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
+import {useLanguage} from "../Casino/Base_Logic/LanguageContext.js";
 
 const LanguageModal = ({show, onClose}) => {
     const {token} = useToken();
     const [languages, setLanguages] = useState([]);
-
+    const {language} = useLanguage();
     // Имитируем запрос для получения доступных языков
     useEffect(() => {
         const fetchLanguages = async () => {
@@ -29,7 +30,7 @@ const LanguageModal = ({show, onClose}) => {
     return (
         <div className="language-overlay">
             <div className="language-content">
-                <h2>Choose your language</h2>
+                <h2>{language.data.lang_menu}</h2>
                 {languages.map((lang) => (
                     <MyBtn key={lang} text={capitalizeFirstLetter(lang)} onClick={onClose}/>
                 ))}
