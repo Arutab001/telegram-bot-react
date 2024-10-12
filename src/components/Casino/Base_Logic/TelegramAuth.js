@@ -80,7 +80,8 @@ export const TelegramAuth = ({children}) => {
 
     return (
         <TokenContext.Provider value={{token, handleSetToken}}>
-            <UserProvider><LanguageProvider><UserLanguageProvider>{children}</UserLanguageProvider></LanguageProvider></UserProvider>
+            <UserLanguageProvider><UserProvider><LanguageProvider>{children}</LanguageProvider></UserProvider></UserLanguageProvider>
         </TokenContext.Provider>
-    );
+)
+    ;
 };
