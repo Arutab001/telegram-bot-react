@@ -92,7 +92,7 @@ const Casino = () => {
         const serverResponse = await getResultsFromServer();
         console.log(serverResponse.data.data);
         const combination = serverResponse.data.data.combination;
-
+        setWinAMount(serverResponse.data.data.win_amount)
         console.log(combination);
 
         setTimeout(() => {
@@ -120,9 +120,9 @@ const Casino = () => {
             <CasinoInfo/>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginTop: "5%"}}>
                 <div className="CasinoCard" style={{position: "relative"}}>
-                    {win_amount !== undefined ? <div>
+                    {win_amount !== undefined ?? <div>
                         Your reward: ${win_amount}
-                    </div> : null}
+                    </div> :: null}
 
                     <svg onClick={OpenModal} style={{position: "absolute", right: "5px", top: "5px"}}
                          xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 60 60" fill="none">
