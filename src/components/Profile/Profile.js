@@ -22,8 +22,7 @@ const Profile = () => {
         setIsLangModalOpen(true);
     };
 
-    const closeLang = (e) => {
-        e.preventDefault();
+    const closeLang = () => {
         setIsLangModalOpen(false);
     };
 
@@ -35,7 +34,8 @@ const Profile = () => {
         setIsModalOpen(true);
     };
 
-    const closeModal = () => {
+    const closeModal = (e) => {
+        e.preventDefault();
         setIsModalOpen(false);
     };
 
