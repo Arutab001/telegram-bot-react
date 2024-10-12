@@ -6,11 +6,12 @@ import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
-import defaultAvatar from "../../images/chromecore 1.png"; // Заглушка, если нет аватарки
+import defaultAvatar from "../../images/chromecore 1.png";
+import {useLanguage} from "../Casino/Base_Logic/LanguageContext.js"; // Заглушка, если нет аватарки
 
 const Profile = () => {
     const { user, updateUser } = useUser();
-
+    const {language} = useLanguage();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
@@ -105,12 +106,7 @@ const Profile = () => {
                             {localisation.Info}
                         </h1>
                     </div>
-                    <span>{localisation.Name}: </span> {user.name} <br />
-                    <span> {localisation.Id}: </span> {user.id}<br />
-                    <span> {localisation.Premium}: </span> {user.premium} <br />
-                    <span> {localisation.Ref}: </span>{user.referrals} <br />
-                    <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
-                    <span> {localisation.Balance}</span> {user.balance} <br />
+                    {language.user_profile}
                 </div>
                 <div>
                     <h1>
