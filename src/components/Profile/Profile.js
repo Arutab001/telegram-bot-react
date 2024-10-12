@@ -22,7 +22,8 @@ const Profile = () => {
         setIsLangModalOpen(true);
     };
 
-    const closeLang = () => {
+    const closeLang = (e) => {
+        e.preventDefault();
         setIsLangModalOpen(false);
     };
 
@@ -121,7 +122,7 @@ const Profile = () => {
                 <div>
                     <MyBtn text={localisation.Premium}
                            onClick={openModal}
-                           onClose={closeModal}
+                           onClose={(e) => closeModal(e)}
                            setIsModalOpen={setIsModalOpen}
                     />
                 </div>
