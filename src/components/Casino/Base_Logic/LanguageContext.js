@@ -1,7 +1,7 @@
 import React, {createContext, useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import {useToken} from "./TelegramAuth.js";
-
+import {useLangProfile} from "./UserLanguageProvider.js";
 const LanguageContext = createContext();
 
 
@@ -12,6 +12,7 @@ export const useLanguage = () => {
 const LanguageProvider = ({children}) => {
     const [language, setLanguage] = useState(null);
     const {token} = useToken();
+    const {userLanguage} = useLangProfile();
 
     useEffect(() => {
         const fetchUserLanguage = async () => {
@@ -37,7 +38,7 @@ const LanguageProvider = ({children}) => {
         };
 
         fetchUserLanguage(); // Вызываем функцию при каждом изменении токена
-    }, [token]);
+    }, [token, userLanguage]);
 
     const changeLanguage = (newLanguage) => {
         setLanguage(newLanguage);

@@ -1,7 +1,7 @@
 import {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import {UserProvider} from "./UserContext.js";
-import {StringArrayProvide} from "./LanguagePack.js";
+import {StringArrayProvide, UserLanguageProvider} from "./UserLanguageProvider.js";
 import LanguageProvider from "./LanguageContext.js";
 
 const TokenContext = createContext();
@@ -80,7 +80,7 @@ export const TelegramAuth = ({children}) => {
 
     return (
         <TokenContext.Provider value={{token, handleSetToken}}>
-            <UserProvider><LanguageProvider>{children}</LanguageProvider></UserProvider>
+            <UserProvider><LanguageProvider><UserLanguageProvider>{children}</UserLanguageProvider></LanguageProvider></UserProvider>
         </TokenContext.Provider>
     );
 };

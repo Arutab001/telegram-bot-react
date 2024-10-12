@@ -18,7 +18,8 @@ export const UserProvider = ({ children }) => {
         premium: false,
         referrals: 0,
         withdraw: 0,
-        balance: 0
+        balance: 0,
+        language: ''
     });
 
     function configureAxios() {
@@ -34,13 +35,14 @@ export const UserProvider = ({ children }) => {
         }));
     };
 
-    const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_balance) => {
+    const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_balance, new_language) => {
         setUser(prevState => ({
             ...prevState,
             premium: new_premium,
             referrals: new_referrals,
             withdraw: new_withdraw,
-            balance: new_balance
+            balance: new_balance,
+            language: new_language
         }));
     };
 
@@ -73,7 +75,8 @@ export const UserProvider = ({ children }) => {
                         data.data.is_premium.toString(),
                         data.data.referred_users_count,
                         data.data.withdrew,
-                        data.data.balance
+                        data.data.balance,
+                        data.data.language
                     );
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);

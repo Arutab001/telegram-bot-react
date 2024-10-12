@@ -4,11 +4,13 @@ import MyBtn from "./MyBtn.js";
 import axios from "axios";
 import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
 import {useLanguage} from "../Casino/Base_Logic/LanguageContext.js";
+import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
 
 const LanguageModal = ({show, onClose}) => {
     const {token} = useToken();
     const [languages, setLanguages] = useState([]);
     const {language} = useLanguage();
+    const {setUserLanguage} = useLangProfile();
 
     function configureAxios() {
         axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
@@ -36,6 +38,7 @@ const LanguageModal = ({show, onClose}) => {
         const response = await axios.post(`/language?lang=${lang}`, {
             headers: {'Authorization': `Bearer ${token}`}
         });
+        setUserLanguage(lang);
         onClose(e);
     }
 
