@@ -133,7 +133,7 @@ const Profile = () => {
                     />
                 </div>
                 <GetPremium show={isModalOpen}
-                            onClose={closeModal}
+                            onClose={(e) => closeModal(e)}
                             className="Modal"
                             closeModal={closeModal}
                             handleNot={handleIsVisible}
