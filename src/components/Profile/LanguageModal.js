@@ -31,12 +31,12 @@ const LanguageModal = ({show, onClose}) => {
 
     if (!show) return null;
 
-    const changeLanguage = async (lang) => {
+    const changeLanguage = async ({lang, e}) => {
         configureAxios();
         const response = await axios.post(`/language?lang=${lang}`, {
             headers: {'Authorization': `Bearer ${token}`}
         });
-        onClose();
+        onClose(e);
     }
 
     return (
@@ -44,7 +44,7 @@ const LanguageModal = ({show, onClose}) => {
             <div className="language-content">
                 <h2>{language.lang_menu}</h2>
                 {languages.map((lang) => (
-                    <MyBtn key={lang} text={capitalizeFirstLetter(lang)} onClick={changeLanguage}/>
+                    <MyBtn key={lang} text={capitalizeFirstLetter(lang)} onClick={changeLanguage(lang, e)}/>
                 ))}
             </div>
         </div>
