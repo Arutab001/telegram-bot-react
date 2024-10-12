@@ -35,8 +35,7 @@ const Profile = () => {
         setIsModalOpen(true);
     };
 
-    const closeModal = (e) => {
-        e.preventDefault();
+    const closeModal = () => {
         setIsModalOpen(false);
     };
 
@@ -133,7 +132,7 @@ const Profile = () => {
                     />
                 </div>
                 <GetPremium show={isModalOpen}
-                            onClose={(e) => closeModal(e)}
+                            onClose={closeModal}
                             className="Modal"
                             closeModal={closeModal}
                             handleNot={handleIsVisible}
