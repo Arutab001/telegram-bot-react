@@ -69,7 +69,8 @@ const Profile = () => {
         WI: "Withdrawn Info",
         Text1: "We will notify you in advance about payouts",
         Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
-        Change: "Change Language"
+        Change: "Change Language",
+        Balance: "Balance"
     });
 
     // useEffect для загрузки аватарки
@@ -109,6 +110,7 @@ const Profile = () => {
                     <span> {localisation.Premium}: </span> {user.premium} <br />
                     <span> {localisation.Ref}: </span>{user.referrals} <br />
                     <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
+                    <span> {localisation.Balance}</span> {user.balance} <br />
                 </div>
                 <div>
                     <h1>
