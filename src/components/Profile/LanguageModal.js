@@ -33,7 +33,7 @@ const LanguageModal = ({show, onClose}) => {
 
     const changeLanguage = async (lang) => {
         configureAxios();
-        const response = await axios.get(`/language?lang=${lang}`, {
+        const response = await axios.post(`/language?lang=${lang}`, {
             headers: {'Authorization': `Bearer ${token}`}
         });
         onClose();
