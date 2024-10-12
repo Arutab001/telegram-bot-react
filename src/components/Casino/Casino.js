@@ -82,6 +82,7 @@ const Casino = () => {
     }, [rolling, results]);
 
     const spinResult = async () => {
+
         setRolling(true);
         setSpunOnce(true);
         const slots = {
@@ -120,7 +121,7 @@ const Casino = () => {
             <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginTop: "5%"}}>
                 <div className="CasinoCard" style={{position: "relative"}}>
                     <div>
-                        Your reward: {win}
+                        Your reward: ${win_amount}
                     </div>
                     <svg onClick={OpenModal} style={{position: "absolute", right: "5px", top: "5px"}}
                          xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 60 60" fill="none">
