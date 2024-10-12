@@ -17,7 +17,6 @@ const LanguageProvider = ({ children }) => {
         console.log("DAN DA DAN DAN DA DAN")
         const fetchUserLanguage = async () => {
             try {
-                console.log("DAN");
                 axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
                 const response = await axios.get(`/language/pack`, {
                     headers: {'Authorization': `Bearer ${token}`}
