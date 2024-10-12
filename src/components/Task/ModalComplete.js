@@ -1,6 +1,6 @@
 import React from 'react';
 import "./ModalComplete.css";
-import {useUser} from "../../UserContext.js";
+import {useUser} from "../Casino/Base_Logic/UserContext.js";
 
 const ModalComplete = ({show, close, id, reward}) => {
 

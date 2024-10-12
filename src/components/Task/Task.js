@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import TaskContainer from './TaskContainer.js';
 import Task1 from '../../images/Ellipse 5.jpg'; // Задаем изображение по умолчанию
-import { useUser } from "../../UserContext.js";
+import { useUser } from "../Casino/Base_Logic/UserContext.js";
 import axios from "axios";
-import {useToken} from "../TelegramAuth.js";
+import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
 
 const Task = () => {
     const {token} = useToken()

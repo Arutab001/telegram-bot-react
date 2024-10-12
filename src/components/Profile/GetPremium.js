@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useUser} from "../../UserContext.js";
+import {useUser} from "../Casino/Base_Logic/UserContext.js";
 import classes from "./getPremium.module.css";
 
 const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeModal}) => {

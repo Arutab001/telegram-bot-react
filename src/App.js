@@ -3,14 +3,14 @@ import './App.css';
 import {useEffect} from 'react';
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 
-import Layout from './components/Layout.js'; // Импортируйте ваш новый Layout компонент
+import Layout from './components/Casino/Base_Logic/Layout.js'; // Импортируйте ваш новый Layout компонент
 import Home from './components/Main_Page/Home.js';
 import Casino from './components/Casino/Casino.js';
 import Profile from './components/Profile/Profile.js';
 import Task from './components/Task/Task.js';
-import {UserProvider} from "./UserContext.js";
+import {UserProvider} from "./components/Casino/Base_Logic/UserContext.js";
 import TaskPage from "./components/Task/TaskPage.js";
-import {TelegramAuth} from "./components/TelegramAuth.js";
+import {TelegramAuth} from "./components/Casino/Base_Logic/TelegramAuth.js";
 
 const tg = window.Telegram.WebApp;
 

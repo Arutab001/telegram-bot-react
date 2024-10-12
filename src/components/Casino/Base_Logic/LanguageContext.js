@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-
+import axios from "axios";
+import {useToken} from "./TelegramAuth.js";
+import {useStringArray} from "./LanguagePack.js";
 const LanguageContext = createContext();
+
 
 export const useLanguage = () => {
     return useContext(LanguageContext);
@@ -8,17 +11,19 @@ export const useLanguage = () => {
 
 const LanguageProvider = ({ children }) => {
     const [language, setLanguage] = useState(null);
-
+    const {token} = useToken();
+    const {stringArray, setStrings} = useStringArray()
     useEffect(() => {
         const fetchUserLanguage = async () => {
             try {
-                const response = await fetch('https://geckoshi-stage.up.railway.app/language/get_available_langs_language_available_get');
-                if (response.ok) {
-                    const data = await response.json();
-                    setLanguage(data.language);
-                } else {
-                    console.error('Ошибка при получении данных:', response.status);
-                }
+                axios.defaults.baseURL = `http://geckoshi-stage.up.railway.app`;
+                const response = await axios.get(`/language/pack`, {
+                    headers: {'Authorization': `Bearer ${token}`}
+                });
+                const data = await response.data;
+                console.log(data);
+                setStrings(data);
+
             } catch (error) {
                 console.error('Ошибка при выполнении запроса:', error);
             }

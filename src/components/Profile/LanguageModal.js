@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./LanguageModal.css";
 import MyBtn from "./MyBtn.js";
 import axios from "axios";
-import {useToken} from "../TelegramAuth.js";
+import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
 
 const LanguageModal = ({show, onClose}) => {
     const {token} = useToken();
@@ -16,10 +16,11 @@ const LanguageModal = ({show, onClose}) => {
                 headers: {'Authorization': `Bearer ${token}`}
             });
             const data = await response;
-            console.log(data.data.data);
             setLanguages(data.data.data); // data.data содержит массив языков
         };
+        const getArrayOfStrings = async () => {
 
+        }
         fetchLanguages();
     }, []);
 

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from "axios";
-import { useToken } from "./components/TelegramAuth.js";
+import { useToken } from "./TelegramAuth.js";
 
 const UserContext = createContext();
 

@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import {createContext, useContext, useEffect, useState} from 'react';
 import axios from 'axios';
-import { UserProvider } from "../UserContext.js";
+import {UserProvider} from "./UserContext.js";
+import {StringArrayProvide} from "./LanguagePack.js";
 
 const TokenContext = createContext();
 
@@ -33,7 +34,7 @@ function eraseCookie(name) {
     document.cookie = `${name}=; Max-Age=-99999999; path=/`;
 }
 
-export const TelegramAuth = ({ children }) => {
+export const TelegramAuth = ({children}) => {
     const [token, setToken] = useState('');
 
     const handleSetToken = (new_token) => {
@@ -77,8 +78,8 @@ export const TelegramAuth = ({ children }) => {
     }, [token]);
 
     return (
-        <TokenContext.Provider value={{ token, handleSetToken }}>
-            <UserProvider>{children}</UserProvider>
+        <TokenContext.Provider value={{token, handleSetToken}}>
+            <UserProvider><StringArrayProvide>{children}</StringArrayProvide></UserProvider>
         </TokenContext.Provider>
     );
 };
