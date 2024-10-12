@@ -30,7 +30,7 @@ const LanguageModal = ({show, onClose}) => {
     return (
         <div className="language-overlay">
             <div className="language-content">
-                <h2>{language.data.lang_menu}</h2>
+                <h2>{language.lang_menu}</h2>
                 {languages.map((lang) => (
                     <MyBtn key={lang} text={capitalizeFirstLetter(lang)} onClick={onClose}/>
                 ))}
