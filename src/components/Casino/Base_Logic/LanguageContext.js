@@ -22,7 +22,7 @@ const LanguageProvider = ({ children }) => {
                 });
                 const data = await response.data;
                 console.log(data);
-                setStrings(data);
+                setLanguage(data);
 
             } catch (error) {
                 console.error('Ошибка при выполнении запроса:', error);
