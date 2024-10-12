@@ -24,7 +24,7 @@ const LanguageProvider = ({children}) => {
                     headers: { 'Authorization': `Bearer ${token}` },
                 });
 
-                const data = response.data;
+                const data = response.data.data;
                 console.log(data);
                 setLanguage(data);
 
