@@ -17,7 +17,7 @@ const LanguageModal = ({show, onClose}) => {
             });
             const data = await response;
             console.log(data.data.data);
-            setLanguages(data.data); // data.data содержит массив языков
+            setLanguages(data.data.data); // data.data содержит массив языков
         };
 
         fetchLanguages();
