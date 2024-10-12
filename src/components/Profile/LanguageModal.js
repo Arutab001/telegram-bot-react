@@ -44,7 +44,7 @@ const LanguageModal = ({show, onClose}) => {
             <div className="language-content">
                 <h2>{language.lang_menu}</h2>
                 {languages.map((lang) => (
-                    <MyBtn key={lang} text={capitalizeFirstLetter(lang)} onClick={changeLanguage(lang, e)}/>
+                    <MyBtn key={lang} text={capitalizeFirstLetter(lang)} onClick={(e) => changeLanguage(lang, e)}/>
                 ))}
             </div>
         </div>
