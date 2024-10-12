@@ -14,6 +14,7 @@ const LanguageProvider = ({ children }) => {
     const {token} = useToken();
 
     useEffect(() => {
+        console.log("DAN DA DAN DAN DA DAN")
         const fetchUserLanguage = async () => {
             try {
                 axios.defaults.baseURL = `http://geckoshi-stage.up.railway.app`;
