@@ -14,23 +14,29 @@ const LanguageProvider = ({children}) => {
     const {token} = useToken();
 
     useEffect(() => {
-        if (!token) {
-            const fetchUserLanguage = async () => {
-                try {
-                    axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
-                    const response = await axios.get(`/language/pack`, {
-                        headers: {'Authorization': `Bearer ${token}`}
-                    });
-                    const data = await response.data;
-                    console.log(data);
-                    setLanguage(data);
+        const fetchUserLanguage = async () => {
+            if (!token) return; // Если токена нет, выходим из функции
 
-                } catch (error) {
-                    console.error('Ошибка при выполнении запроса:', error);
+            try {
+                axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+
+                const response = await axios.get(`/language/pack`, {
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+
+                const data = response.data;
+                console.log(data);
+                setLanguage(data);
+
+            } catch (error) {
+                console.error('Ошибка при выполнении запроса:', error);
+                if (error.response && error.response.status === 401) {
+                    console.error('Неавторизованный доступ. Проверьте токен.');
                 }
-            };
-            fetchUserLanguage();
-        }
+            }
+        };
+
+        fetchUserLanguage(); // Вызываем функцию при каждом изменении токена
     }, [token]);
 
     const changeLanguage = (newLanguage) => {
