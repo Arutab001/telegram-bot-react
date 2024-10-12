@@ -16,7 +16,7 @@ const LanguageModal = ({show, onClose}) => {
                 headers: {'Authorization': `Bearer ${token}`}
             });
             const data = await response;
-            console.log(data);
+            console.log(data.data.data);
             setLanguages(data.data); // data.data содержит массив языков
         };
 
