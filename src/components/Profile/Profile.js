@@ -9,17 +9,82 @@ import ErrorModal from "./ErrorModal.js";
 import defaultAvatar from "../../images/chromecore 1.png";
 import {useLanguage} from "../Base_Logic/LanguageContext.js";
 import axios from "axios";
-import {useToken} from "../Base_Logic/TelegramAuth.js"; // Заглушка, если нет аватарки
+import {useToken} from "../Base_Logic/TelegramAuth.js";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js"; // Заглушка, если нет аватарки
+
+const translations = {
+    english: {
+        Info: "Account Info",
+        Name: "Name",
+        Id: "Your ID",
+        Premium: "Premium",
+        Ref: "Referrals",
+        Withdrawn: "Withdrawn",
+        WI: "Withdrawn Info",
+        Text1: "We will notify you in advance about payouts",
+        Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
+        Change: "Change Language",
+        Balance: "Balance",
+    },
+    russian: {
+        Info: "Информация об аккаунте",
+        Name: "Имя",
+        Id: "Ваш ID",
+        Premium: "Премиум",
+        Ref: "Рефералы",
+        Withdrawn: "Выведено",
+        WI: "Информация о выводе",
+        Text1: "Мы заранее уведомим вас о выплатах",
+        Text2: "МИНИМАЛЬНЫЙ ВЫВОД СЕГОДНЯ БУДЕТ 0 В AIRDROP",
+        Change: "Сменить язык",
+        Balance: "Баланс",
+    },
+    german: {
+        Info: "Konto Informationen",
+        Name: "Name",
+        Id: "Ihre ID",
+        Premium: "Premium",
+        Ref: "Empfehlungen",
+        Withdrawn: "Abgehoben",
+        WI: "Abhebungsinformationen",
+        Text1: "Wir werden Sie im Voraus über Auszahlungen informieren",
+        Text2: "DAS MINDESTABHEBEN WIRD HEUTE 0 BEI AIRDROP SEIN",
+        Change: "Sprache ändern",
+        Balance: "Guthaben",
+    },
+    turkish: {
+        Info: "Hesap Bilgileri",
+        Name: "İsim",
+        Id: "ID'niz",
+        Premium: "Premium",
+        Ref: "Yönlendirmeler",
+        Withdrawn: "Çekildi",
+        WI: "Çekim Bilgisi",
+        Text1: "Ödemeler hakkında önceden sizi bilgilendireceğiz",
+        Text2: "BUGÜN AIRDROP'DA MİNİMUM ÇEKİM 0 OLACAK",
+        Change: "Dili Değiştir",
+        Balance: "Bakiyeniz",
+    },
+};
+
 
 const Profile = () => {
     const { user, updateUser } = useUser();
     const {language} = useLanguage();
+    const { userLanguage } = useLangProfile();
     const {token} = useToken();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
     const [isErrorVisible, setErrorVisible] = useState(false);
     const [avatar, setAvatar] = useState(defaultAvatar); // Состояние для аватарки
+
+    const [localisation, setLocalisation] = useState("");
+
+    useEffect(() => {
+        setLocalisation( translations[user.language] || translations.english);
+    }, [userLanguage]);
+
 
     const openLang = (e) => {
         e.preventDefault();
@@ -63,19 +128,6 @@ const Profile = () => {
         return () => clearTimeout(timer);
     }, [isVisible]);
 
-    const [localisation, setLocalisation] = useState({
-        Info: "Account Info",
-        Name: "Name",
-        Id: "Your ID",
-        Premium: "Premium",
-        Ref: "Referrals",
-        Withdrawn: "Withdrawn",
-        WI: "Withdrawn Info",
-        Text1: "We will notify you in advance about payouts",
-        Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
-        Change: "Change Language",
-        Balance: "Balance"
-    });
 
     // useEffect для загрузки аватарки
     useEffect(() => {
