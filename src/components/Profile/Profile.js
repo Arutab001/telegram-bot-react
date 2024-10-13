@@ -83,8 +83,10 @@ const Profile = () => {
             try {
                 axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
                 axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
-                const response = await axios.get('/user/chat-photo?type=small_file_id');
-                setAvatar(response);
+                const response = await axios.get('/user/chat-photo', {
+                    params: { type: 'small_file_id' }, // Корректный способ передачи query-параметров
+                });
+                setAvatar(response.data);
             } catch (error) {
                 console.error('Ошибка сети при получении аватарки:', error);
             }
