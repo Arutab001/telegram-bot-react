@@ -36,7 +36,7 @@ const ModalComplete = ({show, close, id, reward, openError}) => {
     const { userLanguage } = useLangProfile();
     const {user} = useUser();
 
-    const localisation = translations[userLanguage] || translations.english;
+    const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
     if (!show) return null;
 

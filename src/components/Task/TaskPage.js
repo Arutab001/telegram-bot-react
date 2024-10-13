@@ -79,7 +79,7 @@ const TaskPage = () => {
 
     const {userLanguage} = useLangProfile();
     const {user} = useUser();
-    const localisation = translations[userLanguage] || translations.english;
+    const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
     return (
         <div className="TaskPage">

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import classes from "./TaskError.module.css";
 import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
+import {useUser} from "../Base_Logic/UserContext.js";
 
 const translations = {
     english: {
@@ -24,11 +25,12 @@ const translations = {
 
 const TaskError = ({show, close}) => {
 
+    const {user} = useUser();
     if (!show) return null;
 
     const { userLanguage } = useLangProfile(); // Получаем текущий язык пользователя
     const [localisation, setLocalisation] = useState(
-        translations[userLanguage] || translations.english
+        translations[userLanguage] || translations[user.language] || translations.english
     );
 
     return (
