@@ -48,13 +48,12 @@ const ModalComplete = ({show, close, id, reward, setErrorOpen}) => {
             const response = await axios.post(`/task/done?id=${id}`);
             const data = response.data;
             console.log(data);
-            close(e);
-            if (response.status !== 200) {
-                setErrorOpen(true);
-            }
+
         }
-        catch (e) {
-            console.error(e);
+        catch (error) {
+            console.error(error);
+            close(e);
+            setErrorOpen(true);
         }
 
 
