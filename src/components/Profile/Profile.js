@@ -7,7 +7,8 @@ import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
 import defaultAvatar from "../../images/chromecore 1.png";
-import {useLanguage} from "../Base_Logic/LanguageContext.js"; // Заглушка, если нет аватарки
+import {useLanguage} from "../Base_Logic/LanguageContext.js";
+import axios from "axios"; // Заглушка, если нет аватарки
 
 const Profile = () => {
     const { user, updateUser } = useUser();
@@ -78,13 +79,10 @@ const Profile = () => {
     useEffect(() => {
         const fetchAvatar = async () => {
             try {
-                const response = await fetch(`https://geckoshi-stage.up.railway.app/user/chat-photo?id=728740521&type=small_file_id`);
-                if (response.ok) {
-                    const data = await response.json();
-                    setAvatar(data.photo_url); // Обновляем состояние аватарки
-                } else {
-                    console.error('Ошибка при получении аватарки:', response.statusText);
-                }
+                axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+                axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
+                const response = await axios.get('/user/chat-photo?type=small_file_id');
+                setAvatar(response);
             } catch (error) {
                 console.error('Ошибка сети при получении аватарки:', error);
             }
