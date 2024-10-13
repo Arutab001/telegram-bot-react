@@ -121,7 +121,7 @@ const Casino = () => {
 
     const spinResult = async () => {
         if (selectedValue > 0) {
-            if (balance > selectedValue) {
+            if (user.balance > selectedValue) {
                 setRolling(true);
                 setSpunOnce(true);
                 const slots = {
