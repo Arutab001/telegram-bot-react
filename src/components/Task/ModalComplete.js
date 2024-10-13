@@ -29,14 +29,14 @@ const translations = {
 };
 
 
-const ModalComplete = ({show, close, id, reward}) => {
+const ModalComplete = ({show, close, id, reward, setErrorOpen}) => {
 
     const {token} = useToken();
 
     const { userLanguage } = useLangProfile();
     const {user} = useUser();
 
-    const localisation = translations[userLanguage] || user.language;
+    const localisation = translations[userLanguage] || translations.english;
 
     if (!show) return null;
 
@@ -48,12 +48,16 @@ const ModalComplete = ({show, close, id, reward}) => {
             const response = await axios.post(`/task/done?id=${id}`);
             const data = response.data;
             console.log(data);
+            close(e);
+            if (response.status !== 200) {
+                setErrorOpen(true);
+            }
         }
         catch (e) {
             console.error(e);
         }
 
-        close(e);
+
     }
 
     return (

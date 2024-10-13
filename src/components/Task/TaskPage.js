@@ -79,7 +79,7 @@ const TaskPage = () => {
 
     const {userLanguage} = useLangProfile();
     const {user} = useUser();
-    const localisation = translations[userLanguage] || user.language;
+    const localisation = translations[userLanguage] || translations.english;
 
     return (
         <div className="TaskPage">
@@ -116,7 +116,7 @@ const TaskPage = () => {
                 <MyBtn text="Go to"/>
                 <MyBtn text="Approve" onClick={OpenModal} />
             </div>
-            <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id}/>
+            <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id} openError={setErrorOpen}/>
             <TaskError show={isErrorOpen} close={CloseError} />
         </div>
     );
