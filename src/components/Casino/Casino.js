@@ -14,34 +14,7 @@ const slots = {
     fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
 };
 
-const win_translations = {
-    english: `🎉 Congratulations, you won: ${WinAmount} $GMEME\n🎰 Your winning combination: ${combination}`,
-    russian: `🎉 Поздравляем, ты выиграл: ${WinAmount} $GMEME\n🎰 Твоя выигрышная комбинация: ${combination}`,
-    german: `🎉 Glückwunsch, du hast gewonnen: ${WinAmount} $GMEME\n🎰 Deine Gewinnkombination: ${combination}`,
-    turkish: `🎉 Tebrikler, kazandınız: ${WinAmount} $GMEME\n🎰 Kazanan kombinasyonunuz: ${combination}`,
-};
 
-const lose_translations = {
-    english:
-        `🃏 Unfortunately, you lost this time - your bet (${selectedValue} $GMEME) didn't win.\n` +
-        `🎰 Your combination: ${combination}\n` +
-        `Try again, luck will surely be on your side!`,
-
-    russian:
-        `🃏 К сожалению, в этот раз тебе не повезло - ты проиграл ставку (${selectedValue} $GMEME).\n` +
-        `🎰 Твоя комбинация: ${combination}\n` +
-        `Попробуй ещё раз, тебе обязательно повезёт!`,
-
-    german:
-        `🃏 Leider hattest du diesmal kein Glück – dein Einsatz (${selectedValue} $GMEME) ging verloren.\n` +
-        `🎰 Deine Kombination: ${combination}\n` +
-        `Versuche es noch einmal, das Glück wird sicher auf deiner Seite sein!`,
-
-    turkish:
-        `🃏 Maalesef bu sefer şansın yaver gitmedi - bahsini (${selectedValue} $GMEME) kaybettin.\n` +
-        `🎰 Kombinasyonun: ${combination}\n`+
-        `Tekrar dene, şans kesinlikle yanında olacak!`,
-};
 
 
 const Casino = () => {
@@ -93,6 +66,8 @@ const Casino = () => {
 
     const [upString, setUpString] = useState('');
 
+    let combination;
+
     useEffect(() => {
         let interval;
 
@@ -128,7 +103,7 @@ const Casino = () => {
 
                 const serverResponse = await getResultsFromServer();
                 console.log(serverResponse.data.data);
-                const combination = serverResponse.data.data.combination;
+                combination = serverResponse.data.data.combination;
                 setWinAMount(serverResponse.data.data.win_amount)
                 console.log(combination);
 
@@ -161,7 +136,34 @@ const Casino = () => {
         }
     };
 
+    const win_translations = {
+        english: `🎉 Congratulations, you won: ${WinAmount} $GMEME\n🎰 Your winning combination: ${combination}`,
+        russian: `🎉 Поздравляем, ты выиграл: ${WinAmount} $GMEME\n🎰 Твоя выигрышная комбинация: ${combination}`,
+        german: `🎉 Glückwunsch, du hast gewonnen: ${WinAmount} $GMEME\n🎰 Deine Gewinnkombination: ${combination}`,
+        turkish: `🎉 Tebrikler, kazandınız: ${WinAmount} $GMEME\n🎰 Kazanan kombinasyonunuz: ${combination}`,
+    };
 
+    const lose_translations = {
+        english:
+            `🃏 Unfortunately, you lost this time - your bet (${selectedValue} $GMEME) didn't win.\n` +
+            `🎰 Your combination: ${combination}\n` +
+            `Try again, luck will surely be on your side!`,
+
+        russian:
+            `🃏 К сожалению, в этот раз тебе не повезло - ты проиграл ставку (${selectedValue} $GMEME).\n` +
+            `🎰 Твоя комбинация: ${combination}\n` +
+            `Попробуй ещё раз, тебе обязательно повезёт!`,
+
+        german:
+            `🃏 Leider hattest du diesmal kein Glück – dein Einsatz (${selectedValue} $GMEME) ging verloren.\n` +
+            `🎰 Deine Kombination: ${combination}\n` +
+            `Versuche es noch einmal, das Glück wird sicher auf deiner Seite sein!`,
+
+        turkish:
+            `🃏 Maalesef bu sefer şansın yaver gitmedi - bahsini (${selectedValue} $GMEME) kaybettin.\n` +
+            `🎰 Kombinasyonun: ${combination}\n`+
+            `Tekrar dene, şans kesinlikle yanında olacak!`,
+    };
     return (
         <div>
             <CasinoInfo/>
