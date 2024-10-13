@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './CasinoInfo.css'
 import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
+import {useUser} from "../Base_Logic/UserContext.js";
 
 const translations = {
     english: "Welcome to the slots section.\nHere you can win a lot of money.\nHere are the winning.",
@@ -14,6 +15,8 @@ const CasinoInfo = () => {
     const { userLanguage } = useLangProfile();
     const [isVisible, setIsVisible] = useState(true);
 
+    const {user} = useUser();
+
     const setClose = (e) => {
         e.preventDefault();
         setIsVisible(false);
@@ -22,7 +25,7 @@ const CasinoInfo = () => {
     const [localisation, setLocalisation] = useState("");
 
     useEffect(() => {
-        setLocalisation(translations[userLanguage] || translations.english);
+        setLocalisation(translations[userLanguage] || translations[user.language] || translations.english);
     }, [userLanguage]);
 
     return (
