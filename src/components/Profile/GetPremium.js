@@ -1,12 +1,34 @@
 import React, {useState} from 'react';
 import {useUser} from "../Base_Logic/UserContext.js";
 import classes from "./getPremium.module.css";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
+
+const translations = {
+    english: {
+        PremiumPrice: "Premium Price",
+        BuyPremium: "Buy Premium",
+    },
+    russian: {
+        PremiumPrice: "Цена Премиум",
+        BuyPremium: "Купить Премиум",
+    },
+    german: {
+        PremiumPrice: "Premium Preis",
+        BuyPremium: "Premium Kaufen",
+    },
+    turkish: {
+        PremiumPrice: "Premium Fiyatı",
+        BuyPremium: "Premium Satın Al",
+    },
+};
+
 
 const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeModal}) => {
     const [notificationVisible, setNotificationVisible] = useState(false);
-
+    const { userLanguage } = useLangProfile();
     const {user, updateUser} = useUser();
 
+    const localisation = translations[user.language] || translations[userLanguage] || translations.english
 
 
     const getPremium = (e) => {
@@ -33,7 +55,7 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
         <div className={classes.modal_overlay}>
             <div className={classes.modal_content}>
                 <div>
-                    <h2 style={{fontSize: "8vw"}}>Premium Price</h2>
+                    <h2 style={{fontSize: "8vw"}}>{localisation.PremiumPrice}</h2>
                     <svg xmlns="http://www.w3.org/2000/svg"
                          width="10vw" height="10vh" viewBox="0 0 86 86"
                          fill="none" style={{position: "absolute", top: "-10", right: "-10"}}
@@ -46,7 +68,7 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
                 <div className={classes.Text}>
                     <p>30 000 $GMEME</p>
                     <div className={classes.buttonGetPremium}>
-                        <button onClick={getPremium} style={{backgroundColor: "#6D8069"}}>Buy Premium</button>
+                        <button onClick={getPremium} style={{backgroundColor: "#6D8069"}}>{localisation.BuyPremium}</button>
                     </div>
                 </div>
             </div>
