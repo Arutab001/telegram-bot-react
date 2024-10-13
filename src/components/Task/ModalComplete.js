@@ -29,7 +29,7 @@ const translations = {
 };
 
 
-const ModalComplete = ({show, close, id, reward, setErrorOpen}) => {
+const ModalComplete = ({show, close, id, reward, openError}) => {
 
     const {token} = useToken();
 
@@ -53,7 +53,7 @@ const ModalComplete = ({show, close, id, reward, setErrorOpen}) => {
         catch (error) {
             console.error(error);
             close(e);
-            setErrorOpen(true);
+            openError(true);
         }
 
 
