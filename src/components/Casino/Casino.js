@@ -6,20 +6,54 @@ import CasinoInfo from "./CasinoInfo.js";
 import MySelect from "./MySelect/MySelect.js";
 import {useUser} from "./Base_Logic/UserContext.js";
 import axios from "axios";
+import {useLanguage} from "./Base_Logic/LanguageContext.js";
+import {useLangProfile} from "./Base_Logic/UserLanguageProvider.js";
 
 
 const slots = {
     fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
 };
 
+const win_translations = {
+    english: `🎉 Congratulations, you won: ${WinAmount} $GMEME\n🎰 Your winning combination: ${combination}`,
+    russian: `🎉 Поздравляем, ты выиграл: ${WinAmount} $GMEME\n🎰 Твоя выигрышная комбинация: ${combination}`,
+    german: `🎉 Glückwunsch, du hast gewonnen: ${WinAmount} $GMEME\n🎰 Deine Gewinnkombination: ${combination}`,
+    turkish: `🎉 Tebrikler, kazandınız: ${WinAmount} $GMEME\n🎰 Kazanan kombinasyonunuz: ${combination}`,
+};
+
+const lose_translations = {
+    english:
+        `🃏 Unfortunately, you lost this time - your bet (${selectedValue} $GMEME) didn't win.\n` +
+        `🎰 Your combination: ${combination}\n` +
+        `Try again, luck will surely be on your side!`,
+
+    russian:
+        `🃏 К сожалению, в этот раз тебе не повезло - ты проиграл ставку (${selectedValue} $GMEME).\n` +
+        `🎰 Твоя комбинация: ${combination}\n` +
+        `Попробуй ещё раз, тебе обязательно повезёт!`,
+
+    german:
+        `🃏 Leider hattest du diesmal kein Glück – dein Einsatz (${selectedValue} $GMEME) ging verloren.\n` +
+        `🎰 Deine Kombination: ${combination}\n` +
+        `Versuche es noch einmal, das Glück wird sicher auf deiner Seite sein!`,
+
+    turkish:
+        `🃏 Maalesef bu sefer şansın yaver gitmedi - bahsini (${selectedValue} $GMEME) kaybettin.\n` +
+        `🎰 Kombinasyonun: ${combination}\n`+
+        `Tekrar dene, şans kesinlikle yanında olacak!`,
+};
+
+
 const Casino = () => {
 
     const {user, updateUser} = useUser();
-    console.log(user.user_id)
-
+    const {language} = useLanguage();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(null);
 
+    const { userLanguage } = useLangProfile();
+    const win_localisation = win_translations[userLanguage] || win_translations[user.language] || win_translations.english;
+    const lose_localisation = lose_translations[userLanguage] || lose_translations[user.language] || lose_translations.english
     const handleSelectChange = (value) => {
         setSelectedValue(value);
     };
@@ -57,6 +91,8 @@ const Casino = () => {
         return await axios.post(`/slots/play?id=${user.id}&amount=${selectedValue}`);
     };
 
+    const [upString, setUpString] = useState('');
+
     useEffect(() => {
         let interval;
 
@@ -82,36 +118,47 @@ const Casino = () => {
     }, [rolling, results]);
 
     const spinResult = async () => {
+        if (selectedValue > 0) {
+            if (balance > selectedValue) {
+                setRolling(true);
+                setSpunOnce(true);
+                const slots = {
+                    fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
+                };
 
-        setRolling(true);
-        setSpunOnce(true);
-        const slots = {
-            fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
-        };
+                const serverResponse = await getResultsFromServer();
+                console.log(serverResponse.data.data);
+                const combination = serverResponse.data.data.combination;
+                setWinAMount(serverResponse.data.data.win_amount)
+                console.log(combination);
 
-        const serverResponse = await getResultsFromServer();
-        console.log(serverResponse.data.data);
-        const combination = serverResponse.data.data.combination;
-        setWinAMount(serverResponse.data.data.win_amount)
-        console.log(combination);
+                setTimeout(() => {
+                    setRolling(false); // Останавливаем "вращение"
 
-        setTimeout(() => {
-            setRolling(false); // Останавливаем "вращение"
+                    // Убедимся, что у нас есть 3 эмодзи для отображения
+                    setResults({
+                        Fruit1: combination[0],
+                        Fruit2: combination[1],
+                        Fruit3: combination[2]
+                    });
 
-            // Убедимся, что у нас есть 3 эмодзи для отображения
-            setResults({
-                Fruit1: combination[0],
-                Fruit2: combination[1],
-                Fruit3: combination[2]
-            });
+                    setDisplayedResults({
+                        Fruit1: combination[0],
+                        Fruit2: combination[1],
+                        Fruit3: combination[2]
+                    });
 
-            setDisplayedResults({
-                Fruit1: combination[0],
-                Fruit2: combination[1],
-                Fruit3: combination[2]
-            });
-
-        }, 700);
+                }, 700);
+                if (serverResponse.data.data.win_amount === 0){
+                    setUpString(lose_localisation);
+                }
+                else {
+                    setUpString(win_localisation);
+                }
+            } else {
+                setUpString(language.slots_not_enough_to_play)
+            }
+        }
     };
 
 
@@ -120,7 +167,7 @@ const Casino = () => {
             <CasinoInfo/>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginTop: "5%"}}>
                 <div className="CasinoCard" style={{position: "relative"}}>
-                    {WinAmount === -1 ? null : <div>Your reward {WinAmount}</div>}
+                    {<div>{upString}</div>}
                     <svg onClick={OpenModal} style={{position: "absolute", right: "5px", top: "5px"}}
                          xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 60 60" fill="none">
                         <circle cx="30" cy="30" r="30" fill="#6D8069"/>
