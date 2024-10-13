@@ -78,6 +78,7 @@ const TaskPage = () => {
 
     const {userLanguage} = useLangProfile();
 
+    console.log(userLanguage);
     const localisation = translations[userLanguage]
 
     return (
@@ -96,7 +97,7 @@ const TaskPage = () => {
                     {id}
                     <br/>
                     <span>
-                        
+                        {localisation.Description}:
                     </span>
                     {localisation.Goto}
                     <br/>
