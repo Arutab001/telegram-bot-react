@@ -7,6 +7,7 @@ import ModalComplete from "./ModalComplete.js";
 import ErrorModal from "../Profile/ErrorModal.js";
 import TaskError from "./TaskError.js";
 import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
+import {useUser} from "../Casino/Base_Logic/UserContext.js";
 
 const translations = {
     english: {
@@ -77,9 +78,8 @@ const TaskPage = () => {
     const {id, name, reward} = location.state || {};
 
     const {userLanguage} = useLangProfile();
-
-    console.log(userLanguage);
-    const localisation = translations[userLanguage]
+    const {user} = useUser();
+    const localisation = translations[userLanguage] || user.language;
 
     return (
         <div className="TaskPage">

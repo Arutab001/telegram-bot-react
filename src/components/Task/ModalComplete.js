@@ -3,14 +3,43 @@ import "./ModalComplete.css";
 import {useUser} from "../Casino/Base_Logic/UserContext.js";
 import axios from "axios";
 import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
+import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
+
+const translations = {
+    english: {
+        TaskInfo: "Task Info",
+        SuccessMessage: "You have successfully completed task №",
+        GetReward: "Get Reward",
+    },
+    russian: {
+        TaskInfo: "Информация о задании",
+        SuccessMessage: "Вы успешно выполнили задание №",
+        GetReward: "Получить награду",
+    },
+    german: {
+        TaskInfo: "Aufgabeninfo",
+        SuccessMessage: "Sie haben Aufgabe Nr. erfolgreich abgeschlossen",
+        GetReward: "Belohnung erhalten",
+    },
+    turkish: {
+        TaskInfo: "Görev Bilgisi",
+        SuccessMessage: "Görev № başarıyla tamamlandı",
+        GetReward: "Ödül Al",
+    },
+};
+
 
 const ModalComplete = ({show, close, id, reward}) => {
 
     const {token} = useToken();
 
+    const { userLanguage } = useLangProfile();
+    const {user} = useUser();
+
+    const localisation = translations[userLanguage] || user.language;
+
     if (!show) return null;
 
-    const {user, updateUser} = useUser();
 
     const getReward = async (e) => {
         try{
@@ -31,14 +60,14 @@ const ModalComplete = ({show, close, id, reward}) => {
         <div className="modal-complete-overlay">
             <div className="modal-complete-content">
                 <h2 className="reward_header">
-                    Task Info
+                    {localisation.TaskInfo}
                 </h2>
                 <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <p>
-                        You have successfully completed task № {id}
+                        {localisation.SuccessMessage} {id}
                     </p>
                     <button onClick={getReward}>
-                        Get Reward
+                        {localisation.GetReward}
                     </button>
                 </div>
             </div>
