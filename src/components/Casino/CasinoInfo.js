@@ -1,8 +1,17 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './CasinoInfo.css'
+import {useLangProfile} from "./Base_Logic/UserLanguageProvider.js";
+
+const translations = {
+    english: "Welcome to the slots section.\nHere you can win a lot of money.\nHere are the winning.",
+    russian: "Добро пожаловать в раздел слотов.\nЗдесь вы можете выиграть много денег.\nВот ваши выигрыши.",
+    german: "Willkommen im Slot-Bereich.\nHier können Sie viel Geld gewinnen.\nHier sind die Gewinne.",
+    turkish: "Slot bölümüne hoş geldiniz.\nBurada çok para kazanabilirsiniz.\nKazançlar burada.",
+};
+
 
 const CasinoInfo = () => {
-
+    const { userLanguage } = useLangProfile();
     const [isVisible, setIsVisible] = useState(true);
 
     const setClose = (e) => {
@@ -10,9 +19,11 @@ const CasinoInfo = () => {
         setIsVisible(false);
     }
 
-    const [localisation, setLocalisation] = useState("Welcome to the slots section. \n" +
-        "            Here you can win a lot of money.\n" +
-        "            Here are the winning.");
+    const [localisation, setLocalisation] = useState("");
+
+    useEffect(() => {
+        setLocalisation(translations[userLanguage] || translations.english);
+    }, [userLanguage]);
 
     return (
         <div className={`CasinoInfo ${isVisible ? 'show' : 'hide'}`}>
