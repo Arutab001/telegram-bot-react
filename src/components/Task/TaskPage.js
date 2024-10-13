@@ -6,6 +6,46 @@ import MyBtn from "../Profile/MyBtn.js";
 import ModalComplete from "./ModalComplete.js";
 import ErrorModal from "../Profile/ErrorModal.js";
 import TaskError from "./TaskError.js";
+import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
+
+const translations = {
+    en: {
+        Description: "Description",
+        Goto: "Go To",
+        Reward: "Reward",
+        TimeLeft: "Time Left",
+        Days: "days",
+        Hours: "hours",
+        Minutes: "minutes",
+    },
+    ru: {
+        Description: "Описание",
+        Goto: "Перейти",
+        Reward: "Награда",
+        TimeLeft: "Осталось времени",
+        Days: "дней",
+        Hours: "часов",
+        Minutes: "минут",
+    },
+    de: {
+        Description: "Beschreibung",
+        Goto: "Gehe zu",
+        Reward: "Belohnung",
+        TimeLeft: "Verbleibende Zeit",
+        Days: "Tage",
+        Hours: "Stunden",
+        Minutes: "Minuten",
+    },
+    tr: {
+        Description: "Açıklama",
+        Goto: "Git",
+        Reward: "Ödül",
+        TimeLeft: "Kalan Süre",
+        Days: "gün",
+        Hours: "saat",
+        Minutes: "dakika",
+    },
+};
 
 const TaskPage = () => {
 
@@ -36,17 +76,9 @@ const TaskPage = () => {
     const location = useLocation();
     const {id, name, reward} = location.state || {};
 
-    const [localisation, setLocalisation] = useState(
-        {
-            Description: "Description",
-            Goto: "Go To",
-            Reward: "Reward",
-            TimeLeft: "Time Left",
-            Days: "days",
-            Hours: "hours",
-            Minutes: "minutes"
-        }
-    )
+    const {userLanguage} = useLangProfile();
+
+    const localisation = translations[userLanguage]
 
     return (
         <div className="TaskPage">

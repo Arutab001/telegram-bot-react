@@ -1,35 +1,28 @@
 import React from 'react';
 import "./ModalComplete.css";
 import {useUser} from "../Casino/Base_Logic/UserContext.js";
+import axios from "axios";
+import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
 
 const ModalComplete = ({show, close, id, reward}) => {
+
+    const {token} = useToken();
 
     if (!show) return null;
 
     const {user, updateUser} = useUser();
 
-    const getReward = (e) => {
-        const url = 'https://geckoshi-stage.up.railway.app/task/get_active_task_page_task_done_post';
-
-        const data = {
-            user_id: '123',  // Заменить на реальный user_id
-            task_id: '456'   // Заменить на реальный task_id
-        };
-
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(response => response.json())
-            .then(result => {
-                console.log('Успешный ответ:', result);
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-            });
+    const getReward = async (e) => {
+        try{
+            axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+            axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
+            const response = await axios.post(`/task/done?id=${id}`);
+            const data = response.data;
+            console.log(data);
+        }
+        catch (e) {
+            console.error(e);
+        }
 
         close(e);
     }
