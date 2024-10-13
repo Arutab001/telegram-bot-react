@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import classes from "./TaskError.module.css";
+import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
 
 const translations = {
     english: {
