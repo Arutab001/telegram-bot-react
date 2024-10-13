@@ -159,7 +159,7 @@ const Casino = () => {
                 }
                 else {
                     const message = win_localisation
-                        .replace("{amount}", amount)
+                        .replace("{amount}", WinAmount)
                         .replace("{combination}", combination);
                     setUpString(message);
                 }
