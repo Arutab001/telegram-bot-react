@@ -54,8 +54,8 @@ const Casino = () => {
     const [selectedValue, setSelectedValue] = useState(null);
 
     const { userLanguage } = useLangProfile();
-    const win_localisation = win_translations.user.language || win_translations[userLanguage] || win_translations.english;
-    const lose_localisation = lose_translations[user.language] || lose_translations[userLanguage] || lose_translations.english
+    const win_localisation = win_translations[user.language] || win_translations[userLanguage] || win_translations.english;
+    const lose_localisation = lose_translations[userLanguage] || lose_translations[user.language] || lose_translations.english
     const handleSelectChange = (value) => {
         setSelectedValue(value);
     };
