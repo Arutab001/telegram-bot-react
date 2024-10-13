@@ -28,7 +28,7 @@ const GetPremium = ({show, onClose, handleNot, setIsModalOpen, openError, closeM
     const { userLanguage } = useLangProfile();
     const {user, updateUser} = useUser();
 
-    const localisation = translations[user.language] || translations[userLanguage] || translations.english
+    const localisation = translations[userLanguage] || translations[user.language] ||  translations.english
 
 
     const getPremium = (e) => {

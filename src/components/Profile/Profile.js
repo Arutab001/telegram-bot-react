@@ -79,7 +79,7 @@ const Profile = () => {
     const [isErrorVisible, setErrorVisible] = useState(false);
     const [avatar, setAvatar] = useState(defaultAvatar); // Состояние для аватарки
 
-    const localisation = translations[user.language] || translations[userLanguage] || translations.english
+    const localisation = translations[userLanguage] || translations[user.language] ||  translations.english
 
     const openLang = (e) => {
         e.preventDefault();
