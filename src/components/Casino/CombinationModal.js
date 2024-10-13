@@ -1,10 +1,29 @@
 import React, {useState} from 'react';
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
+import {useUser} from "../Base_Logic/UserContext.js";
+
+const translations = {
+    english: {
+        WinningCombinations: "Winning Combinations",
+    },
+    russian: {
+        WinningCombinations: "Выигрышные Комбинации",
+    },
+    german: {
+        WinningCombinations: "Gewinnende Kombinationen",
+    },
+    turkish: {
+        WinningCombinations: "Kazanan Kombinasyonlar",
+    },
+};
+
 
 const CombinationModal = ({show, close}) => {
 
     if (!show) return null;
-
-    const [localisation, setLocalisation] = useState("Winning Combinations")
+    const { user, updateUser } = useUser();
+    const { userLanguage } = useLangProfile();
+    const localisation = translations[userLanguage] || translations[user.language] ||  translations.english;
 
     return (
         <div className="combination-overlay">
@@ -16,7 +35,7 @@ const CombinationModal = ({show, close}) => {
                 </svg>
                 <div className="CombinationsHeader">
                     <h2>
-                        {localisation}
+                        {localisation.WinningCombinations}
                     </h2>
                 </div>
                 <div className="Combinations">
