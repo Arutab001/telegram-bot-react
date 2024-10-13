@@ -1,9 +1,9 @@
 import React from 'react';
 import "./ModalComplete.css";
-import {useUser} from "../Casino/Base_Logic/UserContext.js";
+import {useUser} from "../Base_Logic/UserContext.js";
 import axios from "axios";
-import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
-import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
+import {useToken} from "../Base_Logic/TelegramAuth.js";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
 
 const translations = {
     english: {

@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import "./LanguageModal.css";
 import MyBtn from "./MyBtn.js";
 import axios from "axios";
-import {useToken} from "../Casino/Base_Logic/TelegramAuth.js";
-import {useLanguage} from "../Casino/Base_Logic/LanguageContext.js";
-import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
+import {useToken} from "../Base_Logic/TelegramAuth.js";
+import {useLanguage} from "../Base_Logic/LanguageContext.js";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
 
 const LanguageModal = ({show, onClose}) => {
     const {token} = useToken();

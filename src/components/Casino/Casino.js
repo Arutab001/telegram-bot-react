@@ -4,10 +4,10 @@ import MyBtn from "../Profile/MyBtn.js";
 import CombinationModal from "./CombinationModal.js";
 import CasinoInfo from "./CasinoInfo.js";
 import MySelect from "./MySelect/MySelect.js";
-import {useUser} from "./Base_Logic/UserContext.js";
+import {useUser} from "../Base_Logic/UserContext.js";
 import axios from "axios";
-import {useLanguage} from "./Base_Logic/LanguageContext.js";
-import {useLangProfile} from "./Base_Logic/UserLanguageProvider.js";
+import {useLanguage} from "../Base_Logic/LanguageContext.js";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
 
 
 const slots = {
@@ -120,6 +120,7 @@ const Casino = () => {
     }, [rolling, results]);
 
     const spinResult = async () => {
+        console.log(user.language);
         if (selectedValue > 0) {
             if (user.balance > selectedValue) {
                 setRolling(true);

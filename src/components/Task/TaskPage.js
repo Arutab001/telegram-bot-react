@@ -6,8 +6,8 @@ import MyBtn from "../Profile/MyBtn.js";
 import ModalComplete from "./ModalComplete.js";
 import ErrorModal from "../Profile/ErrorModal.js";
 import TaskError from "./TaskError.js";
-import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
-import {useUser} from "../Casino/Base_Logic/UserContext.js";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
+import {useUser} from "../Base_Logic/UserContext.js";
 
 const translations = {
     english: {

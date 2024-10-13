@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import "./Profile.css";
 import MyBtn from "./MyBtn.js";
-import { useUser } from "../Casino/Base_Logic/UserContext.js";
+import { useUser } from "../Base_Logic/UserContext.js";
 import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
 import defaultAvatar from "../../images/chromecore 1.png";
-import {useLanguage} from "../Casino/Base_Logic/LanguageContext.js"; // Заглушка, если нет аватарки
+import {useLanguage} from "../Base_Logic/LanguageContext.js"; // Заглушка, если нет аватарки
 
 const Profile = () => {
     const { user, updateUser } = useUser();

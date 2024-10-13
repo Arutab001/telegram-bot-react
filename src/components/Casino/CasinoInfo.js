@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './CasinoInfo.css'
-import {useLangProfile} from "./Base_Logic/UserLanguageProvider.js";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
 
 const translations = {
     english: "Welcome to the slots section.\nHere you can win a lot of money.\nHere are the winning.",
