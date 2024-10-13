@@ -96,7 +96,7 @@ const TaskPage = () => {
                     {id}
                     <br/>
                     <span>
-                        {localisation.Description}:
+                        
                     </span>
                     {localisation.Goto}
                     <br/>
