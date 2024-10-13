@@ -8,11 +8,13 @@ import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
 import defaultAvatar from "../../images/chromecore 1.png";
 import {useLanguage} from "../Base_Logic/LanguageContext.js";
-import axios from "axios"; // Заглушка, если нет аватарки
+import axios from "axios";
+import {useToken} from "../Base_Logic/TelegramAuth.js"; // Заглушка, если нет аватарки
 
 const Profile = () => {
     const { user, updateUser } = useUser();
     const {language} = useLanguage();
+    const {token} = useToken();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
