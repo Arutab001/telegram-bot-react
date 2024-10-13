@@ -9,7 +9,7 @@ import TaskError from "./TaskError.js";
 import {useLangProfile} from "../Casino/Base_Logic/UserLanguageProvider.js";
 
 const translations = {
-    en: {
+    english: {
         Description: "Description",
         Goto: "Go To",
         Reward: "Reward",
@@ -18,7 +18,7 @@ const translations = {
         Hours: "hours",
         Minutes: "minutes",
     },
-    ru: {
+    russian: {
         Description: "Описание",
         Goto: "Перейти",
         Reward: "Награда",
@@ -27,7 +27,7 @@ const translations = {
         Hours: "часов",
         Minutes: "минут",
     },
-    de: {
+    german: {
         Description: "Beschreibung",
         Goto: "Gehe zu",
         Reward: "Belohnung",
@@ -36,7 +36,7 @@ const translations = {
         Hours: "Stunden",
         Minutes: "Minuten",
     },
-    tr: {
+    turkish: {
         Description: "Açıklama",
         Goto: "Git",
         Reward: "Ödül",
