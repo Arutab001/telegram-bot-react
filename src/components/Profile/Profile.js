@@ -106,7 +106,12 @@ const Profile = () => {
                             {localisation.Info}
                         </h1>
                     </div>
-                    {language.user_profile}
+                    <span>{localisation.Name}: </span> {user.name} <br />
+                    <span> {localisation.Id}: </span> {user.id}<br />
+                    <span> {localisation.Premium}: </span> {user.premium} <br />
+                    <span> {localisation.Ref}: </span>{user.referrals} <br />
+                    <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
+                    <span> {localisation.Balance}</span> {user.balance} <br />
                 </div>
                 <div>
                     <h1>
