@@ -175,7 +175,7 @@ const Casino = () => {
             <CasinoInfo/>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column", marginTop: "5%"}}>
                 <div className="CasinoCard" style={{position: "relative"}}>
-                    <div>{upString}</div>
+                    <div className="upString">{upString}</div>
                     <svg onClick={OpenModal} style={{position: "absolute", right: "5px", top: "5px"}}
                          xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 60 60" fill="none">
                         <circle cx="30" cy="30" r="30" fill="#6D8069"/>
