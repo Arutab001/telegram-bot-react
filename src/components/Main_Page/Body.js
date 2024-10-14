@@ -4,13 +4,15 @@ import NewsBox from "./NewsBox.js";
 import {Link} from "react-router-dom";
 import Coin1 from "../../images/gecko_coin_rem 1.png"
 import Coin2 from "../../images/gecko_coin2.0 1.png"
+import {useUser} from "../Base_Logic/UserContext.js";
 
 const Body = () => {
+    const {user} = useUser();
     return (
         <div className="Body">
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                <CoinBox image={Coin1} name="$GMEME" cost="200.000"/>
-                <CoinBox image={Coin2} name="$BMEME" cost={"500.000"}/>
+                <CoinBox image={Coin1} name="$GMEME" cost={user.balance}/>
+                <CoinBox image={Coin2} name="$BMEME" cost={"0"}/>
             </div>
             <div>
                 <NewsBox/>
