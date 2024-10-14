@@ -140,6 +140,10 @@ const Profile = () => {
         fetchAvatar();
     }, []); // Один раз при монтировании компонента
 
+    const formatNumber = (num) => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    };
+
     return (
         <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
             <PremiumNotification isVisible={isVisible} />
@@ -158,7 +162,7 @@ const Profile = () => {
                     <span> {localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br />
                     <span> {localisation.Ref}: </span>{user.referrals} <br />
                     <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
-                    <span> {localisation.Balance}</span> {user.balance} <br />
+                    <span> {localisation.Balance}</span> {formatNumber(user.balance)} <br />
                 </div>
 
                 <div style={{paddingTop: "5%"}}>
