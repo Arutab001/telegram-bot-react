@@ -80,7 +80,7 @@ const Profile = () => {
     const [avatar, setAvatar] = useState(window.Telegram.WebApp.initDataUnsafe.user.photo_url); // Состояние для аватарки
 
     const localisation = translations[userLanguage] || translations[user.language] ||  translations.english;
-    console.log(window.Telegram.WebApp.initDataUnsafe);
+    console.log(window.Telegram.WebApp.initDataUnsafe.user.photo_url);
     const openLang = (e) => {
         e.preventDefault();
         setIsLangModalOpen(true);
