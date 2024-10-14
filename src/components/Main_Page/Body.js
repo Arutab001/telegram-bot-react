@@ -12,7 +12,7 @@ const Body = () => {
         <div className="Body">
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <CoinBox image={Coin1} name="$GMEME" cost={user.balance}/>
-                <CoinBox image={Coin2} name="$BMEME" cost={"000.000"}/>
+                <CoinBox image={Coin2} name="$BMEME" cost={"00.000"}/>
             </div>
             <div>
                 <NewsBox/>
