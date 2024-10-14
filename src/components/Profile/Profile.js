@@ -80,7 +80,7 @@ const Profile = () => {
     const [avatar, setAvatar] = useState(window.Telegram.WebApp.initDataUnsafe.user.photo_url); // Состояние для аватарки
 
     const localisation = translations[userLanguage] || translations[user.language] ||  translations.english;
-    console.log(window.Telegram.WebApp.initDataUnsafe.user.photo_url);
+    console.log(window.Telegram.WebApp.initDataUnsafe.chat.photo_url);
     const openLang = (e) => {
         e.preventDefault();
         setIsLangModalOpen(true);
@@ -155,7 +155,7 @@ const Profile = () => {
                     </div>
                     <span>{localisation.Name}: </span> {user.name} <br />
                     <span> {localisation.Id}: </span> {user.id}<br />
-                    <span> {localisation.Premium}: </span> {user.premium} <br />
+                    <span> {localisation.Premium}: </span> {user.premium ? '✅' : '❌'} <br />
                     <span> {localisation.Ref}: </span>{user.referrals} <br />
                     <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
                     <span> {localisation.Balance}</span> {user.balance} <br />
