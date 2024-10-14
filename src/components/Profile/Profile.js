@@ -161,7 +161,7 @@ const Profile = () => {
                     <span> {localisation.Balance}</span> {user.balance} <br />
                 </div>
 
-                <div>
+                <div style={{paddingTop: "5%"}}>
                     <MyBtn text={localisation.Premium}
                            onClick={openModal}
                            onClose={(e) => closeModal(e)}
