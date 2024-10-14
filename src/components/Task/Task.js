@@ -13,6 +13,7 @@ const Task = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
+                axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
                 const response = await axios.get(`/task/?id=${token}&page=1&limit=1`);
 
                 if (response.request.status === 200) {
