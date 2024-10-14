@@ -1,0 +1,181 @@
+html {
+    background-image: url("images/BG.png");
+    background-size: contain;
+    background-repeat: repeat;
+    font-family: Montserrat;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+
+body {
+    margin: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+}
+.Header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #D9FFD2;
+    border: 2px solid #00000080;
+    width: 100vw;
+    height: 8vh;
+    font-size: x-large;
+    margin-bottom: 5%;
+}
+
+.Body {
+    margin-top: 1%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 10vh;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #D9FFD2;
+    border: 2px solid #00000080;
+    p {
+        margin-bottom: 1%;
+        justify-content: center;
+        margin-top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 3vh;
+    }
+}
+.CoinBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: #D9FFD2;
+    border: 2px solid #00000080;
+    border-radius: 24px;
+    width: 75vw;
+    margin: 5%;
+    height: 11vh;
+    align-items: center;
+    .name {
+        font-size: larger;
+        opacity: 70%;
+    }
+    .Cost {
+        font-size: medium;
+    }
+    img {
+        margin: 1% 2%;
+        height: 9vh;
+        width: 25%;
+    }
+}
+
+.NewsBox {
+    margin: 5% 0;
+    width: 75vw;
+    height: 30vh;
+    border: 2px solid black;
+    background-color: #FFEDD2;
+    border-radius: 26px;
+    img {
+        width: 100%;
+        height: 25vh;
+        border-radius: 24px 24px 24px 24px;
+    }
+    .Text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: auto;
+        height: 3vh;
+    }
+}
+.CasinoLink {
+    background-color: #D9FFD2;
+    width: 75vw;
+    height: 15vh;
+    margin: 5%;
+    border-radius: 24px;
+    Overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 2px solid #00000080;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+@media  (min-width: 1025px) {
+
+    .CoinBox {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        background-color: #D9FFD2;
+        border: 2px solid #00000080;
+        border-radius: 45px;
+        width: 80vw;
+        margin: 5%;
+        height: 50%;
+        align-items: center;
+        font-size: xx-large;
+        img {
+            width: 15%;
+            height: 80%;
+        }
+    }
+    .NewsBox {
+        display: flex;
+        flex-direction: column;
+        width: 80vw;
+        height: 100vh;
+        border: 2px solid black;
+        background-color: #FFEDD2;
+        border-radius: 45px;
+        img {
+            border-radius: 43px 43px 0 0;
+            height: 90%;
+            width: 100%;
+        }
+        div {
+            margin: 0;
+            height: 95%;
+            font-size: xxx-large;
+            display: flex;
+        }
+    }
+    .CasinoLink {
+        height: 50%;
+    }
+}

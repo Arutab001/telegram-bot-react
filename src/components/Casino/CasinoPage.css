@@ -1,0 +1,104 @@
+.CasinoCard {
+    width: 85vw;
+    height: 100%;
+    background-color: #D9FFD2;
+    border-radius: 24px;
+    border: 2px solid #00000080;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    button {
+        margin-top: 5%;
+    }
+}
+
+.upString {
+    margin: 10% 5% 0 5%;
+}
+
+.Card_Bottom {
+    width: 85%;
+}
+
+.BetSelect {
+    border-radius: 8px;
+    width: 70vw;
+    text-align: center;
+    font-family: Montserrat;
+    background-color: #D9FFD2;
+}
+
+.slots {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-evenly;
+    height: 25vh;
+    margin: 10% 10% 10% 10%;
+}
+
+.slot {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6D8069;
+    border-radius: 12px;
+    border: 1px solid #00000080;
+    font-size: 10vh;
+}
+
+.combination-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.combination-content {
+    position: relative;
+    width: 75%;
+    height: 50%;
+    background-color: #D9FFD2;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid #00000080;
+    border-radius: 24px;
+}
+.CombinationsHeader {
+    font-size: 100%;
+    background-color: #6D8069;
+    color: #D9FFD2;
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    border-radius: 22px 22px 0 0;
+    border: 2px solid #00000080;
+    h2 {
+        font-size: 3.5vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.Combinations {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 3vh;
+}

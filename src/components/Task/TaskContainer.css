@@ -1,0 +1,66 @@
+.TaskContainer {
+    width: 75%;
+    height: 11vh;
+    background-color: #D9FFD2;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 5% auto;
+    border-radius: 24px;
+    border: 2px solid #00000080;
+    align-items: center;
+    font-family: Montserrat;
+    svg {
+        width: 10vw;
+        height: 20vh;
+        margin-left: 5vw;
+    }
+    h2 {
+        color: #000000BF;
+        font-size: larger;
+        margin: 0;
+    }
+
+    p {
+        color: #00000080;
+        font-size: small;
+        font-weight: bold;
+        margin: 0;
+    }
+    .Text {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+        margin-left: 5%;
+        font-size: 4vw;
+    }
+    img {
+        margin: 10%;
+        height: 8vh;
+        width: 15vw;
+        border-radius: 100%;
+    }
+
+}
+
+
+
+
+@media (min-width: 800px) {
+    .TaskContainer {
+        width: 75%;
+        font-size: xx-large;
+        svg {
+            width: 15vw;
+            height: 15vh;
+        }
+        img {
+            margin: 5%;
+            width: 15vw;
+            height: 100%;
+        }
+    }
+}
