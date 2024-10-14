@@ -160,13 +160,7 @@ const Profile = () => {
                     <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
                     <span> {localisation.Balance}</span> {user.balance} <br />
                 </div>
-                <div>
-                    <h1>
-                        {localisation.WI}
-                    </h1>
-                    <p>{localisation.Text1}! </p>
-                    <p className="p2">{localisation.Text2}</p>
-                </div>
+
                 <div>
                     <MyBtn text={localisation.Premium}
                            onClick={openModal}
