@@ -6,7 +6,7 @@ import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
-import defaultAvatar from "../../images/chromecore 1.png";
+import defaultAvatar from "../../images/sticker 1.png";
 import {useLanguage} from "../Base_Logic/LanguageContext.js";
 import axios from "axios";
 import {useToken} from "../Base_Logic/TelegramAuth.js";
@@ -24,7 +24,7 @@ const translations = {
         Text1: "We will notify you in advance about payouts",
         Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
         Change: "Change Language",
-        Balance: "Balance",
+        Balance: "$GMEME",
     },
     russian: {
         Info: "Информация об аккаунте",
@@ -37,7 +37,7 @@ const translations = {
         Text1: "Мы заранее уведомим вас о выплатах",
         Text2: "МИНИМАЛЬНЫЙ ВЫВОД СЕГОДНЯ БУДЕТ 0 В AIRDROP",
         Change: "Сменить язык",
-        Balance: "Баланс",
+        Balance: "$GMEME",
     },
     german: {
         Info: "Konto Informationen",
@@ -50,7 +50,7 @@ const translations = {
         Text1: "Wir werden Sie im Voraus über Auszahlungen informieren",
         Text2: "DAS MINDESTABHEBEN WIRD HEUTE 0 BEI AIRDROP SEIN",
         Change: "Sprache ändern",
-        Balance: "Guthaben",
+        Balance: "$GMEME",
     },
     turkish: {
         Info: "Hesap Bilgileri",
@@ -63,7 +63,7 @@ const translations = {
         Text1: "Ödemeler hakkında önceden sizi bilgilendireceğiz",
         Text2: "BUGÜN AIRDROP'DA MİNİMUM ÇEKİM 0 OLACAK",
         Change: "Dili Değiştir",
-        Balance: "Bakiyeniz",
+        Balance: "$GMEME",
     },
 };
 
@@ -128,7 +128,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchAvatar = async () => {
             try {
-                axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+                axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
                 axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
                 const response = await axios.get('/user/chat-photo?type=small_file_id');
                 setAvatar(response.data);
@@ -136,9 +136,12 @@ const Profile = () => {
                 console.error('Ошибка сети при получении аватарки:', error);
             }
         };
-
         fetchAvatar();
     }, []); // Один раз при монтировании компонента
+
+    const formatNumber = (num) => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    };
 
     return (
         <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
@@ -158,7 +161,8 @@ const Profile = () => {
                     <span> {localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br />
                     <span> {localisation.Ref}: </span>{user.referrals} <br />
                     <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
-                    <span> {localisation.Balance}</span> {user.balance} <br />
+                    <span> {localisation.Balance}:</span> {formatNumber(user.balance)} <br />
+                    <span> $BMEME:</span> 0 <br />
                 </div>
 
                 <div style={{paddingTop: "5%"}}>
