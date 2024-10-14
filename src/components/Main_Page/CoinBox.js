@@ -3,6 +3,9 @@ import "../../App.css"
 import Coin1 from '../../images/gecko_coin_rem 1.png'
 
 const CoinBox = (props) => {
+    const formatNumber = (num) => {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    };
     return (
         <div className="CoinBox">
             <img src={props.image} />
@@ -11,7 +14,7 @@ const CoinBox = (props) => {
                     {props.name}
                 </div>
                 <div className="Cost">
-                    {props.cost}
+                    {formatNumber(props.cost)}
                 </div>
             </div>
         </div>
