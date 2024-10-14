@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
     });
 
     function configureAxios() {
-        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+        axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
         axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
     }
 
@@ -60,6 +60,7 @@ export const UserProvider = ({ children }) => {
                 if (response.status === 200) {
                     const data = await response.data;
                     handleUserFirst(data.data.first_name, data.data.id);
+                    console.log(data);
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                 }
@@ -78,6 +79,7 @@ export const UserProvider = ({ children }) => {
                         data.data.balance,
                         data.data.language
                     );
+                    console.log(data);
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
                 }
