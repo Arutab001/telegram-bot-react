@@ -31,6 +31,10 @@
     color: #364035;
 }
 
+.Button:disabled {
+    background-color: #aea18f;
+}
+
 .p2 {
     color: #4D5A4B;
 }
