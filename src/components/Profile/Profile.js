@@ -6,7 +6,7 @@ import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
-import defaultAvatar from "../../images/chromecore 1.png";
+import defaultAvatar from "../../images/sticker 1.png";
 import {useLanguage} from "../Base_Logic/LanguageContext.js";
 import axios from "axios";
 import {useToken} from "../Base_Logic/TelegramAuth.js";
