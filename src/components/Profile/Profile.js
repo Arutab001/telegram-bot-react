@@ -80,7 +80,7 @@ const Profile = () => {
     const [avatar, setAvatar] = useState(defaultAvatar); // Состояние для аватарки
 
     const localisation = translations[userLanguage] || translations[user.language] ||  translations.english;
-
+    console.log(window.Telegram.WebApp.initDataUnsafe);
     const openLang = (e) => {
         e.preventDefault();
         setIsLangModalOpen(true);
@@ -130,9 +130,7 @@ const Profile = () => {
             try {
                 axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
                 axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
-                const response = await axios.get('/user/chat-photo', {
-                    params: { type: 'small_file_id' }, // Корректный способ передачи query-параметров
-                });
+                const response = await axios.get('/user/chat-photo?type=small_file_id');
                 setAvatar(response.data);
             } catch (error) {
                 console.error('Ошибка сети при получении аватарки:', error);
