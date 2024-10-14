@@ -90,7 +90,7 @@ const Casino = () => {
     };
 
     const getResultsFromServer = async () => {
-        return await axios.post(`/slots/play?id=${user.id}&amount=${selectedValue}`);
+        return await axios.post(`https://geckoshi-prod.up.railway.app/slots/play?id=${user.id}&amount=${selectedValue}`);
     };
 
     const [upString, setUpString] = useState('');
