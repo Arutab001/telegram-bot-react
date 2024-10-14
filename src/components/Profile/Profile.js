@@ -77,7 +77,7 @@ const Profile = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
     const [isErrorVisible, setErrorVisible] = useState(false);
-    const [avatar, setAvatar] = useState(window.Telegram.WebApp.initDataUnsafe.user.photo_url); // Состояние для аватарки
+    const [avatar, setAvatar] = useState(window.Telegram.WebApp.initDataUnsafe.user.photo_url || defaultAvatar); // Состояние для аватарки
 
     const localisation = translations[userLanguage] || translations[user.language] ||  translations.english;
     console.log(window.Telegram.WebApp.initDataUnsafe.user.photo_url);
