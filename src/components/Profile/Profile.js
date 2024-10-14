@@ -172,6 +172,7 @@ const Profile = () => {
                            onClick={openModal}
                            onClose={(e) => closeModal(e)}
                            setIsModalOpen={setIsModalOpen}
+                           disabled={true}
                     />
                 </div>
                 <div>
