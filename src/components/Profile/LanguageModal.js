@@ -13,7 +13,7 @@ const LanguageModal = ({show, onClose}) => {
     const {setUserLanguage} = useLangProfile();
 
     function configureAxios() {
-        axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+        axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
     }
     // Имитируем запрос для получения доступных языков
     useEffect(() => {

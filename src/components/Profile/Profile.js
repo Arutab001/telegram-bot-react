@@ -128,7 +128,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchAvatar = async () => {
             try {
-                axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+                axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
                 axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
                 const response = await axios.get('/user/chat-photo?type=small_file_id');
                 setAvatar(response.data);
@@ -136,7 +136,6 @@ const Profile = () => {
                 console.error('Ошибка сети при получении аватарки:', error);
             }
         };
-
         fetchAvatar();
     }, []); // Один раз при монтировании компонента
 

@@ -19,7 +19,7 @@ const LanguageProvider = ({children}) => {
             if (!token) return; // Если токена нет, выходим из функции
 
             try {
-                axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app';
+                axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
 
                 const response = await axios.get(`/language/pack`, {
                     headers: { 'Authorization': `Bearer ${token}` },
