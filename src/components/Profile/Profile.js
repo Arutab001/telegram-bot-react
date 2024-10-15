@@ -80,7 +80,7 @@ const Profile = () => {
     const [avatar, setAvatar] = useState(defaultAvatar); // Состояние для аватарки
 
     const localisation = translations[userLanguage] || translations[user.language] ||  translations.english;
-    console.log(window.Telegram.WebApp.initDataUnsafe.user.photo_url);
+
     const openLang = (e) => {
         e.preventDefault();
         setIsLangModalOpen(true);
@@ -123,21 +123,6 @@ const Profile = () => {
         return () => clearTimeout(timer);
     }, [isVisible]);
 
-
-    // useEffect для загрузки аватарки
-    useEffect(() => {
-        const fetchAvatar = async () => {
-            try {
-                axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
-                axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
-                const response = await axios.get('/user/chat-photo?type=small_file_id');
-                setAvatar(response.data);
-            } catch (error) {
-                console.error('Ошибка сети при получении аватарки:', error);
-            }
-        };
-        fetchAvatar();
-    }, []); // Один раз при монтировании компонента
 
     const formatNumber = (num) => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
