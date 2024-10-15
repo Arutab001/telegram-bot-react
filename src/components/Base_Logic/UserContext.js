@@ -89,7 +89,7 @@ export const UserProvider = ({ children }) => {
         };
 
         fetchUserInfo();
-    }, [token]); // Теперь эффект срабатывает при изменении токена
+    }, [token, user.balance]); // Теперь эффект срабатывает при изменении токена
 
     return (
         <UserContext.Provider value={{ user, setUser }}>
