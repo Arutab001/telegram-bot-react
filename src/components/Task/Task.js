@@ -9,11 +9,12 @@ const Task = () => {
     const {token} = useToken()
     const { user, updateUser } = useUser();
     const [tasks, setTasks] = useState([]);
-
+//https://geckoshi-stage.up.railway.app/
+    //'https://geckoshi-prod.up.railway.app'
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
+                axios.defaults.baseURL = 'https://geckoshi-stage.up.railway.app/';
                 const response = await axios.get(`/task/?id=${token}&page=1&limit=1`);
 
                 if (response.request.status === 200) {
