@@ -166,6 +166,21 @@ const Casino = () => {
             } else {
                 setUpString(language.slots_not_enough_to_play)
             }
+            try {
+                const response = await axios.get('/user/info');
+                if (response.status === 200) {
+                    const data = await response.data;
+                    updateUser(prevState => ({
+                        ...prevState,
+                        balance: data.data.balance
+                    }))
+                    console.log(data);
+                } else {
+                    console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
+                }
+            } catch (error) {
+                console.error('Ошибка сети:', error);
+            }
         }
     };
 
