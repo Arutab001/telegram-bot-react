@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../../App.css";
+import NewsDefalut from '../../images/forge 1.png';
 
 const NewsBox = () => {
     const [postUrl, setPostUrl] = useState("#");
@@ -38,7 +39,7 @@ const NewsBox = () => {
     return (
         <div className="NewsBox" onClick={() => window.open(postUrl, "_blank")} style={{ cursor: "pointer" }}>
             <div>
-                {image ? <img src={image} alt="News" /> : <p>No image available</p>}
+                {image ? <img src={image} alt={NewsDefalut} /> : <p>No image available</p>}
             </div>
             <div className="Text">Read</div>
         </div>
