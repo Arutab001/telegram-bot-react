@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../../App.css";
-import NewsDefalut from '../../images/forge 1.png';
+import NewsDefalut from '../../images/Frame 12.png';
 
 const NewsBox = () => {
     const [postUrl, setPostUrl] = useState("#");
