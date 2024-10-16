@@ -15,9 +15,9 @@ const TaskContainer = (props) => {
             </div>
             <div style={{height: "100%",
                 display: "flex",
-                alignItems: "center"}}>
+                alignItems: "flex-end"}}>
                 <div>
-                    <h2>
+                    <h2 >
                         {stripHtmlTags(props.title)}
                     </h2>
                     <p>
