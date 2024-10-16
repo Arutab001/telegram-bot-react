@@ -39,7 +39,8 @@ const NewsBox = () => {
     return (
         <div className="NewsBox" onClick={() => window.open(postUrl, "_blank")} style={{ cursor: "pointer" }}>
             <div>
-                {image ? <img src={image} alt={NewsDefalut} /> : <p>No image available</p>}
+                {image ? <img src={image} alt={NewsDefalut} /> : <img src={NewsDefalut}/>}
+            </div>/>}
             </div>
             <div className="Text">Read</div>
         </div>
