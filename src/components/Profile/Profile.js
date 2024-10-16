@@ -69,7 +69,7 @@ const translations = {
 
 
 const Profile = () => {
-    const { user, updateUser } = useUser();
+    const { user, updateUser, handleUserBalance } = useUser();
     const {language} = useLanguage();
     const { userLanguage } = useLangProfile();
     const {token} = useToken();
@@ -123,6 +123,21 @@ const Profile = () => {
         return () => clearTimeout(timer);
     }, [isVisible]);
 
+    useEffect(()  =>{
+        const getbalance = async () => {
+            try {
+                const response = await axios.get('/coin/balance');
+                if (response.status === 200){
+                    handleUserBalance(response.data.data.GMEME);
+                }
+            }
+            catch (e) {
+                console.log("Balance error:");
+                console.error(e)
+            }
+        }
+        getbalance();
+    }, [])
 
     const formatNumber = (num) => {
         return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
