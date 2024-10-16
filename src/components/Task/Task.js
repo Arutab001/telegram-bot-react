@@ -14,7 +14,7 @@ const Task = () => {
         const fetchTasks = async () => {
             try {
                 axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
-                const response = await axios.get(`/task/?id=${token}&page=1&limit=1`);
+                const response = await axios.get(`/task/?id=${token}&page=1&limit=100`);
 
                 if (response.request.status === 200) {
                     const data = await response.data;
