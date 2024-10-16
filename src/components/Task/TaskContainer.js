@@ -5,6 +5,9 @@ import Profile from "../Profile/Profile.js";
 
 
 const TaskContainer = (props) => {
+    const stripHtmlTags = (html) => {
+        return html.replace(/<[^>]*>?/gm, ''); // Убирает все HTML-теги
+    };
     return (
         <div className="TaskContainer">
             <div>
@@ -15,7 +18,7 @@ const TaskContainer = (props) => {
                 alignItems: "center"}}>
                 <div>
                     <h2>
-                        {`${props.title}`}
+                        {stripHtmlTags(props.title)}
                     </h2>
                     <p>
                         + {props.reward} $GMEME

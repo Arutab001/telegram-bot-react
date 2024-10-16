@@ -35,16 +35,21 @@ export const UserProvider = ({ children }) => {
         }));
     };
 
-    const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_balance, new_language) => {
+    const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_language) => {
         setUser(prevState => ({
             ...prevState,
             premium: new_premium,
             referrals: new_referrals,
             withdraw: new_withdraw,
-            balance: new_balance,
             language: new_language
         }));
     };
+    const handleUserBalance = (new_balance) => {
+        setUser(prevState => ({
+            ...prevState,
+            balance: new_balance
+        }))
+    }
 
     useEffect(() => {
         if (!token) {
@@ -76,7 +81,6 @@ export const UserProvider = ({ children }) => {
                         data.data.is_premium.toString(),
                         data.data.referred_users_count,
                         data.data.withdrew,
-                        data.data.balance,
                         data.data.language
                     );
                     console.log(data);
@@ -86,13 +90,23 @@ export const UserProvider = ({ children }) => {
             } catch (error) {
                 console.error('Ошибка сети:', error);
             }
+            try {
+                const response = await axios.get('/coin/balance');
+                if (response.status === 200){
+                    handleUserBalance(response.data.data.GMEME);
+                }
+            }
+            catch (e) {
+                console.log("Balance error:");
+                console.error(e)
+            }
         };
 
         fetchUserInfo();
     }, [token, user.balance]); // Теперь эффект срабатывает при изменении токена
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser, handleUserBalance }}>
             {children}
         </UserContext.Provider>
     );

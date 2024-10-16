@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CoinBox from "./CoinBox.js";
 import NewsBox from "./NewsBox.js";
 import {Link} from "react-router-dom";
 import Coin1 from "../../images/gecko_coin_rem 1.png"
 import Coin2 from "../../images/gecko_coin2.0 1.png"
 import {useUser} from "../Base_Logic/UserContext.js";
+import axios from "axios";
 
 const Body = () => {
-    const {user} = useUser();
+    const {user, handleUser, handleUserBalance} = useUser();
+
+    useEffect(()  =>{
+        const getbalance = async () => {
+            try {
+                const response = await axios.get('/coin/balance');
+                if (response.status === 200){
+                    handleUserBalance(response.data.data.GMEME);
+                }
+            }
+            catch (e) {
+                console.log("Balance error:");
+                console.error(e)
+            }
+        }
+        getbalance();
+    }, [])
+
     return (
         <div className="Body">
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
