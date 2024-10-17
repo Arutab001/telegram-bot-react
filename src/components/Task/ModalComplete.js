@@ -52,6 +52,7 @@ const ModalComplete = ({show, close, id, reward, openError}) => {
                 close(e);
             }
             else {
+                close(e);
                 openError(true);
             }
 
