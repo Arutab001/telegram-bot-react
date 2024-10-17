@@ -42,19 +42,17 @@ const ModalComplete = ({show, close, id, reward, openError}) => {
 
 
     const getReward = async (e) => {
+        close(e);
         try{
             axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
             axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
             const response = await axios.post(`/task/done?task_id=${id}`);
             const data = response.data;
             console.log(data);
-            if (data.done_successfully === true){
-                close(e);
-            }
-            else {
-                close(e);
+            if (data.done_successfully !== true){
                 openError(true);
             }
+
 
         }
         catch (error) {
