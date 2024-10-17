@@ -10,14 +10,16 @@ const TaskContainer = (props) => {
     };
     return (
         <div className="TaskContainer">
-            <div>
+            <div
+            style={{marginRight: "2%"}}
+            >
                 <img src={props.image}/>
             </div>
             <div style={{height: "100%",
                 display: "flex",
                 alignItems: "center"}}>
                 <div>
-                    <h2 >
+                    <h2>
                         {stripHtmlTags(props.title)}
                     </h2>
                     <p>
