@@ -47,7 +47,12 @@ const ModalComplete = ({show, close, id, reward, openError}) => {
             axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
             const response = await axios.post(`/task/done?task_id=${id}`);
             const data = response.data;
-            console.log(data);
+            if (response.data.data.done_successfully === true){
+                close(e);
+            }
+            else {
+                openError(true);
+            }
 
         }
         catch (error) {
