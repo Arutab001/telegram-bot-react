@@ -18,6 +18,8 @@
         color: #000000BF;
         font-size: larger;
         -webkit-line-clamp: 1;
+        margin-bottom: 0;
+        margin-top: 0;
     }
     p {
         color: #00000080;
