@@ -15,7 +15,7 @@ const TaskContainer = (props) => {
             </div>
             <div style={{height: "100%",
                 display: "flex",
-                alignItems: "flex-end"}}>
+                alignItems: "center"}}>
                 <div>
                     <h2 >
                         {stripHtmlTags(props.title)}
@@ -24,7 +24,9 @@ const TaskContainer = (props) => {
                         + {props.reward} $GMEME
                     </p>
                 </div>
-                <div>
+                <div
+                    className="TaskSvg"
+                >
                     <Link
                         to="/TaskPage"
                         state={{id: props.id, name: props.name, reward: props.reward}}>
