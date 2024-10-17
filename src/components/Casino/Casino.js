@@ -151,18 +151,21 @@ const Casino = () => {
                     });
 
                 }, 700);
-                if (serverResponse.data.data.win_amount === 0){
-                    const message = lose_localisation
-                        .replace("{amount}", selectedValue)
-                        .replace("{combination}", combination);
-                    setUpString(message);
-                }
-                else {
-                    const message = win_localisation
-                        .replace("{amount}", serverResponse.data.data.win_amount)
-                        .replace("{combination}", combination);
-                    setUpString(message);
-                }
+                setTimeout(()=> {
+                    if (serverResponse.data.data.win_amount === 0){
+                        const message = lose_localisation
+                            .replace("{amount}", selectedValue)
+                            .replace("{combination}", combination);
+                        setUpString(message);
+                    }
+                    else {
+                        const message = win_localisation
+                            .replace("{amount}", serverResponse.data.data.win_amount)
+                            .replace("{combination}", combination);
+                        setUpString(message);
+                    }
+                }, 700)
+
             } else {
                 setUpString(language.slots_not_enough_to_play)
             }
