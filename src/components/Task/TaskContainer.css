@@ -17,7 +17,6 @@
     h2 {
         color: #000000BF;
         font-size: larger;
-        margin: 0 0 0 5%;
         -webkit-line-clamp: 1;
     }
     p {
@@ -44,7 +43,6 @@
         border-radius: 100%;
     }
     .TaskSvg {
-        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
