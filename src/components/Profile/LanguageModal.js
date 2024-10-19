@@ -12,13 +12,10 @@ const LanguageModal = ({show, onClose}) => {
     const {language} = useLanguage();
     const {setUserLanguage} = useLangProfile();
 
-    function configureAxios() {
-        axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
-    }
+
     // Имитируем запрос для получения доступных языков
     useEffect(() => {
         const fetchLanguages = async () => {
-            configureAxios();
             const response = await axios.get(`/language/available`, {
                 headers: {'Authorization': `Bearer ${token}`}
             });
@@ -34,7 +31,6 @@ const LanguageModal = ({show, onClose}) => {
     if (!show) return null;
 
     const changeLanguage = async (lang, e) => {
-        configureAxios();
         const response = await axios.post(`/language?lang=${lang}`, {
             headers: {'Authorization': `Bearer ${token}`}
         });
