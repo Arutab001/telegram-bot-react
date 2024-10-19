@@ -44,7 +44,7 @@ export const TelegramAuth = ({children}) => {
     };
 
     function configureAxios() {
-        axios.defaults.baseURL = process.env.REACT_APP_URL;
+        axios.defaults.baseURL = "https://geckoshi-prod.up.railway.app";
     }
 
     useEffect(() => {
