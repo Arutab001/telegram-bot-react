@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.js';
 
-require('dotenv').config();
+require('_dotenv').config();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
