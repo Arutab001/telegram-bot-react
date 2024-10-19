@@ -44,7 +44,7 @@ export const TelegramAuth = ({children}) => {
     };
 
     function configureAxios() {
-        axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
+        axios.defaults.baseURL = process.env.REACT_APP_URL;
     }
 
     useEffect(() => {
@@ -75,6 +75,7 @@ export const TelegramAuth = ({children}) => {
     useEffect(() => {
         if (token) {
             console.log('Токен обновлён:', token);
+            axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
         }
     }, [token]);
 
