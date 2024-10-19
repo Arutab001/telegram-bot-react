@@ -23,7 +23,6 @@ export const UserProvider = ({ children }) => {
     });
 
     function configureAxios() {
-        axios.defaults.baseURL = 'https://geckoshi-prod.up.railway.app';
         axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
     }
 

@@ -19,7 +19,7 @@ const TaskContainer = (props) => {
                 display: "flex",
                 alignItems: "center"}}>
                 <div>
-                    <h2>
+                    <h2 style={{margin: "0"}}>
                         {stripHtmlTags(props.title)}
                     </h2>
                     <p>
