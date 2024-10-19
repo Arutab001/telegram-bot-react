@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocation} from "react-router-dom";
 import "./TaskPage.css";
 import TaskImg from "../../images/forge 1.png"
@@ -80,6 +80,24 @@ const TaskPage = () => {
     const {userLanguage} = useLangProfile();
     const {user} = useUser();
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
+
+    const fetchTaskPhoto = async () => {
+        try{
+            const response = await axios.get('/task/photo?', {
+                params: {
+                    id: id,
+                    type: 'big_file_id'
+                }
+            });
+            console.log(response.data);
+        }catch (e) {
+
+        }
+    }
+
+    useEffect(()=>{
+        fetchTaskPhoto();
+    }, [])
 
     return (
         <div className="TaskPage">
