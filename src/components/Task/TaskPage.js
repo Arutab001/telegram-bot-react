@@ -8,6 +8,7 @@ import ErrorModal from "../Profile/ErrorModal.js";
 import TaskError from "./TaskError.js";
 import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
 import {useUser} from "../Base_Logic/UserContext.js";
+import axios from "axios";
 
 const translations = {
     english: {
@@ -75,29 +76,54 @@ const TaskPage = () => {
     }
 
     const location = useLocation();
-    const {id, name, reward} = location.state || {};
+    const {id, name, reward, link} = location.state || {};
 
     const {userLanguage} = useLangProfile();
     const {user} = useUser();
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
-    const fetchTaskPhoto = async () => {
+    const fetchTask = async () => {
         try{
-            const response = await axios.get('/task/photo?', {
-                params: {
-                    id: id,
-                    type: 'big_file_id'
-                }
-            });
+            const response = await axios.get(`/task/photo?id=${id}&type=big_file_id`);
             console.log(response.data);
         }catch (e) {
-
+            console.error(e)
+        }
+        try {
+            const response = await axios.get()
+        }
+        catch(e){
+            console.error(e);
         }
     }
 
     useEffect(()=>{
-        fetchTaskPhoto();
+        fetchTask();
     }, [])
+
+    const getReward = async (e) => {
+        close(e);
+        try{
+            const response = await axios.post(`/task/done?task_id=${id}`);
+            const data = response.data;
+            console.log(data);
+            if (data.done_successfully === true){
+                OpenModal(e);
+            }
+            else {
+                OpenError(e);
+            }
+
+        }
+        catch (error) {
+            console.error(error);
+            OpenError(e)
+        }
+    }
+
+    const openLink = () => {
+        window.open(link, "_blank", "noopener,noreferrer")
+    }
 
     return (
         <div className="TaskPage">
@@ -131,8 +157,8 @@ const TaskPage = () => {
                 </div>
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
-                <MyBtn text="Go to"/>
-                <MyBtn text="Approve" onClick={OpenModal} />
+                <MyBtn text="Go To" onClick={openLink}></MyBtn>
+                <MyBtn text="Approve" onClick={getReward} />
             </div>
             <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id} openError={setErrorOpen}/>
             <TaskError show={isErrorOpen} close={CloseError} />
