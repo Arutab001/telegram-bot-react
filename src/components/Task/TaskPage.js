@@ -84,12 +84,7 @@ const TaskPage = () => {
 
     const fetchTask = async () => {
         try{
-            const response = await axios.get('/task/photo', {
-                params: {
-                    id: id,
-                    type: 'big_file_id'
-                }
-            });
+            const response = await axios.get(`/task/photo?id=${id}&type=big_file_id`);
             console.log(response.data);
         }catch (e) {
             console.error(e)
