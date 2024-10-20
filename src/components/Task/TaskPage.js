@@ -84,7 +84,7 @@ const TaskPage = () => {
 
     const fetchTask = async () => {
         try{
-            const response = await axios.get('https://geckoshi-prod.up.railway.app/task/photo', {
+            const response = await axios.get('/task/photo', {
                 params: {
                     id: id,
                     type: 'big_file_id'
@@ -103,7 +103,7 @@ const TaskPage = () => {
     }
 
     useEffect(()=>{
-        fetchTaskPhoto();
+        fetchTask();
     }, [])
 
     const getReward = async (e) => {
