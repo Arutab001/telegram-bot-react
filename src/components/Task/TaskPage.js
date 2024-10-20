@@ -8,6 +8,7 @@ import ErrorModal from "../Profile/ErrorModal.js";
 import TaskError from "./TaskError.js";
 import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
 import {useUser} from "../Base_Logic/UserContext.js";
+import axios from "axios";
 
 const translations = {
     english: {
@@ -105,6 +106,28 @@ const TaskPage = () => {
         fetchTaskPhoto();
     }, [])
 
+    const getReward = async (e) => {
+        close(e);
+        try{
+            const response = await axios.post(`/task/done?task_id=${id}`);
+            const data = response.data;
+            console.log(data);
+            if (data.done_successfully !== true){
+                OpenError();
+            }
+            else {
+                OpenModal()
+            }
+
+        }
+        catch (error) {
+            console.error(error);
+            OpenError(e)
+        }
+
+
+    }
+
     return (
         <div className="TaskPage">
             <div>
@@ -138,7 +161,7 @@ const TaskPage = () => {
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
                 <MyBtn text="Go to"/>
-                <MyBtn text="Approve" onClick={OpenModal} />
+                <MyBtn text="Approve" onClick={getReward} />
             </div>
             <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id} openError={setErrorOpen}/>
             <TaskError show={isErrorOpen} close={CloseError} />
