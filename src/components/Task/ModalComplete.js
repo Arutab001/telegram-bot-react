@@ -40,27 +40,10 @@ const ModalComplete = ({show, close, id, reward, openError}) => {
 
     if (!show) return null;
 
-
-    const getReward = async (e) => {
+    const getReward = (e) => {
         close(e);
-        try{
-            const response = await axios.post(`/task/done?task_id=${id}`);
-            const data = response.data;
-            console.log(data);
-            if (data.done_successfully !== true){
-                openError(true);
-            }
-
-
-        }
-        catch (error) {
-            console.error(error);
-            close(e);
-            openError(true);
-        }
-
-
     }
+
 
     return (
         <div className="modal-complete-overlay">
