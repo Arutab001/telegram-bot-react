@@ -76,7 +76,7 @@ const TaskPage = () => {
     }
 
     const location = useLocation();
-    const {id, name, reward} = location.state || {};
+    const {id, name, reward, link} = location.state || {};
 
     const {userLanguage} = useLangProfile();
     const {user} = useUser();
@@ -160,7 +160,7 @@ const TaskPage = () => {
                 </div>
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
-                <MyBtn text="Go to"/>
+                <MyBtn><a href={link}>Go To</a> </MyBtn>
                 <MyBtn text="Approve" onClick={getReward} />
             </div>
             <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id} openError={setErrorOpen}/>
