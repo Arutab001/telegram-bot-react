@@ -41,7 +41,7 @@ const NewsBox = () => {
     }, [token]);
 
     return (
-        <div className="NewsBox" onClick={() => window.open(postUrl, "_blank")} style={{ cursor: "pointer" }}>
+        <div className="NewsBox" onClick={() => window.open("https://t.me/geckoshi_coin/604", "_blank")} style={{ cursor: "pointer" }}>
             <div>
                 {image ? <img src={image} /> : <img src={NewsDefalut}/>}
             </div>
