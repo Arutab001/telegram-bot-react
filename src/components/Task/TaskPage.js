@@ -81,9 +81,9 @@ const TaskPage = () => {
     const {user} = useUser();
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
-    const fetchTaskPhoto = async () => {
+    const fetchTask = async () => {
         try{
-            const response = await axios.get('/task/photo?', {
+            const response = await axios.get('https://geckoshi-prod.up.railway.app/task/photo', {
                 params: {
                     id: id,
                     type: 'big_file_id'
@@ -91,7 +91,13 @@ const TaskPage = () => {
             });
             console.log(response.data);
         }catch (e) {
-
+            console.error(e)
+        }
+        try {
+            const response = await axios.get()
+        }
+        catch(e){
+            console.error(e);
         }
     }
 
