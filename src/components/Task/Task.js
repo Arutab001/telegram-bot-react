@@ -13,7 +13,7 @@ const Task = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get(`/task/?id=${token}&page=1&limit=100`);
+                const response = await axios.get(`/task?page=1&limit=100`);
 
                 if (response.request.status === 200) {
                     const data = await response.data;
@@ -41,7 +41,7 @@ const Task = () => {
                     title={task.title}
                     text={task.text}
                     reward={task.done_reward}
-                    link={task.markup?.inline_keyboard[0]?.[0]?.url || null}
+                    link={task.markup?.inline_keyboard[0]?.[0]?.url}
                 />
             ))}
         </div>
