@@ -112,11 +112,11 @@ const TaskPage = () => {
             const response = await axios.post(`/task/done?task_id=${id}`);
             const data = response.data;
             console.log(data);
-            if (data.done_successfully !== true){
-                OpenError();
+            if (data.done_successfully === true){
+                OpenModal(e);
             }
             else {
-                OpenModal()
+                OpenError(e);
             }
 
         }
