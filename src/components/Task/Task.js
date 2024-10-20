@@ -41,7 +41,7 @@ const Task = () => {
                     title={task.title}
                     text={task.text}
                     reward={task.done_reward}
-                    link={task.markup?.inline_keyboard[0]?.[0]?.url || null}
+                    link={task.markup?.inline_keyboard[0]?.[0]?.url}
                 />
             ))}
         </div>
