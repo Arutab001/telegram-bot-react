@@ -10,14 +10,18 @@ const NewsBox = () => {
 
     const fetchLatestPost = async () => {
         try {
-           const response = await axios.get('channel/link?r=3');
+           const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/link', {
+               headers: { 'Authorization': `Bearer ${token}` }
+           });
            console.log(response.data);
 
         } catch (error) {
             console.error("Error fetching latest post:", error);
         }
         try {
-            const response = await axios.get('channel/photo');
+            const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/photo?r=3', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             console.log(response.data);
         } catch (e) {
             console.error(e);
@@ -33,7 +37,8 @@ const NewsBox = () => {
             <div>
                 {image ? <img src={image} /> : <img src={NewsDefalut}/>}
             </div>
-            <div className="Text">Read</div>
+            <div className="Text">
+                Read</div>
         </div>
     );
 };
