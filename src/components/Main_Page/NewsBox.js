@@ -11,32 +11,34 @@ const NewsBox = () => {
     const {token} = useToken();
 
     const fetchLatestPost = async () => {
-        try {
-           const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/link', {
-               headers: { 'Authorization': `Bearer ${token}` }
-           });
-           console.log(response.data);
+        if (!token) return; // Защита от вызова без токена
 
+        try {
+            const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/link', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            console.log("Post URL:", response.data);
+            setPostUrl(response.data.url);
         } catch (error) {
             console.error("Error fetching latest post:", error);
         }
+
         try {
             const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/photo?r=3', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
-            console.log(response.data);
+            console.log("Image URL:", response.data);
+            setImage(response.data.url);
         } catch (e) {
-            console.error(e);
+            console.error("Error fetching image:", e);
         }
     };
 
     useEffect(() => {
-        fetchLatestPost();
+        if (token) {
+            fetchLatestPost();
+        }
     }, [token]);
-
-    if(!token){
-        return;
-    }
 
     return (
         <div className="NewsBox" onClick={() => window.open(postUrl, "_blank")} style={{ cursor: "pointer" }}>
