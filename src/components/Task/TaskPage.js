@@ -102,7 +102,6 @@ const TaskPage = () => {
     }, [])
 
     const getReward = async (e) => {
-        close(e);
         try{
             const response = await axios.post(`/task/done?task_id=${id}`);
             const data = response.data;
