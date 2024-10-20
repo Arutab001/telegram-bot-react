@@ -13,7 +13,7 @@ const Task = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const response = await axios.get(`https://geckoshi-prod.up.railway.app/task/?page=1&limit=100`);
+                const response = await axios.get(`/task?page=1&limit=100`);
 
                 if (response.request.status === 200) {
                     const data = await response.data;
