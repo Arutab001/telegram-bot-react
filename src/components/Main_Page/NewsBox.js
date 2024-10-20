@@ -14,7 +14,7 @@ const NewsBox = () => {
         if (!token) return; // Защита от вызова без токена
 
         try {
-            const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/link', {
+            const response = await axios.get('https://geckoshi-stage.up.railway.app/channel/link', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log("Post URL:", response.data);
