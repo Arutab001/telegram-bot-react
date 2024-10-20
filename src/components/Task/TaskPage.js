@@ -124,8 +124,10 @@ const TaskPage = () => {
             console.error(error);
             OpenError(e)
         }
+    }
 
-
+    const openLink = () => {
+        window.open(link, "_blank", "noopener,noreferrer")
     }
 
     return (
@@ -160,7 +162,7 @@ const TaskPage = () => {
                 </div>
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
-                <MyBtn><a href={link}>Go To</a> </MyBtn>
+                <MyBtn text="Go To"></MyBtn>
                 <MyBtn text="Approve" onClick={getReward} />
             </div>
             <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id} openError={setErrorOpen}/>
