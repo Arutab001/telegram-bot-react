@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import "../../App.css";
 import NewsDefalut from '../../images/Frame 12.png';
 import axios from "axios";
+import {useToken} from "../Base_Logic/TelegramAuth.js";
+
 
 const NewsBox = () => {
     const [postUrl, setPostUrl] = useState("#");
     const [image, setImage] = useState(null);
-
+    const {token} = useToken();
 
     const fetchLatestPost = async () => {
         try {
