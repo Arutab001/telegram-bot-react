@@ -10,7 +10,7 @@ const NewsBox = () => {
 
     const fetchLatestPost = async () => {
         try {
-           const response = await axios.get('channel/link');
+           const response = await axios.get('channel/link?r=3');
            console.log(response.data);
 
         } catch (error) {
