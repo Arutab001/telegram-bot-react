@@ -40,7 +40,7 @@ const ModalComplete = ({show, close, id, reward, openError}) => {
 
     if (!show) return null;
 
-    const getReward = () => {
+    const getReward = (e) => {
         close(e);
     }
 
