@@ -32,7 +32,11 @@ const NewsBox = () => {
 
     useEffect(() => {
         fetchLatestPost();
-    }, []);
+    }, [token]);
+
+    if(!token){
+        return;
+    }
 
     return (
         <div className="NewsBox" onClick={() => window.open(postUrl, "_blank")} style={{ cursor: "pointer" }}>
