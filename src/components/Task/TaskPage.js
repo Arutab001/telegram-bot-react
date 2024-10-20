@@ -162,7 +162,7 @@ const TaskPage = () => {
                 </div>
             </div>
             <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
-                <MyBtn text="Go To"></MyBtn>
+                <MyBtn text="Go To" onClick={openLink}></MyBtn>
                 <MyBtn text="Approve" onClick={getReward} />
             </div>
             <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id} openError={setErrorOpen}/>
