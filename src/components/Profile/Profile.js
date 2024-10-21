@@ -162,7 +162,7 @@ const Profile = () => {
                     >
                         {user.id}
                     </span>
-                    {copySuccess && <p>{copySuccess}</p>} <br />
+                    <span>{copySuccess && {copySuccess}}</span> <br />
                     <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br />
                     <span>{localisation.Ref}: </span> {user.referrals} <br />
                     <span>{localisation.Withdrawn}: </span> {user.withdraw} <br />
