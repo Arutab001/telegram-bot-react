@@ -172,7 +172,7 @@ const Profile = () => {
                     <span>{localisation.Name}: </span> {user.name} <br />
                     <span>{localisation.Id}: </span>
                     <span
-                        onClick={handleCopyId}
+                        onClick={copyToClipboard}
                         style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}
                     >
                         {user.id}
