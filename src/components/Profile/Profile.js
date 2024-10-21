@@ -84,8 +84,8 @@ const Profile = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
     const [isErrorVisible, setErrorVisible] = useState(false);
-    const [avatar, setAvatar] = useState(defaultAvatar); // Состояние для аватарки
-    const [copySuccess, setCopySuccess] = useState(''); // Для сообщения об успешном копировании
+    const [avatar, setAvatar] = useState(defaultAvatar);
+    const [copySuccess, setCopySuccess] = useState('');
 
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
@@ -100,7 +100,7 @@ const Profile = () => {
 
     useEffect(() => {
         if (copySuccess) {
-            const timer = setTimeout(() => setCopySuccess(''), 3000); // Убираем сообщение через 3 секунды
+            const timer = setTimeout(() => setCopySuccess(''), 3000);
             return () => clearTimeout(timer);
         }
     }, [copySuccess]);
@@ -141,7 +141,7 @@ const Profile = () => {
                 <div>
                     <div style={{ display: "flex", height: "100%", alignItems: "center" }}>
                         <img
-                            src={avatar} // Используем состояние аватарки
+                            src={avatar}
                             alt="User Avatar"
                             style={{ width: "15%", height: "100%", borderRadius: "100%", margin: "5%" }}
                         />
@@ -166,9 +166,7 @@ const Profile = () => {
                 <div style={{ paddingTop: "5%" }}>
                     <MyBtn
                         text={localisation.Premium}
-                        onClick={openModal}
-                        onClose={(e) => closeModal(e)}
-                        setIsModalOpen={setIsModalOpen}
+                        onClick={() => setIsModalOpen(true)}
                         disabled={true}
                     />
                 </div>
@@ -177,15 +175,15 @@ const Profile = () => {
                 </div>
                 <GetPremium
                     show={isModalOpen}
-                    onClose={closeModal}
+                    onClose={() => setIsModalOpen(false)}
                     className="Modal"
-                    closeModal={closeModal}
-                    handleNot={handleIsVisible}
-                    openError={openError}
+                    closeModal={() => setIsModalOpen(false)}
+                    handleNot={setIsVisible}
+                    openError={() => setErrorVisible(true)}
                 />
                 <LanguageModal show={isLangModalOpen} onClose={closeLang} />
             </div>
-            <ErrorModal show={isErrorVisible} onClose={closeError} />
+            <ErrorModal show={isErrorVisible} onClose={() => setErrorVisible(false)} />
         </div>
     );
 };
