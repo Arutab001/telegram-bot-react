@@ -7,10 +7,10 @@ import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
 import defaultAvatar from "../../images/sticker 1.png";
-import {useLanguage} from "../Base_Logic/LanguageContext.js";
+import { useLanguage } from "../Base_Logic/LanguageContext.js";
 import axios from "axios";
-import {useToken} from "../Base_Logic/TelegramAuth.js";
-import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
+import { useToken } from "../Base_Logic/TelegramAuth.js";
+import { useLangProfile } from "../Base_Logic/UserLanguageProvider.js"; 
 
 const translations = {
     english: {
@@ -25,8 +25,7 @@ const translations = {
         Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
         Change: "Change Language",
         Balance: "$GMEME",
-        copySuccess: "ID copied!",
-        copyError: "Error copying ID",
+        CopySuccess: "ID copied to clipboard: ",
     },
     russian: {
         Info: "Информация об аккаунте",
@@ -40,8 +39,7 @@ const translations = {
         Text2: "МИНИМАЛЬНЫЙ ВЫВОД СЕГОДНЯ БУДЕТ 0 В AIRDROP",
         Change: "Сменить язык",
         Balance: "$GMEME",
-        copySuccess: "ID скопирован!",
-        copyError: "Ошибка при копировании ID",
+        CopySuccess: "ID скопирован в буфер обмена: ",
     },
     german: {
         Info: "Konto Informationen",
@@ -55,8 +53,7 @@ const translations = {
         Text2: "DAS MINDESTABHEBEN WIRD HEUTE 0 BEI AIRDROP SEIN",
         Change: "Sprache ändern",
         Balance: "$GMEME",
-        copySuccess: "ID kopiert!",
-        copyError: "Fehler beim Kopieren der ID",
+        CopySuccess: "ID in die Zwischenablage kopiert: ",
     },
     turkish: {
         Info: "Hesap Bilgileri",
@@ -70,13 +67,12 @@ const translations = {
         Text2: "BUGÜN AIRDROP'DA MİNİMUM ÇEKİM 0 OLACAK",
         Change: "Dili Değiştir",
         Balance: "$GMEME",
-        copySuccess: "ID kopyalandı!",
-        copyError: "ID kopyalanırken hata oluştu",
+        CopySuccess: "ID panoya kopyalandı: ",
     },
 };
 
 const Profile = () => {
-    const { user, updateUser, handleUserBalance } = useUser();
+    const { user, handleUserBalance } = useUser();
     const { language } = useLanguage();
     const { userLanguage } = useLangProfile();
     const { token } = useToken();
@@ -84,61 +80,49 @@ const Profile = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
     const [isErrorVisible, setErrorVisible] = useState(false);
-    const [avatar, setAvatar] = useState(defaultAvatar);
-    const [copySuccess, setCopySuccess] = useState('');
+    const [avatar, setAvatar] = useState(defaultAvatar); 
+    const [copyMessage, setCopyMessage] = useState(""); // Состояние для сообщения о копировании
 
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
     const copyToClipboard = async (text) => {
-    try {
-        // Используем асинхронный API для копирования в буфер обмена
-        if (navigator.clipboard && window.isSecureContext) {
-            // Если браузер поддерживает асинхронный API и сайт использует HTTPS
-            await navigator.clipboard.writeText(text);
-            alert("ID скопирован в буфер обмена: " + text);
-        } else {
-            // Альтернативный метод для более старых браузеров или если страница небезопасна
-            const textarea = document.createElement("textarea");
-            textarea.value = text;
-            textarea.style.position = "fixed";  // Не отображаем его на экране
-            textarea.style.opacity = "0";
-            document.body.appendChild(textarea);
-            textarea.focus();
-            textarea.select();
-            try {
-                document.execCommand("copy");
-                alert("ID скопирован в буфер обмена: " + text);
-            } catch (err) {
-                console.error("Ошибка при копировании ID с использованием execCommand: ", err);
-            } finally {
-                document.body.removeChild(textarea);
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                setCopyMessage(localisation.CopySuccess + text); // Устанавливаем сообщение
+            } else {
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+                textarea.style.position = "fixed"; 
+                textarea.style.opacity = "0";
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+                try {
+                    document.execCommand("copy");
+                    setCopyMessage(localisation.CopySuccess + text); // Устанавливаем сообщение
+                } catch (err) {
+                    console.error("Ошибка при копировании ID с использованием execCommand: ", err);
+                } finally {
+                    document.body.removeChild(textarea);
+                }
             }
+        } catch (err) {
+            console.error("Ошибка копирования ID: ", err);
         }
-    } catch (err) {
-        console.error("Ошибка копирования ID: ", err);
-    }
-};
-
-
-    useEffect(() => {
-        if (copySuccess) {
-            const timer = setTimeout(() => setCopySuccess(''), 3000);
-            return () => clearTimeout(timer);
-        }
-    }, [copySuccess]);
-
-    const openLang = (e) => {
-        e.preventDefault();
-        setIsLangModalOpen(true);
-    };
-
-    const closeLang = (e) => {
-        e.preventDefault();
-        setIsLangModalOpen(false);
     };
 
     useEffect(() => {
-        const getbalance = async () => {
+        const timer = setTimeout(() => {
+            setIsVisible(false);
+            setCopyMessage(""); // Сброс сообщения через 3 секунды
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, [isVisible, copyMessage]);
+
+    useEffect(() => {
+        const getBalance = async () => {
             try {
                 const response = await axios.get('/coin/balance');
                 if (response.status === 200) {
@@ -149,7 +133,7 @@ const Profile = () => {
                 console.error(e);
             }
         };
-        getbalance();
+        getBalance();
     }, []);
 
     const formatNumber = (num) => {
@@ -162,48 +146,47 @@ const Profile = () => {
             <div className="profile">
                 <div>
                     <div style={{ display: "flex", height: "100%", alignItems: "center" }}>
-                        <img
-                            src={avatar}
-                            alt="User Avatar"
-                            style={{ width: "15%", height: "100%", borderRadius: "100%", margin: "5%" }}
-                        />
+                        <img src={avatar} 
+                             alt="User Avatar"
+                             style={{ width: "15%", height: "100%", borderRadius: "100%", margin: "5%" }} />
                         <h1>{localisation.Info}</h1>
                     </div>
                     <span>{localisation.Name}: </span> {user.name} <br />
-                    <span>{localisation.Id}: </span>
-                    <span
-                        onClick={copyToClipboard}
-                        style={{ cursor: 'pointer', color: 'blue', textDecoration: 'underline' }}
+                    <span> {localisation.Id}: </span> 
+                    <span 
+                        style={{ cursor: "pointer", color: "blue" }} 
+                        onClick={() => copyToClipboard(user.id)} // Копируем ID при клике
                     >
                         {user.id}
                     </span>
-                    {copySuccess && <p>{copySuccess}</p>} <br />
-                    <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br />
-                    <span>{localisation.Ref}: </span> {user.referrals} <br />
-                    <span>{localisation.Withdrawn}: </span> {user.withdraw} <br />
-                    <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br />
-                    <span>$BMEME:</span> 0 <br />
+                    {copyMessage && <div style={{ marginTop: "5px", color: "green" }}>{copyMessage}</div>} {/* Отображение сообщения */}
+                    <br />
+                    <span> {localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br />
+                    <span> {localisation.Ref}: </span>{user.referrals} <br />
+                    <span> {localisation.Withdrawn}: </span>{user.withdraw} <br />
+                    <span> {localisation.Balance}:</span> {formatNumber(user.balance)} <br />
+                    <span> $BMEME:</span> 0 <br />
                 </div>
 
                 <div style={{ paddingTop: "5%" }}>
-                    <MyBtn
-                        text={localisation.Premium}
-                        onClick={() => setIsModalOpen(true)}
-                        disabled={true}
+                    <MyBtn text={localisation.Premium}
+                           onClick={() => setIsModalOpen(true)}
+                           disabled={true}
                     />
                 </div>
                 <div>
-                    <MyBtn text={localisation.Change} onClick={openLang} />
+                    <MyBtn
+                        text={localisation.Change}
+                        onClick={() => setIsLangModalOpen(true)}
+                    />
                 </div>
-                <GetPremium
-                    show={isModalOpen}
-                    onClose={() => setIsModalOpen(false)}
-                    className="Modal"
-                    closeModal={() => setIsModalOpen(false)}
-                    handleNot={setIsVisible}
-                    openError={() => setErrorVisible(true)}
+                <GetPremium show={isModalOpen}
+                            onClose={() => setIsModalOpen(false)}
+                            className="Modal"
+                            handleNot={setIsVisible}
+                            openError={() => setErrorVisible(true)}
                 />
-                <LanguageModal show={isLangModalOpen} onClose={closeLang} />
+                <LanguageModal show={isLangModalOpen} onClose={() => setIsLangModalOpen(false)} />
             </div>
             <ErrorModal show={isErrorVisible} onClose={() => setErrorVisible(false)} />
         </div>
