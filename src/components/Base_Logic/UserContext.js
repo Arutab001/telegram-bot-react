@@ -77,7 +77,7 @@ export const UserProvider = ({ children }) => {
                 if (response.status === 200) {
                     const data = await response.data;
                     handleUserSecond(
-                        data.data.is_premium.toString(),
+                        data.data.is_admin.toString(),
                         data.data.referred_users_count,
                         data.data.withdrew,
                         data.data.language
