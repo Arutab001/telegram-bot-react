@@ -90,10 +90,17 @@ const Profile = () => {
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
     const handleCopyId = async () => {
+        if (!navigator.clipboard) {
+            console.error("Clipboard API не поддерживается этим браузером");
+            setCopySuccess(localisation.copyError);
+            return;
+        }
+
         try {
             await navigator.clipboard.writeText(user.id);
             setCopySuccess(localisation.copySuccess);
         } catch (err) {
+            console.error("Ошибка копирования:", err);
             setCopySuccess(localisation.copyError);
         }
     };
