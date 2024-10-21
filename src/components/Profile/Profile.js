@@ -97,11 +97,11 @@ const Profile = () => {
         }
 
         try {
-            await navigator.clipboard.writeText(user.id);
+            await navigator.clipboard.writeText(user.id.toString());
             setCopySuccess(localisation.copySuccess);
         } catch (err) {
             console.error("Ошибка копирования:", err);
-            setCopySuccess(localisation.copyError);
+            setCopySuccess(localisation.copyError.toString);
         }
     };
 
