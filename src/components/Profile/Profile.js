@@ -89,14 +89,36 @@ const Profile = () => {
 
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
-    const handleCopyId = async () => {
-        try {
-            await navigator.clipboard.writeText(user.id);
-            setCopySuccess(localisation.copySuccess);
-        } catch (err) {
-            setCopySuccess(localisation.copyError);
+    const copyToClipboard = async (text) => {
+    try {
+        // Используем асинхронный API для копирования в буфер обмена
+        if (navigator.clipboard && window.isSecureContext) {
+            // Если браузер поддерживает асинхронный API и сайт использует HTTPS
+            await navigator.clipboard.writeText(text);
+            alert("ID скопирован в буфер обмена: " + text);
+        } else {
+            // Альтернативный метод для более старых браузеров или если страница небезопасна
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";  // Не отображаем его на экране
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            try {
+                document.execCommand("copy");
+                alert("ID скопирован в буфер обмена: " + text);
+            } catch (err) {
+                console.error("Ошибка при копировании ID с использованием execCommand: ", err);
+            } finally {
+                document.body.removeChild(textarea);
+            }
         }
-    };
+    } catch (err) {
+        console.error("Ошибка копирования ID: ", err);
+    }
+};
+
 
     useEffect(() => {
         if (copySuccess) {
