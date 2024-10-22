@@ -55,6 +55,8 @@ const TaskPage = () => {
 
     const [isErrorOpen, setErrorOpen] = useState(false);
 
+    const [Image, setImage] = useState('');
+
     const CloseModal = (e) => {
         e.preventDefault();
         setModalOpen(false);
@@ -84,8 +86,8 @@ const TaskPage = () => {
 
     const fetchTask = async () => {
         try{
-            const response = await axios.get(`/task/photo?id=${id}&type=big_file_id`);
-            console.log(response);
+            const response = await axios.get(`/task/photo?id=98&type=big_file_id`);
+            setImage(response);
         }catch (e) {
             console.error(e)
         }
@@ -127,7 +129,7 @@ const TaskPage = () => {
     return (
         <div className="TaskPage">
             <div>
-                <img src={TaskImg}/>
+                <img src={Image}/>
             </div>
             <div>
                 <h2 className="task-header">
