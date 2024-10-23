@@ -55,7 +55,7 @@ const TaskPage = () => {
 
     const [isErrorOpen, setErrorOpen] = useState(false);
 
-    const [Image, setImage] = useState('');
+    const [image, setImage] = useState('');
 
     const CloseModal = (e) => {
         e.preventDefault();
@@ -140,7 +140,7 @@ const TaskPage = () => {
     return (
         <div className="TaskPage">
             <div>
-                <img src={Image}/>
+                <img src={image}/>
             </div>
             <div>
                 <h2 className="task-header">
