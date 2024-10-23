@@ -60,12 +60,12 @@ export const TelegramAuth = ({children}) => {
                     console.log(hash); // tgWebAppData=...&tgWebAppVersion=6.2&...
 
                     const params = new URLSearchParams(hash);
-                    console.log(params.get('tgWebAppStartParam')); // "6.2"
+                    console.log("PARAMS: ")
+                    console.log(params.get('tgWebAppStartParam'));
                     const initData = window.Telegram.WebApp.initData;
                     console.log(initData.toString())
-                    const response = await axios.post('/auth/v4', {
+                    const response = await axios.post(`/auth/v4?start=${params}`, {
                         data: initData,
-                        start_argument: params
                     });
                     const result = response.data.access_token;
                     handleSetToken(result.toString()); // Сохраняем токен в стейте и cookie
