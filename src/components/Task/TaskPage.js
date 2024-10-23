@@ -90,7 +90,7 @@ const TaskPage = () => {
                 responseType: 'arraybuffer', // Указываем, что ответ будет в бинарном формате (blob)
             });
             const base64 = btoa(
-                new Uint8Array(response.data).reduce(
+                new Uint8Array(response).reduce(
                     (data, byte) => data + String.fromCharCode(byte), '',
 
             ))
