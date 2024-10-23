@@ -87,12 +87,19 @@ const TaskPage = () => {
     const fetchTask = async () => {
         try{
             const response = await axios.get(`/task/photo?id=98&type=big_file_id`, {
-                responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
+                responseType: 'arraybuffer', // Указываем, что ответ будет в бинарном формате (blob)
             });
+            const base64 = btoa(
+                new Uint8Array(response.data).reduce(
+                    (data, byte) => data + String.fromCharCode(byte), '',
 
-            // Создаем объект URL для Blob
-            const imageUrl = URL.createObjectURL(response.data);
-            setImage(imageUrl);
+            ))
+
+            console.log("IMAGE: ")
+            console.log(response)
+            //const imageUrl = URL.createObjectURL(response.data);
+
+            setImage(base64);
         }catch (e) {
             console.error(e)
         }
