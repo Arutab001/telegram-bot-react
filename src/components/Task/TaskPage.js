@@ -90,12 +90,15 @@ const TaskPage = () => {
                 responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
             });
 
-            // Создаем объект URL для Blob
-            console.log("IMAGE: ")
-            console.log(response)
+            console.log("IMAGE: ");
+            console.log(response);
+
+// Получаем URL для blob-данных
             const imageUrl = URL.createObjectURL(response.data);
 
+// Передаем URL в состояние компонента
             setImage(imageUrl);
+
         }catch (e) {
             console.error(e)
         }
