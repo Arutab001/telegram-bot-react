@@ -3,7 +3,7 @@ import "./TaskContainer.css";
 import {Link} from "react-router-dom";
 import Profile from "../Profile/Profile.js";
 import axios from "axios";
-
+import TaskImage from "src/images/Ellipse 5.jpg"
 
 const TaskContainer = (props) => {
     const stripHtmlTags = (html) => {
@@ -36,7 +36,7 @@ const TaskContainer = (props) => {
             <div
             style={{marginRight: "2%"}}
             >
-                <img src={image}/>
+                <img src={image || TaskImage}/>
             </div>
             <div style={{height: "100%",
                 display: "flex",
