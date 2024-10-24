@@ -20,7 +20,7 @@
         -webkit-line-clamp: 1;
         margin-bottom: 0;
         margin-top: 0;
-        text-align: center;
+        margin-left: 5%;
     }
     p {
         color: #00000080;
