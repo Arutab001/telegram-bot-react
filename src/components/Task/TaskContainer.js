@@ -18,9 +18,12 @@ const TaskContainer = (props) => {
                 responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
             });
 
-            const imageUrl = URL.createObjectURL(response.data);
+            if (response.status === 200 ) {
 
-            setImage(imageUrl);
+                const imageUrl = URL.createObjectURL(response.data);
+
+                setImage(imageUrl);
+            }
         }
         catch (e) {
             console.log(e)
