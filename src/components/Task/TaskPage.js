@@ -91,7 +91,7 @@ const TaskPage = () => {
             });
 
             const imageUrl = URL.createObjectURL(response.data);
-
+            console.log(imageUrl);
             setImage(imageUrl);
 
         }catch (e) {
