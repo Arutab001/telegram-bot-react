@@ -43,7 +43,7 @@
         margin: 10%;
         height: 8vh;
         width: 15vw;
-        border-radius: 90%;
+        border-radius: 22px;
     }
     .TaskSvg {
         display: flex;
