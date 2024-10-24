@@ -1,6 +1,6 @@
 .profile {
-    background-color: #D9FFD2;
-    border: 2px solid #00000080;
+    background-color: #E4B57F;
+    border: 2px solid #725B40;
     border-radius: 24px;
     height: 100%;
     width: 75vw;
@@ -11,13 +11,13 @@
     padding-bottom: 5%;
     h1 {
         font-size: larger;
-        color: #364035;
+        color: #392D20;
     }
     span {
         margin: 0 5%;
-        color: #364035
+        color: #392D20;
     }
-    color: #6D8069;
+    color: #725B40;
 }
 .Button {
     padding-right: 5%;
@@ -25,10 +25,10 @@
     width: 100%;
     height: 5vh;
     border-radius: 24px;
-    border: 2px solid #00000080;
+    border: 2px solid #725B40;
     background-color: #FFEDD2;
     font-family: Montserrat;
-    color: #364035;
+    color: #392D20;
 }
 
 .Button:disabled {
@@ -36,7 +36,7 @@
 }
 
 .p2 {
-    color: #4D5A4B;
+    color: #392D20;
 }
 
 @media (min-width: 1025px) {
