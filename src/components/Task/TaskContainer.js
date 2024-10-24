@@ -1,19 +1,42 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./TaskContainer.css";
 import {Link} from "react-router-dom";
 import Profile from "../Profile/Profile.js";
-
+import axios from "axios";
+import TaskImage from "../../images/Ellipse 5.jpg"
 
 const TaskContainer = (props) => {
     const stripHtmlTags = (html) => {
         return html.replace(/<[^>]*>?/gm, ''); // Убирает все HTML-теги
     };
+
+    const [image, setImage] = useState('');
+
+    const fetchTaskImg = async () => {
+        try {
+            const response = await axios.get(`https://geckoshi-prod.up.railway.app/task/photo?id=${props.id}&type=small_file_id`, {
+                responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
+            });
+
+            const imageUrl = URL.createObjectURL(response.data);
+
+            setImage(imageUrl);
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
+    useEffect(() => {
+        fetchTaskImg();
+    }, []);
+
     return (
         <div className="TaskContainer">
             <div
             style={{marginRight: "2%"}}
             >
-                <img src={props.image}/>
+                <img src={image || TaskImage}/>
             </div>
             <div style={{height: "100%",
                 display: "flex",

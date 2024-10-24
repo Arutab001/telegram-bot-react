@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from "react-router-dom";
 import "./TaskPage.css";
-import TaskImg from "../../images/forge 1.png"
+import TaskImg from "../../images/1channel.png"
 import MyBtn from "../Profile/MyBtn.js";
 import ModalComplete from "./ModalComplete.js";
 import ErrorModal from "../Profile/ErrorModal.js";
@@ -55,6 +55,8 @@ const TaskPage = () => {
 
     const [isErrorOpen, setErrorOpen] = useState(false);
 
+    const [image, setImage] = useState('');
+
     const CloseModal = (e) => {
         e.preventDefault();
         setModalOpen(false);
@@ -84,8 +86,14 @@ const TaskPage = () => {
 
     const fetchTask = async () => {
         try{
-            const response = await axios.get(`/task/photo?id=${id}&type=big_file_id`);
-            console.log(response.data);
+            const response = await axios.get(`https://geckoshi-prod.up.railway.app/task/photo?id=${id}&type=big_file_id`, {
+                responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
+            });
+
+            const imageUrl = URL.createObjectURL(response.data);
+
+            setImage(imageUrl);
+
         }catch (e) {
             console.error(e)
         }
@@ -127,7 +135,7 @@ const TaskPage = () => {
     return (
         <div className="TaskPage">
             <div>
-                <img src={TaskImg}/>
+                <img src={image === '' ? TaskImg : image}/>
             </div>
             <div>
                 <h2 className="task-header">
