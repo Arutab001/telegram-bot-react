@@ -10,6 +10,14 @@ const TaskContainer = (props) => {
         return html.replace(/<[^>]*>?/gm, ''); // Убирает все HTML-теги
     };
 
+    const trimString = (str, maxLength = 12) => {
+        const cleanString = stripHtmlTags(str);
+        if (cleanString.length > maxLength) {
+            return cleanString.slice(0, maxLength - 3) + '...'; // Обрезаем строку и добавляем "..."
+        }
+        return cleanString; // Если строка меньше или равна maxLength, возвращаем её как есть
+    };
+
     const [image, setImage] = useState('');
 
     const fetchTaskImg = async () => {
@@ -46,7 +54,7 @@ const TaskContainer = (props) => {
                 alignItems: "center"}}>
                 <div>
                     <h2 style={{margin: "0"}}>
-                        {stripHtmlTags(props.title)}
+                        {trimString(props.title)}
                     </h2>
                     <p>
                         + {props.reward} $GMEME
