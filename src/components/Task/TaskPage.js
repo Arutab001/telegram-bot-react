@@ -86,12 +86,12 @@ const TaskPage = () => {
 
     const fetchTask = async () => {
         try{
-            const response = await axios.get(`/task/photo?id=${id}&type=big_file_id`, {
+            const response = await axios.get(`https://geckoshi-prod.up.railway.app/task/photo?id=${id}&type=big_file_id`, {
                 responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
             });
 
             const imageUrl = URL.createObjectURL(response.data);
-            console.log(imageUrl);
+
             setImage(imageUrl);
 
         }catch (e) {
