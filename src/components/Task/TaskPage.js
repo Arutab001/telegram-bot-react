@@ -135,7 +135,7 @@ const TaskPage = () => {
     return (
         <div className="TaskPage">
             <div>
-                <img src={image ? image : TaskImg}/>
+                <img src={image === '' ? TaskImg : image}/>
             </div>
             <div>
                 <h2 className="task-header">
