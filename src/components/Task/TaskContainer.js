@@ -3,7 +3,7 @@ import "./TaskContainer.css";
 import {Link} from "react-router-dom";
 import Profile from "../Profile/Profile.js";
 import axios from "axios";
-import TaskImage from "src/images/Ellipse 5.jpg"
+import TaskImage from "../../images/Ellipse 5.jpg"
 
 const TaskContainer = (props) => {
     const stripHtmlTags = (html) => {
