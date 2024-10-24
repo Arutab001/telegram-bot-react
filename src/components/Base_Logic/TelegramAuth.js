@@ -64,7 +64,7 @@ export const TelegramAuth = ({children}) => {
                     console.log(params.get('tgWebAppStartParam'));
                     const initData = window.Telegram.WebApp.initData;
                     console.log(initData.toString())
-                    const response = await axios.post(`/auth/v4?start=${params}`, {
+                    const response = await axios.post(`/auth/v3`, {
                         data: initData,
                     });
                     const result = response.data.access_token;
