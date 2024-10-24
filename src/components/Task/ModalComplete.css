@@ -24,7 +24,7 @@
     border-radius: 24px;
 
     p {
-        color: #E4B57F;
+        color: #725B40;
         text-align: center;
         margin: 5% 0 0 0;
     }
@@ -43,8 +43,8 @@
 
 .reward_header {
         background-color: #725B40;
-        color: #725B40;
-        width: 99.5%;
+        color: #E4B57F;
+        width: 100%;
         margin: 0;
         height: 5vh;
         padding: 5% 0;
