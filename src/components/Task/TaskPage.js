@@ -90,9 +90,11 @@ const TaskPage = () => {
                 responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
             });
 
-            const imageUrl = URL.createObjectURL(response.data);
+            if (response.status === 200){
+                const imageUrl = URL.createObjectURL(response.data);
 
-            setImage(imageUrl);
+                setImage(imageUrl);
+            }
 
         }catch (e) {
             console.error(e)
