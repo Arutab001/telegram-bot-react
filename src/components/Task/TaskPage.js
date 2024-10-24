@@ -135,7 +135,7 @@ const TaskPage = () => {
     return (
         <div className="TaskPage">
             <div>
-                <img src={TaskImg}/>
+                <img src={image || TaskImg}/>
             </div>
             <div>
                 <h2 className="task-header">
