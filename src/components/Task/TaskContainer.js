@@ -14,7 +14,7 @@ const TaskContainer = (props) => {
 
     const fetchTaskImg = async () => {
         try {
-            const response = await axios.get(`https://geckoshi-prod.up.railway.app/task/photo?id=98&type=small_file_id`, {
+            const response = await axios.get(`https://geckoshi-prod.up.railway.app/task/photo?id=${props.id}&type=small_file_id`, {
                 responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
             });
 
