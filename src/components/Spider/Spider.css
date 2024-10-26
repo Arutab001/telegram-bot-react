@@ -14,10 +14,10 @@
     background-color: black;
     border-radius: 50%;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0; /* Теперь паук будет слева */
     z-index: 2;
 }
+
 
 .eye-left, .eye-right {
     position: absolute;
