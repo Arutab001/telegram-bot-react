@@ -10,7 +10,6 @@ const Header = () => {
     const {user, updateUser} = useUser();
     return (
         <div className="Header">
-            <Spider />
             {user.name}
         </div>
     );
