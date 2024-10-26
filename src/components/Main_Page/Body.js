@@ -6,6 +6,7 @@ import Coin1 from "../../images/gecko_coin_rem 1.png"
 import Coin2 from "../../images/gecko_coin2.0 1.png"
 import {useUser} from "../Base_Logic/UserContext.js";
 import axios from "axios";
+import Spider from "../Spider/Spider.js";
 
 const Body = () => {
     const {user, handleUser, handleUserBalance} = useUser();
@@ -28,6 +29,7 @@ const Body = () => {
 
     return (
         <div className="Body">
+            <Spider />
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <CoinBox image={Coin1} name="$GMEME" cost={user.balance}/>
                 <CoinBox image={Coin2} name="$BMEME" cost={"0"}/>
