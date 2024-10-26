@@ -1,5 +1,7 @@
 .spider-container {
-    position: relative;
+    position: absolute; /* Добавляем абсолютное позиционирование */
+    top: 0;
+    left: 0; /* Перемещаем контейнер к левой стороне */
     height: 100vh;
     overflow: hidden;
     width: 100vw;
