@@ -29,6 +29,7 @@ const Body = () => {
 
     return (
         <div className="Body">
+            <Spider />
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <CoinBox image={Coin1} name="$GMEME" cost={user.balance}/>
                 <CoinBox image={Coin2} name="$BMEME" cost={"0"}/>

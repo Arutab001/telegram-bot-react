@@ -1,11 +1,12 @@
 .spider-container {
-    position: absolute; /* Добавляем абсолютное позиционирование */
+    position: absolute;
     top: 0;
-    left: 0; /* Перемещаем контейнер к левой стороне */
+    left: 0;
     height: 100vh;
     overflow: hidden;
-    width: 100vw;
+
 }
+
 
 .spider {
     position: absolute;

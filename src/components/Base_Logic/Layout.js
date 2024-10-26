@@ -9,7 +9,6 @@ const Layout = () => {
 
     return (
         <>
-            <Spider />
             <Header />
             <main style={{marginBottom: "15vh"}}>
                 <Outlet />
