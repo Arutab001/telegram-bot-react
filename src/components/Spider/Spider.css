@@ -2,7 +2,7 @@
     position: relative;
     height: 100vh;
     overflow: hidden;
-    background-color: #32CD32;
+    width: 100vw;
 }
 
 .spider {
