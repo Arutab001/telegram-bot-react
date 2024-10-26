@@ -1,6 +1,6 @@
 .spider-container {
     position: absolute;
-    top: 0;
+    top: -150px;
     left: 20px;
     height: 350px;
     overflow: hidden;
@@ -14,7 +14,7 @@
     height: 50px;
     background-color: black;
     border-radius: 50%;
-    top: 0;
+    top: 100px;
     left: 40px; /* Теперь паук будет слева */
     z-index: 2;
 }
