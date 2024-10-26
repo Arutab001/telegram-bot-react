@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../../App.css";
-import NewsDefalut from '../../images/Frame 12.png';
+import NewsDefalut from '../../images/Frame 12.webp';
 import axios from "axios";
 import {useToken} from "../Base_Logic/TelegramAuth.js";
 

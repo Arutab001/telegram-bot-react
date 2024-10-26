@@ -2,9 +2,9 @@
     position: absolute;
     top: 0;
     left: 20px;
-    height: 100vh;
+    height: 350px;
     overflow: hidden;
-    width: 100vw;
+    width: 650px;
 }
 
 
@@ -15,7 +15,7 @@
     background-color: black;
     border-radius: 50%;
     top: 0;
-    left: 20px; /* Теперь паук будет слева */
+    left: 40px; /* Теперь паук будет слева */
     z-index: 2;
 }
 
@@ -128,7 +128,7 @@
 
 .web {
     position: absolute;
-    left: 8.3%;
+    left: 65px;
     top: 0;
     width: 2px;
     background-color: white;
