@@ -5,6 +5,7 @@
     height: 350px;
     overflow: hidden;
     width: 650px;
+    z-index: 1;
 }
 
 
