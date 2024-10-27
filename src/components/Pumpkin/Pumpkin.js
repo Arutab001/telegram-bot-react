@@ -1,6 +1,6 @@
 // MovingDot.js
 import React, { useState, useEffect } from "react";
-import styles from './MovingDot.module.css'; // Подключаем CSS-модуль
+import styles from './Pumpkin.module.css'; // Подключаем CSS-модуль
 
 const MovingDot = () => {
     const [dotVisible, setDotVisible] = useState(false);
