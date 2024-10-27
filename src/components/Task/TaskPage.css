@@ -5,9 +5,9 @@
     margin: 10% auto;
     height: 100%;
     width: 75vw;
-    background-color: #D9FFD2;
+    background-color: #E4B57F;
     border-radius: 24px;
-    border: 2px solid #00000080;
+    border: 2px solid #725B40;
     padding-bottom: 1%;
     img {
         width: 100%;
@@ -16,12 +16,12 @@
     }
     .task-header {
         text-align: center;
-        color: #364035;
+        color: #392D20;
         margin: 3%;
     }
     span {
         margin: 0 5%;
-        color: #364035
+        color: #392D20
     }
     div {
         width: 100%;
@@ -30,7 +30,7 @@
         width: 90%;
         height: 5vh;
     }
-    color: #36403580;
+    color: #725B40;
 }
 
 @media (min-width: 600px) {
