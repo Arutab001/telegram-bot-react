@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../../App.css";
-import NewsDefalut from '../../images/Frame 12.png';
+import NewsDefalut from '../../images/Frame 12.webp';
 import axios from "axios";
 import {useToken} from "../Base_Logic/TelegramAuth.js";
 
@@ -17,7 +17,7 @@ const NewsBox = () => {
             const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/link', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
-            console.log("Post URL:", response.data);
+            console.log("Post URL:", response);
             setPostUrl(response.data.url);
         } catch (error) {
             console.error("Error fetching latest post:", error);
@@ -27,7 +27,7 @@ const NewsBox = () => {
             const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/photo?r=3', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
-            console.log("Image URL:", response.data);
+            console.log("Image URL:", response);
             setImage(response.data.url);
         } catch (e) {
             console.error("Error fetching image:", e);
