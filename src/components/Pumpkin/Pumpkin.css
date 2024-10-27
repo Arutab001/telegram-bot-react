@@ -1,0 +1,22 @@
+/* MovingDot.module.css */
+.container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+    animation: fly 5s infinite;
+}
+
+@keyframes fly {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(100px, 100px); }
+    100% { transform: translate(0, 0); }
+}
