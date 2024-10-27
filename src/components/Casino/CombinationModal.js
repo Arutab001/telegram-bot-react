@@ -28,9 +28,9 @@ const CombinationModal = ({show, close}) => {
     return (
         <div className="combination-overlay">
             <div className="combination-content">
-                <svg onClick={close} style={{position: "absolute", right: "-17", top: "-10"}} xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 86 86" fill="none">
-                    <circle cx="43" cy="43" r="41.5" fill="#D9FFD2" stroke="#6D8069" stroke-width="3"/>
-                    <path d="M26.042 26.0415L58.9587 58.9582M26.042 58.9582L58.9587 26.0415" stroke="#6D8069"
+                <svg onClick={close} style={{position: "absolute", right: "-17", top: "-10"}} xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 86 86" fill="#E4B57F">
+                    <circle cx="43" cy="43" r="41.5" fill="#E4B57F" stroke="#725B40" stroke-width="3"/>
+                    <path d="M26.042 26.0415L58.9587 58.9582M26.042 58.9582L58.9587 26.0415" stroke="#725B40"
                           stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <div className="CombinationsHeader">
