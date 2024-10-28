@@ -14,6 +14,10 @@ const slots = {
     fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
 };
 
+const HelloWeen = {
+    fruits: ["🎃", "👻", "💀", "🧟", "🔪", "🕯️", "⚰️", "🕷️", "🏚️"]
+}
+
 const win_translations = {
     english: "🎉 Congratulations, you won: {amount} $GMEME\n🎰 Your winning combination: {combination}",
     russian: "🎉 Поздравляем, ты выиграл: {amount} $GMEME\n🎰 Твоя выигрышная комбинация: {combination}",
@@ -75,18 +79,18 @@ const Casino = () => {
     const [win, setWin] = useState(false);
     const [spunOnce, setSpunOnce] = useState(false);
     const [results, setResults] = useState({
-        Fruit1: "🦎",
-        Fruit2: "🦎",
-        Fruit3: "🦎",
+        Fruit1: "🎃",
+        Fruit2: "🎃",
+        Fruit3: "🎃",
     });
     const [displayedResults, setDisplayedResults] = useState({
-        Fruit1: "🦎",
-        Fruit2: "🦎",
-        Fruit3: "🦎",
+        Fruit1: "🎃",
+        Fruit2: "🎃",
+        Fruit3: "🎃",
     });
 
     const getRandomFruit = () => {
-        return slots.fruits[Math.floor(Math.random() * slots.fruits.length)];
+        return HelloWeen.fruits[Math.floor(Math.random() * HelloWeen.fruits.length)];
     };
 
     const getResultsFromServer = async () => {

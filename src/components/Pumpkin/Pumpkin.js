@@ -1,12 +1,13 @@
 // MovingDot.js
 import React, { useState, useEffect } from "react";
-import styles from './Pumpkin.module.css'; // Подключаем CSS-модуль
+import styles from './Pumpkin.module.css';
 
 const MovingDot = () => {
-    const [dotVisible, setDotVisible] = useState(false);
+    const [dotVisible, setDotVisible] = useState(true);
     const [position, setPosition] = useState({ top: "50%", left: "50%" });
 
     useEffect(() => {
+        // Показываем точку каждые 5 минут, если она не была нажата
         const interval = setInterval(() => {
             setDotVisible(true);
             randomizePosition();
@@ -26,19 +27,17 @@ const MovingDot = () => {
         setTimeout(() => {
             setDotVisible(true);
             randomizePosition();
-        }, 300000); // 5 минут
+        }, 60000); // 1 минута
     };
 
     return (
-        <div className={styles.container}>
-            {dotVisible && (
-                <div
-                    className={styles.dot}
-                    style={{ top: position.top, left: position.left }}
-                    onClick={handleDotClick}
-                />
-            )}
-        </div>
+        dotVisible && (
+            <div
+                className={styles.dot}
+                style={{ top: position.top, left: position.left }}
+                onClick={handleDotClick}
+            />
+        )
     );
 };
 

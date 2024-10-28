@@ -1,14 +1,8 @@
-/* MovingDot.module.css */
-.container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-}
-
+/* Pumpkin.module.css */
 .dot {
-    position: absolute;
-    width: 20px;
-    height: 20px;
+    position: fixed;
+    width: 40px;
+    height: 40px;
     background-color: red;
     border-radius: 50%;
     cursor: pointer;
@@ -20,3 +14,4 @@
     50% { transform: translate(100px, 100px); }
     100% { transform: translate(0, 0); }
 }
+

@@ -4,16 +4,20 @@ import Header from '../Header.js';
 import Footer from '../Footer.js';
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
 import Spider from "../Spider/Spider.js";
+import Pumpkin from "../Pumpkin/Pumpkin.js";
 
 const Layout = () => {
 
     return (
         <>
-            <Header />
+            <Header/>
+            <div style={{position: "relative"}}>
+                <Pumpkin/>
+            </div>
             <main style={{marginBottom: "15vh"}}>
-                <Outlet />
+                <Outlet/>
             </main>
-            <Footer />
+            <Footer/>
         </>
     );
 };

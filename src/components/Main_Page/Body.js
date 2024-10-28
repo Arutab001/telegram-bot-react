@@ -12,15 +12,14 @@ import Pumpkin from "../Pumpkin/Pumpkin.js";
 const Body = () => {
     const {user, handleUser, handleUserBalance} = useUser();
 
-    useEffect(()  =>{
+    useEffect(() => {
         const getbalance = async () => {
             try {
                 const response = await axios.get('/coin/balance');
-                if (response.status === 200){
+                if (response.status === 200) {
                     handleUserBalance(response.data.data.GMEME);
                 }
-            }
-            catch (e) {
+            } catch (e) {
                 console.log("Balance error:");
                 console.error(e)
             }
@@ -30,9 +29,8 @@ const Body = () => {
 
     return (
         <div className="Body">
-            <Pumpkin />
             <div style={{position: "relative"}}>
-            <Spider />
+                <Spider/>
             </div>
             <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <CoinBox image={Coin1} name="$GMEME" cost={user.balance}/>
