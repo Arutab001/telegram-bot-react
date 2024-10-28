@@ -7,7 +7,6 @@ import Coin2 from "../../images/gecko_coin2.0 1.png"
 import {useUser} from "../Base_Logic/UserContext.js";
 import axios from "axios";
 import Spider from "../Spider/Spider.js";
-import Pumpkin from "../Pumpkin/Pumpkin.js";
 
 const Body = () => {
     const {user, handleUser, handleUserBalance} = useUser();
