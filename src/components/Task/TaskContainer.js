@@ -57,12 +57,14 @@ const TaskContainer = (props) => {
         TaskImage6,
     ];
 
+    const randomImage = taskImages[Math.floor(Math.random() * taskImages.length)];
+
     return (
         <div className="TaskContainer">
             <div
             style={{marginRight: "2%"}}
             >
-                <img src={image || taskImages[Math.random() * taskImages.length]}/>
+                <img src={image || randomImage}/>
             </div>
             <div style={{height: "100%",
                 display: "flex",
