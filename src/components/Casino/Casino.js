@@ -14,6 +14,10 @@ const slots = {
     fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
 };
 
+const HelloWeen = {
+    fruits: ["🎃", "👻", "💀", "🧟", "🔪", "🕯️", "⚰️", "🕷️", "🏚️"]
+}
+
 const win_translations = {
     english: "🎉 Congratulations, you won: {amount} $GMEME\n🎰 Your winning combination: {combination}",
     russian: "🎉 Поздравляем, ты выиграл: {amount} $GMEME\n🎰 Твоя выигрышная комбинация: {combination}",
@@ -75,18 +79,18 @@ const Casino = () => {
     const [win, setWin] = useState(false);
     const [spunOnce, setSpunOnce] = useState(false);
     const [results, setResults] = useState({
-        Fruit1: "🦎",
-        Fruit2: "🦎",
-        Fruit3: "🦎",
+        Fruit1: "🎃",
+        Fruit2: "🎃",
+        Fruit3: "🎃",
     });
     const [displayedResults, setDisplayedResults] = useState({
-        Fruit1: "🦎",
-        Fruit2: "🦎",
-        Fruit3: "🦎",
+        Fruit1: "🎃",
+        Fruit2: "🎃",
+        Fruit3: "🎃",
     });
 
     const getRandomFruit = () => {
-        return slots.fruits[Math.floor(Math.random() * slots.fruits.length)];
+        return HelloWeen.fruits[Math.floor(Math.random() * HelloWeen.fruits.length)];
     };
 
     const getResultsFromServer = async () => {
@@ -128,47 +132,51 @@ const Casino = () => {
                     fruits: ["🦎", "🏜️", "🏖️", "🏕️", "✈️", "🚀", "🪲", "🐞", "🐝"]
                 };
 
+                const HelloWeen = {
+                    fruits: ["🎃", "👻", "💀", "🧟", "🔪", "🕯️", "⚰️", "🕷️", "🏚️"]
+                };
+
                 const serverResponse = await getResultsFromServer();
                 console.log(serverResponse.data.data);
                 const combination = serverResponse.data.data.combination;
-                setWinAMount(serverResponse.data.data.win_amount)
+                setWinAMount(serverResponse.data.data.win_amount);
                 console.log(combination);
 
+                // Преобразование emoji на основе индексов
+                const transformedCombination = combination.map(emoji => {
+                    const index = slots.fruits.indexOf(emoji);
+                    return index !== -1 ? HelloWeen.fruits[index] : emoji;
+                });
+
                 setTimeout(() => {
-                    setRolling(false); // Останавливаем "вращение"
+                    setRolling(false);
 
                     // Убедимся, что у нас есть 3 эмодзи для отображения
                     setResults({
-                        Fruit1: combination[0],
-                        Fruit2: combination[1],
-                        Fruit3: combination[2]
+                        Fruit1: transformedCombination[0],
+                        Fruit2: transformedCombination[1],
+                        Fruit3: transformedCombination[2]
                     });
 
                     setDisplayedResults({
-                        Fruit1: combination[0],
-                        Fruit2: combination[1],
-                        Fruit3: combination[2]
+                        Fruit1: transformedCombination[0],
+                        Fruit2: transformedCombination[1],
+                        Fruit3: transformedCombination[2]
                     });
 
                 }, 700);
-                setTimeout(()=> {
-                    if (serverResponse.data.data.win_amount === 0){
-                        const message = lose_localisation
-                            .replace("{amount}", selectedValue)
-                            .replace("{combination}", combination);
-                        setUpString(message);
-                    }
-                    else {
-                        const message = win_localisation
-                            .replace("{amount}", serverResponse.data.data.win_amount)
-                            .replace("{combination}", combination);
-                        setUpString(message);
-                    }
-                }, 700)
+
+                setTimeout(() => {
+                    const message = serverResponse.data.data.win_amount === 0
+                        ? lose_localisation.replace("{amount}", selectedValue).replace("{combination}", transformedCombination)
+                        : win_localisation.replace("{amount}", serverResponse.data.data.win_amount).replace("{combination}", transformedCombination);
+                    setUpString(message);
+                }, 700);
 
             } else {
-                setUpString(language.slots_not_enough_to_play)
+                setUpString(language.slots_not_enough_to_play);
             }
+
             try {
                 const response = await axios.get('/user/info');
                 if (response.status === 200) {
@@ -176,7 +184,7 @@ const Casino = () => {
                     updateUser(prevState => ({
                         ...prevState,
                         balance: data.data.balance
-                    }))
+                    }));
                     console.log(data);
                 } else {
                     console.error(`Ошибка получения данных пользователя: ${response.statusText}`);
@@ -186,6 +194,7 @@ const Casino = () => {
             }
         }
     };
+
 
 
     return (

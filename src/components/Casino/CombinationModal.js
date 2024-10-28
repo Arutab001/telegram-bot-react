@@ -39,15 +39,15 @@ const CombinationModal = ({show, close}) => {
                     </h2>
                 </div>
                 <div className="Combinations">
-                    🦎🦎🦎 - x10 <br/>
-                    🏜️🏜️🏜️ - x5 <br/>
-                    🏖️🏖️🏖️ - x3 <br/>
-                    🏕️🏕️🏕️ - x2 <br/>
-                    ✈️✈️✈️ - x1.8 <br/>
-                    🚀🚀🚀 - x1.7 <br/>
-                    🪲🪲🪲 - x1.5 <br/>
-                    🐞🐞🐞 - x1.2 <br/>
-                    🐝🐝🐝 - x1.05 <br/>
+                    🎃🎃🎃 - x10 <br/>
+                    👻👻👻 - x5 <br/>
+                    💀💀💀 - x3 <br/>
+                    🧟🧟🧟 - x2 <br/>
+                    🔪🔪🔪 - x1.8 <br/>
+                    🕯️🕯️🕯️ - x1.7 <br/>
+                    ⚰️⚰️⚰️ - x1.5 <br/>
+                    🕷️🕷️🕷️ - x1.2 <br/>
+                    🏚️🏚️🏚️ - x1.05 <br/>
                 </div>
 
             </div>
