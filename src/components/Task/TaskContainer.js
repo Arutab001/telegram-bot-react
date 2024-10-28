@@ -3,7 +3,13 @@ import "./TaskContainer.css";
 import {Link} from "react-router-dom";
 import Profile from "../Profile/Profile.js";
 import axios from "axios";
-import TaskImage from "../../images/Ellipse 5.jpg"
+import TaskImage from "../../images/Ellipse 5.webp"
+import TaskImage2 from "../../images/Ellipse 6.webp"
+import TaskImage3 from "../../images/Ellipse 7.webp"
+import TaskImage4 from "../../images/ellipse-8.webp"
+import TaskImage5 from "../../images/ellipse-9.webp"
+import TaskImage6 from "../../images/ellipse-11.webp"
+
 
 const TaskContainer = (props) => {
     const stripHtmlTags = (html) => {
@@ -42,12 +48,23 @@ const TaskContainer = (props) => {
         fetchTaskImg();
     }, []);
 
+    const taskImages = [
+        TaskImage,
+        TaskImage2,
+        TaskImage3,
+        TaskImage4,
+        TaskImage5,
+        TaskImage6,
+    ];
+
+    const randomImage = taskImages[Math.floor(Math.random() * taskImages.length)];
+
     return (
         <div className="TaskContainer">
             <div
             style={{marginRight: "2%"}}
             >
-                <img src={image || TaskImage}/>
+                <img src={image || randomImage}/>
             </div>
             <div style={{height: "100%",
                 display: "flex",
