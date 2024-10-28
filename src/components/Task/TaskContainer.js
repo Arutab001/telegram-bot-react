@@ -4,6 +4,12 @@ import {Link} from "react-router-dom";
 import Profile from "../Profile/Profile.js";
 import axios from "axios";
 import TaskImage from "../../images/Ellipse 5.jpg"
+import TaskImage2 from "../../images/Ellipse 6.png"
+import TaskImage3 from "../../images/Ellipse 7.png"
+import TaskImage4 from "../../images/Ellipse 8.png"
+import TaskImage5 from "../../images/Ellipse 9.png"
+import TaskImage6 from "../../images/Ellipse 11.png"
+
 
 const TaskContainer = (props) => {
     const stripHtmlTags = (html) => {
@@ -42,12 +48,21 @@ const TaskContainer = (props) => {
         fetchTaskImg();
     }, []);
 
+    const taskImages = [
+        TaskImage,
+        TaskImage2,
+        TaskImage3,
+        TaskImage4,
+        TaskImage5,
+        TaskImage6,
+    ];
+
     return (
         <div className="TaskContainer">
             <div
             style={{marginRight: "2%"}}
             >
-                <img src={image || TaskImage}/>
+                <img src={image || taskImages[Math.random() * taskImages.length]}/>
             </div>
             <div style={{height: "100%",
                 display: "flex",
