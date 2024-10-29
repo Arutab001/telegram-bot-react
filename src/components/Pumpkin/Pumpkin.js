@@ -16,7 +16,7 @@ const MovingDot = () => {
         const checkAvailability = async () => {
             try {
                 // Добавляем параметр event_id = 1 и заголовок Authorization в GET-запрос
-                const response = await axios.get('/event-bonus', {
+                const response = await axios.get('https://geckoshi-prod.up.railway.app/event-bonus', {
                     params: { event_id: 1 },
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -50,7 +50,7 @@ const MovingDot = () => {
 
         try {
             // Добавляем параметр event_id = 1 и заголовок Authorization в POST-запрос
-            await axios.post('/event-bonus', { event_id: 1 }, {
+            await axios.post('https://geckoshi-prod.up.railway.app/event-bonus', { event_id: 1 }, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log("POST-запрос успешно отправлен");
