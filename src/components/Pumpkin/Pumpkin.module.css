@@ -1,12 +1,13 @@
 /* Pumpkin.module.css */
+
 .pumpkin {
-    position: fixed;
-    width: 80px; /* Задайте нужные размеры для видео */
+    position: absolute; /* Используем абсолютное позиционирование */
+    width: 80px; /* Установите нужный размер видео */
     height: 80px;
     cursor: pointer;
-    transform: translate(-50%, -50%); /* Центрирование по позиции */
-    animation: fly 5s infinite;
+    transform: translate(-50%, -50%); /* Центрирование элемента относительно позиции */
 }
+
 
 @keyframes fly {
     0% { transform: translate(0, 0); }
