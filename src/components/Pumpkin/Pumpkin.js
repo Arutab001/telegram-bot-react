@@ -12,7 +12,7 @@ const MovingDot = () => {
     useEffect(() => {
         // Проверяем наличие токена перед выполнением запроса
         if (!token) return;
-
+        console.log(token)
         // Функция для проверки доступности точки
         const checkAvailability = async () => {
             try {
