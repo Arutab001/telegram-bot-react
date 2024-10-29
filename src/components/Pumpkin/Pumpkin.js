@@ -11,7 +11,10 @@ const MovingDot = () => {
         // Функция для проверки доступности точки
         const checkAvailability = async () => {
             try {
-                const response = await axios.get('/event-bonus');
+                // Добавляем параметр event_id = 1 в GET-запрос
+                const response = await axios.get('/event-bonus', {
+                    params: { event_id: 1 }
+                });
                 if (response.data.available) {
                     setDotVisible(true);
                     randomizePosition();
@@ -41,7 +44,8 @@ const MovingDot = () => {
         setDotVisible(false); // Скрываем точку сразу после нажатия
 
         try {
-            await axios.post('/event-bonus');
+            // Добавляем параметр event_id = 1 в POST-запрос
+            await axios.post('/event-bonus', { event_id: 1 });
             console.log("POST-запрос успешно отправлен");
         } catch (error) {
             console.error("Ошибка при отправке POST-запроса:", error);
