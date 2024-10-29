@@ -8,7 +8,7 @@
 }
 /* В CSS для контейнера или самого компонента */
 .PumpkinContainer {
-    position: fixed;
+    position: absolute;
     width: 100vw;
     height: 100vh;
     overflow: hidden; /* Чтобы предотвратить прокрутку */

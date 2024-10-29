@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Header from '../Header.js';
 import Footer from '../Footer.js';
@@ -12,8 +11,10 @@ const Layout = () => {
     return (
         <>
             <Header/>
-            <div className={styles.PumpkinContainer}>
-                <Pumpkin/>
+            <div style={{position: "relative"}}>
+                <div className={styles.PumpkinContainer}>
+                    <Pumpkin/>
+                </div>
             </div>
             <main style={{marginBottom: "15vh"}}>
                 <Outlet/>
