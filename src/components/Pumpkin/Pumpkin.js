@@ -20,6 +20,7 @@ const MovingDot = () => {
             const response = await axios.get('https://geckoshi-prod.up.railway.app/event-bonus?event_id=1', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
+            console.log(response.data);
             if (response.data.available) {
                 setDotVisible(true);
                 randomizePosition();
