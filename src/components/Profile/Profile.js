@@ -182,7 +182,7 @@ const Profile = () => {
                     <span>{localisation.Withdrawn}: </span> {user.withdraw} <br />
                     <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br />
                     <span>$BMEME:</span> 0 <br />
-                    <span>🎃: </span> {eventBalance} <br />
+                    <span>🎃🎃🎃: </span> {eventBalance} <br />
                 </div>
 
                 <div style={{ paddingTop: "5%" }}>
