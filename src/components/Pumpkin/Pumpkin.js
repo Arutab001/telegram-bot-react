@@ -18,7 +18,7 @@ const MovingDot = () => {
         }
 
         try {
-            const response = await axios.get('https://geckoshi-prod.up.railway.app/event-bonus?event_id=1', {
+            const response = await axios.get('/event-bonus?event_id=1', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log(response.data);
@@ -57,7 +57,7 @@ const MovingDot = () => {
 
         try {
             await axios.post(
-                'https://geckoshi-prod.up.railway.app/event-bonus?event_id=1',
+                '/event-bonus?event_id=1',
                 {}, // Тело запроса, здесь пустой объект
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
