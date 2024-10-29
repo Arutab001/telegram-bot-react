@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from './Pumpkin.module.css';
 import { useToken } from "../Base_Logic/TelegramAuth.js";
+import pumpkinVideo from '../assets/Pumpkin_ani.webm';
 
 const MovingDot = () => {
     const [dotVisible, setDotVisible] = useState(false);
     const [position, setPosition] = useState({ top: "50%", left: "50%" });
     const { token } = useToken();
 
-    // Функция для проверки доступности точки
+    // Функция для проверки доступности тыквы
     const checkAvailability = async () => {
         if (!token) {
             console.error("Токен отсутствует, запрос не отправлен");
@@ -64,15 +65,25 @@ const MovingDot = () => {
         } catch (error) {
             console.error("Ошибка при отправке POST-запроса:", error);
         }
-``
+
+        // Через минуту снова проверяем доступность
+        setTimeout(() => {
+            if (token) {
+                checkAvailability();
+            }
+        }, 60000); // 1 минута
     };
 
     return (
         dotVisible && (
-            <div
-                className={styles.dot}
+            <video
+                className={styles.pumpkin}
                 style={{ top: position.top, left: position.left }}
                 onClick={handleDotClick}
+                autoPlay
+                loop
+                muted
+                src={pumpkinVideo}
             />
         )
     );
