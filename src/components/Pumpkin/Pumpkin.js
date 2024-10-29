@@ -15,6 +15,7 @@ const MovingDot = () => {
                 const response = await axios.get('/event-bonus', {
                     params: { event_id: 1 }
                 });
+                console.log(response.data)
                 if (response.data.available) {
                     setDotVisible(true);
                     randomizePosition();
@@ -42,7 +43,7 @@ const MovingDot = () => {
 
     const handleDotClick = async () => {
         setDotVisible(false); // Скрываем точку сразу после нажатия
-
+        
         try {
             // Добавляем параметр event_id = 1 в POST-запрос
             await axios.post('/event-bonus', { event_id: 1 });
