@@ -66,7 +66,7 @@ const MovingDot = () => {
             if (token) {
                 checkAvailability();
             }
-        }, 60000); // 1 минута
+        }, 6000); // 1 минута
     };
 
     return (
