@@ -7,7 +7,7 @@ import { useToken } from "../Base_Logic/TelegramAuth.js";
 const MovingDot = () => {
     const [dotVisible, setDotVisible] = useState(false);
     const [position, setPosition] = useState({ top: "50%", left: "50%" });
-    const token = useToken();
+    const { token } = useToken();
 
     useEffect(() => {
         // Проверяем наличие токена перед выполнением запроса
