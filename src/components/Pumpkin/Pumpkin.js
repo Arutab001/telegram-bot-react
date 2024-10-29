@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from './Pumpkin.module.css';
 import { useToken } from "../Base_Logic/TelegramAuth.js";
-import pumpkinVideo from '../assets/Pumpkin_ani.webm';
+import pumpkinVideo from '../../images/pump.webm';
 
 const MovingDot = () => {
     const [dotVisible, setDotVisible] = useState(false);
