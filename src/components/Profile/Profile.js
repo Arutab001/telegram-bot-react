@@ -147,6 +147,7 @@ const Profile = () => {
             }
         }
         getbalance();
+        getEventBalance();
     }, []);
 
     const formatNumber = (num) => {
