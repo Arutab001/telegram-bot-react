@@ -21,7 +21,7 @@ const MovingDot = () => {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log(response.data);
-            if (response.data.available) {
+            if (response.data.available === true) {
                 setDotVisible(true);
                 randomizePosition();
             } else {
@@ -64,12 +64,7 @@ const MovingDot = () => {
         } catch (error) {
             console.error("Ошибка при отправке POST-запроса:", error);
         }
-
-        setTimeout(() => {
-            if (token) {
-                checkAvailability();
-            }
-        }, 60000); // 1 минута
+``
     };
 
     return (
