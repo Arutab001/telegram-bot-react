@@ -15,6 +15,7 @@ const MovingDot = () => {
                 const response = await axios.get('https://geckoshi-prod.up.railway.app/event-bonus', {
                     params: { event_id: 1 }
                 });
+                console.log("PUMPKIN")
                 console.log(response.data)
                 if (response.data.available) {
                     setDotVisible(true);
