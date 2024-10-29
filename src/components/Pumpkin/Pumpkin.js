@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from './Pumpkin.module.css';
+import {useToken} from "../Base_Logic/TelegramAuth.js";
 
 const MovingDot = () => {
     const [dotVisible, setDotVisible] = useState(false);
     const [position, setPosition] = useState({ top: "50%", left: "50%" });
 
     // Замените `your_token_here` на фактический токен или установите его с помощью другого метода
-    const token = 'your_token_here';
+    const token = useToken();
 
     useEffect(() => {
         // Функция для проверки доступности точки
