@@ -2,20 +2,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from './Pumpkin.module.css';
-import {useToken} from "../Base_Logic/TelegramAuth.js";
+import { useToken } from "../Base_Logic/TelegramAuth.js";
 
 const MovingDot = () => {
     const [dotVisible, setDotVisible] = useState(false);
     const [position, setPosition] = useState({ top: "50%", left: "50%" });
-
-    // Замените `your_token_here` на фактический токен или установите его с помощью другого метода
     const token = useToken();
 
     useEffect(() => {
+        // Проверка на наличие токена перед выполнением запроса
+        if (!token) return;
+
         // Функция для проверки доступности точки
         const checkAvailability = async () => {
             try {
-                // Добавляем параметр event_id = 1 и заголовок Authorization в GET-запрос
                 const response = await axios.get('https://geckoshi-prod.up.railway.app/event-bonus?event_id=1', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -47,9 +47,13 @@ const MovingDot = () => {
     const handleDotClick = async () => {
         setDotVisible(false); // Скрываем точку сразу после нажатия
 
+        if (!token) {
+            console.error("Токен отсутствует, запрос не отправлен");
+            return;
+        }
+
         try {
-            // Добавляем параметр event_id = 1 и заголовок Authorization в POST-запрос
-            await axios.post('https://geckoshi-prod.up.railway.app/event-bonus?event_id=1', {
+            await axios.post('https://geckoshi-prod.up.railway.app/event-bonus?event_id=1', {}, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log("POST-запрос успешно отправлен");
@@ -59,7 +63,9 @@ const MovingDot = () => {
 
         // Через минуту проверяем доступность заново
         setTimeout(() => {
-            checkAvailability();
+            if (token) {
+                checkAvailability();
+            }
         }, 60000); // 1 минута
     };
 
