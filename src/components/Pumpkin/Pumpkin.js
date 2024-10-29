@@ -42,10 +42,11 @@ const Pumpkin = () => {
     }, [token]);
 
     const randomizePosition = () => {
-        const top = Math.random() * 90 + "%";
-        const left = Math.random() * 90 + "%";
+        const top = Math.random() * 90 + "%";  // Вертикальная позиция (0% - 90%)
+        const left = Math.random() * 90 + "%"; // Горизонтальная позиция (0% - 90%)
         setPosition({ top, left });
     };
+
 
     const handleDotClick = async () => {
         setDotVisible(false);
