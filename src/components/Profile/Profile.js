@@ -89,6 +89,8 @@ const Profile = () => {
 
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
+    const [eventBalance, setEventBalance] = useState('');
+
     const handleCopyId = async () => {
         if (!navigator.clipboard) {
             console.error("Clipboard API не поддерживается этим браузером");
@@ -134,6 +136,16 @@ const Profile = () => {
                 console.error(e);
             }
         };
+        const getEventBalance = async () => {
+            try {
+                const response = await axios.get('/event-bonus/balance?event_id=1');
+                if (response.status === 200) {
+                    setEventBalance(response.data.data.balance);
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        }
         getbalance();
     }, []);
 
@@ -169,6 +181,7 @@ const Profile = () => {
                     <span>{localisation.Withdrawn}: </span> {user.withdraw} <br />
                     <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br />
                     <span>$BMEME:</span> 0 <br />
+                    <span>🎃: </span> <br />
                 </div>
 
                 <div style={{ paddingTop: "5%" }}>

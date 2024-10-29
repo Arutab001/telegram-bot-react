@@ -5,13 +5,18 @@
     cursor: pointer;
     transform: translate(-50%, -50%); /* Центрирование элемента относительно позиции */
     transition: top 0.5s ease, left 0.5s ease; /* Плавный переход по позиции */
+    pointer-events: auto; /* Делаем тыкву кликабельной */
 }
 /* В CSS для контейнера или самого компонента */
-.PumpkinContainer {
-    position: absolute;
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden; /* Чтобы предотвратить прокрутку */
+    overflow: hidden;
+    pointer-events: none; /* Пропускаем клики на нижележащие элементы */
+    z-index: 0; /* Располагаем контейнер под другими элементами */
 }
 
 

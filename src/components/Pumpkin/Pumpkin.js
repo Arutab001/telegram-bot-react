@@ -89,18 +89,21 @@ const Pumpkin = () => {
     }, [dotVisible]);
 
     return (
-        dotVisible && (
-            <video
-                className={styles.pumpkin}
-                style={{ top: position.top, left: position.left }}
-                onClick={handleDotClick}
-                autoPlay
-                loop
-                muted
-                src={pumpkinVideo}
-            />
-        )
+        <div className="container">
+            {dotVisible && (
+                <video
+                    className={styles.pumpkin}
+                    style={{ top: position.top, left: position.left }}
+                    onClick={handleDotClick}
+                    autoPlay
+                    loop
+                    muted
+                    src={pumpkinVideo}
+                />
+            )}
+        </div>
     );
+
 };
 
 export default Pumpkin;
