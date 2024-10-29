@@ -21,7 +21,7 @@ const MovingDot = () => {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log(response.data);
-            if (response.data.available === true) {
+            if (response.data.data.available === true) {
                 setDotVisible(true);
                 randomizePosition();
             } else {
