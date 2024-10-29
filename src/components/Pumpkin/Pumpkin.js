@@ -50,7 +50,7 @@ const MovingDot = () => {
         }
 
         try {
-            await axios.post('https://geckoshi-prod.up.railway.app/event-bonus?event_id=1', {}, {
+            await axios.post('https://geckoshi-prod.up.railway.app/event-bonus?event_id=1', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             console.log("POST-запрос успешно отправлен");
