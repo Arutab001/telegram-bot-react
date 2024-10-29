@@ -7,16 +7,18 @@ const MovingDot = () => {
     const [dotVisible, setDotVisible] = useState(false);
     const [position, setPosition] = useState({ top: "50%", left: "50%" });
 
+    // Замените `your_token_here` на фактический токен или установите его с помощью другого метода
+    const token = 'your_token_here';
+
     useEffect(() => {
         // Функция для проверки доступности точки
         const checkAvailability = async () => {
             try {
-                // Добавляем параметр event_id = 1 в GET-запрос
-                const response = await axios.get('https://geckoshi-prod.up.railway.app/event-bonus', {
-                    params: { event_id: 1 }
+                // Добавляем параметр event_id = 1 и заголовок Authorization в GET-запрос
+                const response = await axios.get('/event-bonus', {
+                    params: { event_id: 1 },
+                    headers: { 'Authorization': `Bearer ${token}` }
                 });
-                console.log("PUMPKIN")
-                console.log(response.data)
                 if (response.data.available) {
                     setDotVisible(true);
                     randomizePosition();
@@ -34,7 +36,7 @@ const MovingDot = () => {
         const interval = setInterval(checkAvailability, 300000); // 5 минут
 
         return () => clearInterval(interval);
-    }, []);
+    }, [token]);
 
     const randomizePosition = () => {
         const top = Math.random() * 90 + "%";
@@ -46,8 +48,10 @@ const MovingDot = () => {
         setDotVisible(false); // Скрываем точку сразу после нажатия
 
         try {
-            // Добавляем параметр event_id = 1 в POST-запрос
-            await axios.post('https://geckoshi-prod.up.railway.app/event-bonus', { event_id: 1 });
+            // Добавляем параметр event_id = 1 и заголовок Authorization в POST-запрос
+            await axios.post('/event-bonus', { event_id: 1 }, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             console.log("POST-запрос успешно отправлен");
         } catch (error) {
             console.error("Ошибка при отправке POST-запроса:", error);
