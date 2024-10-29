@@ -5,7 +5,7 @@ import styles from './Pumpkin.module.css';
 import { useToken } from "../Base_Logic/TelegramAuth.js";
 import pumpkinVideo from '../../images/pump.webm';
 
-const MovingDot = () => {
+const Pumpkin = () => {
     const [dotVisible, setDotVisible] = useState(false);
     const [position, setPosition] = useState({ top: "50%", left: "50%" });
     const { token } = useToken();
@@ -102,4 +102,4 @@ const MovingDot = () => {
     );
 };
 
-export default MovingDot;
+export default Pumpkin;
