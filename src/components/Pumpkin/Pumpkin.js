@@ -74,6 +74,19 @@ const MovingDot = () => {
         }, 60000); // 1 минута
     };
 
+    useEffect(() => {
+        let interval;
+        if (dotVisible) {
+            // Каждые 2 секунды изменяем позицию
+            interval = setInterval(randomizePosition, 2000);
+        }
+
+        // Очищаем интервал при размонтировании компонента
+        return () => {
+            if (interval) clearInterval(interval);
+        };
+    }, [dotVisible]);
+
     return (
         dotVisible && (
             <video
