@@ -10,7 +10,7 @@ const MovingDot = () => {
     const token = useToken();
 
     useEffect(() => {
-        // Проверка на наличие токена перед выполнением запроса
+        // Проверяем наличие токена перед выполнением запроса
         if (!token) return;
 
         // Функция для проверки доступности точки
@@ -31,12 +31,9 @@ const MovingDot = () => {
             }
         };
 
-        // Запрос при инициализации компонента и каждые 5 минут
+        // Выполняем проверку доступности только один раз при наличии токена
         checkAvailability();
-        const interval = setInterval(checkAvailability, 300000); // 5 минут
-
-        return () => clearInterval(interval);
-    }, [token]);
+    }, [token]); // Запуск эффекта только при наличии токена
 
     const randomizePosition = () => {
         const top = Math.random() * 90 + "%";
@@ -61,7 +58,7 @@ const MovingDot = () => {
             console.error("Ошибка при отправке POST-запроса:", error);
         }
 
-        // Через минуту проверяем доступность заново
+        // Через минуту снова проверяем доступность
         setTimeout(() => {
             if (token) {
                 checkAvailability();
