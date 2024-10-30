@@ -27,6 +27,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID copied!",
         copyError: "Error copying ID",
+        ref_link: "Referral link"
     },
     russian: {
         Info: "Информация об аккаунте",
@@ -42,6 +43,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID скопирован!",
         copyError: "Ошибка при копировании ID",
+        ref_link: "Реферальная ссылка"
     },
     german: {
         Info: "Konto Informationen",
@@ -57,6 +59,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID kopiert!",
         copyError: "Fehler beim Kopieren der ID",
+        ref_link: "Empfehlungslink"
     },
     turkish: {
         Info: "Hesap Bilgileri",
@@ -72,8 +75,10 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID kopyalandı!",
         copyError: "ID kopyalanırken hata oluştu",
+        ref_link: "Yönlendirme bağlantısı"
     },
 };
+
 
 const Profile = () => {
     const { user, updateUser, handleUserBalance } = useUser();
@@ -86,12 +91,13 @@ const Profile = () => {
     const [isErrorVisible, setErrorVisible] = useState(false);
     const [avatar, setAvatar] = useState(defaultAvatar);
     const [copySuccess, setCopySuccess] = useState('');
+    const [refCopySuccess, setRefCopySuccess] = useState('');
 
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
     const [eventBalance, setEventBalance] = useState('');
 
-    const handleCopyId = async () => {
+    const handleCopyId = async (params) => {
         if (!navigator.clipboard) {
             console.error("Clipboard API не поддерживается этим браузером");
             setCopySuccess(localisation.copyError);
@@ -99,13 +105,22 @@ const Profile = () => {
         }
 
         try {
-            await navigator.clipboard.writeText(this.user.id.toString());
-            setCopySuccess(localisation.copySuccess);
+            if (params === 'id'){
+                await navigator.clipboard.writeText(this.user.id.toString());
+                setCopySuccess(localisation.copySuccess);
+            }
+            else {
+                await navigator.clipboard.writeText(this.user.ref_link.toString());
+                setRefCopySuccess(localisation.copySuccess)
+            }
+
         } catch (err) {
             console.error("Ошибка копирования:", err);
-            setCopySuccess(localisation.copyError);
+            // setCopySuccess(localisation.copyError);
         }
     };
+
+
 
     useEffect(() => {
         if (copySuccess) {
@@ -170,7 +185,7 @@ const Profile = () => {
                     <span>{localisation.Name}: </span> {user.name} <br />
                     <span>{localisation.Id}: </span>
                     <span
-                        onClick={handleCopyId}
+                        onClick={handleCopyId('id')}
                         style={{ cursor: 'pointer', textDecoration: 'underline' }}
                     >
                         {user.id}
@@ -182,6 +197,11 @@ const Profile = () => {
                     <span>{localisation.Withdrawn}: </span> {user.withdraw} <br />
                     <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br />
                     <span>$BMEME:</span> 0 <br />
+                    <span> {localisation.ref_link} </span>
+                    <span onClick={handleCopyId('ref_link')}
+                        style={{ cursor: 'pointer', textDecoration: 'underline'}}
+                    > {user.ref_link}</span>
+                    {refCopySuccess && <span>{refCopySuccess}</span>} <br />
                     <span>🎃🎃🎃: </span> {eventBalance} <br />
                 </div>
 
