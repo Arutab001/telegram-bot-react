@@ -42,7 +42,7 @@ export const UserProvider = ({ children }) => {
             referrals: new_referrals,
             withdraw: new_withdraw,
             language: new_language,
-            ref_link: new_ref_link
+            ref_link: 'https://t.me/Geckoshi_bot/webapp?startapp=' + new_ref_link
         }));
     };
     const handleUserBalance = (new_balance) => {
