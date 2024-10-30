@@ -97,29 +97,23 @@ const Profile = () => {
 
     const [eventBalance, setEventBalance] = useState('');
 
-    const handleCopyId = async (params) => {
+    const handleCopyId = async (param) => {
         if (!navigator.clipboard) {
             console.error("Clipboard API не поддерживается этим браузером");
-            setCopySuccess(localisation.copyError);
+            param === 'id' ? setCopySuccess(localisation.copyError) : setRefCopySuccess(localisation.copyError);
             return;
         }
-        if (params === 'id') {
-            try {
-                await navigator.clipboard.writeText(this.user.id.toString());
+        try {
+            if (param === 'id') {
+                await navigator.clipboard.writeText(user.id.toString());
                 setCopySuccess(localisation.copySuccess);
-            } catch (e) {
-                console.error(e);
-                setCopySuccess(localisation.copyError);
+            } else {
+                await navigator.clipboard.writeText(user.ref_link.toString());
+                setRefCopySuccess(localisation.copySuccess);
             }
-        } else {
-            try {
-                await navigator.clipboard.writeText(this.user.ref_link.toString());
-                setRefCopySuccess(localisation.copySuccess)
-            }catch (e) {
-                console.error(e);
-                setRefCopySuccess(localisation.copyError)
-            }
-
+        } catch (e) {
+            console.error(e);
+            param === 'id' ? setCopySuccess(localisation.copyError) : setRefCopySuccess(localisation.copyError);
         }
     };
 
@@ -186,12 +180,9 @@ const Profile = () => {
                     </div>
                     <span>{localisation.Name}: </span> {user.name} <br/>
                     <span>{localisation.Id}: </span>
-                    <span
-                        onClick={handleCopyId('id')}
-                        style={{cursor: 'pointer', textDecoration: 'underline'}}
-                    >
-                        {user.id}
-                    </span>
+                    <span onClick={() => handleCopyId('id')}
+                          style={{cursor: 'pointer', textDecoration: 'underline'}}
+                    >{user.id}</span>
                     {copySuccess && <span>{copySuccess}</span>}
                     <br/>
                     <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br/>
@@ -200,9 +191,9 @@ const Profile = () => {
                     <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br/>
                     <span>$BMEME:</span> 0 <br/>
                     <span> {localisation.ref_link} </span>
-                    <span onClick={handleCopyId('ref_link')}
+                    <span onClick={() => handleCopyId('ref_link')}
                           style={{cursor: 'pointer', textDecoration: 'underline'}}
-                    > {user.ref_link}</span>
+                    >{user.ref_link}</span>
                     {refCopySuccess && <span>{refCopySuccess}</span>} <br/>
                     <span>🎃🎃🎃: </span> {eventBalance} <br/>
                 </div>
