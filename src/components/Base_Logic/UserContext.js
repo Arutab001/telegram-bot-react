@@ -19,7 +19,8 @@ export const UserProvider = ({ children }) => {
         referrals: 0,
         withdraw: 0,
         balance: 0,
-        language: ''
+        language: '',
+        ref_link: ''
     });
 
     function configureAxios() {
@@ -34,13 +35,14 @@ export const UserProvider = ({ children }) => {
         }));
     };
 
-    const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_language) => {
+    const handleUserSecond = (new_premium, new_referrals, new_withdraw, new_language, new_ref_link) => {
         setUser(prevState => ({
             ...prevState,
             premium: new_premium,
             referrals: new_referrals,
             withdraw: new_withdraw,
-            language: new_language
+            language: new_language,
+            ref_link: new_ref_link
         }));
     };
     const handleUserBalance = (new_balance) => {
@@ -80,7 +82,8 @@ export const UserProvider = ({ children }) => {
                         data.data.is_admin.toString(),
                         data.data.referred_users_count,
                         data.data.withdrew,
-                        data.data.language
+                        data.data.language,
+                        data.data.referral_id
                     );
                     console.log(data);
                 } else {
