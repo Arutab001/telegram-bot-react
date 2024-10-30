@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Profile.css";
 import MyBtn from "./MyBtn.js";
-import { useUser } from "../Base_Logic/UserContext.js";
+import {useUser} from "../Base_Logic/UserContext.js";
 import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
@@ -27,6 +27,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID copied!",
         copyError: "Error copying ID",
+        ref_link: "Referral link"
     },
     russian: {
         Info: "Информация об аккаунте",
@@ -42,6 +43,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID скопирован!",
         copyError: "Ошибка при копировании ID",
+        ref_link: "Реферальная ссылка"
     },
     german: {
         Info: "Konto Informationen",
@@ -57,6 +59,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID kopiert!",
         copyError: "Fehler beim Kopieren der ID",
+        ref_link: "Empfehlungslink"
     },
     turkish: {
         Info: "Hesap Bilgileri",
@@ -72,40 +75,48 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID kopyalandı!",
         copyError: "ID kopyalanırken hata oluştu",
+        ref_link: "Yönlendirme bağlantısı"
     },
 };
 
+
 const Profile = () => {
-    const { user, updateUser, handleUserBalance } = useUser();
-    const { language } = useLanguage();
-    const { userLanguage } = useLangProfile();
-    const { token } = useToken();
+    const {user, updateUser, handleUserBalance} = useUser();
+    const {language} = useLanguage();
+    const {userLanguage} = useLangProfile();
+    const {token} = useToken();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
     const [isErrorVisible, setErrorVisible] = useState(false);
     const [avatar, setAvatar] = useState(defaultAvatar);
     const [copySuccess, setCopySuccess] = useState('');
+    const [refCopySuccess, setRefCopySuccess] = useState('');
 
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
     const [eventBalance, setEventBalance] = useState('');
 
-    const handleCopyId = async () => {
+    const handleCopyId = async (param) => {
         if (!navigator.clipboard) {
             console.error("Clipboard API не поддерживается этим браузером");
-            setCopySuccess(localisation.copyError);
+            param === 'id' ? setCopySuccess(localisation.copyError) : setRefCopySuccess(localisation.copyError);
             return;
         }
-
         try {
-            await navigator.clipboard.writeText(this.user.id.toString());
-            setCopySuccess(localisation.copySuccess);
-        } catch (err) {
-            console.error("Ошибка копирования:", err);
-            setCopySuccess(localisation.copyError);
+            if (param === 'id') {
+                await navigator.clipboard.writeText(user.id.toString());
+                setCopySuccess(localisation.copySuccess);
+            } else {
+                await navigator.clipboard.writeText(user.ref_link.toString());
+                setRefCopySuccess(localisation.copySuccess);
+            }
+        } catch (e) {
+            console.error(e);
+            param === 'id' ? setCopySuccess(localisation.copyError) : setRefCopySuccess(localisation.copyError);
         }
     };
+
 
     useEffect(() => {
         if (copySuccess) {
@@ -155,37 +166,39 @@ const Profile = () => {
     };
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-            <PremiumNotification isVisible={isVisible} />
+        <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
+            <PremiumNotification isVisible={isVisible}/>
             <div className="profile">
                 <div>
-                    <div style={{ display: "flex", height: "100%", alignItems: "center" }}>
+                    <div style={{display: "flex", height: "100%", alignItems: "center"}}>
                         <img
                             src={avatar}
                             alt="User Avatar"
-                            style={{ width: "15%", height: "100%", borderRadius: "100%", margin: "5%" }}
+                            style={{width: "15%", height: "100%", borderRadius: "100%", margin: "5%"}}
                         />
                         <h1>{localisation.Info}</h1>
                     </div>
-                    <span>{localisation.Name}: </span> {user.name} <br />
+                    <span>{localisation.Name}: </span> {user.name} <br/>
                     <span>{localisation.Id}: </span>
-                    <span
-                        onClick={handleCopyId}
-                        style={{ cursor: 'pointer', textDecoration: 'underline' }}
-                    >
-                        {user.id}
-                    </span>
+                    <span onClick={() => handleCopyId('id')}
+                          style={{cursor: 'pointer', textDecoration: 'underline'}}
+                    >{user.id}</span>
                     {copySuccess && <span>{copySuccess}</span>}
-                    <br />
-                    <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br />
-                    <span>{localisation.Ref}: </span> {user.referrals} <br />
-                    <span>{localisation.Withdrawn}: </span> {user.withdraw} <br />
-                    <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br />
-                    <span>$BMEME:</span> 0 <br />
-                    <span>🎃🎃🎃: </span> {eventBalance} <br />
+                    <br/>
+                    <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br/>
+                    <span>{localisation.Ref}: </span> {user.referrals} <br/>
+                    <span>{localisation.Withdrawn}: </span> {user.withdraw} <br/>
+                    <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br/>
+                    <span>$BMEME:</span> 0 <br/>
+                    <span> {localisation.ref_link} </span>
+                    <span onClick={() => handleCopyId('ref_link')}
+                          style={{cursor: 'pointer', textDecoration: 'underline'}}
+                    >{user.ref_link}:</span>
+                    {refCopySuccess && <span>{refCopySuccess}</span>} <br/>
+                    <span>🎃🎃🎃: </span> {eventBalance} <br/>
                 </div>
 
-                <div style={{ paddingTop: "5%" }}>
+                <div style={{paddingTop: "5%"}}>
                     <MyBtn
                         text={localisation.Premium}
                         onClick={() => setIsModalOpen(true)}
@@ -193,7 +206,7 @@ const Profile = () => {
                     />
                 </div>
                 <div>
-                    <MyBtn text={localisation.Change} onClick={openLang} />
+                    <MyBtn text={localisation.Change} onClick={openLang}/>
                 </div>
                 <GetPremium
                     show={isModalOpen}
@@ -203,9 +216,9 @@ const Profile = () => {
                     handleNot={setIsVisible}
                     openError={() => setErrorVisible(true)}
                 />
-                <LanguageModal show={isLangModalOpen} onClose={closeLang} />
+                <LanguageModal show={isLangModalOpen} onClose={closeLang}/>
             </div>
-            <ErrorModal show={isErrorVisible} onClose={() => setErrorVisible(false)} />
+            <ErrorModal show={isErrorVisible} onClose={() => setErrorVisible(false)}/>
         </div>
     );
 };
