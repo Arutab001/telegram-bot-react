@@ -108,7 +108,7 @@ const Profile = () => {
                 await navigator.clipboard.writeText(user.id.toString());
                 setCopySuccess(localisation.copySuccess);
             } else {
-                await navigator.clipboard.writeText(user.ref_link.toString());
+                await navigator.clipboard.writeText('https://t.me/Geckoshi_bot/webapp?startapp=' + user.ref_link.toString());
                 setRefCopySuccess(localisation.copySuccess);
             }
         } catch (e) {
