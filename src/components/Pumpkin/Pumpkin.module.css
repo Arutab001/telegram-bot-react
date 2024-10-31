@@ -1,7 +1,7 @@
 .pumpkin {
     position: absolute; /* Используем абсолютное позиционирование */
-    width: 100px; /* Установите нужный размер видео */
-    height: 100px;
+    width: 150px; /* Установите нужный размер видео */
+    height: 150px;
     cursor: pointer;
     transform: translate(-50%, -50%); /* Центрирование элемента относительно позиции */
     transition: top 0.5s ease, left 0.5s ease; /* Плавный переход по позиции */
