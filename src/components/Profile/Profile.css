@@ -14,7 +14,7 @@
         color: #392D20;
     }
     span {
-        margin: 0 5%;
+        margin: 0 2%;
         color: #392D20;
     }
     color: #725B40;
@@ -37,6 +37,14 @@
 
 .p2 {
     color: #392D20;
+}
+
+.Block {
+    border: 1px solid black;
+    border-radius: 12px;
+    box-shadow: #392D20 0px 3px 8px;
+    margin-bottom: 2vh;
+    padding: 2vw;
 }
 
 @media (min-width: 1025px) {
