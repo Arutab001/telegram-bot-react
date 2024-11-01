@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "./Profile.css";
 import MyBtn from "./MyBtn.js";
-import { useUser } from "../Base_Logic/UserContext.js";
+import {useUser} from "../Base_Logic/UserContext.js";
 import GetPremium from "./GetPremium.js";
 import PremiumNotification from "./PremiumNotification.js";
 import LanguageModal from "./LanguageModal.js";
 import ErrorModal from "./ErrorModal.js";
 import defaultAvatar from "../../images/sticker 1.png";
-import { useLanguage } from "../Base_Logic/LanguageContext.js";
+import {useLanguage} from "../Base_Logic/LanguageContext.js";
 import axios from "axios";
-import { useToken } from "../Base_Logic/TelegramAuth.js";
-import { useLangProfile } from "../Base_Logic/UserLanguageProvider.js";
+import {useToken} from "../Base_Logic/TelegramAuth.js";
+import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
 
 const translations = {
     english: {
@@ -79,11 +79,12 @@ const translations = {
     },
 };
 
+
 const Profile = () => {
-    const { user, updateUser, handleUserBalance } = useUser();
-    const { language } = useLanguage();
-    const { userLanguage } = useLangProfile();
-    const { token } = useToken();
+    const {user, updateUser, handleUserBalance} = useUser();
+    const {language} = useLanguage();
+    const {userLanguage} = useLangProfile();
+    const {token} = useToken();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [isLangModalOpen, setIsLangModalOpen] = useState(false);
@@ -116,6 +117,7 @@ const Profile = () => {
         }
     };
 
+
     useEffect(() => {
         if (copySuccess || refCopySuccess) {
             const timer = setTimeout(() => {
@@ -125,6 +127,7 @@ const Profile = () => {
             return () => clearTimeout(timer);
         }
     }, [copySuccess, refCopySuccess]);
+
 
     const openLang = (e) => {
         e.preventDefault();
@@ -167,55 +170,69 @@ const Profile = () => {
     };
 
     return (
-        <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
-            <PremiumNotification isVisible={isVisible} />
+        <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
+            <PremiumNotification isVisible={isVisible}/>
             <div className="profile">
                 <div>
-                    <div style={{ display: "flex", height: "100%", alignItems: "center" }}>
+                    <div style={{display: "flex", height: "100%", alignItems: "center"}}>
                         <img
                             src={avatar}
                             alt="User Avatar"
-                            style={{ width: "15%", height: "100%", borderRadius: "100%", margin: "5%" }}
+                            style={{width: "15%", height: "100%", borderRadius: "100%", margin: "5%"}}
                         />
                         <h1>{localisation.Info}</h1>
                     </div>
                     <div className="Block">
-                        <span>{localisation.Name}: </span> {user.name} <br />
+                        <span>{localisation.Name}: </span> {user.name} <br/>
                         <span>{localisation.Id}: </span>
                         <span onClick={() => handleCopyId('id')}
-                            style={{ cursor: 'pointer', textDecoration: 'underline' }}
+                              style={{cursor: 'pointer', textDecoration: 'underline'}}
                         >{user.id}</span>
                         {copySuccess && <span>{copySuccess}</span>}
-                        <br />
+                        <br/>
+
                     </div>
                     <div className="Block">
-                        <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br />
+                        <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br/>
                         <span> {localisation.ref_link}: </span>
                         <span onClick={() => handleCopyId('ref_link')}
-                            style={{ cursor: 'pointer', textDecoration: 'underline' }}
+                              style={{cursor: 'pointer', textDecoration: 'underline'}}
                         >{user.ref_link}</span>
-                        {refCopySuccess && <span>{refCopySuccess}</span>} <br />
-                                                <span>{localisation.Ref}: </span> {user.referrals} <br />
-                        <span>{localisation.Withdrawn}: </span> {user.withdrawn} <br />
-                        <span>{localisation.WI}: </span> {user.withdrawn_info} <br />
-                        <span>{localisation.Text1}</span> <br />
-                        <span>{localisation.Text2}</span> <br />
+                        {refCopySuccess && <span>{refCopySuccess}</span>} <br/>
+                        <span>{localisation.Ref}: </span> {user.referrals} <br/>
+                        <span>{localisation.Withdrawn}: </span> {user.withdraw} <br/>
                     </div>
                     <div className="Block">
-                        <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br />
-                        <span>Event Balance: </span> {formatNumber(eventBalance)} <br />
+                        <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br/>
+                        <span>$BMEME:</span> 0 <br/>
+                        <span>🎃🎃🎃: </span> {eventBalance} <br/>
                     </div>
-                    <div className="buttons">
-                        <MyBtn onClick={() => setIsModalOpen(true)} text={localisation.Change} />
-                        <GetPremium />
-                    </div>
+
                 </div>
+
+                <div style={{paddingTop: "5%"}}>
+                    <MyBtn
+                        text={localisation.Premium}
+                        onClick={() => setIsModalOpen(true)}
+                        disabled={true}
+                    />
+                </div>
+                <div>
+                    <MyBtn text={localisation.Change} onClick={openLang}/>
+                </div>
+                <GetPremium
+                    show={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    className="Modal"
+                    closeModal={() => setIsModalOpen(false)}
+                    handleNot={setIsVisible}
+                    openError={() => setErrorVisible(true)}
+                />
+                <LanguageModal show={isLangModalOpen} onClose={closeLang}/>
             </div>
-            {isLangModalOpen && <LanguageModal onClose={closeLang} />}
-            {isErrorVisible && <ErrorModal onClose={() => setErrorVisible(false)} />}
+            <ErrorModal show={isErrorVisible} onClose={() => setErrorVisible(false)}/>
         </div>
     );
 };
 
 export default Profile;
-
