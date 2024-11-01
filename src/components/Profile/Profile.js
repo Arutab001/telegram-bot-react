@@ -178,24 +178,31 @@ const Profile = () => {
                         />
                         <h1>{localisation.Info}</h1>
                     </div>
-                    <span>{localisation.Name}: </span> {user.name} <br/>
-                    <span>{localisation.Id}: </span>
-                    <span onClick={() => handleCopyId('id')}
-                          style={{cursor: 'pointer', textDecoration: 'underline'}}
-                    >{user.id}</span>
-                    {copySuccess && <span>{copySuccess}</span>}
-                    <br/>
-                    <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br/>
-                    <span>{localisation.Ref}: </span> {user.referrals} <br/>
-                    <span>{localisation.Withdrawn}: </span> {user.withdraw} <br/>
-                    <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br/>
-                    <span>$BMEME:</span> 0 <br/>
-                    <span> {localisation.ref_link}: </span>
-                    <span onClick={() => handleCopyId('ref_link')}
-                          style={{cursor: 'pointer', textDecoration: 'underline'}}
-                    >{user.ref_link}</span>
-                    {refCopySuccess && <span>{refCopySuccess}</span>} <br/>
-                    <span>🎃🎃🎃: </span> {eventBalance} <br/>
+                    <div className="Block">
+                        <span>{localisation.Name}: </span> {user.name} <br/>
+                        <span>{localisation.Id}: </span>
+                        <span onClick={() => handleCopyId('id')}
+                              style={{cursor: 'pointer', textDecoration: 'underline'}}
+                        >{user.id}</span>
+                        {copySuccess && <span>{copySuccess}</span>}
+                        <br/>
+                    </div>
+                    <div className="Block">
+                        <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br/>
+                        <span>{localisation.Ref}: </span> {user.referrals} <br/>
+                        <span>{localisation.Withdrawn}: </span> {user.withdraw} <br/>
+                    </div>
+                    <div className="Block">
+                        <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br/>
+                        <span>$BMEME:</span> 0 <br/>
+                        <span> {localisation.ref_link}: </span>
+                        <span onClick={() => handleCopyId('ref_link')}
+                              style={{cursor: 'pointer', textDecoration: 'underline'}}
+                        >{user.ref_link}</span>
+                        {refCopySuccess && <span>{refCopySuccess}</span>} <br/>
+                        <span>🎃🎃🎃: </span> {eventBalance} <br/>
+                    </div>
+
                 </div>
 
                 <div style={{paddingTop: "5%"}}>
