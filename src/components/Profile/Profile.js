@@ -185,6 +185,7 @@ const Profile = () => {
                     <div className="Block">
                         <span>{localisation.Name}: </span> {user.name} <br/>
                         <span>{localisation.Id}: </span>
+                        <span> {localisation.ref_link}: </span>
                         <span onClick={() => handleCopyId('id')}
                               style={{cursor: 'pointer', textDecoration: 'underline'}}
                         >{user.id}</span>
@@ -203,7 +204,6 @@ const Profile = () => {
                     <div className="Block">
                         <span>{localisation.Balance}: </span> {formatNumber(user.balance)} <br/>
                         <span>$BMEME:</span> 0 <br/>
-                        <span> {localisation.ref_link}: </span>
                         <span>🎃🎃🎃: </span> {eventBalance} <br/>
                     </div>
 
