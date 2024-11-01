@@ -185,15 +185,16 @@ const Profile = () => {
                     <div className="Block">
                         <span>{localisation.Name}: </span> {user.name} <br/>
                         <span>{localisation.Id}: </span>
-                        <span> {localisation.ref_link}: </span>
                         <span onClick={() => handleCopyId('id')}
                               style={{cursor: 'pointer', textDecoration: 'underline'}}
                         >{user.id}</span>
                         {copySuccess && <span>{copySuccess}</span>}
                         <br/>
+
                     </div>
                     <div className="Block">
                         <span>{localisation.Premium}: </span> {user.premium ? '✓' : '✗'} <br/>
+                        <span> {localisation.ref_link}: </span>
                         <span onClick={() => handleCopyId('ref_link')}
                               style={{cursor: 'pointer', textDecoration: 'underline'}}
                         >{user.ref_link}</span>
