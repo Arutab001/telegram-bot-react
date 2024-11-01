@@ -120,10 +120,14 @@ const Profile = () => {
 
     useEffect(() => {
         if (copySuccess || refCopySuccess) {
-            const timer = setTimeout(() => setCopySuccess(''), 3000);
+            const timer = setTimeout(() => {
+                setCopySuccess('');
+                setRefCopySuccess('');
+            }, 3000);
             return () => clearTimeout(timer);
         }
     }, [copySuccess, refCopySuccess]);
+
 
     const openLang = (e) => {
         e.preventDefault();
