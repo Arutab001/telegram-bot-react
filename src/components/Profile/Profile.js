@@ -119,11 +119,11 @@ const Profile = () => {
 
 
     useEffect(() => {
-        if (copySuccess) {
+        if (copySuccess || refCopySuccess) {
             const timer = setTimeout(() => setCopySuccess(''), 3000);
             return () => clearTimeout(timer);
         }
-    }, [copySuccess]);
+    }, [copySuccess, refCopySuccess]);
 
     const openLang = (e) => {
         e.preventDefault();
