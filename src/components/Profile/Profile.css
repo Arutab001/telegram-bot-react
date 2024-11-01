@@ -43,7 +43,8 @@
     border: 1px solid black;
     border-radius: 12px;
     box-shadow: #392D20 0px 3px 8px;
-    margin-bottom: 4vh;
+    margin-bottom: 2vh;
+    padding: 2vw;
 }
 
 @media (min-width: 1025px) {
