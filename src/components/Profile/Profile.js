@@ -117,7 +117,7 @@ const Profile = () => {
         }
     };
 
-    const trimString = (str, maxLength = 12) => {
+    const trimString = (str, maxLength = 24) => {
         const cleanString = str;
         if (cleanString.length > maxLength) {
             return cleanString.slice(0, maxLength - 3) + '...'; // Обрезаем строку и добавляем "..."
