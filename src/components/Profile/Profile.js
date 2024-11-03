@@ -27,7 +27,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID copied!",
         copyError: "Error copying ID",
-        ref_link: "Referral link"
+        ref_link: "Ref link"
     },
     russian: {
         Info: "Информация об аккаунте",
@@ -43,7 +43,7 @@ const translations = {
         Balance: "$GMEME",
         copySuccess: "ID скопирован!",
         copyError: "Ошибка при копировании ID",
-        ref_link: "Реферальная ссылка"
+        ref_link: "Реф ссылка"
     },
     german: {
         Info: "Konto Informationen",
@@ -108,13 +108,21 @@ const Profile = () => {
                 await navigator.clipboard.writeText(user.id.toString());
                 setCopySuccess(localisation.copySuccess);
             } else {
-                await navigator.clipboard.writeText('https://t.me/Geckoshi_bot/webapp?startapp=' + user.ref_link.toString());
+                await navigator.clipboard.writeText(user.ref_link.toString());
                 setRefCopySuccess(localisation.copySuccess);
             }
         } catch (e) {
             console.error(e);
             param === 'id' ? setCopySuccess(localisation.copyError) : setRefCopySuccess(localisation.copyError);
         }
+    };
+
+    const trimString = (str, maxLength = 12) => {
+        const cleanString = str;
+        if (cleanString.length > maxLength) {
+            return cleanString.slice(0, maxLength - 3) + '...'; // Обрезаем строку и добавляем "..."
+        }
+        return cleanString; // Если строка меньше или равна maxLength, возвращаем её как есть
     };
 
 
@@ -197,7 +205,7 @@ const Profile = () => {
                         <span> {localisation.ref_link}: </span>
                         <span onClick={() => handleCopyId('ref_link')}
                               style={{cursor: 'pointer', textDecoration: 'underline'}}
-                        >{user.ref_link}</span>
+                        >{trimString(user.ref_link)}</span>
                         {refCopySuccess && <span>{refCopySuccess}</span>} <br/>
                         <span>{localisation.Ref}: </span> {user.referrals} <br/>
                         <span>{localisation.Withdrawn}: </span> {user.withdraw} <br/>
