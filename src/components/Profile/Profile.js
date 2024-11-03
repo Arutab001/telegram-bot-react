@@ -25,9 +25,9 @@ const translations = {
         Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
         Change: "Change Language",
         Balance: "$GMEME",
-        copySuccess: "ID copied!",
-        copyError: "Error copying ID",
-        ref_link: "Referral link"
+        copySuccess: "Copied!",
+        copyError: "Error copying",
+        ref_link: "Ref link"
     },
     russian: {
         Info: "Информация об аккаунте",
@@ -41,9 +41,9 @@ const translations = {
         Text2: "МИНИМАЛЬНЫЙ ВЫВОД СЕГОДНЯ БУДЕТ 0 В AIRDROP",
         Change: "Сменить язык",
         Balance: "$GMEME",
-        copySuccess: "ID скопирован!",
-        copyError: "Ошибка при копировании ID",
-        ref_link: "Реферальная ссылка"
+        copySuccess: "Скопированно!",
+        copyError: "Ошибка при копировании",
+        ref_link: "Реф ссылка"
     },
     german: {
         Info: "Konto Informationen",
@@ -58,7 +58,7 @@ const translations = {
         Change: "Sprache ändern",
         Balance: "$GMEME",
         copySuccess: "ID kopiert!",
-        copyError: "Fehler beim Kopieren der ID",
+        copyError: "Fehler beim Kopieren",
         ref_link: "Empfehlungslink"
     },
     turkish: {
@@ -73,8 +73,8 @@ const translations = {
         Text2: "BUGÜN AIRDROP'DA MİNİMUM ÇEKİM 0 OLACAK",
         Change: "Dili Değiştir",
         Balance: "$GMEME",
-        copySuccess: "ID kopyalandı!",
-        copyError: "ID kopyalanırken hata oluştu",
+        copySuccess: "Kopyalandı!",
+        copyError: "Kopyalanırken hata oluştu",
         ref_link: "Yönlendirme bağlantısı"
     },
 };
@@ -108,13 +108,21 @@ const Profile = () => {
                 await navigator.clipboard.writeText(user.id.toString());
                 setCopySuccess(localisation.copySuccess);
             } else {
-                await navigator.clipboard.writeText('https://t.me/Geckoshi_bot/webapp?startapp=' + user.ref_link.toString());
+                await navigator.clipboard.writeText(user.ref_link.toString());
                 setRefCopySuccess(localisation.copySuccess);
             }
         } catch (e) {
             console.error(e);
             param === 'id' ? setCopySuccess(localisation.copyError) : setRefCopySuccess(localisation.copyError);
         }
+    };
+
+    const trimString = (str, maxLength = 24) => {
+        const cleanString = str;
+        if (cleanString.length > maxLength) {
+            return cleanString.slice(0, maxLength - 3) + '...'; // Обрезаем строку и добавляем "..."
+        }
+        return cleanString; // Если строка меньше или равна maxLength, возвращаем её как есть
     };
 
 
@@ -197,7 +205,7 @@ const Profile = () => {
                         <span> {localisation.ref_link}: </span>
                         <span onClick={() => handleCopyId('ref_link')}
                               style={{cursor: 'pointer', textDecoration: 'underline'}}
-                        >{user.ref_link}</span>
+                        >{trimString(user.ref_link)}</span>
                         {refCopySuccess && <span>{refCopySuccess}</span>} <br/>
                         <span>{localisation.Ref}: </span> {user.referrals} <br/>
                         <span>{localisation.Withdrawn}: </span> {user.withdraw} <br/>
