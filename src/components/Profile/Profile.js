@@ -25,8 +25,8 @@ const translations = {
         Text2: "MINIMUM WITHDRAWAL WILL BE 0 ON AIRDROP TODAY",
         Change: "Change Language",
         Balance: "$GMEME",
-        copySuccess: "ID copied!",
-        copyError: "Error copying ID",
+        copySuccess: "Copied!",
+        copyError: "Error copying",
         ref_link: "Ref link"
     },
     russian: {
@@ -41,8 +41,8 @@ const translations = {
         Text2: "МИНИМАЛЬНЫЙ ВЫВОД СЕГОДНЯ БУДЕТ 0 В AIRDROP",
         Change: "Сменить язык",
         Balance: "$GMEME",
-        copySuccess: "ID скопирован!",
-        copyError: "Ошибка при копировании ID",
+        copySuccess: "Скопированно!",
+        copyError: "Ошибка при копировании",
         ref_link: "Реф ссылка"
     },
     german: {
@@ -58,7 +58,7 @@ const translations = {
         Change: "Sprache ändern",
         Balance: "$GMEME",
         copySuccess: "ID kopiert!",
-        copyError: "Fehler beim Kopieren der ID",
+        copyError: "Fehler beim Kopieren",
         ref_link: "Empfehlungslink"
     },
     turkish: {
@@ -73,8 +73,8 @@ const translations = {
         Text2: "BUGÜN AIRDROP'DA MİNİMUM ÇEKİM 0 OLACAK",
         Change: "Dili Değiştir",
         Balance: "$GMEME",
-        copySuccess: "ID kopyalandı!",
-        copyError: "ID kopyalanırken hata oluştu",
+        copySuccess: "Kopyalandı!",
+        copyError: "Kopyalanırken hata oluştu",
         ref_link: "Yönlendirme bağlantısı"
     },
 };
