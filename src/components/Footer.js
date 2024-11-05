@@ -108,6 +108,7 @@ const Footer = () => {
                         Profile
                     </p>
                 </Link>
+
             </p>
         </div>
     )

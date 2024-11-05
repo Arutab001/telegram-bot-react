@@ -11,7 +11,6 @@ const Layout = () => {
     return (
         <>
             <Header/>
-                <Pumpkin/>
             <main style={{marginBottom: "15vh"}}>
                 <Outlet/>
             </main>

@@ -1,0 +1,51 @@
+.checkCard {
+    background-color: #f0ffdb;
+    border-radius: 15px;
+    padding: 10px;
+    width: 150px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.checkHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.delete-button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.check-info {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.check-info p {
+    margin: 5px 0;
+}
+
+.check-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.action-button {
+    background-color: #e0e4f3;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    width: 48%;
+    text-align: center;
+}
