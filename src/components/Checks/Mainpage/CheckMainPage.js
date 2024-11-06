@@ -42,7 +42,7 @@ const CheckMainPage = () => {
     };
 
     return (
-        <div>
+        <div className={ChecksMainPage.Main}>
             <h1>
                 Your Checks
             </h1>

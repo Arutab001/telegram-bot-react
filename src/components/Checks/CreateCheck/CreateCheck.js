@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import CreateCheckStyles from "./CreateCheck.module.css"
 import gecko from "../../../images/gecko_coin_rem 1.png";
 
 
 const CreateCheck = () => {
+
+    const [amount, setAmount] = useState('');
+
+    const handleAmountChange = (event) => {
+        const value = event.target.value;
+        if (/^\d*\.?\d*$/.test(value)) {
+            setAmount(value);
+        }
+    };
+
     return (
         <div className={CreateCheckStyles.page}>
             <div className={CreateCheckStyles.page_header}>
@@ -25,7 +35,11 @@ const CreateCheck = () => {
                         </div>
                         <div>
                             <div>
-                                <textarea rows={1}></textarea>
+                                <textarea rows={1}
+                                          className={CreateCheckStyles.amount_textarea}
+                                          placeholder="enter the amount"
+                                          value={amount}
+                                          onChange={handleAmountChange}></textarea>
                             </div>
                             <div>balance: 999.999</div>
                         </div>
@@ -38,16 +52,16 @@ const CreateCheck = () => {
                     Total: <br/>
                     00.00 GMEME
                 </div>
-                <div style={{width: "80vw"}}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="4" viewBox="0 0 724 4" fill="none">
+                <div style={{width: "80vw", display: "flex", justifyContent: "center", margin: "5% 0"}}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="4" viewBox="0 0 724 4" fill="none">
                         <rect width="724" height="4" fill="#D9FFD2"/>
                     </svg>
                 </div>
-                <div>
-                    <button>
+                <div style={{display: "flex", flexDirection: "column"}}>
+                    <button className={CreateCheckStyles.Button_Save}>
                         Save Check
                     </button>
-                    <button>
+                    <button className={CreateCheckStyles.Button_Cancel}>
                         Cancel
                     </button>
                 </div>

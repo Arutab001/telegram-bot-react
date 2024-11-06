@@ -1,3 +1,15 @@
+.Main {
+    background-color: #D9FFD2;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 24px;
+    border: 2px solid #364035;
+    h1 {
+        text-align: center;
+    }
+}
 .list_of_checks {
-
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
