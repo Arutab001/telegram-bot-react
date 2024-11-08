@@ -1,52 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import "../../App.css";
-import NewsDefalut from '../../images/Frame 12.webp';
+import NewsDefault from '../../images/Frame 12.webp';
 import axios from "axios";
-import {useToken} from "../Base_Logic/TelegramAuth.js";
 
 
 const NewsBox = () => {
     const [postUrl, setPostUrl] = useState("#");
-    const [image, setImage] = useState(null);
-    const {token} = useToken();
+    const [image, setImage] = useState('');
+    const defaultPostUrl = "https://t.me/geckoshi_coin/605"
 
     const fetchLatestPost = async () => {
-        if (!token) return; // Защита от вызова без токена
-
         try {
-            const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/link', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+            const response = await axios.get('https://geckoshi-prod.up.railway.app/post-capturer/channel/link');
             console.log("Post URL:", response);
-            setPostUrl(response.data.url);
+            setPostUrl(response.data.data.link || defaultPostUrl); // Fallback to default if null
         } catch (error) {
             console.error("Error fetching latest post:", error);
+            setPostUrl(defaultPostUrl);
         }
 
         try {
-            const response = await axios.get('https://geckoshi-prod.up.railway.app/channel/photo?r=3', {
-                headers: { 'Authorization': `Bearer ${token}` }
+            const response = await axios.get('https://geckoshi-prod.up.railway.app/post-capturer/channel/photo?r=2', {
+                responseType: 'blob' // Important to specify blob type here
             });
-            console.log("Image URL:", response);
-            setImage(response.data.url);
+            console.log("Image Blob:", response);
+
+            // Convert blob to a local URL for the img element to display
+            const imageUrl = URL.createObjectURL(response.data);
+            setImage(imageUrl);
         } catch (e) {
             console.error("Error fetching image:", e);
         }
     };
 
     useEffect(() => {
-        if (token) {
-            fetchLatestPost();
-        }
-    }, [token]);
+        fetchLatestPost();
+
+        // Cleanup to release URL object when component unmounts
+        return () => {
+            if (image) URL.revokeObjectURL(image);
+        };
+    }, []);
 
     return (
-        <div className="NewsBox" onClick={() => window.open("https://t.me/geckoshi_coin/605", "_blank")} style={{ cursor: "pointer" }}>
+        <div className="NewsBox" onClick={() => window.open(postUrl, "_blank")}
+             style={{cursor: "pointer"}}>
             <div>
-                {image ? <img src={image} /> : <img src={NewsDefalut}/>}
+                {image ? <img src={image} alt="News"/> : <img src={NewsDefault} alt="Default News"/>}
             </div>
             <div className="Text">
-                Read</div>
+                Read
+            </div>
         </div>
     );
 };
