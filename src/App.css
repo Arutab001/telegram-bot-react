@@ -117,6 +117,8 @@ body {
         justify-content: center;
         margin-top: auto;
         height: 3vh;
+        color: #FFEB3B;
+        text-shadow: 1px 1px 5px #FFEB3B66;
     }
 }
 .CasinoLink {
