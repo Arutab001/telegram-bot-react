@@ -32,7 +32,7 @@ const Task = () => {
     }, []);
 
     return (
-        <div>
+        <div style={{zIndex: "-1"}}>
             {tasks.map((task) => (
                 <TaskContainer
                     key={task.id}

@@ -1,13 +1,12 @@
 .TaskContainer {
     width: 75%;
     height: 11vh;
-    background-color: #E4B57F;
+    background-color: #212121;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     margin: 5% auto;
     border-radius: 24px;
-    border: 2px solid #725B40;
     align-items: center;
     font-family: Montserrat;
     svg {
@@ -15,14 +14,20 @@
         margin: 0 5vw;
     }
     h2 {
-        color: #392D20;
+        background: radial-gradient(100% 400% at 100% 0%, #FFEB3B 0%, #4CAF50 100%);
+        background-clip: text;
+        -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
+        color: transparent;
         font-size: larger;
         -webkit-line-clamp: 1;
         margin-bottom: 0;
         margin-top: 0;
     }
     p {
-        color: #392D20;
+        color: transparent;
+        background: radial-gradient(100% 400% at 100% 0%, #FF9800 0%, #FFEB3B 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+        background-clip: text;
+        -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
         font-size: small;
         font-weight: bold;
         margin: 0;

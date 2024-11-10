@@ -11,7 +11,7 @@ const Layout = () => {
     return (
         <>
             <Header/>
-            <div style={{ position: "absolute", top: -10, left: 0, zIndex: -1 }}>
+            <div style={{ position: "absolute", top: "-2%", left: 0, zIndex: -1 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="300" viewBox="0 0 292 412" fill="none">
                     <g filter="url(#filter0_d_446_592)">
                         <path
@@ -39,7 +39,7 @@ const Layout = () => {
                     </defs>
                 </svg>
             </div>
-            <div style={{ position: "absolute", top: 0, right: 19, zIndex: -1 }}>
+            <div style={{ position: "absolute", top: 0, left: "73%", zIndex: -1 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="400" viewBox="0 0 237 499" fill="none">
                     <g filter="url(#filter0_d_446_590)">
                         <ellipse cx="241.712" cy="307.817" rx="110.855" ry="88.8899"
@@ -90,7 +90,7 @@ const Layout = () => {
             <main style={{marginBottom: "15vh"}}>
                 <Outlet/>
             </main>
-            <div style={{ position: "absolute", top: 400, left: 0, zIndex: -1 }}>
+            <div style={{ position: "fixed", top: 400, left: 0, zIndex: -1 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="197" height="285" viewBox="0 0 297 485" fill="none">
                     <g filter="url(#filter0_d_446_591)">
                         <path
@@ -118,7 +118,7 @@ const Layout = () => {
                     </defs>
                 </svg>
             </div>
-            <div style={{ position: "absolute", top: 415, left: 200, zIndex: -1 }}>
+            <div style={{ position: "fixed", top: "60vh", left: "60%", zIndex: -1 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="157" height="300" viewBox="0 0 357 600" fill="none">
                     <g filter="url(#filter0_d_446_587)">
                         <path

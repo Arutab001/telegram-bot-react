@@ -60,7 +60,7 @@ const TaskContainer = (props) => {
     const randomImage = taskImages[Math.floor(Math.random() * taskImages.length)];
 
     return (
-        <div className="TaskContainer">
+        <div className="TaskContainer" >
             <div
             style={{marginRight: "2%"}}
             >
@@ -83,13 +83,38 @@ const TaskContainer = (props) => {
                     <Link
                         to="/TaskPage"
                         state={{id: props.id, name: props.name, reward: props.reward, link: props.link}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 125 125"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="125" height="125" viewBox="0 0 125 125"
                              fill="none">
-                            <rect width="125" height="125" rx="62.5" fill="#725B40"/>
-                            <path d="M53.3848 86.9233L77.6119 62.6962" stroke="#E4B57F" stroke-width="10"
-                                  stroke-linecap="round"/>
-                            <path d="M53.3848 37.9941L77.6155 62.2249" stroke="#E4B57F" stroke-width="10"
-                                  stroke-linecap="round"/>
+                            <rect width="125" height="125" rx="62.5" fill="url(#paint0_linear_501_1387)"/>
+                            <g filter="url(#filter0_d_501_1387)">
+                                <path d="M53.3848 85.9238L77.6119 61.6967" stroke="#212121" stroke-width="10"
+                                      stroke-linecap="round"/>
+                                <path d="M53.3848 36.9941L77.6155 61.2249" stroke="#212121" stroke-width="10"
+                                      stroke-linecap="round"/>
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_501_1387" x="38.3848" y="21.9941" width="54.2305" height="78.9297"
+                                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                                   values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                   result="hardAlpha"/>
+                                    <feOffset/>
+                                    <feGaussianBlur stdDeviation="5"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix"
+                                                   values="0 0 0 0 0.129412 0 0 0 0 0.129412 0 0 0 0 0.129412 0 0 0 0.4 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                             result="effect1_dropShadow_501_1387"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_501_1387"
+                                             result="shape"/>
+                                </filter>
+                                <linearGradient id="paint0_linear_501_1387" x1="125" y1="0" x2="0" y2="125"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#4CAF50"/>
+                                    <stop offset="1" stop-color="#FFEB3B"/>
+                                </linearGradient>
+                            </defs>
                         </svg>
                     </Link>
                 </div>

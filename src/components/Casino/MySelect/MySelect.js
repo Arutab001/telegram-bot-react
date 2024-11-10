@@ -27,25 +27,25 @@ const MySelect = ({onValueChange}) => {
                 {selectedItem}
             </div>
             <ul className={classes.select__list} style={{ display: isOpen ? 'block' : 'none' }}>
-                <li value={100} className={classes.select__item} onClick={() => handleSelect('100$ GMEME', 100)}>
+                <li value={100} className={classes.select__item_1} onClick={() => handleSelect('100$ GMEME', 100)}>
                     <strong> 100 </strong> $GMEME
                 </li>
-                <li value={250} className={classes.select__item} onClick={() => handleSelect('250$ GMEME', 250)}>
+                <li value={250} className={classes.select__item_2} onClick={() => handleSelect('250$ GMEME', 250)}>
                     <strong> 250 </strong> $GMEME
                 </li>
-                <li value={500} className={classes.select__item} onClick={() => handleSelect('500$ GMEME', 500)}>
+                <li value={500} className={classes.select__item_1} onClick={() => handleSelect('500$ GMEME', 500)}>
                     <strong> 500 </strong> $GMEME
                 </li>
-                <li value={1000} className={classes.select__item} onClick={() => handleSelect('1000$ GMEME', 1000)}>
+                <li value={1000} className={classes.select__item_2} onClick={() => handleSelect('1000$ GMEME', 1000)}>
                     <strong> 1000 </strong> $GMEME
                 </li>
-                <li value={2500} className={classes.select__item} onClick={() => handleSelect('2500$ GMEME', 2500)}>
+                <li value={2500} className={classes.select__item_1} onClick={() => handleSelect('2500$ GMEME', 2500)}>
                     <strong> 2500 </strong> $GMEME
                 </li>
-                <li value={5000} className={classes.select__item} onClick={() => handleSelect('5000$ GMEME', 5000)}>
+                <li value={5000} className={classes.select__item_2} onClick={() => handleSelect('5000$ GMEME', 5000)}>
                     <strong> 5000 </strong> $GMEME
                 </li>
-                <li value={10000} className={classes.select__item} onClick={() => handleSelect('10000$ GMEME', 10000)}>
+                <li value={10000} className={classes.select__item_1} onClick={() => handleSelect('10000$ GMEME', 10000)}>
                     <strong> 10000 </strong> $GMEME
                 </li>
             </ul>

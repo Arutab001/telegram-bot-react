@@ -1,6 +1,5 @@
 .profile {
-    background-color: #E4B57F;
-    border: 2px solid #725B40;
+    background-color: #212121;
     border-radius: 24px;
     height: 100%;
     width: 75vw;
@@ -11,13 +10,18 @@
     padding-bottom: 5%;
     h1 {
         font-size: larger;
-        color: #392D20;
+        background: radial-gradient(100% 400% at 100% 0%, #FFEB3B 0%, #4CAF50 100%);
+        background-clip: text;
+        -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
+        color: transparent;
     }
     span {
         margin: 0 2%;
-        color: #392D20;
+        color: #FFEB3B;
+        text-shadow: 0 0 20px 0 #FFEB3B66;
     }
-    color: #725B40;
+    color: #FF9800;
+    text-shadow: 1px 1px 5px #FFEB3B66;
 }
 .Button {
     padding-right: 5%;
@@ -25,10 +29,12 @@
     width: 100%;
     height: 5vh;
     border-radius: 24px;
-    border: 2px solid #392D20;
-    background-color: #FFEDD2;
+    background: linear-gradient(262.47deg, #4CAF50 11.67%, #FFEB3B 88.33%);
+    color: #212121;
+    text-shadow: 1px 1px 2px #21212166;
+    border: none;
+
     font-family: Montserrat;
-    color: #392D20;
 }
 
 .Button:disabled {
@@ -40,9 +46,9 @@
 }
 
 .Block {
-    border: 1px solid black;
+    box-shadow: 8px 15px 61.1px 0px #00000059;
     border-radius: 12px;
-    box-shadow: #392D20 0px 3px 8px;
+    background: linear-gradient(180deg, #212121 0%, #616161 251.81%);
     margin-bottom: 2vh;
     padding: 2vw;
 }
