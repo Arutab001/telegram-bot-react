@@ -39,7 +39,7 @@ const Layout = () => {
                     </defs>
                 </svg>
             </div>
-            <div style={{ position: "absolute", top: 0, left: "73%", zIndex: -1 }}>
+            <div style={{ position: "absolute", top: 0, left: "75%", zIndex: -1 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100" height="400" viewBox="0 0 237 499" fill="none">
                     <g filter="url(#filter0_d_446_590)">
                         <ellipse cx="241.712" cy="307.817" rx="110.855" ry="88.8899"
@@ -118,7 +118,7 @@ const Layout = () => {
                     </defs>
                 </svg>
             </div>
-            <div style={{ position: "fixed", top: "60vh", left: "60%", zIndex: -1 }}>
+            <div style={{ position: "fixed", top: "60vh", left: "62%", zIndex: -1 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="157" height="300" viewBox="0 0 357 600" fill="none">
                     <g filter="url(#filter0_d_446_587)">
                         <path
