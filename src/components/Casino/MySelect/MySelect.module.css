@@ -15,10 +15,11 @@
     align-items: center;
     justify-content: center;
     max-width: 100%;
-    border: 2px solid #00000080;
+    background: linear-gradient(78.23deg, #FF9800 0%, #FFEB3B 100%);
     border-radius: 24px 24px 24px 24px;
     line-height: 18px;
-    color: rgba(66, 67, 72, 0.8);
+    color: #212121;
+    text-shadow: 1px 1px 5px #212121;
     cursor: pointer;
 }
 
@@ -49,7 +50,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: #E4B57F;
+    background: linear-gradient(78.23deg, #FFEB3B 0%, #FF9800 100%);
     border: 2px solid #00000080;
     border-top: 0;
     border-radius: 0 0 24px 24px; /* Скругление снизу */
@@ -69,12 +70,25 @@
     display: none; /* Скрыть скроллбар для Chrome, Safari и других браузеров на основе WebKit */
 }
 
-.select__list .select__item {
+.select__list .select__item_1 {
     position: relative;
-    border-top: 2px solid #00000080;
+    background: linear-gradient(78.23deg, #FFEB3B 0%, #FF9800 100%);
     padding: 10px 15px;
     cursor: pointer;
     list-style-type: none;
+    text-align: center;
+    color: #212121;
+    text-shadow: 1px 1px 5px #212121;
+}
+
+.select__list .select__item_2 {
+    position: relative;
+    background: linear-gradient(78.23deg, #FF9800 0%, #FFEB3B 100%);
+    padding: 10px 15px;
+    cursor: pointer;
+    list-style-type: none;
+    text-align: center;
+    text-shadow: 1px 1px 5px #212121;
 }
 
 .select__list .select__item:hover {

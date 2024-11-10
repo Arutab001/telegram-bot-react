@@ -3,11 +3,13 @@
     top: 0;
     transition: top 1s ease;
     z-index: 0;
-    background-color: #BDFBB2;
-    border: 2px solid #00000080;
+    background: linear-gradient(0deg, #4CAF50, #4CAF50),
+    linear-gradient(90deg, #FFEB3B 0%, #4CAF50 100%);
     width: 90%;
     padding: 2% 5%;
     text-align: center;
+    color: #212121;
+    text-shadow: 1px 1px 3px #212121;
     svg {
         position: absolute;
         right: 10px;
