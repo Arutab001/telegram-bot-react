@@ -15,12 +15,14 @@
     margin: 0 10% 0 10%;
     width: 80vw;
     height: 31%;
-    background-color: #E4B57F;
+    background: radial-gradient(100% 400% at 100% 0%, #FF9800 0%, #FFEB3B 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
     display: flex;
     align-items: center;
     flex-direction: column;
-    border: 3px solid #E96161;
+    border: none;
     border-radius: 24px;
+    color: #212121;
+    text-shadow: 1px 1px 5px #21212166;
 
     div {
         display: flex;
@@ -34,22 +36,28 @@
     button {
         border-radius: 12px;
         border: none;
-        color: #E4B57F;
-        background-color: #725B40;
+        background-color: #212121;
     }
-
+    .InlineErrorBtn {
+        margin: 0;
+        background-image: radial-gradient(100% 400% at 100% 0%, #FF9800 0%, #FFEB3B 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+        -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
+        background-clip: text;
+        color: transparent;
+        text-shadow: 1px 1px 10px #4CAF5066;
+    }
 }
 
 
 .error_header {
-    background-color: #725B40;
-    color: #E4B57F;
+    background: linear-gradient(85.08deg, #FF9800 0%, #FFEB3B 100%);
+    color: #212121;
+    text-shadow: 1px 1px 5px #212121;
     width: 99.5%;
     margin: 0;
     height: 10vh;
     padding: 1% 0;
-    border: 2px solid #00000080;
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px;
     text-align: center;
     font-weight: normal;
 }

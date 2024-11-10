@@ -5,9 +5,8 @@
     margin: 10% auto;
     height: 100%;
     width: 75vw;
-    background-color: #E4B57F;
+    background-color: #212121;
     border-radius: 24px;
-    border: 2px solid #725B40;
     padding-bottom: 1%;
     img {
         width: 100%;
@@ -21,7 +20,11 @@
     }
     span {
         margin: 0 5%;
-        color: #392D20
+        background: radial-gradient(100% 400% at 100% 0%, #FFEB3B 0%, #4CAF50 100%);
+        background-clip: text;
+        -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
+        color: transparent;
+        text-shadow: 1px 1px 5px #FFEB3B66;
     }
     div {
         width: 100%;
@@ -30,7 +33,8 @@
         width: 90%;
         height: 5vh;
     }
-    color: #725B40;
+    color: #FF9800;
+    text-shadow: 1px 1px 5px #FFEB3B66;
 }
 
 @media (min-width: 600px) {

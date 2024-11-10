@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation} from "react-router-dom";
 import "./TaskPage.css";
-import TaskImg from "../../images/1channel.png"
+import TaskImg from "../../images/1channel.webp"
 import MyBtn from "../Profile/MyBtn.js";
 import ModalComplete from "./ModalComplete.js";
 import ErrorModal from "../Profile/ErrorModal.js";
@@ -86,7 +86,7 @@ const TaskPage = () => {
 
     const fetchTask = async () => {
         try{
-            const response = await axios.get(`https://geckoshi-prod.up.railway.app/task/photo?id=${id}&type=big_file_id`, {
+            const response = await axios.get(`/task/photo?id=${id}&type=big_file_id`, {
                 responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
             });
 
@@ -98,12 +98,6 @@ const TaskPage = () => {
 
         }catch (e) {
             console.error(e)
-        }
-        try {
-            const response = await axios.get()
-        }
-        catch(e){
-            console.error(e);
         }
     }
 

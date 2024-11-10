@@ -1,5 +1,6 @@
 import React from 'react';
 import {useUser} from "./Base_Logic/UserContext.js";
+import Spider from "./Spider/Spider.js";
 
 
 
