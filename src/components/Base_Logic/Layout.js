@@ -90,7 +90,7 @@ const Layout = () => {
             <main style={{marginBottom: "15vh"}}>
                 <Outlet/>
             </main>
-            <div style={{ position: "fixed", top: 400, left: -25, zIndex: -1}}>
+            <div style={{ position: "fixed", top: 400, left: -5, zIndex: -1}}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="157" height="285" viewBox="0 0 297 485" fill="none">
                     <g filter="url(#filter0_d_446_591)">
                         <path
