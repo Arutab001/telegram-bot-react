@@ -32,7 +32,7 @@ const Body = () => {
                 <CoinBox image={Coin1} name="$GMEME" cost={user.balance}/>
                 <CoinBox image={Coin2} name="$BMEME" cost={"0"}/>
             </div>
-            <div style={{zIndex: "-2"}}>
+            <div style={{zIndex: "2"}}>
                 <NewsBox/>
             </div>
             <Link to="/Casino">
