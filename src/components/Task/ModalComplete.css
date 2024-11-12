@@ -45,6 +45,7 @@
         -webkit-background-clip: text; /* Для поддержки в WebKit-браузерах */
         background-clip: text;
         color: transparent;
+        font-size: 22px;
     }
 }
 
