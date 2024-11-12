@@ -3,13 +3,16 @@
     top: 0;
     transition: top 1s ease;
     z-index: 0;
-    background: linear-gradient(0deg, #4CAF50, #4CAF50),
-    linear-gradient(90deg, #FFEB3B 0%, #4CAF50 100%);
+    background-image: linear-gradient(to right, #ffeb3b, #4caf50), linear-gradient(to bottom, #4caf50, #4caf50);
     width: 90%;
     padding: 2% 5%;
     text-align: center;
     color: #212121;
-    text-shadow: 1px 1px 3px #212121;
+    text-shadow: 0 0 10px rgba(33, 33, 33, 0.4);
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
     svg {
         position: absolute;
         right: 10px;
