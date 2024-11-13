@@ -24,3 +24,4 @@ yarn-error.log*
 .idea
 
 ./src/components/Main_Page/NewsBox.js
+.src/components/Base_Logic/TelegramAuth.js
