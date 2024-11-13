@@ -44,6 +44,9 @@ const Task = () => {
                     link={task.markup?.inline_keyboard[0]?.[0]?.url}
                 />
             ))}
+            {tasks.length === 0 ? <div className="Rectangle-12"><span className="There-are-currently-no-active-tasks">
+  There are currently no active tasks.
+</span></div> : null}
         </div>
     );
 };

@@ -4,6 +4,7 @@ import {useUser} from "../Base_Logic/UserContext.js";
 import axios from "axios";
 import {useToken} from "../Base_Logic/TelegramAuth.js";
 import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
+import {Link} from "react-router-dom";
 
 const translations = {
     english: {
@@ -162,9 +163,11 @@ const ModalComplete = ({show, close, id, reward, openError}) => {
                     <p>
                         {localisation.SuccessMessage} {id}
                     </p>
-                    <button onClick={getReward}>
-                        <p className="InlineBtn">{localisation.GetReward}</p>
-                    </button>
+                    <Link to={"/Tasks"}>
+                        <button onClick={getReward}>
+                            <p className="InlineBtn">{localisation.GetReward}</p>
+                        </button>
+                    </Link>
                 </div>
             </div>
 
