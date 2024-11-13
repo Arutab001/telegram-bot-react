@@ -11,6 +11,19 @@
     border-radius: 24px;
 }
 
+.name_textarea {
+    border: none;
+    background: none;
+    font-family: Montserrat;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.name_textarea:focus {
+    outline: none;
+}
+
 .box_create {
     background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="804" height="738" viewBox="0 0 804 738" fill="none"%3E%3Cpath d="M0 0C0 0 28.5028 24 50.25 24C71.9972 24 78.7528 0 100.5 0C122.247 0 129.003 24 150.75 24C172.497 24 179.253 0 201 0C222.747 0 229.503 24 251.25 24C272.997 24 279.753 0 301.5 0C323.247 0 330.003 24 351.75 24C373.497 24 380.253 0 402 0C423.747 0 430.503 24 452.25 24C473.997 24 480.753 0 502.5 0C524.247 0 531.003 24 552.75 24C574.497 24 581.253 0 603 0C624.747 0 631.503 24 653.25 24C674.997 24 681.753 0 703.5 0C725.247 0 732.003 24 753.75 24C775.497 24 804 0 804 0V228.5C804 228.5 789 228.5 789 243C789 257.5 804 257.5 804 257.5V738C804 738 775.668 713 753.75 713C731.832 713 725.418 738 703.5 738C681.582 738 675.168 713 653.25 713C631.332 713 624.918 738 603 738C581.082 738 574.668 713 552.75 713C530.832 713 524.418 738 502.5 738C480.582 738 474.168 713 452.25 713C430.332 713 423.918 738 402 738C380.082 738 373.668 713 351.75 713C329.832 713 323.418 738 301.5 738C279.582 738 273.168 713 251.25 713C229.332 713 222.918 738 201 738C179.082 738 172.668 713 150.75 713C128.832 713 122.418 738 100.5 738C78.5817 738 72.1683 713 50.25 713C28.3317 713 0 738 0 738L0 257.5C0 257.5 15 257.5 15 243C15 228.5 0 228.5 0 228.5V0Z" fill="%236D8069"/%3E%3C/svg%3E');
     background-size: contain;
@@ -44,6 +57,11 @@
     color: #6D806980;
     width: 60vw;
 }
+
+.amount_textarea:focus {
+    outline: none;
+}
+
 .Button_Save {
     margin-top: 5%;
     border: none;
@@ -61,4 +79,15 @@
     height: 3vh;
     width: 60vw;
     color: #000000BF;
+}
+
+.Button_LinkUser {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: #6D8069;
+    background-color: #D9FFD2;
+    border-radius: 12px;
 }

@@ -57,7 +57,34 @@
 
 }
 
+.Rectangle-12 {
+    width: 80vw;
+    height: 15vh;
+    border-radius: 24px;
+    background-color: #212121;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.There-are-currently-no-active-tasks {
+    width: 60vw;
+    height: 10vh;
+    background-image: radial-gradient(circle at 100% 0%, #ffeb3b, #4caf50 100%);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 
 @media (min-width: 800px) {
