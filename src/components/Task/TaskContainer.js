@@ -82,8 +82,15 @@ const TaskContainer = (props) => {
                 >
                     <Link
                         to="/TaskPage"
-                        state={{id: props.id, name: trimString(props.title, 25), reward: props.reward, link: props.link}}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="125" height="125" viewBox="0 0 125 125"
+                        state={{
+                            id: props.id,
+                            name: trimString(props.title, 25),
+                            reward: props.reward,
+                            links: props.link,
+                            expires: props.exprires_at
+                        }}>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="125" height="125" viewBox="0 0 125 125"
                              fill="none">
                             <rect width="125" height="125" rx="62.5" fill="url(#paint0_linear_501_1387)"/>
                             <g filter="url(#filter0_d_501_1387)">

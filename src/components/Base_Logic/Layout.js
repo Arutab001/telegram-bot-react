@@ -118,7 +118,7 @@ const Layout = () => {
                     </defs>
                 </svg>
             </div>
-            <div style={{ position: "fixed", top: "60vh", left: "62%", zIndex: -1 }}>
+            <div style={{ position: "fixed", top: "60vh", right: 0, zIndex: -1 }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="157" height="300" viewBox="0 0 357 600" fill="none">
                     <g filter="url(#filter0_d_446_587)">
                         <path

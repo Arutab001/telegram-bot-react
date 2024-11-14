@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {useLocation} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
 import "./TaskPage.css";
-import TaskImg from "../../images/1channel.webp"
+import TaskImg from "../../images/1channel.webp";
 import MyBtn from "../Profile/MyBtn.js";
 import ModalComplete from "./ModalComplete.js";
 import ErrorModal from "../Profile/ErrorModal.js";
 import TaskError from "./TaskError.js";
-import {useLangProfile} from "../Base_Logic/UserLanguageProvider.js";
-import {useUser} from "../Base_Logic/UserContext.js";
+import { useLangProfile } from "../Base_Logic/UserLanguageProvider.js";
+import { useUser } from "../Base_Logic/UserContext.js";
 import axios from "axios";
 
 const translations = {
@@ -19,6 +19,7 @@ const translations = {
         Days: "days",
         Hours: "hours",
         Minutes: "minutes",
+        Months: "months",
     },
     russian: {
         Description: "Описание",
@@ -28,6 +29,7 @@ const translations = {
         Days: "дней",
         Hours: "часов",
         Minutes: "минут",
+        Months: "месяцев",
     },
     german: {
         Description: "Beschreibung",
@@ -37,6 +39,7 @@ const translations = {
         Days: "Tage",
         Hours: "Stunden",
         Minutes: "Minuten",
+        Months: "Monate",
     },
     turkish: {
         Description: "Açıklama",
@@ -46,87 +49,90 @@ const translations = {
         Days: "gün",
         Hours: "saat",
         Minutes: "dakika",
+        Months: "ay",
     },
 };
 
 const TaskPage = () => {
-
     const [isModalOpen, setModalOpen] = useState(false);
-
     const [isErrorOpen, setErrorOpen] = useState(false);
-
     const [image, setImage] = useState('');
-
-    const CloseModal = (e) => {
-        e.preventDefault();
-        setModalOpen(false);
-    }
-
-    const OpenModal = (e) => {
-        e.preventDefault();
-        setModalOpen(true);
-    }
-
-    const CloseError = (e) => {
-        e.preventDefault();
-        setErrorOpen(false);
-    }
-
-    const OpenError = (e) => {
-        e.preventDefault();
-        setErrorOpen(true);
-    }
+    const [timeLeft, setTimeLeft] = useState({});
 
     const location = useLocation();
-    const {id, name, reward, link} = location.state || {};
+    const { id, name, reward, links = [], expires } = location.state || {};
 
-    const {userLanguage} = useLangProfile();
-    const {user} = useUser();
+    const { userLanguage } = useLangProfile();
+    const { user } = useUser();
     const localisation = translations[userLanguage] || translations[user.language] || translations.english;
 
+    const calculateTimeLeft = () => {
+        const expirationDate = new Date(expires);
+        const now = new Date();
+        const difference = expirationDate - now;
+
+        if (difference > 0) {
+            const months = Math.floor(difference / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((difference / (1000 * 60 * 60 * 24)) % 30);
+            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((difference / (1000 * 60)) % 60);
+
+            setTimeLeft({
+                months,
+                days,
+                hours,
+                minutes,
+            });
+        } else {
+            setTimeLeft(null); // Если время истекло
+        }
+    };
+
+    useEffect(() => {
+        calculateTimeLeft(); // Рассчёт начального времени
+        const timer = setInterval(calculateTimeLeft, 60000); // Обновление каждые 60 секунд
+
+        return () => clearInterval(timer); // Очистка таймера при размонтировании
+    }, [expires]);
+
     const fetchTask = async () => {
-        try{
+        try {
             const response = await axios.get(`/task/photo?id=${id}&type=big_file_id`, {
-                responseType: 'blob', // Указываем, что ответ будет в бинарном формате (blob)
+                responseType: 'blob',
             });
 
-            if (response.status === 200){
+            if (response.status === 200) {
                 const imageUrl = URL.createObjectURL(response.data);
-
                 setImage(imageUrl);
             }
-
-        }catch (e) {
-            console.error(e)
+        } catch (e) {
+            console.error(e);
         }
-    }
+    };
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchTask();
-    }, [])
+    }, []);
 
     const getReward = async (e) => {
-        try{
+        try {
             const response = await axios.post(`/task/done?task_id=${id}`);
             const data = response.data;
             console.log(data);
-            if (data.done_successfully === true){
-                OpenModal(e);
+            if (data.done_successfully === true) {
+                setModalOpen(true);
+            } else {
+                setErrorOpen(true);
             }
-            else {
-                OpenError(e);
-            }
-
-        }
-        catch (error) {
+        } catch (error) {
             console.error(error);
-            OpenError(e)
+            setErrorOpen(true);
         }
-    }
+    };
 
-    const openLink = () => {
-        window.open(link, "_blank", "noopener,noreferrer")
-    }
+    const openLink = (url) => {
+        window.open(url, "_blank", "noopener,noreferrer");
+    };
 
     return (
         <div className="TaskPage">
@@ -137,34 +143,31 @@ const TaskPage = () => {
                 <h2 className="task-header">
                     {name}
                 </h2>
-                <div style={{margin: "0 5% 5% 5%", width: "90%"}}>
-                    <span>
-                        ID:
-                    </span>
-                    {id}
+                <div style={{ margin: "0 5% 5% 5%", width: "90%" }}>
+                    <span>ID:</span> {id}
                     <br/>
-                    <span>
-                        {localisation.Description}:
-                    </span>
-                    {localisation.Goto}
+                    <span>{localisation.Description}:</span> {localisation.Goto}
                     <br/>
-                    <span>
-                        {localisation.Reward}:
-                    </span>
-                    {reward} $GMEME
+                    <span>{localisation.Reward}:</span> {reward} $GMEME
                     <br/>
-                    <span>
-                        {localisation.TimeLeft}:
-                    </span>
-                    2 {localisation.Days}, 19 {localisation.Hours}, 18 {localisation.Minutes}
+                    <span>{localisation.TimeLeft}:</span>
+                    {timeLeft ? (
+                        <>
+                            {timeLeft.months} {localisation.Months}, {timeLeft.days} {localisation.Days}, {timeLeft.hours} {localisation.Hours}, {timeLeft.minutes} {localisation.Minutes}
+                        </>
+                    ) : (
+                        <span>Expired</span>
+                    )}
                 </div>
             </div>
-            <div style={{display: "flex", alignItems: "center", flexDirection: "column"}}>
-                <MyBtn text="Go To" onClick={openLink}></MyBtn>
+            <div style={{ display: "flex", alignItems: "center", flexDirection: "column" }}>
+                {links.map((url, index) => (
+                    <MyBtn key={index} text={localisation.Goto} onClick={() => openLink(url)} />
+                ))}
                 <MyBtn text="Approve" onClick={getReward} />
             </div>
-            <ModalComplete show={isModalOpen} reward={reward} close={CloseModal} id={id} openError={setErrorOpen}/>
-            <TaskError show={isErrorOpen} close={CloseError} />
+            <ModalComplete show={isModalOpen} reward={reward} close={() => setModalOpen(false)} id={id} openError={setErrorOpen}/>
+            <TaskError show={isErrorOpen} close={() => setErrorOpen(false)} />
         </div>
     );
 };
