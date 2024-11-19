@@ -44,7 +44,7 @@ export const TelegramAuth = ({children}) => {
     };
 
     function configureAxios() {
-        axios.defaults.baseURL = "https://geckoshi-prod.up.railway.app";
+        axios.defaults.baseURL = "https://geckoshi-stage.up.railway.app";
     }
 
     useEffect(() => {
@@ -57,9 +57,11 @@ export const TelegramAuth = ({children}) => {
             } else {
                 try {
                     const initData = window.Telegram.WebApp.initData;
+                    const start_params = window.Telegram.WebApp.initDataUnsafe.start_param;
                     console.log(initData.toString())
-                    const response = await axios.post('/auth/v3', {
-                        data: initData
+                    const response = await axios.post('/auth/v4', {
+                        init_data: initData,
+                        start_argument: start_params
                     });
                     const result = response.data.access_token;
                     handleSetToken(result.toString()); // Сохраняем токен в стейте и cookie
