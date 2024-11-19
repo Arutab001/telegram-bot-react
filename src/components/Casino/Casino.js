@@ -63,6 +63,7 @@ const Casino = () => {
     const handleSelectChange = (value) => {
         setSelectedValue(value);
     };
+
     const OpenModal = () => {
         setIsModalOpen(true);
     }
@@ -185,6 +186,10 @@ const Casino = () => {
                 const response = await axios.get('/user/info');
                 if (response.status === 200) {
                     const data = await response.data;
+                    // Обновляем локальный баланс, если используете его
+                    setBalance(data.data.balance);  // Обновление состояния баланса
+
+                    // Если хотите обновить глобальное состояние пользователя
                     updateUser(prevState => ({
                         ...prevState,
                         balance: data.data.balance
@@ -198,6 +203,7 @@ const Casino = () => {
             }
         }
     };
+
 
 
 
