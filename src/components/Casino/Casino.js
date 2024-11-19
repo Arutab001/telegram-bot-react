@@ -53,6 +53,13 @@ const lose_translations = {
 const Casino = () => {
 
     const {user, updateUser} = useUser();
+
+    const [balance, handleBalance] = useState(user.balance);
+
+    const setBalance = (new_balance) => {
+        handleBalance(new_balance);
+    }
+
     const {language} = useLanguage();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(null);
@@ -241,7 +248,7 @@ const Casino = () => {
                         <div className="slot">{displayedResults.Fruit3}</div>
                     </div>
                     <div className="user_balance">
-                        Your balance: {formatNumber(user.balance)}
+                        Your balance: {formatNumber(balance)}
                     </div>
                     <div className="Card_Bottom">
                         <MySelect onValueChange={handleSelectChange}/>
