@@ -23,7 +23,12 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
 
     const searchUser = async () => {
         try {
-            const response = await axios.post(`/cheque/personal?name=${name}&amount=${amount}&connected_to_user=${userTag}`);
+            const response = await axios.post('/cheque/personal', {
+                name: String(name),
+                amount: amount,
+                connected_to_user: userTag,
+                description: "Your description here" // Укажите описание
+            });
             if(response.status === 200) {
                 close()
             }
