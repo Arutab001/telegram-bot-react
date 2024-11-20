@@ -3,8 +3,11 @@ import CreateCheckStyles from "./CreateCheck.module.css"
 import gecko from "../../../images/gecko_coin_rem 1.png";
 import LinkToUser from "./LinkToUser/LinkToUser.js"
 import {Link} from "react-router-dom";
+import {useUser} from "../../Base_Logic/UserContext.js";
 
 const CreateCheck = () => {
+
+    const {user} = useUser();
 
     const [amount, setAmount] = useState('');
 
@@ -57,7 +60,7 @@ const CreateCheck = () => {
                                           value={amount}
                                           onChange={handleAmountChange}></textarea>
                             </div>
-                            <div>balance: 999.999</div>
+                            <div>balance: {user.balance}</div>
                         </div>
                     </div>
                     <div>
@@ -92,7 +95,7 @@ const CreateCheck = () => {
                     </Link>
                 </div>
             </div>
-            <LinkToUser isOpen={open} close={handleClose}/>
+            <LinkToUser isOpen={open} close={handleClose} name={name} amount={amount}/>
         </div>
     );
 };

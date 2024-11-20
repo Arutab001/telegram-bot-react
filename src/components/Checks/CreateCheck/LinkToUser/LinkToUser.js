@@ -3,7 +3,7 @@ import classes from "./LinkToUser.module.css";
 import {useToken} from "../../../Base_Logic/TelegramAuth.js";
 import axios from "axios";
 
-const LinkToUser = ({isOpen, close}) => {
+const LinkToUser = ({isOpen, close, name, amount}) => {
 
     const {token} = useToken();
 
@@ -22,8 +22,11 @@ const LinkToUser = ({isOpen, close}) => {
     };
 
     const searchUser = async () => {
-        const response = await axios.get(`/public/user-exists?id=${userTag}`);
+        const response = await axios.post(`/cheque/personal?name=${name}&amount=${amount}&connected_to_user=${userTag}`);
         if(response.status === 200) {
+            close()
+        }
+        else {
 
         }
     }
