@@ -19,11 +19,13 @@ const CheckMainPage = () => {
                 const response = await axios.get('/cheque/personal/my?page=1&limit=100');
                 if (response.status === 200) {
                     setData({
+                        name: response.data.name,
                         status: response.data.status,
                         items: response.data.items,
                         total_items: response.data.total_items,
                         current_page: response.data.current_page,
                         total_pages: response.data.total_pages,
+                        link: response.data.link
                     });
                 }
             } catch (e) {
@@ -39,28 +41,50 @@ const CheckMainPage = () => {
             <h1>Your Checks</h1>
             <div className={ChecksMainPage.list_of_checks}>
                 {data.items.map((check, index) => (
-                    <Check
+                    <div
                         key={index}
-                        currency={check.currency || 'Unknown'}
+                        currency={check.currency || 'Gmeme'}
                         amount={check.amount || '0'}
                         total={check.total || '$0.00'}
                         onDelete={'handleDelete'}
-                    />
+                        className={ChecksMainPage.checksCard}
+                    >
+                        {check.name}
+                    </div>
                 ))}
-                <div className="add-check">
+                <div className={ChecksMainPage.add_check}>
                     <Link to="/CreateCheck">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 126 125" fill="none">
-                            <rect x="0.333984" width="125" height="125" rx="62.5" fill="#6D8069" />
-                            <rect x="57.5332" y="34" width="10.875" height="58" rx="5.4375" fill="#D9FFD2" />
-                            <rect
-                                x="92.334"
-                                y="57.1992"
-                                width="10.875"
-                                height="58"
-                                rx="5.4375"
-                                transform="rotate(90 92.334 57.1992)"
-                                fill="#D9FFD2"
-                            />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 124 124"
+                             fill="none">
+                            <rect width="124" height="124" rx="62" fill="url(#paint0_linear_596_241)"/>
+                            <g filter="url(#filter0_d_596_241)">
+                                <rect x="56.7432" y="33.7266" width="10.788" height="57.536" rx="5.394" fill="#212121"/>
+                                <rect x="91.2646" y="56.7402" width="10.788" height="57.536" rx="5.394"
+                                      transform="rotate(90 91.2646 56.7402)" fill="#212121"/>
+                            </g>
+                            <defs>
+                                <filter id="filter0_d_596_241" x="23.7285" y="23.7266" width="77.5361" height="77.5352"
+                                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <feColorMatrix in="SourceAlpha" type="matrix"
+                                                   values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                                                   result="hardAlpha"/>
+                                    <feOffset/>
+                                    <feGaussianBlur stdDeviation="5"/>
+                                    <feComposite in2="hardAlpha" operator="out"/>
+                                    <feColorMatrix type="matrix"
+                                                   values="0 0 0 0 0.129412 0 0 0 0 0.129412 0 0 0 0 0.129412 0 0 0 0.4 0"/>
+                                    <feBlend mode="normal" in2="BackgroundImageFix"
+                                             result="effect1_dropShadow_596_241"/>
+                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_596_241"
+                                             result="shape"/>
+                                </filter>
+                                <linearGradient id="paint0_linear_596_241" x1="124" y1="0" x2="0" y2="124"
+                                                gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#4CAF50"/>
+                                    <stop offset="1" stop-color="#FFEB3B"/>
+                                </linearGradient>
+                            </defs>
                         </svg>
                     </Link>
                 </div>

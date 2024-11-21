@@ -46,11 +46,11 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
                 </div>
                 <div className={classes.modal_body}>
                     <textarea className={classes.input}
-                              placeholder={"enter the user tag@"}
+                              placeholder={"enter the user id"}
                               value={userTag}
                               onChange={handleInputChange}
                     ></textarea>
-                    <button className={classes.search_button} onClick={searchUser}>Search user</button>
+                    <button className={classes.search_button} onClick={searchUser}><p className={classes.search_button_text}>Search user</p></button>
                 </div>
             </div>
         </div>

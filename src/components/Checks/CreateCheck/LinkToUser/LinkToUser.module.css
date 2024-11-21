@@ -13,7 +13,7 @@
 
 
 .modal_content_link {
-    background: #D9FFD2;
+    background-image: radial-gradient(circle at 100% 0%, #ffeb3b, #4caf50 100%);
     width: 60vw;
     height: 25vh;
     border-radius: 18px;
@@ -21,13 +21,18 @@
 
 
 .modal_header {
-    border-radius: 24px;
-    border: 1px solid black;
+    border-radius: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 20%;
+    height: 30%;
+    background-image: linear-gradient(76deg, #ffeb3b 0%, #4caf50 100%);
 }
 
 .modal_body {
@@ -44,18 +49,23 @@
 .input {
     height: 15%;
     width: 50vw;
-    margin-bottom: 15%;
+    margin-bottom: 5%;
     border: none;
-    background: #6D8069;
-    color: #D9FFD2;
+    background: #212121;
     border-radius: 24px;
 }
+
 .input:focus {
     outline: none;
 }
 
 .input::placeholder {
-    color: #D9FFD2;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffeb3b;
     display: flex;
     text-align: center;
 }
@@ -64,6 +74,25 @@
     width: 51.5vw;
     height: 15%;
     border: none;
+    background-color: #212121;
     border-radius: 24px;
 }
+
+.search_button_text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-image: radial-gradient(circle at 100% 0%, #ffeb3b, #4caf50 100%);
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 
