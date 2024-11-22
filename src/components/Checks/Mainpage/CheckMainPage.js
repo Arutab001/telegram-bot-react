@@ -25,7 +25,8 @@ const CheckMainPage = () => {
                         total_items: response.data.total_items,
                         current_page: response.data.current_page,
                         total_pages: response.data.total_pages,
-                        link: response.data.link
+                        link: response.data.link,
+                        connected_to_user: response.data.connected_to_user
                     });
                 }
             } catch (e) {
@@ -41,16 +42,23 @@ const CheckMainPage = () => {
             <h1>Your Checks</h1>
             <div className={ChecksMainPage.list_of_checks}>
                 {data.items.map((check, index) => (
-                    <div
+                    <Link
                         key={index}
-                        currency={check.currency || 'Gmeme'}
-                        amount={check.amount || '0'}
-                        total={check.total || '$0.00'}
-                        onDelete={'handleDelete'}
+                        to='/Check'
+                        state = {{
+                        name: check.name || 'Check',
+                        status: check.status || 'unknown',
+                        link: check.link || 'unknown',
+                        connected_to_user: check.connected_to_user || 'undefined',
+                        currency: check.currency || 'Gmeme',
+                        amount: check.amount || '0',
+                        total: check.total || '$0.00',
+                        onDelete: 'handleDelete',
+                    }}
                         className={ChecksMainPage.checksCard}
                     >
                         {check.name}
-                    </div>
+                    </Link>
                 ))}
                 <div className={ChecksMainPage.add_check}>
                     <Link to="/CreateCheck">

@@ -11,6 +11,7 @@ import TaskPage from "./components/Task/TaskPage.js";
 import {TelegramAuth} from "./components/Base_Logic/TelegramAuth.js";
 import CheckMainPage from "./components/Checks/Mainpage/CheckMainPage.js";
 import CreateCheck from "./components/Checks/CreateCheck/CreateCheck.js";
+import Check from "./components/Checks/Check/Check.js";
 
 const tg = window.Telegram.WebApp;
 
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
             <Route path="TaskPage" element={<TaskPage/>}/>
             <Route path="CheckMainPage" element={<CheckMainPage />} />
             <Route path="CreateCheck" element={<CreateCheck />} />
+            <Route path="Check" element={<Check />} />
         </Route>
     )
 );
