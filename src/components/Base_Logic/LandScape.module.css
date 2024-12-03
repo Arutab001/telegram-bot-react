@@ -28,5 +28,6 @@
     background: radial-gradient(100% 400% at 100% 0%, #FFEB3B 0%, #4CAF50 100%);
     -webkit-background-clip: text;
     background-clip: text;
+    font-size: 5vh;
     color: transparent; /* Скрываем цвет текста */
 }
