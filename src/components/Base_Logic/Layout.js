@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../Header.js';
 import Footer from '../Footer.js';
 import {Link, Outlet, useLocation, useNavigate} from 'react-router-dom';
-import Spider from "../Spider/Spider.js";
-import Pumpkin from "../Pumpkin/Pumpkin.js";
+import LandScape from "./LandScape.js";
 
 
 const Layout = () => {
+
+    const [isLandscape, setIsLandscape] = useState(window.innerWidth > window.Telegram.WebApp.viewportHeight);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsLandscape(window.innerWidth > window.Telegram.WebApp.viewportHeight);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    if (isLandscape) {
+        return <LandScape />;
+    }
 
     return (
         <>
