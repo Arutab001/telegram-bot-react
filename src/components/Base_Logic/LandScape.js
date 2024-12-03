@@ -68,7 +68,7 @@ const LandScape = () => {
                 </defs>
             </svg>
             {/*Средний левый*/}
-            <svg style={{position: "absolute", top: "-30%", left: "17%", zIndex: "1"}}
+            <svg style={{position: "absolute", top: "-40%", left: "17%", zIndex: "1"}}
                  xmlns="http://www.w3.org/2000/svg" width="253"
                  height="290" viewBox="0 0 413 290" fill="none">
                 <g filter="url(#filter0_d_607_20)">
@@ -96,7 +96,7 @@ const LandScape = () => {
                 </defs>
             </svg>
             {/*Крайний левый*/}
-            <svg style={{position: "absolute", top: "-40%", left: "13%"}} xmlns="http://www.w3.org/2000/svg" width="75%"
+            <svg style={{position: "absolute", top: "-50%", left: "13%"}} xmlns="http://www.w3.org/2000/svg" width="75%"
                  height="317" viewBox="0 0 366 317" fill="none">
                 <g filter="url(#filter0_d_607_21)">
                     <ellipse cx="145.635" cy="83.9199" rx="146.883" ry="105.631"
@@ -292,7 +292,7 @@ const LandScape = () => {
                 </svg>
             </div>
             {/*Светло-зеленый листик справа*/}
-            <svg style={{position: "absolute", bottom: "-20%", right: "-25%"}} xmlns="http://www.w3.org/2000/svg"
+            <svg style={{position: "absolute", bottom: "-20%", right: "-30%"}} xmlns="http://www.w3.org/2000/svg"
                  width="75%" height="75%" viewBox="0 0 170 477" fill="none">
                 <g filter="url(#filter0_d_607_11)">
                     <path
@@ -328,7 +328,7 @@ const LandScape = () => {
                 </defs>
             </svg>
             {/*Темный листик слева сверху*/}
-            <svg style={{position: "absolute", top: "-25%", left: "-10%"}} xmlns="http://www.w3.org/2000/svg" width="50%"
+            <svg style={{position: "absolute", top: "-25%", left: "-15%"}} xmlns="http://www.w3.org/2000/svg" width="50%"
                  height="80%" viewBox="0 0 373 464" fill="none">
                 <g filter="url(#filter0_d_607_15)">
                     <path
@@ -356,7 +356,7 @@ const LandScape = () => {
                 </defs>
             </svg>
             {/*Светлый длинный листик снизу слева*/}
-            <svg style={{position: "absolute", bottom: "-15%", left: "-27%"}} xmlns="http://www.w3.org/2000/svg"
+            <svg style={{position: "absolute", bottom: "-15%", left: "-30%"}} xmlns="http://www.w3.org/2000/svg"
                  width="75%" height="75%" viewBox="0 0 302 528" fill="none">
                 <g filter="url(#filter0_d_607_16)">
                     <path
