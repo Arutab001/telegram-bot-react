@@ -1,30 +1,30 @@
-// src/App.js
+// App.js
 import './App.css';
-import {useEffect, useState} from 'react';
-import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
-import Layout from './components/Base_Logic/Layout.js'; // Импортируйте ваш новый Layout компонент
+import { useEffect, useState } from 'react';
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import Layout from './components/Base_Logic/Layout.js';
 import Home from './components/Main_Page/Home.js';
 import Casino from './components/Casino/Casino.js';
 import Profile from './components/Profile/Profile.js';
 import Task from './components/Task/Task.js';
 import TaskPage from "./components/Task/TaskPage.js";
-import {TelegramAuth} from "./components/Base_Logic/TelegramAuth.js";
+import { TelegramAuth } from "./components/Base_Logic/TelegramAuth.js";
 import CheckMainPage from "./components/Checks/Mainpage/CheckMainPage.js";
 import CreateCheck from "./components/Checks/CreateCheck/CreateCheck.js";
 import Check from "./components/Checks/Check/Check.js";
-import {useUser} from "./components/Base_Logic/UserContext.js";
+import { useUser } from "./components/Base_Logic/UserContext.js";  // Импортируем useUser
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 const tg = window.Telegram.WebApp;
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<Layout/>}> {/* Используем Layout как обертку для всех страниц */}
-            <Route index element={<Home/>}/>
-            <Route path="Casino" element={<Casino/>}/>
-            <Route path="Profile" element={<Profile/>}/>
-            <Route path="Tasks" element={<Task/>}/>
-            <Route path="TaskPage" element={<TaskPage/>}/>
+        <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="Casino" element={<Casino />} />
+            <Route path="Profile" element={<Profile />} />
+            <Route path="Tasks" element={<Task />} />
+            <Route path="TaskPage" element={<TaskPage />} />
             <Route path="CheckMainPage" element={<CheckMainPage />} />
             <Route path="CreateCheck" element={<CreateCheck />} />
             <Route path="Check" element={<Check />} />
@@ -41,7 +41,7 @@ function App() {
         if (event.ctrlKey) {
             event.preventDefault();
         }
-    }, {passive: false});
+    }, { passive: false });
 
     document.addEventListener('keydown', function (event) {
         if (event.ctrlKey && (event.key === '+' || event.key === '-' || event.key === '0')) {
@@ -50,15 +50,13 @@ function App() {
     });
 
     const [isLoading, setIsLoading] = useState(true);
-
     const { user } = useUser();
 
     useEffect(() => {
-        if (!user) {
+        if (user.id !== 0) {
             setIsLoading(false);
         }
     }, [user]);
-
 
     const onClose = () => {
         tg.close();
@@ -67,10 +65,10 @@ function App() {
     return (
         <>
             {isLoading ? (
-                <LoadingScreen onComplete={() => {setIsLoading(false)}} />
-            ) : (<RouterProvider router={router}/>)}
+                <LoadingScreen onComplete={() => { setIsLoading(false) }} />
+            ) : (<RouterProvider router={router} />)}
         </>
-)
+    );
 }
 
 export default App;

@@ -1,8 +1,7 @@
 // UserProvider.js
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from "axios";
-import { useToken } from "./TelegramAuth.js";
+import { useToken } from "./TelegramAuth.js";  // Импортируем useToken из TelegramAuth
 
 const UserContext = createContext();
 
@@ -11,7 +10,7 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-    const { token } = useToken();  // Получаем токен
+    const { token } = useToken();  // Получаем токен из TokenContext
     const [user, setUser] = useState({
         name: '',
         id: 0,
@@ -23,6 +22,7 @@ export const UserProvider = ({ children }) => {
         ref_link: ''
     });
 
+    // Конфигурируем Axios
     function configureAxios() {
         axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
     }
@@ -45,17 +45,17 @@ export const UserProvider = ({ children }) => {
             ref_link: 'https://t.me/Geckoshi_bot?start=' + new_ref_link
         }));
     };
+
     const handleUserBalance = (new_balance) => {
         setUser(prevState => ({
             ...prevState,
             balance: new_balance
-        }))
-    }
+        }));
+    };
 
     useEffect(() => {
         if (!token) {
-            // Если токен отсутствует, то не выполняем запросы
-            return;
+            return; // Если токен отсутствует, не делаем запросы
         }
 
         configureAxios();
@@ -92,20 +92,20 @@ export const UserProvider = ({ children }) => {
             } catch (error) {
                 console.error('Ошибка сети:', error);
             }
+
             try {
                 const response = await axios.get('/coin/balance');
-                if (response.status === 200){
+                if (response.status === 200) {
                     handleUserBalance(response.data.data.GMEME);
                 }
-            }
-            catch (e) {
+            } catch (e) {
                 console.log("Balance error:");
-                console.error(e)
+                console.error(e);
             }
         };
 
         fetchUserInfo();
-    }, [token, user.balance]); // Теперь эффект срабатывает при изменении токена
+    }, [token, user.balance]);  // Теперь эффект срабатывает при изменении токена
 
     return (
         <UserContext.Provider value={{ user, setUser, handleUserBalance }}>
