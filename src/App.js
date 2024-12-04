@@ -1,6 +1,6 @@
 // src/App.js
 import './App.css';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {createBrowserRouter, createRoutesFromElements, Route, RouterProvider} from 'react-router-dom';
 import Layout from './components/Base_Logic/Layout.js'; // Импортируйте ваш новый Layout компонент
 import Home from './components/Main_Page/Home.js';
@@ -12,6 +12,8 @@ import {TelegramAuth} from "./components/Base_Logic/TelegramAuth.js";
 import CheckMainPage from "./components/Checks/Mainpage/CheckMainPage.js";
 import CreateCheck from "./components/Checks/CreateCheck/CreateCheck.js";
 import Check from "./components/Checks/Check/Check.js";
+import {useUser} from "./components/Base_Logic/UserContext.js";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 const tg = window.Telegram.WebApp;
 
@@ -47,12 +49,28 @@ function App() {
         }
     });
 
+    const [isLoading, setIsLoading] = useState(true);
+
+    const { user } = useUser();
+
+    useEffect(() => {
+        if (!user) {
+            setIsLoading(false);
+        }
+    }, [user]);
+
 
     const onClose = () => {
         tg.close();
     };
 
-    return (<TelegramAuth> <RouterProvider router={router}/></TelegramAuth>);
+    return (
+        <>
+            {isLoading ? (
+                <LoadingScreen onComplete={() => {setIsLoading(false)}} />
+            ) : (<RouterProvider router={router}/>)}
+        </>
+)
 }
 
 export default App;
