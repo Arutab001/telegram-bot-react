@@ -11,7 +11,7 @@ const Check = () => {
 
     const location = useLocation();
 
-    const {currency, amount, total, name, link, status, connected_to_user} = location.state || {};
+    const {currency, amount, total, name, link, status, connected_to_user, password} = location.state || {};
 
     return (
         <div className={ChecksStyle.checkCard}>
@@ -46,6 +46,7 @@ const Check = () => {
                     <span className={ChecksStyle.Text}>Link: {link} </span> <br/>
                     <span className={ChecksStyle.Text}>Amount: {Number(amount).toFixed(2)} {currency}</span>  <br/>
                     <span className={ChecksStyle.Text}>Status: {status} </span>  <br/>
+                    <span className={ChecksStyle.Text}>Password: {password}</span> <br />
                 </div>
             </div>
         </div>

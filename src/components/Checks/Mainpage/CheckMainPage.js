@@ -26,7 +26,8 @@ const CheckMainPage = () => {
                         current_page: response.data.current_page,
                         total_pages: response.data.total_pages,
                         link: response.data.link,
-                        connected_to_user: response.data.connected_to_user
+                        connected_to_user: response.data.connected_to_user,
+                        password: response.data.password
                     });
                 }
             } catch (e) {
@@ -54,6 +55,7 @@ const CheckMainPage = () => {
                         amount: check.amount || '0',
                         total: check.total || '$0.00',
                         onDelete: 'handleDelete',
+                        password: check.password
                     }}
                         className={ChecksMainPage.checksCard}
                     >

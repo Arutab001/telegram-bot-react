@@ -9,9 +9,14 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
 
     const [userTag, setUserTag] = useState("");
 
+    const [password, setPassword] = useState(null);
+
     const handleInputChange = (e) => {
         setUserTag(e.target.value); // Обновляем состояние при изменении текста
     };
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+    }
 
     if (!isOpen) return null;
 
@@ -27,7 +32,8 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
                 name: String(name),
                 amount: amount,
                 connected_to_user: userTag,
-                description: "Your description here" // Укажите описание
+                description: "Your description here",
+                password: password
             });
             if(response.status === 200) {
                 close()
@@ -49,8 +55,13 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
                               placeholder={"enter the user id"}
                               value={userTag}
                               onChange={handleInputChange}
-                    ></textarea>
-                    <button className={classes.search_button} onClick={searchUser}><p className={classes.search_button_text}>Search user</p></button>
+                    ></textarea><textarea className={classes.input}
+                                          placeholder={"enter the password (not required)"}
+                                          value={password}
+                                          onChange={handlePasswordChange}
+                ></textarea>
+                    <button className={classes.search_button} onClick={searchUser}><p
+                        className={classes.search_button_text}>Search user</p></button>
                 </div>
             </div>
         </div>
