@@ -15,7 +15,7 @@
 .modal_content_link {
     background-image: radial-gradient(circle at 100% 0%, #ffeb3b, #4caf50 100%);
     width: 60vw;
-    height: 25vh;
+    height: 35vh;
     border-radius: 18px;
     min-height: 125px;
 }

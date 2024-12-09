@@ -55,8 +55,9 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
                               placeholder={"enter the user id"}
                               value={userTag}
                               onChange={handleInputChange}
-                    ></textarea><textarea className={classes.input}
-                                          placeholder={"enter the password (not required)"}
+                    >
+                    </textarea><textarea className={classes.input}
+                                          placeholder={"password (not required)"}
                                           value={password}
                                           onChange={handlePasswordChange}
                 ></textarea>
