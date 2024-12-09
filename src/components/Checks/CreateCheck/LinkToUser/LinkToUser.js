@@ -9,7 +9,7 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
 
     const [userTag, setUserTag] = useState("");
 
-    const [password, setPassword] = useState(null);
+    const [password, setPassword] = useState("");
 
     const handleInputChange = (e) => {
         setUserTag(e.target.value); // Обновляем состояние при изменении текста
@@ -27,6 +27,9 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
     };
 
     const searchUser = async () => {
+        if (password === ""){
+            handlePasswordChange(null);
+        }
         try {
             const response = await axios.post('/cheque/personal', {
                 name: String(name),
