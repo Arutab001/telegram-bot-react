@@ -4,6 +4,7 @@ import gecko from "../../../images/gecko_coin_rem 1.png";
 import LinkToUser from "./LinkToUser/LinkToUser.js"
 import {Link} from "react-router-dom";
 import {useUser} from "../../Base_Logic/UserContext.js";
+import axios from "axios";
 
 const CreateCheck = () => {
 
@@ -29,6 +30,26 @@ const CreateCheck = () => {
             setAmount(value);
         }
     };
+
+    const searchUser = async () => {
+
+        try {
+            const response = await axios.post('/cheque/personal', {
+                name: null,
+                amount: 100,
+                connected_to_user: null,
+                description: null,
+                password: null
+            });
+            if(response.status === 200) {
+                close()
+            }
+        }
+        catch (e) {
+            console.error(e);
+        }
+    }
+
 
     return (
         <div className={CreateCheckStyles.page}>
@@ -107,7 +128,7 @@ const CreateCheck = () => {
                         </svg>
                         Link to user
                     </button>
-                    <button className={CreateCheckStyles.Button_Save}>
+                    <button className={CreateCheckStyles.Button_Save} onClick={searchUser}>
                         Save Check
                     </button>
                     <Link to={"/CheckMainPage"}>

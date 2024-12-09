@@ -26,26 +26,7 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
         }
     };
 
-    const searchUser = async () => {
-        if (password === ""){
-            handlePasswordChange(null);
-        }
-        try {
-            const response = await axios.post('/cheque/personal', {
-                name: null,
-                amount: amount,
-                connected_to_user: null,
-                description: null,
-                password: null
-            });
-            if(response.status === 200) {
-                close()
-            }
-        }
-        catch (e) {
-            console.error(e);
-        }
-    }
+
 
     return (
         <div className={classes.modal_overlay_link} onClick={handleOverlayClick}>
@@ -64,7 +45,7 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
                                           value={password}
                                           onChange={handlePasswordChange}
                 ></textarea>
-                    <button className={classes.search_button} onClick={searchUser}><p
+                    <button className={classes.search_button} onClick={close}><p
                         className={classes.search_button_text}>Search user</p></button>
                 </div>
             </div>
