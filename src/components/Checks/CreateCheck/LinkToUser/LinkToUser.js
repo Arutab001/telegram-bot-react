@@ -26,6 +26,15 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
         }
     };
 
+    const r = async () => {
+        try {
+            const response = await axios.get("/user/info");
+            console.log(response);
+        } catch (e) {
+            console.log(e);
+        }
+
+    }
 
 
     return (
