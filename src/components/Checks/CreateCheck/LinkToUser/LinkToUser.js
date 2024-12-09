@@ -32,11 +32,11 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
         }
         try {
             const response = await axios.post('/cheque/personal', {
-                name: String(name),
+                name: null,
                 amount: amount,
-                connected_to_user: userTag,
-                description: "Your description here",
-                password: password
+                connected_to_user: null,
+                description: null,
+                password: null
             });
             if(response.status === 200) {
                 close()
