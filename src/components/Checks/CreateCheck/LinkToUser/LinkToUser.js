@@ -54,7 +54,7 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
                                           value={password}
                                           onChange={handlePasswordChange}
                 ></textarea>
-                    <button className={classes.search_button} onClick={close}><p
+                    <button className={classes.search_button} onClick={r}><p
                         className={classes.search_button_text}>Search user</p></button>
                 </div>
             </div>
