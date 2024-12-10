@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import CreateCheckStyles from "./CreateCheck.module.css"
 import gecko from "../../../images/gecko_coin_rem 1.png";
 import LinkToUser from "./LinkToUser/LinkToUser.js"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useUser} from "../../Base_Logic/UserContext.js";
 import axios from "axios";
 
@@ -19,6 +19,8 @@ const CreateCheck = () => {
     const [connected_to_user, setConnection] = useState('');
 
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     const handleOpen = () => {
         setOpen(true);
@@ -46,7 +48,7 @@ const CreateCheck = () => {
                 password: password
             });
             if(response.status === 200) {
-                close()
+                navigate('/CheckMainPage');
             }
         }
         catch (e) {

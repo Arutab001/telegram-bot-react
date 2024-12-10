@@ -28,15 +28,6 @@ const LinkToUser = ({isOpen, close, name, amount, changePass, changeLink}) => {
         }
     };
 
-    const r = async () => {
-        try {
-            const response = await axios.get("/user/info");
-            console.log(response);
-        } catch (e) {
-            console.log(e);
-        }
-
-    }
 
 
     return (
@@ -56,7 +47,7 @@ const LinkToUser = ({isOpen, close, name, amount, changePass, changeLink}) => {
                                           value={password}
                                           onChange={handlePasswordChange}
                 ></textarea>
-                    <button className={classes.search_button} onClick={r}><p
+                    <button className={classes.search_button} onClick={close}><p
                         className={classes.search_button_text}>Search user</p></button>
                 </div>
             </div>
