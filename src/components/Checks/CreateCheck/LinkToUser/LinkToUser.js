@@ -12,10 +12,12 @@ const LinkToUser = ({isOpen, close, name, amount, changePass, changeLink}) => {
     const [password, setPassword] = useState("");
 
     const handleInputChange = (e) => {
-        changeLink(e.target.value); // Обновляем состояние при изменении текста
+        setUserTag(e.target.value);
+        changeLink(userTag); // Обновляем состояние при изменении текста
     };
     const handlePasswordChange = (e) => {
-        changePass(e.target.value);
+        setPassword(e.target.value)
+        changePass(password);
     }
 
     if (!isOpen) return null;
