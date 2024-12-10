@@ -3,7 +3,7 @@ import classes from "./LinkToUser.module.css";
 import {useToken} from "../../../Base_Logic/TelegramAuth.js";
 import axios from "axios";
 
-const LinkToUser = ({isOpen, close, name, amount}) => {
+const LinkToUser = ({isOpen, close, name, amount, changePass, changeLink}) => {
 
     const {token} = useToken();
 
@@ -12,10 +12,10 @@ const LinkToUser = ({isOpen, close, name, amount}) => {
     const [password, setPassword] = useState("");
 
     const handleInputChange = (e) => {
-        setUserTag(e.target.value); // Обновляем состояние при изменении текста
+        changeLink(e.target.value); // Обновляем состояние при изменении текста
     };
     const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
+        changePass(e.target.value);
     }
 
     if (!isOpen) return null;

@@ -16,6 +16,10 @@ const CreateCheck = () => {
 
     const [open, setOpen] = useState(false);
 
+    const [connected_to_user, setConnection] = useState('');
+
+    const [password, setPassword] = useState('');
+
     const handleOpen = () => {
         setOpen(true);
     }
@@ -35,11 +39,11 @@ const CreateCheck = () => {
 
         try {
             const response = await axios.post('/cheque/personal', {
-                name: null,
-                amount: 100,
-                connected_to_user: null,
+                name: name,
+                amount: amount,
+                connected_to_user: connected_to_user,
                 description: null,
-                password: null
+                password: password
             });
             if(response.status === 200) {
                 close()
@@ -138,7 +142,7 @@ const CreateCheck = () => {
                     </Link>
                 </div>
             </div>
-            <LinkToUser isOpen={open} close={handleClose} name={name} amount={amount}/>
+            <LinkToUser isOpen={open} close={handleClose} name={name} amount={amount} changePass={setPassword} changeLink={setConnection}/>
         </div>
     );
 };
