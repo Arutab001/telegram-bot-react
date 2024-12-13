@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Home from '../Main_Page/Home.js'; // Импорт компонента Home
 
 const StartRedirect = () => {
     const location = useLocation();
@@ -10,12 +11,19 @@ const StartRedirect = () => {
         const startParam = queryParams.get("start");
 
         if (startParam) {
-            // Перенаправление на ActivateCheck с параметром checkId
+            // Перенаправление на ActivateCheck/:checkId
             navigate(`/ActivateCheck/${startParam}`);
         }
     }, [location, navigate]);
 
-    return null; // Этот компонент ничего не отображает
+    // Если нет параметра start, рендерим Home
+    const queryParams = new URLSearchParams(location.search);
+    const startParam = queryParams.get("start");
+    if (!startParam) {
+        return <Home />;
+    }
+
+    return null; // Ничего не отображаем, если перенаправляем
 };
 
 export default StartRedirect;

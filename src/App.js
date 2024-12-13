@@ -23,7 +23,6 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
             <Route index element={<StartRedirect />} />
-            <Route element={<Home />} />
             <Route path="Casino" element={<Casino />} />
             <Route path="Profile" element={<Profile />} />
             <Route path="Tasks" element={<Task />} />
