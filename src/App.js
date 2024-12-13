@@ -14,6 +14,7 @@ import CreateCheck from "./components/Checks/CreateCheck/CreateCheck.js";
 import Check from "./components/Checks/Check/Check.js";
 import { useUser } from "./components/Base_Logic/UserContext.js";  // Импортируем useUser
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
+import ActivateCheck from "./components/Checks/ActivateCheck/ActivateCheck.js";
 
 const tg = window.Telegram.WebApp;
 
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
             <Route path="CheckMainPage" element={<CheckMainPage />} />
             <Route path="CreateCheck" element={<CreateCheck />} />
             <Route path="Check" element={<Check />} />
+            <Route path="ActivateCheck/:checkId" element={<ActivateCheck />} />
         </Route>
     )
 );
