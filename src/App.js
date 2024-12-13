@@ -15,13 +15,15 @@ import Check from "./components/Checks/Check/Check.js";
 import { useUser } from "./components/Base_Logic/UserContext.js";  // Импортируем useUser
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import ActivateCheck from "./components/Checks/ActivateCheck/ActivateCheck.js";
+import StartRedirect from "./components/Base_Logic/StartRedirect.js";
 
 const tg = window.Telegram.WebApp;
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            <Route index element={<StartRedirect />} />
+            <Route element={<Home />} />
             <Route path="Casino" element={<Casino />} />
             <Route path="Profile" element={<Profile />} />
             <Route path="Tasks" element={<Task />} />
