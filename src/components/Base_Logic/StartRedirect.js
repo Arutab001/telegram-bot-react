@@ -8,7 +8,7 @@ const StartRedirect = () => {
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
-        const startParam = queryParams.get("start");
+        const startParam = queryParams.get("startapp");
 
         if (startParam) {
             // Перенаправление на ActivateCheck/:checkId
@@ -18,7 +18,7 @@ const StartRedirect = () => {
 
     // Если нет параметра start, рендерим Home
     const queryParams = new URLSearchParams(location.search);
-    const startParam = queryParams.get("start");
+    const startParam = queryParams.get("startapp");
     if (!startParam) {
         return <Home />;
     }

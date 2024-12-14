@@ -22,13 +22,6 @@ function App() {
     useEffect(() => {
         tg.ready();
 
-        // Извлечение параметра start из initData
-        const initData = tg.initDataUnsafe;
-        const urlParams = new URLSearchParams(initData);
-        const start = urlParams.get("start");
-        setStartParam(start);
-        console.log(initData);
-
         setIsLoading(false);
     }, []);
 
