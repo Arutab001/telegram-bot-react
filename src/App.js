@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 import Layout from './components/Base_Logic/Layout.js';
 import Home from './components/Main_Page/Home.js';
 import Casino from './components/Casino/Casino.js';
@@ -11,6 +11,7 @@ import CheckMainPage from "./components/Checks/Mainpage/CheckMainPage.js";
 import CreateCheck from "./components/Checks/CreateCheck/CreateCheck.js";
 import Check from "./components/Checks/Check/Check.js";
 import ActivateCheck from "./components/Checks/ActivateCheck/ActivateCheck.js";
+
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import StartRedirect from "./components/Base_Logic/StartRedirect.js";
 
@@ -28,7 +29,7 @@ function App() {
         return <LoadingScreen />;
     }
 
-    const router = createBrowserRouter(
+    const router = createHashRouter(
         createRoutesFromElements(
             <Route path="/" element={<Layout />}>
                 <Route index element={<StartRedirect />} />
