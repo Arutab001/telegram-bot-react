@@ -22,8 +22,13 @@ function App() {
     useEffect(() => {
         tg.ready(); // Telegram WebApp готов к работе
         setIsLoading(false);
-        console.log(window.Telegram.WebApp.initDataUnsafe);
     }, []);
+
+    useEffect(() => {
+        console.log("PARAMS:")
+        console.log(window.location.search); // Покажет параметры в консоли
+    }, []);
+
 
     if (isLoading) {
         return <LoadingScreen />;
