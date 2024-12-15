@@ -25,9 +25,12 @@ const NewsBox = () => {
             });
             console.log("Image Blob:", response);
 
-            // Convert blob to a local URL for the img element to display
-            const imageUrl = URL.createObjectURL(response.data);
-            setImage(imageUrl);
+            if (response.status === 200){
+                // Convert blob to a local URL for the img element to display
+                const imageUrl = URL.createObjectURL(response.data);
+                setImage(imageUrl);
+            }
+
         } catch (e) {
             console.error("Error fetching image:", e);
         }
