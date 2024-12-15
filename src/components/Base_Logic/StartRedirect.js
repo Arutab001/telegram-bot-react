@@ -15,13 +15,14 @@ const StartRedirect = () => {
 
     useEffect(() => {
         const tgWebAppData = getHashParam('tgWebAppData'); // Извлекаем tgWebAppData
-
         console.log('tgWebAppData:', tgWebAppData); // Выведем tgWebAppData
 
         if (tgWebAppData) {
             try {
-                const data = JSON.parse(decodeURIComponent(tgWebAppData)); // Декодируем и парсим JSON
-                console.log('Parsed tgWebAppData:', data);
+                // Разделяем строку по символу '=', чтобы извлечь сам JSON
+                const jsonData = tgWebAppData.split('=')[1];
+                const parsedData = JSON.parse(decodeURIComponent(jsonData)); // Декодируем и парсим JSON
+                console.log('Parsed tgWebAppData:', parsedData);
                 // Можешь теперь использовать данные из tgWebAppData для дальнейшей логики
             } catch (e) {
                 console.error('Ошибка при парсинге tgWebAppData', e);
