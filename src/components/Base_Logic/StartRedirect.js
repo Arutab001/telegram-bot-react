@@ -14,9 +14,12 @@ const StartRedirect = () => {
             // Перенаправление на нужный маршрут
             navigate(`/ActivateCheck/${startParam}`);
         }
+        else {
+            navigate('/Home');
+        }
     }, [navigate]);
 
-    return <Home />; // Рендерим Home, если параметра нет
+    return null; // Рендерим Home, если параметра нет
 };
 
 export default StartRedirect;
