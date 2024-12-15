@@ -11,19 +11,11 @@ const StartRedirect = () => {
         const startParam = queryParams.get("startapp");
 
         if (startParam) {
-            // Перенаправление на ActivateCheck/:checkId
             navigate(`/ActivateCheck/${startParam}`);
         }
     }, [location, navigate]);
 
-    // Если нет параметра start, рендерим Home
-    const queryParams = new URLSearchParams(location.search);
-    const startParam = queryParams.get("startapp");
-    if (!startParam) {
-        return <Home />;
-    }
-
-    return null; // Ничего не отображаем, если перенаправляем
+    return <Home />;
 };
 
 export default StartRedirect;
