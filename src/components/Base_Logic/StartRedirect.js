@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 const StartRedirect = () => {
     const navigate = useNavigate();
-    const getQueryParam = (param) => {
-        const urlParams = new URLSearchParams(location.search);
-        return urlParams.get(param); // Извлекаем значение параметра startapp
+
+    const getHashParam = (param) => {
+        const hash = window.location.hash.slice(1); // Убираем '#' из хэша
+        const params = new URLSearchParams(hash); // Создаем объект URLSearchParams из хэша
+        return params.get(param); // Извлекаем нужный параметр
     };
 
-    const startAppParam = getQueryParam('startapp');
     useEffect(() => {
-        const startApp = getQueryParam('startapp');
+        const startApp = getHashParam('startapp'); // Извлекаем параметр 'startapp' из хэша
 
         if (startApp) {
             navigate(`/ActivateCheck/${startApp}`);
