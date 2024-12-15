@@ -1,21 +1,22 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Home from '../Main_Page/Home.js'; // Импорт компонента Home
 
 const StartRedirect = () => {
-    const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const startParam = queryParams.get("startapp");
+        // Получаем параметр tgWebAppStartParam из текущего URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const startParam = urlParams.get("tgWebAppStartParam"); // Извлекаем параметр
 
         if (startParam) {
+            // Перенаправление на нужный маршрут
             navigate(`/ActivateCheck/${startParam}`);
         }
-    }, [location, navigate]);
+    }, [navigate]);
 
-    return <Home />;
+    return <Home />; // Рендерим Home, если параметра нет
 };
 
 export default StartRedirect;

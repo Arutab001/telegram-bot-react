@@ -11,7 +11,6 @@ import CheckMainPage from "./components/Checks/Mainpage/CheckMainPage.js";
 import CreateCheck from "./components/Checks/CreateCheck/CreateCheck.js";
 import Check from "./components/Checks/Check/Check.js";
 import ActivateCheck from "./components/Checks/ActivateCheck/ActivateCheck.js";
-
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import StartRedirect from "./components/Base_Logic/StartRedirect.js";
 
@@ -21,7 +20,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        tg.ready();
+        tg.ready(); // Telegram WebApp готов к работе
         setIsLoading(false);
     }, []);
 
