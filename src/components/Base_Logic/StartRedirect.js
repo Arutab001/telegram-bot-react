@@ -1,16 +1,15 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { retrieveLaunchParams } from '@telegram-apps/sdk';
+
+const { initDataRaw, initData } = retrieveLaunchParams();
 
 const StartRedirect = () => {
     const navigate = useNavigate();
 
     const getHashParam = (param) => {
-        const hash = window.location.hash.slice(1); // Убираем '#' из хэша
-        const decodedHash = decodeURIComponent(hash); // Декодируем хэш
-        console.log('Decoded Hash:', decodedHash); // Выводим декодированный хэш для диагностики
-
-        const params = new URLSearchParams(decodedHash); // Создаем объект URLSearchParams из декодированного хэша
-        return params.get(param); // Извлекаем нужный параметр
+        const initdata = window.Telegram.WebApp.initDataUnsafe;
+        console.log(initdata)
     };
 
     useEffect(() => {
