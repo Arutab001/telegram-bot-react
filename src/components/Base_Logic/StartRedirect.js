@@ -12,8 +12,9 @@ const StartRedirect = () => {
             // Если параметры переданы, редиректим на нужный маршрут
             if (startParam) {
                 // Преобразуем данные из WebApp в объект (если нужно)
-                const params = new URLSearchParams(startParam);
-                const startApp = params.get("startapp");
+                const hash = window.location.hash.slice(1);
+                const params = new URLSearchParams(hash);
+                const startApp = params.get('tgWebAppStartParam');
 
                 if (startApp) {
                     navigate(`/ActivateCheck/${startApp}`);
