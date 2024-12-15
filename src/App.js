@@ -28,7 +28,7 @@ function App() {
         return <LoadingScreen />;
     }
 
-    const router = createHashRouter(
+    const router = createRoutesFromElements(
         createRoutesFromElements(
             <Route path="/" element={<Layout />}>
                 <Route index element={<StartRedirect />} />
