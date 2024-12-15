@@ -12,7 +12,7 @@ const StartRedirect = () => {
 
     useEffect(() => {
         const startApp = getHashParam('startapp'); // Извлекаем параметр 'startapp' из хэша
-
+        console.log("Param:" + startApp)
         if (startApp) {
             navigate(`/ActivateCheck/${startApp}`);
         } else {
