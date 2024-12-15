@@ -5,10 +5,12 @@ const StartRedirect = () => {
     const navigate = useNavigate();
 
     const getHashParam = (param) => {
-        const hash = window.location.hash.slice(1); // Убираем '#' из хэша
-        const params = new URLSearchParams(hash); // Создаем объект URLSearchParams из хэша
-        return params.get(param); // Извлекаем нужный параметр
+        const hash = window.location.hash.slice(1); // Убираем '#'
+        console.log('Full hash:', hash); // Выведи весь хэш
+        const params = new URLSearchParams(hash);
+        return params.get(param);
     };
+
 
     useEffect(() => {
         const startApp = getHashParam('startapp'); // Извлекаем параметр 'startapp' из хэша
