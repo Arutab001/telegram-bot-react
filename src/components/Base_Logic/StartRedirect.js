@@ -8,7 +8,7 @@ const StartRedirect = () => {
     useEffect(() => {
         // Получаем параметр tgWebAppStartParam из текущего URL
         const urlParams = new URLSearchParams(window.location.search);
-        const startParam = urlParams.get("tgWebAppStartParam"); // Извлекаем параметр
+        const startParam = urlParams.get("startapp"); // Извлекаем параметр
 
         if (startParam) {
             // Перенаправление на нужный маршрут
