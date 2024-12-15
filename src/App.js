@@ -26,10 +26,18 @@ function App() {
 
     useEffect(() => {
         console.log("PARAMS:")
-        console.log(window.location.search); // Покажет параметры в консоли
+        console.log(window.Telegram.WebApp.initData);
+        console.log(parseInitData(window.Telegram.WebApp.initData));// Покажет параметры в консоли
     }, []);
 
-
+    const parseInitData = () => {
+        if (window.Telegram.WebApp.initData) {
+            const params = new URLSearchParams(window.Telegram.WebApp.initData);
+            console.log("Decoded params:", Object.fromEntries(params));
+            return params.get("startapp");
+        }
+        return null;
+    };
     if (isLoading) {
         return <LoadingScreen />;
     }
