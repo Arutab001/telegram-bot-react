@@ -1,26 +1,21 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import Home from '../Main_Page/Home.js';
+import { useLocation, useNavigate } from "react-router-dom";
+import Home from '../Main_Page/Home.js'; // Импорт компонента Home
 
 const StartRedirect = () => {
+    const location = useLocation();
     const navigate = useNavigate();
 
     useEffect(() => {
-        const tg = window.Telegram.WebApp;
-        tg.ready(); // Убедимся, что WebApp готов
-
-        // Читаем initData, который Telegram передаёт вашему WebApp
-        const initData = tg.initData;
-        const urlParams = new URLSearchParams(initData);
-        const startParam = urlParams.get("startapp"); // Получаем параметр startapp
+        const queryParams = new URLSearchParams(location.search);
+        const startParam = queryParams.get("startapp");
 
         if (startParam) {
-            // Перенаправляем на нужный маршрут
             navigate(`/ActivateCheck/${startParam}`);
         }
-    }, [navigate]);
+    }, [location, navigate]);
 
-    return <Home />; // Показываем Home, если параметра нет
+    return <Home />;
 };
 
 export default StartRedirect;
