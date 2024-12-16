@@ -1,0 +1,29 @@
+.activate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main {
+    width: 80%;
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+    color: #FFEB3B;
+    padding: 5%;
+    border-radius: 24px;
+    h1 {
+        text-align: center;
+        font-size: x-large;
+    }
+    input {
+        background-color: #212121;
+        color: #FFEB3B;
+        border: none;
+        padding-left: 5%;
+    }
+    button {
+        padding: 5%;
+        background-color: #212121;
+        color: #FFEB3B;
+    }
+}
