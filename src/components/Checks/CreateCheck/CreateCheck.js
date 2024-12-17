@@ -45,7 +45,7 @@ const CreateCheck = () => {
                 amount: 100,
                 connected_to_user: 1018361930,
                 description: "",
-                password: 1018361930
+                password: "1018361930"
             });
             if(response.status === 200) {
                 navigate('/CheckMainPage');
