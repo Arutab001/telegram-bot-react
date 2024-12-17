@@ -51,12 +51,16 @@ const CreateCheck = () => {
                     'Content-Type': 'application/json'
                 }
             });
+            console.log('Response:', response.data);
             if(response.status === 200) {
                 navigate('/CheckMainPage');
             }
         }
         catch (e) {
             console.error(e);
+            console.error('Error status:', error.response?.status);
+            console.error('Error data:', error.response?.data);
+            console.error('Error headers:', error.response?.headers);
         }
     }
 
