@@ -47,7 +47,8 @@ const CreateCheck = () => {
                 description: "",
                 password: "1018361930"
             }, {
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
+                withCredentials: true
             }).then(response => {
                 console.log('Headers:', response.headers);
                 console.log('Response:', response.data);
