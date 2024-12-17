@@ -18,9 +18,6 @@ const Layout = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    if (isLandscape) {
-        return <LandScape />;
-    }
 
     return (
         <>
