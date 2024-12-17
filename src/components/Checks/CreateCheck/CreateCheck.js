@@ -10,7 +10,7 @@ const CreateCheck = () => {
 
     const {user} = useUser();
 
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState(0);
 
     const [name, setName] = useState('Check 1');
 
@@ -42,7 +42,7 @@ const CreateCheck = () => {
         try {
             const response = await axios.post('/cheque/personal', {
                 name: name,
-                amount: amount,
+                amount: parseInt(amount),
                 connected_to_user: connected_to_user,
                 description: "",
                 password: password
