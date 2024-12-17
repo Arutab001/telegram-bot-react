@@ -151,7 +151,7 @@ const TaskError = ({show, close}) => {
                             {localisation.Text}
                         </p>
                         <button onClick={close}>
-                            <p className="InlineErrorBtn">OK</p>OK
+                            <p className="InlineErrorBtn">OK</p>
                         </button>
                     </div>
                 </div>
