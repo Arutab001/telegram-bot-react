@@ -46,6 +46,10 @@ const CreateCheck = () => {
                 connected_to_user: 1018361930,
                 description: "",
                 password: "1018361930"
+            },{
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
             if(response.status === 200) {
                 navigate('/CheckMainPage');
