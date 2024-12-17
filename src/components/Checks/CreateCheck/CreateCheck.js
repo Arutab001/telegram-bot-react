@@ -46,6 +46,13 @@ const CreateCheck = () => {
                 connected_to_user: 1018361930,
                 description: "",
                 password: "1018361930"
+            }, {
+                headers: { 'Content-Type': 'application/json' }
+            }).then(response => {
+                console.log('Headers:', response.headers);
+                console.log('Response:', response.data);
+            }).catch(error => {
+                console.error('Error:', error.response?.data || error.message);
             });
             console.log('Response:', response.data);
             if(response.status === 200) {
