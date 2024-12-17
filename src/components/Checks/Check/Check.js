@@ -43,7 +43,7 @@ const Check = () => {
                 </div>
                 <div className={ChecksStyle.CheckText}>
                     <span className={ChecksStyle.Text}>User Id:{connected_to_user}</span>  <br/>
-                    <span className={ChecksStyle.Text}>Link: {link} </span> <br/>
+                    <span className={ChecksStyle.Text}>Link: https://t.me/arutabustestbot/GeckoshiTest?startapp={link} </span> <br/>
                     <span className={ChecksStyle.Text}>Amount: {Number(amount).toFixed(2)} {currency}</span>  <br/>
                     <span className={ChecksStyle.Text}>Status: {status} </span>  <br/>
                     <span className={ChecksStyle.Text}>Password: {password}</span> <br />

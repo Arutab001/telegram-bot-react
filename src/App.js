@@ -39,6 +39,7 @@ const router = createBrowserRouter(
 function App() {
     useEffect(() => {
         tg.ready();
+        tg.lockOrientation();
     }, []);
 
     document.addEventListener('wheel', function (event) {

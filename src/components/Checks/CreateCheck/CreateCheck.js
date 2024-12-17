@@ -16,7 +16,7 @@ const CreateCheck = () => {
 
     const [open, setOpen] = useState(false);
 
-    const [connected_to_user, setConnection] = useState('');
+    const [connected_to_user, setConnection] = useState(1);
 
     const [password, setPassword] = useState('');
 
@@ -44,7 +44,7 @@ const CreateCheck = () => {
                 name: name,
                 amount: amount,
                 connected_to_user: connected_to_user,
-                description: null,
+                description: "",
                 password: password
             });
             if(response.status === 200) {
