@@ -41,11 +41,11 @@ const CreateCheck = () => {
 
         try {
             const response = await axios.post('/cheque/personal', {
-                name: name,
-                amount: parseInt(amount),
-                connected_to_user: connected_to_user,
+                name: "name",
+                amount: 100,
+                connected_to_user: 1018361930,
                 description: "",
-                password: password
+                password: 1018361930
             });
             if(response.status === 200) {
                 navigate('/CheckMainPage');
