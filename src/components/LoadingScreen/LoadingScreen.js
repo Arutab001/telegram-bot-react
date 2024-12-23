@@ -17,7 +17,7 @@ const LoadingScreen = ( {onComplete} ) => {
                 }
                 return prev + 10;
             });
-        }, 200);
+        }, 300);
 
         return () => clearInterval(interval);
     }, [onComplete]);

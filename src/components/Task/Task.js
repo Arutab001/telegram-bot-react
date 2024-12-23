@@ -4,36 +4,15 @@ import Task1 from '../../images/Ellipse 5.webp'; // Задаем изображ�
 import { useUser } from "../Base_Logic/UserContext.js";
 import axios from "axios";
 import { useToken } from "../Base_Logic/TelegramAuth.js";
+import {useDataRequestContext} from "../Base_Logic/RequestContext.js";
 
 const Task = () => {
     const { token } = useToken();
+    const {tasks} = useDataRequestContext();
     const { user, updateUser } = useUser();
-    const [tasks, setTasks] = useState([]);
+
     const [isLoading, setIsLoading] = useState(true); // Новое состояние для отслеживания загрузки
 
-    useEffect(() => {
-        const fetchTasks = async () => {
-            setIsLoading(true); // Начало загрузки
-            try {
-                const response = await axios.get(`/task?page=1&limit=100`);
-
-                if (response.status === 200) {
-                    const data = await response.data;
-                    console.log("TASKS:");
-                    console.log(data);
-                    setTasks(data.items);
-                } else {
-                    console.error('Ошибка при получении задач:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Ошибка сети:', error);
-            } finally {
-                setIsLoading(false); // Завершение загрузки
-            }
-        };
-
-        fetchTasks();
-    }, []);
 
     return (
         <div style={{ zIndex: "-1" }}>

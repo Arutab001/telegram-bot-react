@@ -3,6 +3,7 @@ import axios from 'axios';
 import {UserProvider} from "./UserContext.js";
 import {StringArrayProvide, UserLanguageProvider} from "./UserLanguageProvider.js";
 import LanguageProvider from "./LanguageContext.js";
+import {RequestContextProvider} from "./RequestContext.js";
 
 const TokenContext = createContext();
 
@@ -78,14 +79,22 @@ export const TelegramAuth = ({children}) => {
     useEffect(() => {
         if (token) {
             console.log('Токен обновлён:', token);
-            axios.defaults.headers.common = { 'Authorization': `Bearer ${token}` };
+            axios.defaults.headers.common = {'Authorization': `Bearer ${token}`};
         }
     }, [token]);
 
     return (
         <TokenContext.Provider value={{token, handleSetToken}}>
-            <UserProvider><UserLanguageProvider><LanguageProvider>{children}</LanguageProvider></UserLanguageProvider></UserProvider>
+            <UserProvider>
+                <UserLanguageProvider>
+                    <LanguageProvider>
+                        <RequestContextProvider>
+                            {children}
+                        </RequestContextProvider>
+                    </LanguageProvider>
+                </UserLanguageProvider>
+            </UserProvider>
         </TokenContext.Provider>
-)
-    ;
+    )
+        ;
 };

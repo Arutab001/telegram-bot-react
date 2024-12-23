@@ -2,11 +2,12 @@ import React, {useEffect, useState} from 'react';
 import "../../App.css";
 import NewsDefault from '../../images/Frame 12.webp';
 import axios from "axios";
+import {useDataRequestContext} from "../Base_Logic/RequestContext.js";
 
 
 const NewsBox = () => {
     const [postUrl, setPostUrl] = useState("#");
-    const [image, setImage] = useState('');
+    const {image} = useDataRequestContext();
     const defaultPostUrl = "https://t.me/geckoshi_coin/605"
 
     const fetchLatestPost = async () => {
@@ -19,21 +20,7 @@ const NewsBox = () => {
             setPostUrl(defaultPostUrl);
         }
 
-        try {
-            const response = await axios.get('https://geckoshi-prod.up.railway.app/post-capturer/channel/photo?r=2', {
-                responseType: 'blob' // Important to specify blob type here
-            });
-            console.log("Image Blob:", response);
 
-            if (response.status === 200){
-                // Convert blob to a local URL for the img element to display
-                const imageUrl = URL.createObjectURL(response.data);
-                setImage(imageUrl);
-            }
-
-        } catch (e) {
-            console.error("Error fetching image:", e);
-        }
     };
 
     useEffect(() => {

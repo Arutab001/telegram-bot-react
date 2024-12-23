@@ -23,6 +23,7 @@
     letter-spacing: normal;
     text-align: center;
     color: #ffeb3b;
+    resize: none;
 }
 
 .name_textarea:focus {
@@ -63,6 +64,7 @@
     color: #ffeb3b;
     text-shadow: 0 0 20px rgba(255, 235, 59, 0.4);
     width: 60vw;
+    resize: none;
 }
 
 .amount_textarea::placeholder {
