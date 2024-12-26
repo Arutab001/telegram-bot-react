@@ -6,12 +6,23 @@ import CreateCheckStyles from "../CreateCheck/CreateCheck.module.css";
 import {useLocation} from "react-router-dom";
 
 
-
 const Check = () => {
 
     const location = useLocation();
 
-    const {currency, amount, total, name, link, status, connected_to_user, password} = location.state || {};
+    const {
+        currency,
+        amount,
+        total,
+        name,
+        link,
+        status,
+        connected_to_user,
+        password,
+        type,
+        require_subscriptions,
+        activation_limit
+    } = location.state || {};
 
     return (
         <div className={ChecksStyle.checkCard}>
@@ -42,15 +53,32 @@ const Check = () => {
                     </svg>
                 </div>
                 <div className={ChecksStyle.CheckText}>
-                    <span className={ChecksStyle.Text}>User Id:{connected_to_user}</span>  <br/>
-                    <span className={ChecksStyle.Text}>Link: https://t.me/arutabustestbot/GeckoshiTest?startapp={link} </span> <br/>
-                    <span className={ChecksStyle.Text}>Amount: {Number(amount).toFixed(2)} {currency}</span>  <br/>
-                    <span className={ChecksStyle.Text}>Status: {status} </span>  <br/>
-                    <span className={ChecksStyle.Text}>Password: {password}</span> <br />
+                    {type === 'single' ? (
+                        <>
+                            <span className={ChecksStyle.Text}>User Id: {connected_to_user}</span> <br />
+                            <span className={ChecksStyle.Text}>Link: https://t.me/arutabustestbot/GeckoshiTest?startapp={link}</span> <br />
+                            <span className={ChecksStyle.Text}>Amount: {Number(amount).toFixed(2)} {currency}</span> <br />
+                            <span className={ChecksStyle.Text}>Status: {status}</span> <br />
+                            <span className={ChecksStyle.Text}>Password: {password}</span> <br />
+                        </>
+                    ) : (
+                        <>
+                            <span className={ChecksStyle.Text}>User Id: {connected_to_user}</span> <br />
+                            <span className={ChecksStyle.Text}>Link: https://t.me/arutabustestbot/GeckoshiTest?startapp={link}</span> <br />
+                            <span className={ChecksStyle.Text}>Amount: {Number(amount).toFixed(2)} {currency}</span> <br />
+                            <span className={ChecksStyle.Text}>Status: {status}</span> <br />
+                            <span className={ChecksStyle.Text}>Password: {password}</span> <br />
+                            <span className={ChecksStyle.Text}>Activation Limit: {activation_limit}</span>
+                            <span className={ChecksStyle.Text}>Required Subscriptions: {require_subscriptions}</span>
+                        </>
+                    )}
+
+
                 </div>
-            </div>
         </div>
-    );
+</div>
+)
+    ;
 };
 
 export default Check;

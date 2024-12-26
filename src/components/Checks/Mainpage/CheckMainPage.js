@@ -13,7 +13,7 @@ const CheckMainPage = () => {
         total_pages: 0,
     });
 
-    const [multiData, setMultiData] = useState([]);
+    const [multiData, setMultiData] = useState({});
 
     useEffect(() => {
         const fetchData = async () => {
@@ -50,7 +50,7 @@ const CheckMainPage = () => {
         <div className={ChecksMainPage.Main}>
             <h1>Your Checks</h1>
             <div className={ChecksMainPage.list_of_checks}>
-                {combinedItems.map((check, index) => (
+                {data.map((check, index) => (
                     <Link
                         key={index}
                         to='/Check'
@@ -63,7 +63,30 @@ const CheckMainPage = () => {
                             amount: check.amount || '0',
                             total: check.total || '$0.00',
                             onDelete: 'handleDelete',
-                            password: check.password
+                            password: check.password,
+                            type: "single"
+                        }}
+                        className={ChecksMainPage.checksCard}
+                    >
+                        {check.name}
+                    </Link>
+                ))}
+                {multiData.map((check, index) => (
+                    <Link
+                        key={index}
+                        to='/Check'
+                        state={{
+                            name: check.name || 'Check',
+                            status: check.status || 'unknown',
+                            link: check.link || 'unknown',
+                            activation_limit: check.activation_limit,
+                            currency: check.currency || 'Gmeme',
+                            amount: check.amount || '0',
+                            total: check.total || '$0.00',
+                            onDelete: 'handleDelete',
+                            password: check.password,
+                            require_subscriptions: check.require_subscriptions,
+                            type: "multi"
                         }}
                         className={ChecksMainPage.checksCard}
                     >
