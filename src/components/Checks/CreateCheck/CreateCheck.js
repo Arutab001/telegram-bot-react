@@ -186,7 +186,7 @@ const CreateCheck = () => {
                     Total: <br/>
                     00.00 GMEME
                 </div>
-                <div>
+                <div style={{marginLeft: "10%"}}>
                     {!isChecked ? <textarea rows={1}
                                            className={CreateCheckStyles.amount_textarea}
                                            value={connected_to_user}
