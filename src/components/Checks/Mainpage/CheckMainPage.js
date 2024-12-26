@@ -77,7 +77,7 @@ const CheckMainPage = () => {
                         {check.name}
                     </Link>
                 ))}
-                {multiData.map((check, index) => (
+                {(Array.isArray(multiData) ? multiData : []).map((check, index) => (
                     <Link
                         key={index}
                         to='/Check'
