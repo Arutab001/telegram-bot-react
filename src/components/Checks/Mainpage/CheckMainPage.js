@@ -13,7 +13,13 @@ const CheckMainPage = () => {
         total_pages: 0,
     });
 
-    const [multiData, setMultiData] = useState({});
+    const [multiData, setMultiData] = useState({
+        status: '',
+        items: [],
+        total_items: 0,
+        current_page: 0,
+        total_pages: 0
+    });
 
     useEffect(() => {
         const fetchData = async () => {
