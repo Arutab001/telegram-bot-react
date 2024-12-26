@@ -84,7 +84,7 @@ const CreateCheck = () => {
             console.error(e);
         }
     }
-    
+
     const createMultiCheck = async () => {
         try {
             const response = await axios.post('/cheque/multi',

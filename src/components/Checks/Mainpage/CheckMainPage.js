@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import ChecksMainPage from './CheckMainPage.module.css';
 import Check from '../Check/Check.js';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const CheckMainPage = () => {
     const [data, setData] = useState({
@@ -12,6 +12,8 @@ const CheckMainPage = () => {
         current_page: 0,
         total_pages: 0,
     });
+
+    const [multiData, setMultiData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,33 +32,39 @@ const CheckMainPage = () => {
                         password: response.data.password
                     });
                 }
+                const multiResponse = await axios.get('/cheque/multi/my?page=1&limit=100');
+                if (multiResponse.status === 200) {
+                    setMultiData(multiResponse.data.items || []);
+                }
             } catch (e) {
                 console.error('Checks error: ' + e);
             }
-        };
 
-        fetchData();
+            fetchData();
+        };
     }, []);
+
+    const combinedItems = [...data.items, ...multiData];
 
     return (
         <div className={ChecksMainPage.Main}>
             <h1>Your Checks</h1>
             <div className={ChecksMainPage.list_of_checks}>
-                {data.items.map((check, index) => (
+                {combinedItems.map((check, index) => (
                     <Link
                         key={index}
                         to='/Check'
-                        state = {{
-                        name: check.name || 'Check',
-                        status: check.status || 'unknown',
-                        link: check.link || 'unknown',
-                        connected_to_user: check.connected_to_user || 'undefined',
-                        currency: check.currency || 'Gmeme',
-                        amount: check.amount || '0',
-                        total: check.total || '$0.00',
-                        onDelete: 'handleDelete',
-                        password: check.password
-                    }}
+                        state={{
+                            name: check.name || 'Check',
+                            status: check.status || 'unknown',
+                            link: check.link || 'unknown',
+                            connected_to_user: check.connected_to_user || 'undefined',
+                            currency: check.currency || 'Gmeme',
+                            amount: check.amount || '0',
+                            total: check.total || '$0.00',
+                            onDelete: 'handleDelete',
+                            password: check.password
+                        }}
                         className={ChecksMainPage.checksCard}
                     >
                         {check.name}
@@ -68,12 +76,14 @@ const CheckMainPage = () => {
                              fill="none">
                             <rect width="124" height="124" rx="62" fill="url(#paint0_linear_596_241)"/>
                             <g filter="url(#filter0_d_596_241)">
-                                <rect x="56.7432" y="33.7266" width="10.788" height="57.536" rx="5.394" fill="#212121"/>
+                                <rect x="56.7432" y="33.7266" width="10.788" height="57.536" rx="5.394"
+                                      fill="#212121"/>
                                 <rect x="91.2646" y="56.7402" width="10.788" height="57.536" rx="5.394"
                                       transform="rotate(90 91.2646 56.7402)" fill="#212121"/>
                             </g>
                             <defs>
-                                <filter id="filter0_d_596_241" x="23.7285" y="23.7266" width="77.5361" height="77.5352"
+                                <filter id="filter0_d_596_241" x="23.7285" y="23.7266" width="77.5361"
+                                        height="77.5352"
                                         filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
                                     <feFlood flood-opacity="0" result="BackgroundImageFix"/>
                                     <feColorMatrix in="SourceAlpha" type="matrix"
@@ -101,6 +111,6 @@ const CheckMainPage = () => {
             </div>
         </div>
     );
-};
+}
 
 export default CheckMainPage;
