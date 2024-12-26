@@ -20,35 +20,25 @@ const CheckMainPage = () => {
         current_page: 0,
         total_pages: 0
     });
-
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get('/cheque/personal/my?page=1&limit=100');
                 if (response.status === 200) {
-                    setData({
-                        name: response.data.name,
-                        status: response.data.status,
-                        items: response.data.items,
-                        total_items: response.data.total_items,
-                        current_page: response.data.current_page,
-                        total_pages: response.data.total_pages,
-                        link: response.data.link,
-                        connected_to_user: response.data.connected_to_user,
-                        password: response.data.password
-                    });
+                    setData(response.data);
                 }
                 const multiResponse = await axios.get('/cheque/multi/my?page=1&limit=100');
                 if (multiResponse.status === 200) {
-                    setMultiData(multiResponse.data.items || []);
+                    setMultiData(multiResponse.data);
                 }
             } catch (e) {
                 console.error('Checks error: ' + e);
             }
-
-            fetchData();
         };
+
+        fetchData();
     }, []);
+
 
     const combinedItems = [...data.items, ...multiData];
 
@@ -56,7 +46,7 @@ const CheckMainPage = () => {
         <div className={ChecksMainPage.Main}>
             <h1>Your Checks</h1>
             <div className={ChecksMainPage.list_of_checks}>
-                {data.map((check, index) => (
+                {data.items.map((check, index) => (
                     <Link
                         key={index}
                         to='/Check'
@@ -77,7 +67,7 @@ const CheckMainPage = () => {
                         {check.name}
                     </Link>
                 ))}
-                {(Array.isArray(multiData) ? multiData : []).map((check, index) => (
+                {(multiData.items || []).map((check, index) => (
                     <Link
                         key={index}
                         to='/Check'
