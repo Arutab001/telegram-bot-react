@@ -91,7 +91,7 @@ const CreateCheck = () => {
                 {
                     name: name,
                     amount: amount,
-                    activationLimit: activationLimit,
+                    activation_limit: activationLimit,
                     require_subscriptions: 0,
                     description: "",
                     password: password
