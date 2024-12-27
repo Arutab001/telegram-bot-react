@@ -27,10 +27,10 @@ const CheckMainPage = () => {
                 if (response.status === 200) {
                     setData(response.data);
                 }
-                // const multiResponse = await axios.get('/cheque/multi/my?page=1&limit=100');
-                // if (multiResponse.status === 200) {
-                //     setMultiData(multiResponse.data);
-                // }
+                const multiResponse = await axios.get('/cheque/multi/my?page=1&limit=100');
+                if (multiResponse.status === 200) {
+                    setMultiData(multiResponse.data);
+                }
             } catch (e) {
                 console.error('Checks error: ' + e);
             }
