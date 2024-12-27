@@ -77,6 +77,13 @@ body {
         align-items: center;
         font-size: 3vh;
     }
+    a {
+        text-decoration: none;
+        color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 .CoinBox {
     display: flex;
@@ -180,13 +187,7 @@ body {
     background-image: linear-gradient(223deg, #4caf50 70%, #ffeb3b 22%);
 }
 
-a {
-    text-decoration: none;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+
 
 @media  (min-width: 1025px) {
 
@@ -227,3 +228,4 @@ a {
         height: 50%;
     }
 }
+

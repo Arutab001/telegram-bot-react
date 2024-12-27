@@ -1,15 +1,70 @@
 // Check.js
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import ChecksStyle from './Check.module.css';
 import gecko from '../../../images/gecko_coin_rem 1.png'
 import CreateCheckStyles from "../CreateCheck/CreateCheck.module.css";
 import {useLocation} from "react-router-dom";
+import {useLangProfile} from "../../Base_Logic/UserLanguageProvider.js";
+import {useUser} from "../../Base_Logic/UserContext.js";
+
+const translations = {
+    english: {
+        userId: "User Id:",
+        link: "Link:",
+        amount: "Amount:",
+        status: "Status:",
+        password: "Password:",
+        activationLimit: "Activation Limit:",
+        requiredSubscriptions: "Required Subscriptions:",
+        connectedToUser: "Connected to User:",
+        copySuccess: "Copied successfully!",
+        copyError: "Failed to copy!",
+    },
+    russian: {
+        userId: "ID пользователя:",
+        link: "Ссылка:",
+        amount: "Сумма:",
+        status: "Статус:",
+        password: "Пароль:",
+        activationLimit: "Лимит активации:",
+        requiredSubscriptions: "Необходимые подписки:",
+        connectedToUser: "Подключено к пользователю:",
+        copySuccess: "Успешно скопировано!",
+        copyError: "Ошибка копирования!",
+    },
+    german: {
+        userId: "Benutzer-ID:",
+        link: "Link:",
+        amount: "Betrag:",
+        status: "Status:",
+        password: "Passwort:",
+        activationLimit: "Aktivierungsgrenze:",
+        requiredSubscriptions: "Erforderliche Abonnements:",
+        connectedToUser: "Verbunden mit Benutzer:",
+        copySuccess: "Erfolgreich kopiert!",
+        copyError: "Kopieren fehlgeschlagen!",
+    },
+    turkish: {
+        userId: "Kullanıcı ID:",
+        link: "Bağlantı:",
+        amount: "Miktar:",
+        status: "Durum:",
+        password: "Şifre:",
+        activationLimit: "Aktivasyon Limiti:",
+        requiredSubscriptions: "Gerekli Abonelikler:",
+        connectedToUser: "Kullanıcıya Bağlandı:",
+        copySuccess: "Başarıyla kopyalandı!",
+        copyError: "Kopyalama hatası!",
+    }
+}
+
 
 
 const Check = () => {
-
+    const {user} = useUser();
     const location = useLocation();
-
+    const {userLanguage} = useLangProfile();
+    const localisation = translations[userLanguage] || translations[user.language] || translations.english;
     const {
         currency,
         amount,
@@ -23,6 +78,25 @@ const Check = () => {
         require_subscriptions,
         activation_limit
     } = location.state || {};
+
+    const [copySuccess, setCopySuccess] = useState('');
+
+    const handleCopyLink = async (link) => {
+        if (!navigator.clipboard) {
+            console.error("Clipboard API не поддерживается этим браузером");
+            setCopySuccess(localisation.copyError);
+            return;
+        }
+        try {
+            await navigator.clipboard.writeText("https://t.me/arutabustestbot/GeckoshiTest?startapp=" + link.toString());
+            setCopySuccess(localisation.copySuccess);
+        } catch (e) {
+            console.error(e);
+            setCopySuccess(localisation.copyError);
+        }
+    };
+
+
 
     return (
         <div className={ChecksStyle.checkCard}>
@@ -49,36 +123,58 @@ const Check = () => {
                          width="100%" height="auto">
                         <path
                             d="M0 0C0 0 28.5028 24 50.25 24C71.9972 24 78.7528 0 100.5 0C122.247 0 129.003 24 150.75 24C172.497 24 179.253 0 201 0C222.747 0 229.503 24 251.25 24C272.997 24 279.753 0 301.5 0C323.247 0 330.003 24 351.75 24C373.497 24 380.253 0 402 0C423.747 0 430.503 24 452.25 24C473.997 24 480.753 0 502.5 0C524.247 0 531.003 24 552.75 24C574.497 24 581.253 0 603 0C624.747 0 631.503 24 653.25 24C674.997 24 681.753 0 703.5 0C725.247 0 732.003 24 753.75 24C775.497 24 804 0 804 0V227.5C804 227.5 789 227.5 789 242C789 256.5 804 256.5 804 256.5V732C804 732 775.668 707 753.75 707C731.832 707 725.418 732 703.5 732C681.582 732 675.168 707 653.25 707C631.332 707 624.918 732 603 732C581.082 732 574.668 707 552.75 707C530.832 707 524.418 732 502.5 732C480.582 732 474.168 707 452.25 707C430.332 707 423.918 732 402 732C380.082 732 373.668 707 351.75 707C329.832 707 323.418 732 301.5 732C279.582 732 273.168 707 251.25 707C229.332 707 222.918 732 201 732C179.082 732 172.668 707 150.75 707C128.832 707 122.418 732 100.5 732C78.5817 732 72.1683 707 50.25 707C28.3317 707 0 732 0 732V256.5C0 256.5 15 256.5 15 242C15 227.5 0 227.5 0 227.5L0 0Z"
-                            fill="#616161"/>
+                            fill="#DADADA"/>
                     </svg>
                 </div>
                 <div className={ChecksStyle.CheckText}>
+                    <div className={ChecksStyle.BoxHeader}>
+                        <h2>
+                            <img src={gecko} className={ChecksStyle.coinImage}/>
+
+                        </h2>
+                        <h2 style={{marginLeft: "5%"}}>{Math.floor(amount)}$ GMEME</h2>
+                    </div>
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        fontSize: "xx-large",
+                        fontFamily: "Nunito"
+                    }}>
+                        <div>
+                            ----
+                        </div>
+                        <div>
+                            ----
+                        </div>
+                    </div>
+
+                    <span
+                        onClick={() => handleCopyLink(link)}
+                        className={ChecksStyle.Text}>{localisation.link} https://t.me/arutabustestbot/GeckoshiTest?startapp={link}</span>
+                    <br/>
+                    {copySuccess && <div>{copySuccess}</div>}
+                    <span className={ChecksStyle.Text}>{localisation.status} {status}</span> <br/>
+                    <span className={ChecksStyle.Text}>{localisation.password} {password}</span> <br/>
                     {type === 'single' ? (
                         <>
-                            <span className={ChecksStyle.Text}>User Id: {connected_to_user}</span> <br />
-                            <span className={ChecksStyle.Text}>Link: https://t.me/arutabustestbot/GeckoshiTest?startapp={link}</span> <br />
-                            <span className={ChecksStyle.Text}>Amount: {Number(amount).toFixed(2)} {currency}</span> <br />
-                            <span className={ChecksStyle.Text}>Status: {status}</span> <br />
-                            <span className={ChecksStyle.Text}>Password: {password}</span> <br />
+                            <span className={ChecksStyle.Text}>{localisation.userId} {connected_to_user}</span> <br/>
+
                         </>
                     ) : (
                         <>
-                            <span className={ChecksStyle.Text}>User Id: {connected_to_user}</span> <br />
-                            <span className={ChecksStyle.Text}>Link: https://t.me/arutabustestbot/GeckoshiTest?startapp={link}</span> <br />
-                            <span className={ChecksStyle.Text}>Amount: {Number(amount).toFixed(2)} {currency}</span> <br />
-                            <span className={ChecksStyle.Text}>Status: {status}</span> <br />
-                            <span className={ChecksStyle.Text}>Password: {password}</span> <br />
-                            <span className={ChecksStyle.Text}>Activation Limit: {activation_limit}</span>
-                            <span className={ChecksStyle.Text}>Required Subscriptions: {require_subscriptions}</span>
+
+                            <span className={ChecksStyle.Text}>{localisation.activationLimit} {activation_limit}</span>
+                            <span className={ChecksStyle.Text}>{localisation.requiredSubscriptions} {require_subscriptions}</span>
                         </>
                     )}
 
 
                 </div>
+            </div>
         </div>
-</div>
-)
-    ;
+    )
+        ;
 };
 
 export default Check;

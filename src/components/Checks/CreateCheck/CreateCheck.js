@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import CreateCheckStyles from "./CreateCheck.module.css"
 import gecko from "../../../images/gecko_coin_rem 1.png";
 import LinkToUser from "./LinkToUser/LinkToUser.js"
@@ -11,9 +11,17 @@ const CreateCheck = () => {
     const {user} = useUser();
 
     const [isChecked, setIsChecked] = useState(false);
+    const [svgPosition, setSvgPosition] = useState(0); // Позиция SVG
+    const [gradientDirection, setGradientDirection] = useState({
+        x1: "132.667",
+        y1: "140",
+        x2: "186.451",
+        y2: "8.00458",
+    });
+
 
     const [amount, setAmount] = useState(0);
-
+    const textareaRef = useRef(null);
     const [name, setName] = useState('Check 1');
 
     const [open, setOpen] = useState(false);
@@ -25,6 +33,38 @@ const CreateCheck = () => {
     const [password, setPassword] = useState('');
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Устанавливаем начальную ширину после монтирования
+        const textarea = textareaRef.current;
+        if (textarea) {
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+            const computedStyle = getComputedStyle(textarea);
+
+            // Установка шрифта из стилей элемента
+            context.font = `${computedStyle.fontSize} ${computedStyle.fontFamily}`;
+            const textWidth = context.measureText(name).width;
+
+            // Установка ширины с небольшим отступом
+            textarea.style.width = `${textWidth + 10}px`;
+        }
+    }, [name]);
+
+    const handleInput = (e) => {
+
+        const value = e.target.value;
+
+        setName(value);
+
+        const textarea = textareaRef.current;
+
+        if (textarea) {
+            textarea.style.width = "auto"; // Сбрасываем текущую ширину
+            textarea.style.width = `${textarea.scrollWidth}px`; // Устанавливаем ширину по содержимому
+        }
+
+    };
 
     const handleOpen = () => {
         setOpen(true);
@@ -52,10 +92,6 @@ const CreateCheck = () => {
         setPassword(e.target.value)
     }
 
-    const handleCheckboxChange = (e) => {
-        setIsChecked(e.target.checked);
-    }
-
     const handleActivationLimit = (e) => {
         const value = e.target.value;
         if (/^\d*\.?\d*$/.test(value)) {
@@ -63,6 +99,26 @@ const CreateCheck = () => {
         }
 
     }
+
+    const handleButtonClick = (position, checked) => {
+        setIsChecked(checked);
+        setSvgPosition(position);
+        if (position === 0) {
+            setGradientDirection({
+                x1: "132.667",
+                y1: "140",
+                x2: "186.451",
+                y2: "8.00458",
+            }); // Градиент от зелёного к жёлтому
+        } else {
+            setGradientDirection({
+                x1: "186.451",
+                y1: "8.00458",
+                x2: "132.667",
+                y2: "140",
+            });
+        }
+    };
 
     const createSingleCheck = async () => {
         try {
@@ -128,34 +184,108 @@ const CreateCheck = () => {
                         </linearGradient>
                     </defs>
                 </svg>
-                <h1>
+                <h1 style={{display: "flex"}}>
                     <textarea maxLength={19} className={CreateCheckStyles.name_textarea} rows={1} value={name}
                               onChange={(e) => {
-                                  setName(e.target.value)
-                              }}></textarea>
+                                  handleInput(e)
+                              }}
+                              ref={textareaRef}></textarea>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="28" viewBox="0 0 26 28" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M20.0773 6.50944e-07L20.0792 0C21.2503 0.00115803 22.3948 0.370112 23.3682 1.06028C24.3417 1.75046 25.1004 2.73091 25.5487 3.87786C25.9969 5.02481 26.1146 6.28684 25.8868 7.50464C25.6598 8.71826 25.0999 9.83372 24.2774 10.7112L11.9758 24.1876C11.8112 24.3679 11.608 24.5035 11.3835 24.5828L1.93694 27.9199C1.40811 28.1068 0.825099 27.9608 0.43098 27.5429C0.0368605 27.125 -0.100718 26.5069 0.0756039 25.9463L3.22494 15.9333C3.29461 15.7118 3.41028 15.5097 3.56342 15.3419L12.7282 5.30075C12.744 5.28231 12.7603 5.26417 12.777 5.24635C12.7829 5.24007 12.7889 5.23386 12.7948 5.22772L15.8709 1.85756L15.8886 1.83849C17 0.661781 18.5065 0.000586687 20.0773 6.50944e-07ZM13.8379 8.57216L6.68527 16.4088L7.74553 17.5328L14.8527 9.6454L13.8379 8.57216ZM17.9105 8.47197L15.8848 6.3295L17.9764 4.03787C18.5353 3.4507 19.2903 3.12085 20.0774 3.12029C20.6665 3.12107 21.2422 3.30677 21.732 3.65399C22.222 4.00139 22.6039 4.4949 22.8295 5.07222C23.0551 5.64954 23.1144 6.28479 22.9997 6.89777C22.8851 7.51075 22.6017 8.07398 22.1854 8.51636L22.1696 8.53336L20.106 10.794L17.992 8.55814C17.9717 8.53497 17.9507 8.5123 17.9288 8.49017C17.9228 8.48404 17.9167 8.47797 17.9105 8.47197ZM16.9368 11.8497L9.82731 19.7397L10.901 20.878L18.059 13.0365L16.9368 11.8497ZM8.19369 22.4207L6.76822 20.9095C6.76291 20.9042 6.75762 20.899 6.75236 20.8936C6.73045 20.8715 6.70932 20.8487 6.68898 20.8255L5.26399 19.3148L3.7988 23.9732L8.19369 22.4207Z"
+                              fill="#FFEB3B"/>
+                    </svg>
+
                 </h1>
+            </div>
+            <div style={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                position: "relative",
+            }}>
+                <div style={{display: "flex", flexDirection: "row", justifyContent: "space-evenly"}}>
+                    <button
+                        onClick={() => handleButtonClick(0, true)}
+                        className={CreateCheckStyles.CheckButtons}
+                    >
+                        Solo Cheque
+                    </button>
+                    <p className={CreateCheckStyles.CheckButtons}>
+                        |
+                    </p>
+                    <button
+                        onClick={() => handleButtonClick(1, false)}
+                        className={CreateCheckStyles.CheckButtons}
+                    >
+                        Multi
+                    </button>
+                </div>
+                <div>
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={isChecked}
+                            style={{display: "none"}}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="80"
+                        height="6"
+                        viewBox="0 0 140 4"
+                        fill="none"
+                        style={{
+                            position: "absolute",
+                            top: "60px", // Расстояние до кнопок
+                            left: `${svgPosition === 0 ? "35%" : "80%"}`, // Положение под кнопкой
+                            transform: "translateX(-50%)",
+                            transition: "left 0.3s ease",
+
+                        }}
+                    >
+                        <rect x="140" width="4.00001" height="140" rx="2" transform="rotate(90 140 0)" fill="#D9D9D9"/>
+                        <rect
+                            x="140"
+                            width="4.00001"
+                            height="140"
+                            rx="2"
+                            transform="rotate(90 140 0)"
+                            fill={`url(#paint0_linear_732_361)`}
+                        />
+                        <defs>
+                            <linearGradient
+                                id="paint0_linear_732_361"
+                                x1={gradientDirection.x1}
+                                y1={gradientDirection.y1}
+                                x2={gradientDirection.x2}
+                                y2={gradientDirection.y2}
+                                gradientUnits="userSpaceOnUse"
+                            >
+                                <stop stopColor="#4CAF50"/>
+                                <stop offset="1" stopColor="#FFEB3B"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
             </div>
             <div className={CreateCheckStyles.box_create}>
                 <div className={CreateCheckStyles.CheckBack}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 804 732"
                          preserveAspectRatio="xMidYMid slice"
-                         width="100%" height="auto">
+                         width="100%" height="auto"
+
+                    >
                         <path
                             d="M0 0C0 0 28.5028 24 50.25 24C71.9972 24 78.7528 0 100.5 0C122.247 0 129.003 24 150.75 24C172.497 24 179.253 0 201 0C222.747 0 229.503 24 251.25 24C272.997 24 279.753 0 301.5 0C323.247 0 330.003 24 351.75 24C373.497 24 380.253 0 402 0C423.747 0 430.503 24 452.25 24C473.997 24 480.753 0 502.5 0C524.247 0 531.003 24 552.75 24C574.497 24 581.253 0 603 0C624.747 0 631.503 24 653.25 24C674.997 24 681.753 0 703.5 0C725.247 0 732.003 24 753.75 24C775.497 24 804 0 804 0V227.5C804 227.5 789 227.5 789 242C789 256.5 804 256.5 804 256.5V732C804 732 775.668 707 753.75 707C731.832 707 725.418 732 703.5 732C681.582 732 675.168 707 653.25 707C631.332 707 624.918 732 603 732C581.082 732 574.668 707 552.75 707C530.832 707 524.418 732 502.5 732C480.582 732 474.168 707 452.25 707C430.332 707 423.918 732 402 732C380.082 732 373.668 707 351.75 707C329.832 707 323.418 732 301.5 732C279.582 732 273.168 707 251.25 707C229.332 707 222.918 732 201 732C179.082 732 172.668 707 150.75 707C128.832 707 122.418 732 100.5 732C78.5817 732 72.1683 707 50.25 707C28.3317 707 0 732 0 732V256.5C0 256.5 15 256.5 15 242C15 227.5 0 227.5 0 227.5L0 0Z"
-                            fill="#616161"/>
+                            fill="#DADADA"/>
                     </svg>
                 </div>
 
-                <div>
-                    <label>
-
-                        <input
-                            type="checkbox"
-                            checked={isChecked}
-                            onChange={handleCheckboxChange}
-                        />
-                    </label>
-                </div>
 
                 <div>
                     <div className={CreateCheckStyles.box_header}>
@@ -188,14 +318,14 @@ const CreateCheck = () => {
                 </div>
                 <div style={{marginLeft: "10%"}}>
                     {!isChecked ? <textarea rows={1}
-                                           className={CreateCheckStyles.amount_textarea}
-                                           value={connected_to_user}
-                                           onChange={handleConnectionChange}
-                                           placeholder="enter user gecko id"></textarea> : <textarea rows={1}
-                                                                                                     className={CreateCheckStyles.amount_textarea}
-                                                                                                     value={activationLimit}
-                                                                                                     onChange={handleActivationLimit}
-                                                                                                     placeholder={"ActivationLimit"}></textarea>
+                                            className={CreateCheckStyles.amount_textarea}
+                                            value={connected_to_user}
+                                            onChange={handleConnectionChange}
+                                            placeholder="enter user gecko id"></textarea> : <textarea rows={1}
+                                                                                                      className={CreateCheckStyles.amount_textarea}
+                                                                                                      value={activationLimit}
+                                                                                                      onChange={handleActivationLimit}
+                                                                                                      placeholder={"ActivationLimit"}></textarea>
                     }
 
 

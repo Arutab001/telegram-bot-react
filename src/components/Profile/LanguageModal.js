@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import "./LanguageModal.css";
+import styles from "./LanguageModal.modal.css";
 import MyBtn from "./MyBtn.js";
 import axios from "axios";
 import {useToken} from "../Base_Logic/TelegramAuth.js";
@@ -39,8 +39,8 @@ const LanguageModal = ({show, onClose}) => {
     }
 
     return (
-        <div className="language-overlay">
-            <div className="language-content">
+        <div className={styles.language_overlay}>
+            <div className={styles.language_content}>
                 <h2>{language.lang_menu}</h2>
                 {languages.map((lang) => (
                     <MyBtn key={lang} text={capitalizeFirstLetter(lang)} onClick={(e) => changeLanguage(lang, e)}/>

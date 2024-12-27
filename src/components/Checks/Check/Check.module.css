@@ -14,6 +14,13 @@
     z-index: -2;
 }
 
+.BoxHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-family: Nunito;
+}
+
 .checkInfo {
     margin-top: 10px;
     font-size: 14px;
@@ -73,13 +80,15 @@
     z-index: 0;
     display: flex;
     width: 80%;
-    height: 50%;
+    height: 60%;
     min-height: 325px;
+    padding-bottom: 5%;
 }
 
 .CheckBody {
     display: flex;
     justify-content: center;
+    padding-bottom: 5%;
 }
 .CheckText {
     width: 75vw;
@@ -91,4 +100,11 @@
 
 .Text {
    color: #212121;
+}
+
+.coinImage {
+    border-radius: 100%;
+    width: 56px;
+    height: 56px;
+    border: 2px solid black;
 }

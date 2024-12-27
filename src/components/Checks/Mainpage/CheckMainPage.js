@@ -27,10 +27,10 @@ const CheckMainPage = () => {
                 if (response.status === 200) {
                     setData(response.data);
                 }
-                const multiResponse = await axios.get('/cheque/multi/my?page=1&limit=100');
-                if (multiResponse.status === 200) {
-                    setMultiData(multiResponse.data);
-                }
+                // const multiResponse = await axios.get('/cheque/multi/my?page=1&limit=100');
+                // if (multiResponse.status === 200) {
+                //     setMultiData(multiResponse.data);
+                // }
             } catch (e) {
                 console.error('Checks error: ' + e);
             }
@@ -39,8 +39,6 @@ const CheckMainPage = () => {
         fetchData();
     }, []);
 
-
-    const combinedItems = [...data.items, ...multiData];
 
     return (
         <div className={ChecksMainPage.Main}>
@@ -91,40 +89,9 @@ const CheckMainPage = () => {
                 ))}
                 <div className={ChecksMainPage.add_check}>
                     <Link to="/CreateCheck">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 124 124"
-                             fill="none">
-                            <rect width="124" height="124" rx="62" fill="url(#paint0_linear_596_241)"/>
-                            <g filter="url(#filter0_d_596_241)">
-                                <rect x="56.7432" y="33.7266" width="10.788" height="57.536" rx="5.394"
-                                      fill="#212121"/>
-                                <rect x="91.2646" y="56.7402" width="10.788" height="57.536" rx="5.394"
-                                      transform="rotate(90 91.2646 56.7402)" fill="#212121"/>
-                            </g>
-                            <defs>
-                                <filter id="filter0_d_596_241" x="23.7285" y="23.7266" width="77.5361"
-                                        height="77.5352"
-                                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-                                    <feColorMatrix in="SourceAlpha" type="matrix"
-                                                   values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                                                   result="hardAlpha"/>
-                                    <feOffset/>
-                                    <feGaussianBlur stdDeviation="5"/>
-                                    <feComposite in2="hardAlpha" operator="out"/>
-                                    <feColorMatrix type="matrix"
-                                                   values="0 0 0 0 0.129412 0 0 0 0 0.129412 0 0 0 0 0.129412 0 0 0 0.4 0"/>
-                                    <feBlend mode="normal" in2="BackgroundImageFix"
-                                             result="effect1_dropShadow_596_241"/>
-                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_596_241"
-                                             result="shape"/>
-                                </filter>
-                                <linearGradient id="paint0_linear_596_241" x1="124" y1="0" x2="0" y2="124"
-                                                gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#4CAF50"/>
-                                    <stop offset="1" stop-color="#FFEB3B"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                        <span className={ChecksMainPage.add_check_text}>
+                            +
+                        </span>
                     </Link>
                 </div>
             </div>

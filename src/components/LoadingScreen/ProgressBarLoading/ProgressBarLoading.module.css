@@ -1,16 +1,22 @@
 .progress_bar_container {
-    width: 80vw; /* Контейнер занимает всю ширину */
+    width: 100vw;
     padding: 10px 20px;
     box-sizing: border-box;
     background-color: #212121;
     z-index: 1;
-    border-radius: 24px;
+    position: fixed; /* Элемент будет фиксирован относительно окна браузера */
+    bottom: 0; /* Располагаем контейнер внизу окна */
+    left: 50%;
+    transform: translateX(-50%); /* Для центрирования элемента по горизонтали */
 }
+
+
 
 .progress_bar_track {
     width: 100%; /* Трек тоже занимает всю ширину */
     height: 30px;
     border-radius: 20px;
+    border: 5px solid #616161;
     overflow: hidden;
     position: relative;
 }

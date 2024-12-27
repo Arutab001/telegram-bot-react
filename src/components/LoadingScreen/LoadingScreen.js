@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import classes from "./LoadingScreen.style.css";
+import classes from "./LoadingScreen.module.css";
 import Gecko from "../../images/sticker 1.png";
 import ProgressBarLoading from "./ProgressBarLoading/ProgressBarLoading.js";
 
@@ -17,13 +17,13 @@ const LoadingScreen = ( {onComplete} ) => {
                 }
                 return prev + 10;
             });
-        }, 400);
+        }, 40000);
 
         return () => clearInterval(interval);
     }, [onComplete]);
 
     return (
-        <div style={classes.LoadingScreen}>
+        <div className={classes.LoadingScreen}>
             {/*Левый верхний листик*/}
             <svg style={{position: "absolute", top: "-15%", left: "0"}} xmlns="http://www.w3.org/2000/svg" width="50%"
                  height="50%" viewBox="0 0 484 591" fill="none">
@@ -135,7 +135,7 @@ const LoadingScreen = ( {onComplete} ) => {
                 </defs>
             </svg>
             {/*Большой нижний*/}
-            <svg style={{position: "absolute", bottom: "0", zIndex: "-1"}} xmlns="http://www.w3.org/2000/svg"
+            <svg style={{position: "absolute", bottom: "-50px", zIndex: "-1"}} xmlns="http://www.w3.org/2000/svg"
                  width="100%"
                  height="25%" viewBox="0 0 1080 718" fill="none">
                 <g filter="url(#filter0_d_633_89)">
@@ -376,16 +376,43 @@ const LoadingScreen = ( {onComplete} ) => {
                 </svg>
             </div>
             <div style={{display: "flex", alignItems: "center", justifyContent: "center", height: "100vh", flexDirection: "column"}}>
-                <div style={{width: "80%", height: "40%", backgroundColor: "#212121",
+                <div style={{
+                    width: "80%", height: "80%", backgroundColor: "#212121",
                     borderRadius: "24px", display: "flex", flexDirection: "column",
-                    alignItems: "center", textShadow: "0 0 2px rgba(255, 235, 59, 0.3)",
-                    fontSize: "6vh", color: "#ffeb3b",
-                    fontWeight: "bold", zIndex: "-2"}}>
-                    <img src={Gecko} style={{width: "60%", height: "60%", marginTop: "5%"}}/>
-                    Geckoshi
+                    alignItems: "center", zIndex: "-2", justifyContent: "center"
+                }}>
+                    <img src={Gecko} style={{width: "20%", height: "20%", marginTop: "5%"}}/>
+                    <h2 className={classes.LoadingScreen_Header}>Geckoshi</h2>
+                    <div className={classes.LoadingScreen_Main}>
+                        <div className={classes.LoadingScreen_element}>
+                            Pre-launch
+                        </div>
+                        <div className={classes.LoadingScreen_element}>
+                            Official launch of Geckoshi
+                        </div>
+                        <div className={classes.LoadingScreen_element}>
+                            P2P game on TON, Lottery and more
+                        </div>
+                        <div className={classes.LoadingScreen_element}>
+                            1.000.000 users
+                        </div>
+                        <div className={classes.LoadingScreen_element}>
+                            Negotiations with CEX exchanges
+                        </div>
+                        <div className={classes.LoadingScreen_element}>
+                            Airdrop
+                        </div>
+                        <div className={classes.LoadingScreen_element}>
+                            Listing on exchanges
+                        </div>
+                        <div className={classes.LoadingScreen_element}>
+                            Launch of Geckoshi CEX
+                        </div>
+                    </div>
                 </div>
+
                 <div style={{marginTop: "20%"}}>
-                    <ProgressBarLoading progress={progress} />
+                    <ProgressBarLoading progress={progress}/>
                 </div>
             </div>
         </div>
