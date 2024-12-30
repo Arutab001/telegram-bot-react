@@ -17,7 +17,7 @@ const LoadingScreen = ( {onComplete} ) => {
                 }
                 return prev + 10;
             });
-        }, 40000);
+        }, 400);
 
         return () => clearInterval(interval);
     }, [onComplete]);
@@ -381,7 +381,7 @@ const LoadingScreen = ( {onComplete} ) => {
                     borderRadius: "24px", display: "flex", flexDirection: "column",
                     alignItems: "center", zIndex: "-2", justifyContent: "center"
                 }}>
-                    <img src={Gecko} style={{width: "20%", height: "20%", marginTop: "5%"}}/>
+                    <img src={Gecko} style={{width: "75px", height: "75px", marginTop: "10%"}}/>
                     <h2 className={classes.LoadingScreen_Header}>Geckoshi</h2>
                     <div className={classes.LoadingScreen_Main}>
                         <div className={classes.LoadingScreen_element}>
@@ -393,19 +393,19 @@ const LoadingScreen = ( {onComplete} ) => {
                         <div className={classes.LoadingScreen_element}>
                             P2P game on TON, Lottery and more
                         </div>
-                        <div className={classes.LoadingScreen_element}>
+                        <div className={classes.LoadingScreen_element_Soon}>
                             1.000.000 users
                         </div>
-                        <div className={classes.LoadingScreen_element}>
+                        <div className={classes.LoadingScreen_element_Soon}>
                             Negotiations with CEX exchanges
                         </div>
-                        <div className={classes.LoadingScreen_element}>
+                        <div className={classes.LoadingScreen_element_Soon}>
                             Airdrop
                         </div>
-                        <div className={classes.LoadingScreen_element}>
+                        <div className={classes.LoadingScreen_element_Soon}>
                             Listing on exchanges
                         </div>
-                        <div className={classes.LoadingScreen_element}>
+                        <div className={classes.LoadingScreen_element_Soon}>
                             Launch of Geckoshi CEX
                         </div>
                     </div>
